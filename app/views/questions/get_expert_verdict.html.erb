@@ -1,0 +1,55 @@
+<h2>Based on Your Financial Data</h2>
+<div id="financial-details" style="margin-top:20px;">
+<div id="tabs">
+	<ul>
+		<li><a href="#income">Income & Expenses</a></li>
+		<li><a href="#loans">Loans</a></li>
+		<li><a href="#assets">Assets</a></li>
+                <li><a href="#retirement">Retirement</a></li>
+	</ul>
+	<div id="income">
+          <span class='line-item'>Gross Income: <%= app_number_to_currency @financial.gross_income %></span><br />
+          <span class='line-item'>Net Income: <%= app_number_to_currency @financial.net_income %></span><br />
+          <span class='line-item'>Total Monthly Expenses: <%= app_number_to_currency @financial.total_expenses %></span><br />
+	</div>
+	<div id="loans">
+          <span class='line-item'>Mortgage Payment: <%= app_number_to_currency @financial.mortage_payment %></span><br />
+          <span class='line-item'>Car Payment: <%= app_number_to_currency @financial.car_loan_payment %></span><br />
+          <span class='line-item'>Student Loan Payment: <%= app_number_to_currency @financial.student_loan_payment %></span><br />
+          <span class='line-item'>Other Loan Payments: <%= app_number_to_currency @financial.other_loan_payment %></span><br />
+          <span class='line-item'>Deferred Loan Amounts: <%= app_number_to_currency @financial.deferred_loan_amount %></span><br />
+          <span class='line-item'>Credit Card Debt: <%= app_number_to_currency @financial.cc_debt %></span><br />
+          <span class='line-item'>Credit Card Interest Rate: <%= @financial.cc_interest_rate %> %</span><br />
+	</div>
+	<div id="assets">
+          <span class='line-item'>Liquid Assets: <%= app_number_to_currency @financial.liquid_assets %></span><br />
+          <span class='line-item'>Investments:<%= app_number_to_currency @financial.investments %></span><br />
+	</div>
+        <div id="retirement">
+          <span class='line-item'>Retirement Savings: <%= app_number_to_currency @financial.retirement_savings %></span><br />
+          <span class='line-item'>Monthly Retirement Contribution:<%= app_number_to_currency @financial.monthly_retirement_contribution %></span>
+	</div>
+</div>
+</div>
+
+<fieldset>
+  <legend><b>Expert Verdict</b></legend>
+
+  <% if @expert_details.empty? %>
+     <div id='expert-denied'>Expert does not have sufficient data</div>
+  <% else %>
+      <% if @expert_verdict == true %>
+        <div id='expert-approved'>You have been Approved </div>
+      <% else %>
+        <div id='expert-denied'>You have been Denied.</div>
+      <% end %>
+  <% end %>  
+
+</fieldset>
+
+<fieldset>
+  <legend><b>Details</b></legend>    
+    <%= @expert_details %>
+</fieldset>
+
+

@@ -1,0 +1,12 @@
+<% unless current_user %>  
+    <div id='login'><%= link_to "Login", login_path %> </div>
+<% end %>
+
+<h1>Ask Your question</h1>
+<div class="warning">
+  Please be assured that the data collected here will remain completely Anonymous.<br/>
+  No Personally Identifying information will be stored as part of this data.
+</div>
+<%= render :partial => "question", :locals => {:button_label => 'Next >'} %>
+
+

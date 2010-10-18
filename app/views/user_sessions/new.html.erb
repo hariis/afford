@@ -1,0 +1,26 @@
+<div class="warning">
+  Please NOTE that the account / profile for asking questions is different from <br/>
+  the account / profile for responding to questions in order to maintain complete anonymity.<br/>
+  You will need to have a separate account for each.
+</div>
+<% form_for(@user_session) do |f| %>
+  <%= error_messages_for :user_session, :header_message => '',:message => '' %>
+
+  <fieldset>
+  <legend><b>Login</b></legend>
+  <p>
+    <%= f.label :username, @login_text %><br/>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    <%= f.label :password, 'Password:' %><br/>
+    <%= f.password_field :password %>
+  </p>
+  <%=  hidden_field_tag 'reg', @login_text  %>
+  <p>
+    <%= f.submit 'Login', :class => 'submit' %>
+  </p>
+</fieldset>
+
+<% end %>

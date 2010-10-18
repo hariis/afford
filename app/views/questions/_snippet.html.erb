@@ -1,0 +1,9 @@
+<div class="<%= cycle('snippet-odd','snippet-even') %> ">
+<%= render :partial => 'snippet_body', :locals => {:question => question} %>
+</div>
+
+<div class="snippet-footer">
+  <%=  link_to "View Details", :controller => :questions, :action => :show, :id => question.id %> |
+  <%=  link_to pluralize(question.responses.size, 'response') + " from the community", :controller => :questions, :action => :show, :id => question.id %>
+</div
+

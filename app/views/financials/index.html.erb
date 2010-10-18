@@ -1,0 +1,37 @@
+<h1>Listing financials</h1>
+
+<table>
+  <tr>
+    <th>Gross income</th>
+    <th>Take home</th>
+    <th>Expenses</th>
+    <th>Mortage payment</th>
+    <th>Car loan payment</th>
+    <th>Student loan payment</th>
+    <th>Other payment</th>
+    <th>Deferred loan amount</th>
+    <th>Credit card debt</th>
+    <th>Cc interest rate</th>
+  </tr>
+
+<% @financials.each do |financial| %>
+  <tr>
+    <td><%=h financial.gross_income %></td>
+    <td><%=h financial.take_home %></td>
+    <td><%=h financial.expenses %></td>
+    <td><%=h financial.mortage_payment %></td>
+    <td><%=h financial.car_loan_payment %></td>
+    <td><%=h financial.student_loan_payment %></td>
+    <td><%=h financial.other_payment %></td>
+    <td><%=h financial.deferred_loan_amount %></td>
+    <td><%=h financial.credit_card_debt %></td>
+    <td><%=h financial.cc_interest_rate %></td>
+    <td><%= link_to 'Show', financial %></td>
+    <td><%= link_to 'Edit', edit_financial_path(financial) %></td>
+    <td><%= link_to 'Destroy', financial, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

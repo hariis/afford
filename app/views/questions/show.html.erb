@@ -1,0 +1,132 @@
+<div id="snippets" class='snippet-odd'>
+<%= render :partial => 'snippet_body', :object => @question, :locals => {:question => @question} %>
+</div>
+<br/>
+<div>
+  <div style="float:left;" id="prompt-user-response">
+    <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
+           <%= button_to_function "What do you think?" do |page|
+            page.show 'user-response'
+            page.hide 'expert-response'
+            page.hide "financial-details"
+            page.hide "p_more_link_up"
+            page.show "p_more_link_down"
+           end %>
+    <% else %>
+       Already responded. Thank you!
+    <% end %>
+  </div>
+   <div style="float:right;">
+     <%= button_to_function "View Expert's Response" do |page|
+        page.hide 'user-response'
+        page.show 'expert-response'
+        page.hide "financial-details"
+        page.hide "p_more_link_up"
+        page.show "p_more_link_down"
+       end %>
+   </div>
+</div>
+
+    <%= link_to_function( "View Financial Details",  :id => "p_more_link_down") do |page|
+            page.visual_effect  :toggle_blind, "financial-details"
+            page.show "p_more_link_up"
+            page.hide "p_more_link_down"
+     end  %>
+
+     <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up", :style => 'display:none;') do |page|
+            page.visual_effect  :toggle_blind, "financial-details"
+            page.hide "p_more_link_up"
+            page.show "p_more_link_down"
+     end  %>
+
+      <div id="user-response" style="display:none;margin-top:20px;">
+
+        <% if current_user %>
+            <%  form_remote_for @response, :url => { :controller => 'responses', :action => "create", :id => "#{@question.id}" },
+                      :before => "Element.show('spinner');",:complete => "Element.hide('spinner')" do |f| %>
+                   
+                      <p>
+                        <%= f.label "What is your Reasoning?" %><br />
+                        <%= f.text_area 'reason', :rows => 4, :cols => 80  %>
+                      </p>
+                      <p>
+                        <%= f.label "Your Response?" %><br />
+                        <%= f.radio_button 'verdict', "1" %>Yes
+                        <%= f.radio_button 'verdict', "0" %>No
+                      </p>
+                  <div style="margin-top: 10px;">
+                  <%= f.submit 'Submit' %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
+                  </div>
+           <% end %>
+        <% else %>
+                  <ul>
+                    <li><%= link_to "New? Register", :controller => 'users', :action => 'new', :reg => 'email' %> |
+                     <%= link_to "Already Registered? Log in", :controller => 'user_sessions', :action => 'new', :reg => 'email' %>   </li>
+                  </ul>
+        <% end %>
+    </div>
+<div id="user-response-status" style="color:#008500;"></div>
+<div id="expert-response" style="display:none;margin-top:20px;">
+    <fieldset>
+      <legend><b>Expert Verdict</b></legend>
+      <% if @question.expert_details.empty? %>
+          <div id='expert-denied'>Expert does not have sufficient data</div>
+      <% else %>
+          <% if @question.expert_verdict == true %>
+            <div id='expert-approved'>You have been Approved. </div>
+          <% else %>
+            <div id='expert-denied'>You have been Denied.</div>
+          <% end %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend><b>Details</b></legend>    
+        <%= @question.expert_details %>
+    </fieldset>
+</div>
+
+<div id="financial-details" style="display:none;margin-top:20px;">
+<div id="tabs">
+	<ul>
+		<li><a href="#income">Income & Expenses</a></li>
+		<li><a href="#loans">Loans</a></li>
+		<li><a href="#assets">Assets</a></li>
+                <li><a href="#retirement">Retirement</a></li>
+	</ul>
+	<div id="income">
+          <span class='line-item'>Gross Income: <%= app_number_to_currency @financial.gross_income %></span><br />
+          <span class='line-item'>Net Income: <%= app_number_to_currency @financial.net_income %></span><br />
+          <span class='line-item'>Total Monthly Expenses: <%= app_number_to_currency @financial.total_expenses %></span><br />
+	</div>
+	<div id="loans">
+          <span class='line-item'>Mortgage Payment: <%= app_number_to_currency @financial.mortage_payment %></span><br />
+          <span class='line-item'>Car Payment: <%= app_number_to_currency @financial.car_loan_payment %></span><br />
+          <span class='line-item'>Student Loan Payment: <%= app_number_to_currency @financial.student_loan_payment %></span><br />
+          <span class='line-item'>Other Loan Payments: <%= app_number_to_currency @financial.other_loan_payment %></span><br />
+          <span class='line-item'>Deferred Loan Amounts: <%= app_number_to_currency @financial.deferred_loan_amount %></span><br />
+          <span class='line-item'>Credit Card Debt: <%= app_number_to_currency @financial.cc_debt %></span><br />
+          <span class='line-item'>Credit Card Interest Rate: <%= @financial.cc_interest_rate %> %</span><br />
+	</div>
+	<div id="assets">
+          <span class='line-item'>Liquid Assets: <%= app_number_to_currency @financial.liquid_assets %></span><br />
+          <span class='line-item'>Investments:<%= app_number_to_currency @financial.investments %></span><br />
+	</div>
+        <div id="retirement">
+          <span class='line-item'>Retirement Savings: <%= app_number_to_currency @financial.retirement_savings %></span><br />
+          <span class='line-item'>Monthly Retirement Contribution:<%= app_number_to_currency @financial.monthly_retirement_contribution %></span>
+	</div>
+</div>
+</div>
+<br/>
+<hr/>
+<div style="float:right;clear:both;padding-top:5px;">
+  <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+  </div>
+<br/>
+<div id="all-responses">
+  <h2>Community Responses  (<%= @question.responses.size %>)</h2>
+  <div class="<%= cycle('snippet-odd','snippet-even') %>">
+  <%= render :partial => 'responses/response', :collection => @question.responses %>
+  </div
+</div>

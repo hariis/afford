@@ -1,0 +1,8 @@
+production:
+  :enable_starttls_auto: true
+  :address: caniaffordit.r10.railsrumble.com
+  :domain: caniaffordit.r10.railsrumble.com
+  :port: 25
+  :authentication: :login
+  :user_name: hariis
+  :password: jayam4rama

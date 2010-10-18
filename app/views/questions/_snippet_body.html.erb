@@ -1,0 +1,2 @@
+<b><%=h question.nick_name.capitalize %></b> wants to buy a <b><%=h question.item_name.capitalize %></b> costing <b><%= app_number_to_currency  question.item_cost %></b><br/>
+  and at a recurring cost of <b><%= app_number_to_currency question.recurring_item_cost %></b> per month.<br/>

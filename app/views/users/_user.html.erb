@@ -1,0 +1,20 @@
+<% form_for(@user) do |f| %>  
+  
+    <%= error_messages_for :user, :header_message => '', :message => '' %><br/>
+    <fieldset>
+      <legend><b>Register</b></legend>
+      <p>
+        <%= f.label :username, @login_text %><br/>
+        <%= f.text_field :username %>
+      </p>
+
+      <p>
+        <%= f.label :password, 'Password:' %><br/>
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.submit button_type, :class => 'submit' %>
+      </p>
+    </fieldset>
+  
+<% end %>  

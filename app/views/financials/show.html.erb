@@ -1,0 +1,53 @@
+<p>
+  <b>Gross income:</b>
+  <%=h @financial.gross_income %>
+</p>
+
+<p>
+  <b>Take home:</b>
+  <%=h @financial.net_income %>
+</p>
+
+<p>
+  <b>Expenses:</b>
+  <%=h @financial.total_expenses %>
+</p>
+
+<p>
+  <b>Mortage payment:</b>
+  <%=h @financial.mortage_payment %>
+</p>
+
+<p>
+  <b>Car loan payment:</b>
+  <%=h @financial.car_loan_payment %>
+</p>
+
+<p>
+  <b>Student loan payment:</b>
+  <%=h @financial.student_loan_payment %>
+</p>
+
+<p>
+  <b>Other payment:</b>
+  <%=h @financial.other_loan_payment %>
+</p>
+
+<p>
+  <b>Deferred loan amount:</b>
+  <%=h @financial.deferred_loan_amount %>
+</p>
+
+<p>
+  <b>Credit card debt:</b>
+  <%=h @financial.cc_debt %>
+</p>
+
+<p>
+  <b>Cc interest rate:</b>
+  <%=h @financial.cc_interest_rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_financial_path(@financial) %> |
+<%= link_to 'Back', financials_path %>
