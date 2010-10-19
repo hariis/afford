@@ -38,6 +38,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @financial = @question.financial
     @response = Response.new
+    if current_user
+      @user_agreed_with_community = current_user.agreed_with_community
+      @user_agreed_with_expert = current_user.agreed_with_expert
+    end
   end
   
   def new

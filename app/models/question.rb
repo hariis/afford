@@ -106,10 +106,16 @@ class Question < ActiveRecord::Base
   def is_responded_by(user)
     responses.find_by_user_id(user.id) != nil
   end
+  
   def response_for(user)
     responses.find_by_user_id(user.id)
   end
 
+  def get_community_verdict
+    positive_responses = responses.find(:all, :conditions => ['verdict = ?', true])
+    positive_responses.size >= (responses.size - positive_responses.size)
+  end
+  
   #Financial Rules
   #---------------------------------------------------------------------------------------------------------
   def get_expert_verdict
