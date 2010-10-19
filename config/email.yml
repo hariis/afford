@@ -3,6 +3,6 @@ production:
   :address: caniafforditnow.com
   :domain: caniafforditnow.com
   :port: 25
-  :authentication: :login
+  :authentication: login
   :user_name: hariis
   :password: mount^hood
