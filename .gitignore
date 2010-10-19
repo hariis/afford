@@ -1,0 +1,16 @@
+config/database.yml
+config/initializers/db2s3.rb
+config/site.yml
+config/deploy.rb
+config/s3.yml
+db/data.yml
+db/schema.rb
+log
+nbproject
+public/javascripts/cache
+public/stylesheets/cache
+public/system
+tmp
+vendor/plugins/query_trace/
+vendor/gems
+test
