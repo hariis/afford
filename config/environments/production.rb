@@ -26,5 +26,5 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
- # config.action_controller.session_store = :active_record_store
- # config.action_controller.session = {:domain => '.caniaffordit.r10.railsrumble.com'}
+config.action_controller.session_store = :active_record_store
+config.action_controller.session = {:domain => '.caniafforditnow.com'}
