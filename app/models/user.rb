@@ -8,9 +8,29 @@ class User < ActiveRecord::Base
     c.validate_email_field(false)
   end
 
+  #get all the responses for that user
+  def agreed_with_community
+    responses = self.responses
+    count = 0
+    responses.each do |response|
+        count += 1 if response.verdict == response.question.get_community_verdict
+    end
+    return count
+  end 
+  
+  def agreed_with_expert
+    responses = self.responses
+    count = 0
+    responses.each do |response|
+        count += 1 if response.verdict == response.question.expert_verdict
+    end
+    return count
+  end
+  
   def self.find_by_username_or_email(login)
     User.find_by_username(login) || User.find_by_email(login)
   end
+  
   def get_email_name
     begin
     ast = username.index('@')
@@ -21,6 +41,7 @@ class User < ActiveRecord::Base
     end
     #awesome_truncate(username, username.index('@'), "").capitalize
   end
+  
   # Awesome truncate
   # First regex truncates to the length, plus the rest of that word, if any.
   # Second regex removes any trailing whitespace or punctuation (except ;).

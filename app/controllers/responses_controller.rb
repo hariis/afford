@@ -1,12 +1,15 @@
 class ResponsesController < ApplicationController
   before_filter :load_question
-  before_filter :require_user,  :only => [:new, :create]
+  before_filter :require_user,  :only => [:new, :create, :statistics]
+  
   def load_question
     @question = Question.find(params[:id])
   end
+  
   def new
     @response = Response.new
   end
+  
   def create
     if params[:response][:verdict].nil? || params[:response][:reason].blank?
       @status_string = 'Please make sure to provide your response and reasoning.'

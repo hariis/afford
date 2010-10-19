@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
       current_user_session.destroy
       session[:return_to] = nil
     end
+    
     def require_user
       unless current_user
         store_location
