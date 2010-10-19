@@ -16,3 +16,9 @@
 
 <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
 
+
+<% form_remote_tag :url => {:action => 'subscribe'},:update => 'notification-status' do %>
+<%= text_field_tag 'subscriber_email', "" %>
+<%= submit_tag "Notify Me" %>
+<% end %>
+<div id="notification-status"></div>

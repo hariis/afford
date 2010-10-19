@@ -48,12 +48,12 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   
-  DOMAIN = "http://caniaffordit.r10.railsrumble.com/" if ENV['RAILS_ENV'] == 'production'
+  DOMAIN = "http://caniafforditnow.com/" if ENV['RAILS_ENV'] == 'production'
   DOMAIN = "http://localhost:3000/" if ENV['RAILS_ENV'] != 'production'
-  TWOAUTH_KEY = "eV0zeuc68PbwxFMeGmuuQ"
-  TWOAUTH_SECRET = "sbsbbdDOoQ4Fcr8EusmVdfwFG0iMgmHnY8ZTjn5DHI"
+  TWOAUTH_KEY = ""
+  TWOAUTH_SECRET = ""
   TWOAUTH_SITE = "http://twitter.com"
-  TWOAUTH_CALLBACK = "http://caniaffordit.r10.railsrumble.com/callback"
+  TWOAUTH_CALLBACK = "http://caniafforditnow.com/callback"
   #redefining the error fields display
   config.action_view.field_error_proc = Proc.new {|html_tag, instance|
     %(<span class="fieldWithErrors">#{html_tag}</span>)}

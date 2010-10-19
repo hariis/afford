@@ -112,4 +112,8 @@ class QuestionsController < ApplicationController
   
   def tos  
   end
+  def subscribe
+    Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    render :text => 'Got it! Will do.'
+  end
 end
