@@ -4,5 +4,5 @@ production:
   :domain: caniafforditnow.com
   :port: 25
   :authentication: :login
-  :user_name: hariis
+  :user_name: hariis@caniafforditnow.com
   :password: mount^hood
