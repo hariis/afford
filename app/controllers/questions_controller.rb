@@ -115,7 +115,7 @@ class QuestionsController < ApplicationController
   def about
   end
   def subscribe
-    #Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
     
     if validate_simple_email(params[:subscriber_email])
       #Save this data
