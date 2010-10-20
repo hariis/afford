@@ -1,5 +1,4 @@
 production:
-  :enable_starttls_auto: false
   :address: caniafforditnow.com
   :domain: caniafforditnow.com
   :port: 25
