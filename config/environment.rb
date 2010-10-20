@@ -1,12 +1,12 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-#if ENV['RAILS_ENV'] == 'production'
+if ENV['RAILS_ENV'] == 'production'
 RAILS_GEM_VERSION = '2.3.10' unless defined? RAILS_GEM_VERSION
-#end
-#if ENV['RAILS_ENV'] != 'production'
-#RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION 
-#end
+end
+if ENV['RAILS_ENV'] != 'production'
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION 
+end
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 

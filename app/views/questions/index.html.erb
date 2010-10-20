@@ -16,9 +16,12 @@
 
 <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
 
-
+<div id="notification-prompt">
 <% form_remote_tag :url => {:action => 'subscribe'},:update => 'notification-status' do %>
-<%= text_field_tag 'subscriber_email', "" %>
+<%= label_tag "Notify Me when a new Question is posted" %>
+<%= text_field_tag 'subscriber_email', "Enter Your Email address", :size => '20',
+                                                 :onblur => "if (this.value == '') {this.value = 'Enter Your Email address';}", :onfocus => "if (this.value == 'Enter Your Email address') {this.value = '';}" %>
 <%= submit_tag "Notify Me" %>
 <% end %>
+</div>
 <div id="notification-status"></div>

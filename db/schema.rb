@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017044011) do
+ActiveRecord::Schema.define(:version => 20101020074529) do
 
   create_table "facebook_users", :force => true do |t|
     t.integer  "user_id"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20101017044011) do
   end
 
   add_index "financials", ["user_id"], :name => "index_financials_on_user_id"
+
+  create_table "notifications", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", :force => true do |t|
     t.integer  "financial_id"
