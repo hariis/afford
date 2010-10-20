@@ -1,7 +1,8 @@
 production:
+  :enable_starttls_auto: false
   :address: caniafforditnow.com
   :domain: caniafforditnow.com
   :port: 25
   :authentication: :login
-  :user_name: hariis
+  :user_name: hariis@caniafforditnow.com
   :password: mount^hood
