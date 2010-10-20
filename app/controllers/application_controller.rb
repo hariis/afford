@@ -55,7 +55,10 @@ class ApplicationController < ActionController::Base
     end
 
     def validate_simple_email(email)
+      unless email.blank?
           emailRE= /\A[\w\._%-]+@[\w\.-]+\.[a-zA-Z]{2,4}\z/
           return email =~ emailRE
-     end
+      end
+      return false
+    end
 end

@@ -17,8 +17,8 @@ pre {
 select {
     background-color:#eefad6;
 }
-a { color: #000; }
-a:visited { color: #666; }
+a { color: #000;text-decoration:none; }
+a:visited { color: #000; }
 a:hover { color: #a64b00; }
 
 .fieldWithErrors {
@@ -173,7 +173,9 @@ line-height:1.2em;
       padding:3px 10px;
       font-size:12px;
 }
-
+.snippet-footer a {
+    text-decoration: underline;
+}
 .ui-tabs .ui-tabs-nav {
 width: 99%;
 }
@@ -209,3 +211,24 @@ margin-right:15px;
 #all-responses {
     text-align: left;
 }
+#notification-prompt{
+    margin-top: 30px;
+    font-size: 20px;
+    padding:3px;
+    color: #fff;
+    font-weight: bold;
+}
+#footer {    
+    text-align: center;
+    font-size:12px;
+    width:662px;
+    padding: 10px;
+    margin:50px 20px 7px 42px;
+    clear:both;
+    margin:0 20%;
+    
+}
+#footer ul li {
+     display:inline;
+}
+

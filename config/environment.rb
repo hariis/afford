@@ -1,11 +1,13 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-#if ENV['RAILS_ENV'] == 'production'
-#RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION 
-#end
+if ENV['RAILS_ENV'] == 'production'
+  RAILS_GEM_VERSION = '2.3.10' unless defined? RAILS_GEM_VERSION
+#else
+#  RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+end
 #if ENV['RAILS_ENV'] != 'production'
-#RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION 
+#  RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 #end
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -48,12 +50,12 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   
-  DOMAIN = "http://caniaffordit.r10.railsrumble.com/" if ENV['RAILS_ENV'] == 'production'
+  DOMAIN = "http://caniafforditnow.com/" if ENV['RAILS_ENV'] == 'production'
   DOMAIN = "http://localhost:3000/" if ENV['RAILS_ENV'] != 'production'
-  TWOAUTH_KEY = "eV0zeuc68PbwxFMeGmuuQ"
-  TWOAUTH_SECRET = "sbsbbdDOoQ4Fcr8EusmVdfwFG0iMgmHnY8ZTjn5DHI"
+  TWOAUTH_KEY = ""
+  TWOAUTH_SECRET = ""
   TWOAUTH_SITE = "http://twitter.com"
-  TWOAUTH_CALLBACK = "http://caniaffordit.r10.railsrumble.com/callback"
+  TWOAUTH_CALLBACK = "http://caniafforditnow.com/callback"
   #redefining the error fields display
   config.action_view.field_error_proc = Proc.new {|html_tag, instance|
     %(<span class="fieldWithErrors">#{html_tag}</span>)}

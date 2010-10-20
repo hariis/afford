@@ -112,4 +112,17 @@ class QuestionsController < ApplicationController
   
   def tos  
   end
+  def about
+  end
+  def subscribe
+    Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    
+    if validate_simple_email(params[:subscriber_email])
+      #Save this data
+      Notification.create(:email => params[:subscriber_email])
+      render :text => 'Got it! Will do.'
+    else
+      render :text => 'Please enter a valid email address.'
+    end    
+  end
 end
