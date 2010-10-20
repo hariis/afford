@@ -82,9 +82,7 @@ class FinancialsController < ApplicationController
     #Ask for email to send the expert_opinion and password to save the financial_data
     @question = Question.find(params[:id])
     if current_user
-      force_logout
-      redirect_to :controller => :questions, :action => :get_expert_verdict, :id => @question.id
-      return
+      @question 
     end
   end
   
