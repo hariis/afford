@@ -218,6 +218,7 @@ class Question < ActiveRecord::Base
       @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
     else
       @expert_details << "<li class='red'>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</li>"
+      @expert_verdict = false
     end
   end
   
