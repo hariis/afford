@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :financials, :through => :questions, :dependent => :destroy
   
   acts_as_authentic do |c|
-    c.login_field= :username
+    c.login_field = :username
     c.validate_email_field(false)
   end
 

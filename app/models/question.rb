@@ -8,12 +8,6 @@ class Question < ActiveRecord::Base
   validates_presence_of :item_name, :reason_to_buy
   validates_numericality_of :recurring_item_cost
   
-  validates_each :nick_name, :on => :save do |record,attr,value|
-    if value.include?("@")   #=> true
-        record.errors.add(attr,": Nick name should not have '@' character.")      
-    end
-  end
-  
   validates_each :age, :on => :save do |record,attr,value|
       if value.blank?
         record.errors.add(attr,": Please enter your #{attr.to_s.humanize}")

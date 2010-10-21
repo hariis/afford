@@ -3,28 +3,14 @@ class UsersController < ApplicationController
     
    def new
      store_location
-      @user = User.new
-      @login_text = "Nick Name"
-      if params[:reg] == 'email'
-        @login_text = "Email"
-      end
+     @user = User.new
    end  
 
    def create
      @user = User.new(params[:user])
      @user.password_confirmation = @user.password
 
-     valid_email = validate_simple_email(params[:user][:username])
-     proceed = true
-     error_text = ''
-
-     unless valid_email
-       error_text = ": Please use a valid Email address to register"
-       @user.errors.add(:username,error_text)
-       proceed = false
-     end
-
-     if proceed && @user.save
+     if @user.save
        flash[:notice] = "Successfully registered."
        redirect_back_or_default(root_url)
      else
