@@ -66,6 +66,7 @@ class QuestionsController < ApplicationController
   def payment_mode
     #Ask payment details
     @question = Question.new
+    @item_cost = session[:new_question_item].item_cost if session[:new_question_item]
   end
   
   def step3
@@ -111,10 +112,12 @@ class QuestionsController < ApplicationController
   
   def about
   end
-  
+  def privacy
+  end
   def subscribe
-    #Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
-    
+    if current_user && current_user.username == 'hari'
+      Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    end
     if validate_simple_email(params[:subscriber_email])
       #Save this data
       Notification.create(:email => params[:subscriber_email])

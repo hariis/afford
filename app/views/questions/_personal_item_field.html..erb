@@ -1,9 +1,9 @@
 <h3>About You and the Item</h3>
 <fieldset>
-  <legend><b>About Item</b></legend>
+  <legend><b>About Your Purchase</b></legend>
   <p>
-    <%= f.label :item_name, "What are you planning to do?" %><br />
-    <%= f.text_field :item_name, :size => 63 %>
+    <%= f.label :item_name, "I want to" %><br />
+    <%= f.text_field :item_name, :size => 63, :maxlength => 200 %>
   </p>
   <p>
     <%= f.label :reason_to_buy, "Why do you want?" %><br />
@@ -28,7 +28,7 @@
   <% unless current_user %>
   <p>
     <%= f.label :nick_name, "Nick Name" %><br />
-    <%= f.text_field :nick_name %>
+    <%= f.text_field :nick_name, :maxlength => 20 %>
   </p>
 <% end %>
 </fieldset>

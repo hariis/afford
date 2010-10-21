@@ -1,6 +1,7 @@
 <h3>Payment Mode</h3>
 <fieldset>
-   <legend><b>How are you going to pay for it?</b><span style="font-size:12px;"> (Exclude monthly recurring cost)<span></legend>  
+   <legend><b>How are you going to pay for it?</b><span style="font-size:14px;"> (Exclude monthly recurring costs)</span></legend>
+   <span style="color:green;font-weight:bold;"><%= "Cost: $" + @item_cost.to_s %></span
   <p>
     <%= f.check_box :pm_saving %>
     <%= f.label :pm_saving, "Savings" %>

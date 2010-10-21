@@ -57,14 +57,19 @@
         
       </div>
   <% end %>  
-  
+  <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>
      <div id="login">
         <% if current_user %>
-            <span style="float:left;">
-                Agreed with Expert: <%= @user_agreed_with_expert %>  |
-                Agreed with Community: <%= @user_agreed_with_community %>
-            </span>
-            <span style="margin-left:240px;">
+            <% if current_user.responses.size > 0 && (controller.action_name == 'index' && controller.action_name == 'show') %>
+              <span style="float:left;">
+                  Agreed with Expert: <%= @user_agreed_with_expert %>  |
+                  Agreed with Community: <%= @user_agreed_with_community %>
+              </span>
+              <% margin = 'margin-left:300px' %>
+            <% else %>
+              <% margin = 'margin-left:500px' %>
+            <% end %>
+            <span style= "<%= margin %>">
                 <%= link_to "#{current_user.username}", edit_user_path(:current) %>  |
                 <%= link_to "Logout", logout_path %>
             </span>
@@ -74,6 +79,7 @@
             </span>
          <% end %> 
    </div>
+   <% end %>
 
 
         <%= yield %>
@@ -84,10 +90,10 @@
   </div>
   <div id="footer">
          <ul>
-          <li>©2010 CanIAffordItNow.com</li> |
+          <li>©2010 CanIAffordItNow.com</li> 
           <li><%=  link_to "About" , "#{DOMAIN}about" %></li> |
-          <li><%=  link_to "Disclaimer" , "#{DOMAIN}disclaimer" %></li>
-          <li><%  link_to "Help / FAQ" , "#" %></li>
+          <li><%=  link_to "Disclaimer" , "#{DOMAIN}disclaimer" %></li> | 
+          <li><%=  link_to "Privacy" , "#{DOMAIN}privacy" %></li>
         </ul>
       </div>
 </body>
