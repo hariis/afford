@@ -60,12 +60,12 @@
   <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>
      <div id="login">
         <% if current_user %>
-            <% if current_user.responses.size > 0 && (controller.action_name == 'index' && controller.action_name == 'show') %>
+            <% if current_user.responses.size > 0 && (controller.action_name == 'index' || controller.action_name == 'show') %>
               <span style="float:left;">
                   Agreed with Expert: <%= @user_agreed_with_expert %>  |
                   Agreed with Community: <%= @user_agreed_with_community %>
               </span>
-              <% margin = 'margin-left:300px' %>
+              <% margin = 'margin-left:100px' %>
             <% else %>
               <% margin = 'margin-left:500px' %>
             <% end %>
