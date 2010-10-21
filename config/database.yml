@@ -5,5 +5,5 @@ development:
   database: afford
   pool: 5
   username: root
-  password: jayam4rama
-  host: localhost
+  password:
+  socket: /var/run/mysqld/mysqld.sock
