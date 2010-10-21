@@ -30,3 +30,13 @@ config.action_controller.session_store = :active_record_store
 config.action_controller.session = {:domain => '.caniafforditnow.com'}
 
 config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => "localhost",
+  :domain => "caniafforditnow.com",
+  :port => 25,
+  :authentication => :login,
+  :user_name => "hariis",
+  :password => "mount^hood"
+
+}
