@@ -161,17 +161,17 @@ class Question < ActiveRecord::Base
     diff = financial.net_income - addon_total_expenses
     if diff >= 0
       #@expert_details << "Your <b>Net Income</b> is good to match the <b>Total Expenses</b><br/>"
-      @expert_details << "<span style=color:green;>Your Total monthly expenses will be $#{addon_total_expenses} after the purchase"
-      @expert_details << " which will still be within your Net income. Good.</span><br/>"
+      @expert_details << "<li class='green'>Your Total monthly expenses will be $#{addon_total_expenses} after the purchase"
+      @expert_details << " which will still be within your Net income.</li>"
     else
       @expert_verdict = false
       includes = []
       includes << "recurring cost of the item " if self.recurring_item_cost > 0
       includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
       include_string = includes.size > 0 ? " including" + includes.to_sentence : ""
-      @expert_details << "<span style=color:red;>Your Total monthly expenses #{include_string}  will be $#{addon_total_expenses} after the purchase"
-      @expert_details << " which will EXCEED your Net income by $#{diff * -1} .</span><br/>"
-      #@expert_details << "<span style=color:red;>Your <b>Net Income</b> is/will be less than Total Expenses "
+      @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be $#{addon_total_expenses} after the purchase"
+      @expert_details << " which will EXCEED your Net income by $#{diff * -1}.</li>"
+      #@expert_details << "<span class='red'>Your <b>Net Income</b> is/will be less than Total Expenses "
       #@expert_details << "+ Recurring cost of the item " if self.recurring_item_cost > 0
       #@expert_details << "+ Recurring loan payment for the item " if self.pm_financing_amount > 0
       #@expert_details << "to support this purchase</span><br/>"
@@ -182,14 +182,14 @@ class Question < ActiveRecord::Base
     #Credit card debt <= 0 || (cc_debt > 0 && interest rate = 0
     if financial.cc_debt <= 0 || (financial.cc_interest_rate == 0 &&  financial.cc_debt <= 2000)
       if financial.cc_debt <= 0 
-        @expert_details << "<span style=color:green;>Your have no <b>Credit card debt</b> which is good.</span><br/>"
+        @expert_details << "<li class='green'>Your have no <b>Credit card debt.</b></li>"
       else
-        @expert_details << "<span style=color:yellow;>Your have some <b>Credit card debt</b> @ 0% which is acceptable</span><br/>"      
+        @expert_details << "<li class='green'>Your have some <b>Credit card debt</b> @ 0% which is acceptable</li>"
       end
     else
       @expert_verdict = false
-      @expert_details << "<span style=color:red;>You have $#{financial.cc_debt} <b>Credit card debt</b> @ #{financial.cc_interest_rate}%.<br/>
-                          <div>Expert suggests: Pay off your <b>Credit card debt</b> before buying this item.</div></span><br/>"
+      @expert_details << "<li class='red'>You have $#{financial.cc_debt} <b>Credit card debt</b> @ #{financial.cc_interest_rate}%.<br/>
+                          Expert suggests: Pay off your <b>Credit card debt</b> before buying this item.</li>"
     end    
   end
   
@@ -200,14 +200,14 @@ class Question < ActiveRecord::Base
     if net_liquid
       move_funds = (6 * addon_total_expenses) - addon_liquid_assets
       if (addon_investment >= (8 * addon_total_expenses) - addon_liquid_assets)
-          @expert_details << "<span style=color:green;>You don't have sufficient <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments </b><br/>"
-          @expert_details << "Since you said that you deserve it or need it, You can liquidate $#{move_funds} from your <b>Investments</b> to <b>Savings</b> and then make the purchase.</span><br/>" if self.reason_to_buy == 1 || self.reason_to_buy == 2
+          @expert_details << "<li class='green'>You don't have sufficient <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments </b><br/>"
+          @expert_details << "Since you said that you deserve it or need it, You can liquidate $#{move_funds} from your <b>Investments</b> to <b>Savings</b> and then make the purchase.</li>" if self.reason_to_buy == 1 || self.reason_to_buy == 2
       else
           @expert_verdict = false
-          @expert_details << "<span style=color:red;>You don't have sufficient <b>Liquid assets / Savings</b> to cover for your emergency fund. Recommeded is 6 times your total monthly expenses.</span><br/>"
+          @expert_details << "<li class='red'>You don't have sufficient <b>Liquid assets / Savings</b> to cover for your emergency fund. <br/>Recommeded is 6 times your total monthly expenses.</li>"
       end
     else
-      @expert_details << "<span style=color:green;>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</span><br/>"
+      @expert_details << "<li class='green'>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</li>"
     end
   end
   
@@ -215,37 +215,37 @@ class Question < ActiveRecord::Base
     #retirement monthly contribution > = supposed to be (from lookup table)    
     #TODO 
     if (financial.monthly_retirement_contribution >= 0.10*financial.net_income)
-      @expert_details << "<span style=color:green;>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</span><br/>"
+      @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
     else
-      @expert_details << "<span style=color:red;>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</span><br/>"
+      @expert_details << "<li class='red'>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</li>"
     end
   end
   
   def check_rule5_deferred_loan
     #if Deferred loans > 0, item cost < 1000
     if financial.deferred_loan_amount <= 0     
-      @expert_details << "<span style=color:green;>Your have no <b>Deferred loans</b> which is good. </span><br/>"
+      @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
     elsif (self.item_cost <= 1000 && (self.reason_to_buy == 1 || self.reason_to_buy == 2) )
-      @expert_details << "<span style=color:green;>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later. </span><br/>"
+      @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
     else
       @expert_verdict = false
-      @expert_details << "<span style=color:red;>You mentioned you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
-                        Expert suggests: Start paying off your <b>Deferred loans first. This will save you money in the long run.</span></b>"
+      @expert_details << "<li class='red'>You mentioned you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
+                        Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
     end
   end
 
   def check_rule6_total_loan_payment
     #Total loan payment + Recurrring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
     if addon_total_loan_payment < 0.36 * financial.gross_income
-       @expert_details << "<span style=color:green;>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</span><br/>"
+       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</li>"
     else
       if addon_total_loan_payment < 0.40 * financial.gross_income
         loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36
-        @expert_details << "<span style=color:green;>Your <b>Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
-                          Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{loan_payment}%</span><br/>"
+        @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
+                          Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{loan_payment}%</li>"
       else
         @expert_verdict = false
-        @expert_details << "<span style=color:red;>Your <b>Total Loan Payments</b> are too high to support this purchase.</span><br/>"
+        @expert_details << "<li class='red'>Your <b>Total Loan Payments</b> are too high to support this purchase.</li>"
       end
       return false
     end
@@ -256,10 +256,10 @@ class Question < ActiveRecord::Base
     #paying from the investment
     if self.pm_investment_amount > 0 #if you are paying from investment
       if addon_investment > 0
-        @expert_details << "<span style=color:green;>You have sufficient funds in your Investments to support this purchase. </span><br/>"
+        @expert_details << "<li class='green'>You have sufficient funds in your Investments to support this purchase.</li>"
       else
         @expert_verdict = false
-        @expert_details << "<span style=color:red;>You don't have sufficient funds in your investments to support this purchase</span><br/>"
+        @expert_details << "<li class='red'>You don't have sufficient funds in your investments to support this purchase.</li>"
       end
     end
   end

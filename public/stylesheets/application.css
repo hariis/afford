@@ -250,3 +250,21 @@ margin-right:15px;
     letter-spacing:0.3px;
     line-height:1.5em;
 }
+.green {
+    color:green;
+}
+.red {
+   color:red;
+}
+
+#expert-response ul{
+  width:630px;
+}
+#expert-response ul li.green{
+  list-style-image: url('/images/checked.gif');
+  line-height:1.5em;
+}
+#expert-response ul li.red{
+  list-style-image: url('/images/unchecked.gif');
+  line-height:1.5em;
+}
