@@ -14,7 +14,7 @@ class FinancialsController < ApplicationController
   end
   
   def new
-    if current_user
+    if current_user && current_user.financials.size > 0 
       @financial = current_user.financials.find(:first, :order => 'created_at desc')
     else
       @financial = Financial.new
