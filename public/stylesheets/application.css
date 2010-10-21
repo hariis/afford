@@ -2,7 +2,7 @@ body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
   font-family:'Droid Sans',helvetica,Arial,sans-serif;
-  font-size:   13px;
+  font-size:   14px;
   line-height: 18px;
   width:100%;
   margin: 0 auto;
@@ -241,4 +241,12 @@ margin-right:15px;
     padding-left: 11px;
     font-size:12px;
     font-weight:none;
+}
+#block-text {
+    padding: 0px 20px;
+    text-align:left;
+}
+#block-text p{
+    letter-spacing:0.3px;
+    line-height:1.5em;
 }
