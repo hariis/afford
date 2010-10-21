@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :financials, :through => :questions, :dependent => :destroy
   
   acts_as_authentic do |c|
-    c.login_field= :username
+    c.login_field = :username
     c.validate_email_field(false)
   end
 
@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
     responses = self.responses
     count = 0
     responses.each do |response|
-        count += 1 if response.verdict == response.question.get_community_verdict
+        #count += 1 if response.verdict == response.question.get_community_verdict
+        count += 1 if response.question.get_community_verdict(response.verdict)
     end
     return count
   end 

@@ -8,12 +8,6 @@ class Question < ActiveRecord::Base
   validates_presence_of :item_name, :reason_to_buy
   validates_numericality_of :recurring_item_cost
   
-  validates_each :nick_name, :on => :save do |record,attr,value|
-    if value.include?("@")   #=> true
-        record.errors.add(attr,": Nick name should not have '@' character.")      
-    end
-  end
-  
   validates_each :age, :on => :save do |record,attr,value|
       if value.blank?
         record.errors.add(attr,": Please enter your #{attr.to_s.humanize}")
@@ -111,9 +105,14 @@ class Question < ActiveRecord::Base
     responses.find_by_user_id(user.id)
   end
 
-  def get_community_verdict
+  def get_community_verdict(user_verdict)
     positive_responses = responses.find(:all, :conditions => ['verdict = ?', true])
-    positive_responses.size >= (responses.size - positive_responses.size)
+    if positive_responses.size == responses.size/2
+      return true
+    else
+      community_verdict = positive_responses.size > (responses.size - positive_responses.size)
+      user_verdict == community_verdict
+    end
   end
   
   #Financial Rules

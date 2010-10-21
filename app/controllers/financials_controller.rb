@@ -47,7 +47,7 @@ class FinancialsController < ApplicationController
     #I don't why the before filter is not ending the chain if the session is nil
     #Thats why I have to catch it here and kick out the user
     unless ensure_user_and_financial_exists
-      flash[:error] = 'You session has expired for security reasons. Please start again. <br/> Sorry for the incovenience.'
+      flash[:error] = 'You session has expired for security reasons. Please start again. <br/> We are sorry for the incovenience.'
       redirect_to :controller => :questions, :action => :new and return
     end
     #If you are here all validation has passed
@@ -72,8 +72,8 @@ class FinancialsController < ApplicationController
             redirect_to :action => :capture_additional_data, :id => @question.id
         end
     else
-      flash[:error] = 'We are sorry but something went wrong. Please try again.'
-      force_logout if current_user
+      flash[:error] = 'We are sorry but something went wrong while saving financial data. Please try again.<br/>We are sorry for the incovenience.'
+      #force_logout if current_user
       clear_session_variables
       redirect_to :controller => :questions, :action => :new
     end    
@@ -83,7 +83,7 @@ class FinancialsController < ApplicationController
       #Ask for email to send the expert_opinion and password to save the financial_data
       @question = Question.find(params[:id])
       if current_user
-          force_logout
+          #force_logout
           redirect_to :controller => :questions, :action => :get_expert_verdict, :id => @question.id and return
       end
   end
@@ -94,38 +94,39 @@ class FinancialsController < ApplicationController
     @question = Question.find(params[:id])
     @error_msg = ""
     
-    unless params[:password].empty?
-        @error_msg << "Password is too short (minimum is 4 characters)<br/>" if params[:password].size < 4
-        @user = User.new
-        nick_name = params[:nick_name]
-        if nick_name.include?("@")   #=> true
-          @error_msg << "Nick name should not have '@' character <br/>"
+    nick_name = params[:nick_name]
+    #@question.errors.add('Register: ', "Username is too short (minimum is 3 characters)<br/>") if nick_name.size < 3
+    @error_msg << "Username is too short (minimum is 3 characters)<br/>" if nick_name.size < 3
+
+    if @error_msg.empty? && !params[:password].empty?
+        #@question.errors.add('Register: ', "Password is too short (minimum is 4 characters)<br/>") if params[:password].size < 4
+        if params[:password].size < 4
+            @error_msg << "Password is too short (minimum is 4 characters)<br/>"
         else
-          @user.username = nick_name  
-          @user.password = params[:password]
-          @user.password_confirmation = params[:password]
-          if @user.save
-            @question.update_attributes(:nick_name => nick_name)          
-            @question.update_attributes(:user_id => @user.id)
-            @question.financial.update_attributes(:user_id => @user.id)
-          else
-            @error_msg << "Username has already been taken"
-          end
+            @user = User.new
+            @user.username = nick_name  
+            @user.password = params[:password]
+            @user.password_confirmation = params[:password]
+            if @user.save
+              @question.update_attributes(:nick_name => nick_name)          
+              @question.update_attributes(:user_id => @user.id)
+              @question.financial.update_attributes(:user_id => @user.id)
+            else
+              #@question.errors.add('Register: ', "Username has already been taken")
+              @error_msg << "Username has already been taken"
+            end
         end
     end
     unless @error_msg.empty?
       flash[:error] = @error_msg      
-      redirect_to :action => :capture_additional_data, :id => @question.id
-      #TODO clean up error message not displaying properly
-      return        
+      redirect_to :action => :capture_additional_data, :id => @question.id and return
     end   
-    force_logout if current_user
+    
     redirect_to :controller => :questions, :action => :get_expert_verdict, :id => @question.id
   end
   
   def clear_session_variables
-    #SUPER IMPORTANT:
-    #Clean session variables
+    #SUPER IMPORTANT: Clean session variables
     session[:new_question_item] = nil
     session[:new_question_payment] = nil
     session[:new_financial] = nil

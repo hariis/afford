@@ -4,12 +4,6 @@
 <br/>
 <div>
   <div style="float:left;" id="prompt-user-response">
-    <% if current_user && current_user.responses.size > 0 %>
-        <div style="text-align:left;padding-left:10px;color:green;font-weight:bold;">
-          Agreed with Expert: <%= @user_agreed_with_expert %><br/>
-          Agreed with Community: <%= @user_agreed_with_community %><br/>
-        </div>
-    <% end %>  
     <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
            <%= button_to_function "What do you think?" do |page|
             page.show 'user-response'
@@ -20,7 +14,7 @@
            end %>
       <% end %>
   </div>
-   <div style="float:right;">
+  <div style="float:right;">
      <%= button_to_function "View Expert's Response" do |page|
         page.hide 'user-response'
         page.show 'expert-response'
@@ -43,6 +37,13 @@
             page.show "p_more_link_down"
      end  %>
 
+ <% if current_user %>
+      <br/><div style="text-align:left;padding-left:10px;color:green;font-weight:bold;">
+        <br/>Agreed with Expert: <%= @user_agreed_with_expert %><br/>
+        Agreed with Community: <%= @user_agreed_with_community %>
+      </div>
+  <% end %>  
+  
       <div id="user-response" style="display:none;margin-top:20px;">
 
         <% if current_user %>          
@@ -64,13 +65,13 @@
            <% end %>
         <% else %>
                   <ul>
-                    <li><%= link_to "New? Register", :controller => 'users', :action => 'new', :reg => 'email' %> |
-                     <%= link_to "Already Registered? Log in", :controller => 'user_sessions', :action => 'new', :reg => 'email' %>   </li>
+                    <li><%= link_to "New? Register", :controller => 'users', :action => 'new' %> |
+                     <%= link_to "Already Registered? Log in", :controller => 'user_sessions', :action => 'new' %>   </li>
                   </ul>
         <% end %>
     </div>
-<div id="user-response-status" style="color:#008500;"></div>
-<div id="expert-response" style="display:none;margin-top:20px;">
+<div id="user-response-status" style="color:red;"></div>
+<div id="expert-response" style="display:none;margin-top:30px;">
     <fieldset>
       <legend><b>Expert Verdict</b></legend>
       <% if @question.expert_details.empty? %>
@@ -129,7 +130,7 @@
   </div>
 <br/>
 <div id="all-responses">
-  <h2>Community Responses  (<%= @question.responses.size %>)</h2>
+  <h2 style="margin-left:8px">Community Responses  (<%= @question.responses.size %>)</h2>
   <div class="<%= cycle('snippet-odd','snippet-even') %>">
   <%= render :partial => 'responses/response', :collection => @question.responses %>
   </div
