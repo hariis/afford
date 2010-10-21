@@ -1,5 +1,5 @@
 <div style="border-bottom: 1px dotted #689d02;">
-<%= response_counter + 1 %>. <%= response.user.get_email_name %> says <br/>
+<%= response_counter + 1 %>. <%= response.user.username %> says <br/>
 Verdict: <%= response.verdict? ? "<span style='color:green;font-weight:bold;'>Yes</span>" : "<span style='color:red;font-weight:bold;'>No</span>" %><br/>
 Reason: <%= response.reason %><br/>
 <div class="snippet-footer" style="text-align:right;">

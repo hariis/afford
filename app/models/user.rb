@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
     responses = self.responses
     count = 0
     responses.each do |response|
-        count += 1 if response.verdict == response.question.get_community_verdict
+        #count += 1 if response.verdict == response.question.get_community_verdict
+        count += 1 if response.question.get_community_verdict(response.verdict)
     end
     return count
   end 

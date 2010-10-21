@@ -105,9 +105,14 @@ class Question < ActiveRecord::Base
     responses.find_by_user_id(user.id)
   end
 
-  def get_community_verdict
+  def get_community_verdict(user_verdict)
     positive_responses = responses.find(:all, :conditions => ['verdict = ?', true])
-    positive_responses.size >= (responses.size - positive_responses.size)
+    if positive_responses.size == responses.size/2
+      return true
+    else
+      community_verdict = positive_responses.size > (responses.size - positive_responses.size)
+      user_verdict == community_verdict
+    end
   end
   
   #Financial Rules
