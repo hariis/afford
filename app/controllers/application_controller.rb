@@ -9,8 +9,16 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   helper_method :current_user  
-
+  before_filter :load_statistics
   private  
+  
+    def load_statistics
+      if current_user
+        @user_agreed_with_community = current_user.agreed_with_community
+        @user_agreed_with_expert = current_user.agreed_with_expert
+      end
+    end
+    
     def current_user_session  
       return @current_user_session if defined?(@current_user_session)  
       @current_user_session = UserSession.find  

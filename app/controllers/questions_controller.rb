@@ -37,18 +37,11 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @financial = @question.financial
-    @response = Response.new
-    if current_user
-      @user_agreed_with_community = current_user.agreed_with_community
-      @user_agreed_with_expert = current_user.agreed_with_expert
-    end
+    @response = Response.new  
   end
   
   def new
     @question = Question.new
-    if current_user
-      @question.nick_name = current_user.username
-    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,6 +51,9 @@ class QuestionsController < ApplicationController
   
   def step1
     @question = Question.new(params[:question])
+    if current_user
+      @question.nick_name = current_user.username
+    end
     if Question.valid_for_attributes( @question, ['item_name','reason_to_buy','item_cost','recurring_item_cost','age', 'nick_name'] )
       #.. Save user in session and go to step
       session[:new_question_item] = @question

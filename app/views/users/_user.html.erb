@@ -13,7 +13,11 @@
       </p>
 
       <p>
-        <%= f.label :password, 'Password:' %><br/>
+        <% if button_type == 'Submit' %>
+            <%= f.label :password, 'Password:' %><br/>
+        <% else %>
+            <%= f.label :password, 'New Password:' %><br/>
+        <% end %>
         <%= f.password_field :password %>
       </p>
       <p>

@@ -186,12 +186,19 @@ width: 99%;
     text-align: left;
 }
 
-#login{
+#login1{
 float:right;
 font-size:130%;
 padding:4px;
 margin-right:15px;
 }
+#login {
+background:url("/images/footer.png") repeat-x scroll left bottom #F8FDEF;
+padding:3px 10px;
+font-size:13px;
+font-weight:bold;
+}
+
 #user-response ul li {
     list-style:none;
 }

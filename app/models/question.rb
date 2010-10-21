@@ -5,9 +5,9 @@ class Question < ActiveRecord::Base
   
   REASON_TO_BUY = { "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   
-  validates_presence_of :item_name, :reason_to_buy
+  validates_presence_of :item_name, :reason_to_buy, :nick_name
   validates_numericality_of :recurring_item_cost
-  
+      
   validates_each :age, :on => :save do |record,attr,value|
       if value.blank?
         record.errors.add(attr,": Please enter your #{attr.to_s.humanize}")

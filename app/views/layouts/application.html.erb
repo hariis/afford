@@ -51,15 +51,30 @@
             <p><%= flash[:error] %></p>
         </div>
 
-      <div id='login'>
-        <% if current_user %>  
-             <%= link_to "#{current_user.username}", edit_user_path(:current) %>  |
-             <%= link_to "Logout", logout_path %>
-         <% else %>  
-             <% link_to "Register", new_user_path %>  
-             <% link_to "Log in", login_path %>  
-         <% end %>  
+ <% if current_user %>
+      <div style="text-align:left;padding-left:10px;color:green;font-weight:bold;">
+        
+        
       </div>
+  <% end %>  
+  
+     <div id="login">
+        <% if current_user %>
+            <span style="float:left;">
+                Agreed with Expert: <%= @user_agreed_with_expert %>  |
+                Agreed with Community: <%= @user_agreed_with_community %>
+            </span>
+            <span style="margin-left:240px;">
+                <%= link_to "#{current_user.username}", edit_user_path(:current) %>  |
+                <%= link_to "Logout", logout_path %>
+            </span>
+         <% else %> 
+            <span style="margin-left:600px;">
+                <%= link_to "Login", login_path %> 
+            </span>
+         <% end %> 
+   </div>
+
 
         <%= yield %>
       </div>

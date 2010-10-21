@@ -1,7 +1,7 @@
 <% if current_user %>      
-    <div id='expert-denied'>We have imported your financial data from your most recent question</div><br/>
-<% else %>
-    <div id='login'><%= link_to "Login", login_path %> </div>
+    <% if current_user.financials.size > 0 %>
+        <div id='expert-denied'>We have imported your financial data from your most recent question</div><br/> 
+    <% end %>
 <% end %>
 <%= render :partial => 'financial', :locals => {:button_label => 'Next >'} %>
 

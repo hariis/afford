@@ -37,13 +37,6 @@
             page.show "p_more_link_down"
      end  %>
 
- <% if current_user %>
-      <br/><div style="text-align:left;padding-left:10px;color:green;font-weight:bold;">
-        <br/>Agreed with Expert: <%= @user_agreed_with_expert %><br/>
-        Agreed with Community: <%= @user_agreed_with_community %>
-      </div>
-  <% end %>  
-  
       <div id="user-response" style="display:none;margin-top:20px;">
 
         <% if current_user %>          
