@@ -1,7 +1,7 @@
 <% form_for(@question,  :url => {:action => :step3}) do |f| %>
   <%= f.error_messages :header_message => "Invalid Data!", :header_tag => :h3 %>
 
-  <%= render 'payment_mode_field', :f => f %><br/>
+  <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %><br/>
 
   <div class="warning">
       Please be assured that this data will remain completely Anonymous.<br/>

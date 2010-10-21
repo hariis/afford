@@ -1,21 +1,21 @@
 <h3>Payment Mode</h3>
 <fieldset>
-   <legend><b>How are you going to pay for it?</b></legend>
+   <legend><b>How are you going to pay for it?</b></legend>  
   <p>
     <%= f.check_box :pm_saving %>
     <%= f.label :pm_saving, "Savings" %>
     <%= f.check_box :pm_investment %>
-    <%= f.label :pm_investment, "Investment" %>
+    <%= f.label :pm_investment, "Investments" %>
     <%= f.check_box :pm_financing %>
     <%= f.label :pm_financing, "Financing" %>
   </p>
 
   <p>
-    <%= f.label :pm_saving_amount, "Contribution from Saving" %><br />
+    <%= f.label :pm_saving_amount, "Contribution from Savings" %><br />
     <%= f.text_field :pm_saving_amount, :rows => 5, :cols => 72 %>
   </p>
   <p>
-    <%= f.label :pm_investment_amount, "Contribution from Investment" %><br />
+    <%= f.label :pm_investment_amount, "Contribution from Investments" %><br />
     <%= f.text_field :pm_investment_amount %>
   </p>
   <p>

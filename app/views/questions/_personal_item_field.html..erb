@@ -2,11 +2,11 @@
 <fieldset>
   <legend><b>About Item</b></legend>
   <p>
-    <%= f.label :item_name, "What are you planning to buy?" %><br />
+    <%= f.label :item_name, "What are you planning to do?" %><br />
     <%= f.text_field :item_name, :size => 63 %>
   </p>
   <p>
-    <%= f.label :reason_to_buy, "Why do you want to buy?" %><br />
+    <%= f.label :reason_to_buy, "Why do you want?" %><br />
     <%= f.select( :reason_to_buy, (Question::REASON_TO_BUY.sort{|v1,v2| v1[1] <=> v2[1]}.collect{|k| [k[0],k[1] ]}))  %>    
   </p>
 
@@ -15,7 +15,7 @@
     <%= f.text_field :item_cost %>
   </p>
   <p>
-    <%= f.label :recurring_item_cost, "Recurring costs (Example: insurance, vet visits for pets, any maintenance )" %><br />
+    <%= f.label :recurring_item_cost, "Monthly Recurring costs (Example: insurance, vet visits for pets, any maintenance )" %><br />
     <%= f.text_field :recurring_item_cost %>
   </p>
 </fieldset>
@@ -25,8 +25,10 @@
     <%= f.label :age, "Your Age (between 20 and 65 only)" %><br />
     <%= f.text_field :age %>
   </p>
+  <% unless current_user %>
   <p>
     <%= f.label :nick_name, "Nick Name" %><br />
     <%= f.text_field :nick_name %>
   </p>
+<% end %>
 </fieldset>
