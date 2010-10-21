@@ -2,7 +2,11 @@
   
     <%= error_messages_for :user, :header_message => '', :message => '' %><br/>
     <fieldset>
-      <legend><b>Register</b></legend>
+      <% if button_type == 'Submit' %>
+            <legend><b>Register</b></legend>
+      <% else %>
+            <legend><b>Edit Profile</b></legend>
+      <% end %>  
       <p>
         <%= f.label :username, "Nick Name" %><br/>
         <%= f.text_field :username %>

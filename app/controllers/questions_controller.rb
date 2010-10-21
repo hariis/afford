@@ -45,10 +45,10 @@ class QuestionsController < ApplicationController
   end
   
   def new
-    if current_user && validate_simple_email(current_user.username)
-      force_logout
-    end
     @question = Question.new
+    if current_user
+      @question.nick_name = current_user.username
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -117,7 +117,7 @@ class QuestionsController < ApplicationController
   end
   
   def subscribe
-    Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    #Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
     
     if validate_simple_email(params[:subscriber_email])
       #Save this data
