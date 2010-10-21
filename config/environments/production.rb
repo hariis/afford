@@ -32,7 +32,7 @@ config.action_controller.session = {:domain => '.caniafforditnow.com'}
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true,
-  :address => "localhost",
+  :address => "caniafforditnow.com",
   :domain => "caniafforditnow.com",
   :port => 25,
   :authentication => :login,
