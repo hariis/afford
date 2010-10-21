@@ -217,6 +217,7 @@ class Question < ActiveRecord::Base
     if (financial.monthly_retirement_contribution >= 0.10*financial.net_income)
       @expert_details << "<span style=color:green;>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</span><br/>"
     else
+      @expert_verdict = false
       @expert_details << "<span style=color:red;>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</span><br/>"
     end
   end
