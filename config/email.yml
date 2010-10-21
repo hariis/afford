@@ -1,6 +1,6 @@
 production:
   :enable_starttls_auto: true
-  :address: localhost
+  :address: caniafforditnow.com
   :domain: caniafforditnow.com
   :port: 25
   :authentication: :login
