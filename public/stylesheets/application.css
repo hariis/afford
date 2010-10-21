@@ -212,11 +212,16 @@ margin-right:15px;
     text-align: left;
 }
 #notification-prompt{
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 20px;
-    padding:3px;
+    padding:15px 3px;
     color: #fff;
     font-weight: bold;
+    text-align: left;
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#F8FDEF url(/images/fieldset.gif) repeat-x scroll left bottom;
 }
 #footer {    
     text-align: center;
@@ -231,4 +236,10 @@ margin-right:15px;
 #footer ul li {
      display:inline;
 }
-
+#notification-status{
+    color: red;
+    margin-bottom: 0;
+    padding-left: 11px;
+    font-size:12px;
+    font-weight:none;
+}

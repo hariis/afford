@@ -312,3 +312,910 @@ Completed in 313ms (View: 234, DB: 47) | 200 OK [http://localhost/]
     C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
     C:/Ruby/bin/rdebug-ide:19:in `load'
     C:/Ruby/bin/rdebug-ide:19
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (203.1ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (218.8ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateQuestions (20101016025825)
+  [4;35;1mSQL (109.4ms)[0m   [0mCREATE TABLE `questions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `financial_id` int(11), `user_id` int(11), `item_name` varchar(255) NOT NULL, `item_cost` int(11) NOT NULL, `reason_to_buy` int(11) NOT NULL, `recurring_item_cost` int(11) DEFAULT 0, `age` int(11) NOT NULL, `nick_name` varchar(255) NOT NULL, `expert_details` text, `expert_verdict` tinyint(1), `pm_saving` tinyint(1), `pm_investment` tinyint(1), `pm_financing` tinyint(1), `pm_saving_amount` int(11) DEFAULT 0, `pm_investment_amount` int(11) DEFAULT 0, `pm_financing_amount` int(11) DEFAULT 0, `tos` tinyint(1) DEFAULT 0, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (203.1ms)[0m   [0;1mCREATE INDEX `index_questions_on_financial_id` ON `questions` (`financial_id`)[0m
+  [4;35;1mSQL (171.9ms)[0m   [0mCREATE INDEX `index_questions_on_user_id` ON `questions` (`user_id`)[0m
+  [4;36;1mSQL (46.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20101016025825')[0m
+Migrating to CreateFinancials (20101016035755)
+  [4;35;1mSQL (62.5ms)[0m   [0mCREATE TABLE `financials` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `gross_income` int(11) NOT NULL, `net_income` int(11) NOT NULL, `total_expenses` int(11) NOT NULL, `mortage_payment` int(11) DEFAULT 0, `car_loan_payment` int(11) DEFAULT 0, `student_loan_payment` int(11) DEFAULT 0, `other_loan_payment` int(11) DEFAULT 0, `deferred_loan_amount` int(11) DEFAULT 0, `cc_debt` int(11) DEFAULT 0, `cc_interest_rate` int(11) DEFAULT 0, `liquid_assets` int(11) DEFAULT 0, `investments` int(11) DEFAULT 0, `retirement_savings` int(11) DEFAULT 0, `monthly_retirement_contribution` int(11) DEFAULT 0, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (203.1ms)[0m   [0;1mCREATE INDEX `index_financials_on_user_id` ON `financials` (`user_id`)[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101016035755')[0m
+Migrating to CreateResponses (20101016194604)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (93.8ms)[0m   [0mCREATE TABLE `responses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `verdict` tinyint(1), `reason` text, `question_id` int(11), `user_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (140.6ms)[0m   [0;1mCREATE INDEX `index_responses_on_question_id` ON `responses` (`question_id`)[0m
+  [4;35;1mSQL (140.6ms)[0m   [0mCREATE INDEX `index_responses_on_user_id` ON `responses` (`user_id`)[0m
+  [4;36;1mSQL (31.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20101016194604')[0m
+Migrating to CreateUsers (20101016203008)
+  [4;35;1mSQL (62.5ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255), `email` varchar(255), `crypted_password` varchar(255), `password_salt` varchar(255), `persistence_token` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (296.9ms)[0m   [0;1mCREATE INDEX `index_users_on_username` ON `users` (`username`)[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101016203008')[0m
+Migrating to CreateSessions (20101017024011)
+  [4;36;1mSQL (62.5ms)[0m   [0;1mCREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (187.5ms)[0m   [0mCREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)[0m
+  [4;36;1mSQL (109.4ms)[0m   [0;1mCREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)[0m
+  [4;35;1mSQL (31.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101017024011')[0m
+Migrating to CreateFacebookUsers (20101017044011)
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCREATE TABLE `facebook_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `facebook_id` varchar(255), `name` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `link` varchar(255), `email` varchar(255), `timezone` int(11), `token` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (31.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101017044011')[0m
+Migrating to CreateNotifications (20101020074529)
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCREATE TABLE `notifications` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101020074529')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSHOW FIELDS FROM `facebook_users`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mdescribe `facebook_users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `facebook_users`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mdescribe `financials`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `financials`[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mSHOW FIELDS FROM `notifications`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `notifications`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `notifications`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mdescribe `questions`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `questions`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mdescribe `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `sessions`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mdescribe `sessions`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `sessions`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:05:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 938ms (View: 688, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:06:07) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Sent mail to Enter Your Email address
+
+Date: Wed, 20 Oct 2010 18:06:07 -0700
+From: Can I Afford It <admin@caniafforditnow.com>
+Reply-To: caniafforditnow@gmail.com
+Subject:  A new question has been posed
+Mime-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+Hi there!<br/><br/>
+
+A new question has been posted on our site. <br/>
+
+You can see it at http://localhost:3000/questions/show/1
+
+Happy Affording,<br/>
+-Can I Afford It? Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;color:#9e948a;">
+ 
+If the above link does not work try copying and pasting it into your browser.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+You are receiving this email because your email address was subscribed to receive notifications. <br/>
+To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+
+
+Completed in 1328ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:06:14) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Sent mail to Enter Your Email address
+
+Date: Wed, 20 Oct 2010 18:06:15 -0700
+From: Can I Afford It <admin@caniafforditnow.com>
+Reply-To: caniafforditnow@gmail.com
+Subject:  A new question has been posed
+Mime-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+Hi there!<br/><br/>
+
+A new question has been posted on our site. <br/>
+
+You can see it at http://localhost:3000/questions/show/1
+
+Happy Affording,<br/>
+-Can I Afford It? Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;color:#9e948a;">
+ 
+If the above link does not work try copying and pasting it into your browser.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+You are receiving this email because your email address was subscribed to receive notifications. <br/>
+To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+
+
+Completed in 1047ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:06:35) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Sent mail to Enter Your Email address
+
+Date: Wed, 20 Oct 2010 18:06:35 -0700
+From: Can I Afford It <admin@caniafforditnow.com>
+Reply-To: caniafforditnow@gmail.com
+Subject:  A new question has been posed
+Mime-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+Hi there!<br/><br/>
+
+A new question has been posted on our site. <br/>
+
+You can see it at http://localhost:3000/questions/show/1
+
+Happy Affording,<br/>
+-Can I Afford It? Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;color:#9e948a;">
+ 
+If the above link does not work try copying and pasting it into your browser.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+You are receiving this email because your email address was subscribed to receive notifications. <br/>
+To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+
+
+Completed in 1016ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:06:37) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Sent mail to Enter Your Email address
+
+Date: Wed, 20 Oct 2010 18:06:37 -0700
+From: Can I Afford It <admin@caniafforditnow.com>
+Reply-To: caniafforditnow@gmail.com
+Subject:  A new question has been posed
+Mime-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+Hi there!<br/><br/>
+
+A new question has been posted on our site. <br/>
+
+You can see it at http://localhost:3000/questions/show/1
+
+Happy Affording,<br/>
+-Can I Afford It? Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;color:#9e948a;">
+ 
+If the above link does not work try copying and pasting it into your browser.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+You are receiving this email because your email address was subscribed to receive notifications. <br/>
+To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+
+
+Completed in 1063ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:07:16) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"test@gmail.com", "controller"=>"questions"}
+Sent mail to test@gmail.com
+
+Date: Wed, 20 Oct 2010 18:07:16 -0700
+From: Can I Afford It <admin@caniafforditnow.com>
+Reply-To: caniafforditnow@gmail.com
+To: test@gmail.com
+Subject:  A new question has been posed
+Mime-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+
+Hi there!<br/><br/>
+
+A new question has been posted on our site. <br/>
+
+You can see it at http://localhost:3000/questions/show/1
+
+Happy Affording,<br/>
+-Can I Afford It? Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;color:#9e948a;">
+ 
+If the above link does not work try copying and pasting it into your browser.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+You are receiving this email because your email address was subscribed to receive notifications. <br/>
+To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+
+
+  [4;36;1mNotification Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `notifications`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.0ms)[0m   [0;1mINSERT INTO `notifications` (`created_at`, `updated_at`, `email`) VALUES('2010-10-21 01:07:17', '2010-10-21 01:07:17', 'test@gmail.com')[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+Completed in 1094ms (View: 0, DB: 78) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:08:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 109, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:08:09) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"test@gmail.com", "controller"=>"questions"}
+  [4;36;1mNotification Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `notifications`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.0ms)[0m   [0;1mINSERT INTO `notifications` (`created_at`, `updated_at`, `email`) VALUES('2010-10-21 01:08:09', '2010-10-21 01:08:09', 'test@gmail.com')[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+Completed in 109ms (View: 0, DB: 94) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:08:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:09:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 125, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:10:05) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:10:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:12:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:14:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 141, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:14:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (62.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 78, DB: 63) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:14:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 109, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:14:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:15:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 78, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:15:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:16:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:16:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 125, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:17:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:17:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 78, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:17:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 156ms (View: 94, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:17:49) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:17:52) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:18:05) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:18:06) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:18:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 531ms (View: 484, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:18:10) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:19:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:19:31) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:20:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (31.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 219ms (View: 94, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:20:15) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:20:38) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:20:39) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:21:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 47, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:21:05) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:21:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:21:22) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:21:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 156ms (View: 125, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 78, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:07) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 31, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:30) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:31) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 16, DB: 16) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 156ms (View: 94, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:41) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:51) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:22:52) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:22:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:23:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 78, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:23:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:23:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:23:28) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:23:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (62.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 47, DB: 78) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:23:57) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:24:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:24:09) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:24:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:24:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:24:41) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:25:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 94ms (View: 78, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:25:07) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:25:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:25:13) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:25:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (140.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 234ms (View: 63, DB: 141) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:25:32) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:25:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 63, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:25:41) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"test@gmail.com", "controller"=>"questions"}
+  [4;36;1mNotification Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `notifications`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.0ms)[0m   [0;1mINSERT INTO `notifications` (`created_at`, `updated_at`, `email`) VALUES('2010-10-21 01:25:41', '2010-10-21 01:25:41', 'test@gmail.com')[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+Completed in 94ms (View: 0, DB: 78) | 200 OK [http://localhost/questions/subscribe]
