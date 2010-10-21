@@ -1219,3 +1219,2314 @@ Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:25:41) 
   [4;36;1mNotification Create (0.0ms)[0m   [0;1mINSERT INTO `notifications` (`created_at`, `updated_at`, `email`) VALUES('2010-10-21 01:25:41', '2010-10-21 01:25:41', 'test@gmail.com')[0m
   [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
 Completed in 94ms (View: 0, DB: 78) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:34:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (31.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 47, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:34:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:34:21) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:34:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 141, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:34:34) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"test@gmail.com", "controller"=>"questions"}
+  [4;36;1mNotification Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `notifications`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.0ms)[0m   [0;1mINSERT INTO `notifications` (`created_at`, `updated_at`, `email`) VALUES('2010-10-21 01:34:34', '2010-10-21 01:34:34', 'test@gmail.com')[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+Completed in 94ms (View: 0, DB: 63) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#tos (for 127.0.0.1 at 2010-10-20 18:34:54) [GET]
+  Parameters: {"action"=>"tos", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/tos
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 156ms (View: 141, DB: 0) | 200 OK [http://localhost/disclaimer]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#about (for 127.0.0.1 at 2010-10-20 18:34:58) [GET]
+  Parameters: {"action"=>"about", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/about
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 31) | 200 OK [http://localhost/about]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#tos (for 127.0.0.1 at 2010-10-20 18:35:03) [GET]
+  Parameters: {"action"=>"tos", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/tos
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 63, DB: 0) | 200 OK [http://localhost/disclaimer]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#about (for 127.0.0.1 at 2010-10-20 18:35:05) [GET]
+  Parameters: {"action"=>"about", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/about
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 250ms (View: 219, DB: 16) | 200 OK [http://localhost/about]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#about (for 127.0.0.1 at 2010-10-20 18:35:47) [GET]
+  Parameters: {"action"=>"about", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/about
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 672ms (View: 625, DB: 0) | 200 OK [http://localhost/about]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:35:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 78, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:35:56) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (15.6ms)
+Rendered questions/_question (31.3ms)
+Completed in 234ms (View: 63, DB: 16) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step1 (for 127.0.0.1 at 2010-10-20 18:36:15) [POST]
+  Parameters: {"commit"=>"Next >", "action"=>"step1", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"reason_to_buy"=>"1", "recurring_item_cost"=>"0", "item_name"=>"test", "nick_name"=>"satishf", "item_cost"=>"100", "age"=>"35"}}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 31ms (DB: 0) | 302 Found [http://localhost/questions/step1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 18:36:15) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Rendering template within layouts/application
+Rendering financials/new
+Rendered financials/_financial_field (31.3ms)
+Rendered financials/_financial (453.1ms)
+Completed in 563ms (View: 500, DB: 0) | 200 OK [http://localhost/financials/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 18:36:41) [POST]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"500", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;36;1mFinancial Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 266ms (DB: 16) | 302 Found [http://localhost/financials/step2]
+  [4;35;1mSQL (15.6ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 18:36:42) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (0.0ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 78, DB: 16) | 200 OK [http://localhost/questions/payment_mode]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:36:48) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:36:56) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 625ms (View: 31, DB: 16) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-10-20 18:37:08) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"satishf", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"user_sessions", "reg"=>"Nick Name"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`username` = 'satishf') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`email` = 'satishf') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 78ms (View: 16, DB: 0) | 200 OK [http://localhost/user_sessions]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 18:37:14) [POST]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"500", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/financials/step2]
+  [4;35;1mSQL (15.6ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 18:37:14) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (0.0ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 219ms (View: 156, DB: 63) | 200 OK [http://localhost/questions/payment_mode]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 18:37:20) [POST]
+  Parameters: {"commit"=>"Submit", "action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"100", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/final
+Completed in 47ms (DB: 16) | 302 Found [http://localhost/questions/step3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#final (for 127.0.0.1 at 2010-10-20 18:37:20) [GET]
+  Parameters: {"action"=>"final", "controller"=>"financials"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mFinancial Create (0.0ms)[0m   [0mINSERT INTO `financials` (`cc_interest_rate`, `cc_debt`, `created_at`, `investments`, `net_income`, `updated_at`, `retirement_savings`, `mortage_payment`, `total_expenses`, `monthly_retirement_contribution`, `car_loan_payment`, `user_id`, `deferred_loan_amount`, `student_loan_payment`, `other_loan_payment`, `gross_income`, `liquid_assets`) VALUES(0, 0, '2010-10-21 01:37:20', 0, 2500, '2010-10-21 01:37:20', 0, 0, 2000, 500, 0, NULL, 0, 0, 0, 3000, 20000)[0m
+  [4;36;1mSQL (78.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mQuestion Create (0.0ms)[0m   [0;1mINSERT INTO `questions` (`reason_to_buy`, `created_at`, `expert_verdict`, `tos`, `recurring_item_cost`, `pm_investment`, `updated_at`, `expert_details`, `pm_investment_amount`, `pm_financing_amount`, `item_name`, `financial_id`, `user_id`, `item_cost`, `nick_name`, `pm_saving_amount`, `pm_saving`, `age`, `pm_financing`) VALUES(1, '2010-10-21 01:37:20', NULL, 0, 0, 0, '2010-10-21 01:37:20', NULL, 0, 0, 'test', 1, NULL, 100, 'satishf', 100, 1, 35, 0)[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/financials/capture_additional_data/1
+Completed in 203ms (DB: 141) | 302 Found [http://localhost/financials/final]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#capture_additional_data (for 127.0.0.1 at 2010-10-20 18:37:20) [GET]
+  Parameters: {"action"=>"capture_additional_data", "id"=>"1", "controller"=>"financials"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering financials/capture_additional_data
+Completed in 78ms (View: 16, DB: 16) | 200 OK [http://localhost/financials/capture_additional_data/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#create_account (for 127.0.0.1 at 2010-10-20 18:37:38) [POST]
+  Parameters: {"action"=>"create_account", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "id"=>"1", "nick_name"=>"satishf", "controller"=>"financials", "password"=>"[FILTERED]"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`username`) = BINARY 'satishf') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'de1b3c8ff5c3ec2075bfa52060bc9e68393ca3bf8d4d0786617dfc392ad45e2f54b0528adae00e1bb58c18a2720b2dd401865428628d9fb5f68e6d225b7506c5') LIMIT 1[0m
+  [4;35;1mUser Create (0.0ms)[0m   [0mINSERT INTO `users` (`created_at`, `crypted_password`, `updated_at`, `username`, `password_salt`, `persistence_token`, `email`) VALUES('2010-10-21 01:37:39', 'a13f243ebc8bce71de52b5a21e5c17a1c714baa8a1eac37f7956cd6b5330b7c298cb06613f4303940755ae0576eb9e1b8f65f814267d9ede17e688579328d3a9', '2010-10-21 01:37:39', 'satishf', 'O9WBhXa5GkVxg778IuJK', 'de1b3c8ff5c3ec2075bfa52060bc9e68393ca3bf8d4d0786617dfc392ad45e2f54b0528adae00e1bb58c18a2720b2dd401865428628d9fb5f68e6d225b7506c5', NULL)[0m
+  [4;36;1mSQL (62.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mQuestion Update (0.0ms)[0m   [0;1mUPDATE `questions` SET `updated_at` = '2010-10-21 01:37:39', `user_id` = 1 WHERE `id` = 1[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mFinancial Load (15.6ms)[0m   [0mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mFinancial Update (0.0ms)[0m   [0mUPDATE `financials` SET `updated_at` = '2010-10-21 01:37:39', `user_id` = 1 WHERE `id` = 1[0m
+  [4;36;1mSQL (93.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`persistence_token` = 'de1b3c8ff5c3ec2075bfa52060bc9e68393ca3bf8d4d0786617dfc392ad45e2f54b0528adae00e1bb58c18a2720b2dd401865428628d9fb5f68e6d225b7506c5') LIMIT 1[0m
+Redirected to http://localhost:3000/questions/get_expert_verdict/1
+Completed in 1125ms (DB: 188) | 302 Found [http://localhost/financials/create_account/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#get_expert_verdict (for 127.0.0.1 at 2010-10-20 18:37:39) [GET]
+  Parameters: {"action"=>"get_expert_verdict", "id"=>"1", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;36;1mFinancial Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Update (0.0ms)[0m   [0mUPDATE `questions` SET `updated_at` = '2010-10-21 01:37:39', `expert_verdict` = 1 WHERE `id` = 1[0m
+  [4;36;1mSQL (62.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mQuestion Update (0.0ms)[0m   [0;1mUPDATE `questions` SET `updated_at` = '2010-10-21 01:37:39', `expert_details` = '<span style=color:green;>Your Total monthly expenses will be $2000 after the purchase which will still be within your Net income. Good.</span><br/><span style=color:green;>Your have no <b>Credit card debt</b> which is good.</span><br/><span style=color:green;>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</span><br/><span style=color:green;>You are making $500 monthly contribution towards retirement which is good.</span><br/><span style=color:green;>Your have no <b>Deferred loans</b> which is good. </span><br/><span style=color:green;>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</span><br/>' WHERE `id` = 1[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering questions/get_expert_verdict
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 453ms (View: 94, DB: 188) | 200 OK [http://localhost/questions/get_expert_verdict/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:37:40) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:37:40) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:37:40) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:37:41) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:37:45) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_50_4eb305_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (15.6ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:37:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (46.9ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (265.6ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 484ms (View: 422, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#show (for 127.0.0.1 at 2010-10-20 18:37:54) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering questions/show
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Completed in 234ms (View: 63, DB: 16) | 200 OK [http://localhost/questions/show/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:37:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions", "reg"=>"email"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 63ms (View: 16, DB: 0) | 200 OK [http://localhost/login?reg=email]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-10-20 18:38:01) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"satishf", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"user_sessions", "reg"=>"Email"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 516ms (View: 16, DB: 0) | 200 OK [http://localhost/user_sessions]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:38:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#show (for 127.0.0.1 at 2010-10-20 18:38:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering questions/show
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Completed in 156ms (View: 47, DB: 16) | 200 OK [http://localhost/questions/show/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:38:17) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (0.0ms)
+Rendered questions/_question (15.6ms)
+Completed in 94ms (View: 31, DB: 0) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:22) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:22) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:22) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:22) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:23) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_50_4eb305_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#show (for 127.0.0.1 at 2010-10-20 18:38:34) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+  [4;36;1mFinancial Load (0.0ms)[0m   [0;1mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering questions/show
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Completed in 172ms (View: 47, DB: 31) | 200 OK [http://localhost/questions/show/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:36) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:36) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:36) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 18:38:36) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:38:40) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions", "reg"=>"email"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 63ms (View: 16, DB: 0) | 200 OK [http://localhost/login?reg=email]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-10-20 18:38:49) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users", "reg"=>"email"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user (15.6ms)
+Completed in 188ms (View: 47, DB: 0) | 200 OK [http://localhost/users/new?reg=email]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#show (for 127.0.0.1 at 2010-10-20 18:41:56) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+  [4;35;1mQuestion Load (15.6ms)[0m   [0mSELECT * FROM `questions` WHERE (`questions`.`id` = 1) [0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT * FROM `financials` WHERE (`financials`.`id` = 1) [0m
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering questions/show
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Completed in 219ms (View: 63, DB: 47) | 200 OK [http://localhost/questions/show/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:42:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 94, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:42:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (62.5ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 63, DB: 47) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:42:39) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:42:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 94, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:24) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (62.5ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (78.1ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (93.8ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 172ms (View: 63, DB: 78) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (31.3ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 94, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (46.9ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (78.1ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 188ms (View: 125, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 94, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:43:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 109, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:44:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (15.6ms)
+  [4;35;1mQuestion Columns (46.9ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (62.5ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (78.1ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 281ms (View: 94, DB: 47) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:44:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (140.6ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 234ms (View: 188, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:44:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 203ms (View: 141, DB: 47) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 63, DB: 31) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 156ms (View: 94, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (187.5ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (234.4ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 313ms (View: 94, DB: 203) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:45:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:46:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 94, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:46:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 94, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:46:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (46.9ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 250ms (View: 94, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#about (for 127.0.0.1 at 2010-10-20 18:46:34) [GET]
+  Parameters: {"action"=>"about", "controller"=>"questions"}
+Rendering template within layouts/application
+Rendering questions/about
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 78ms (View: 47, DB: 16) | 200 OK [http://localhost/about]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:46:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (31.3ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 125ms (View: 94, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:46:56) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (0.0ms)
+Rendered questions/_question (15.6ms)
+Completed in 94ms (View: 31, DB: 16) | 200 OK [http://localhost/questions/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step1 (for 127.0.0.1 at 2010-10-20 18:47:04) [POST]
+  Parameters: {"commit"=>"Next >", "action"=>"step1", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"reason_to_buy"=>"1", "recurring_item_cost"=>"0", "item_name"=>"test", "nick_name"=>"satishf", "item_cost"=>"100", "age"=>"35"}}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 31ms (DB: 0) | 302 Found [http://localhost/questions/step1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 18:47:04) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Rendering template within layouts/application
+Rendering financials/new
+Rendered financials/_financial_field (15.6ms)
+Rendered financials/_financial (15.6ms)
+Completed in 219ms (View: 31, DB: 0) | 200 OK [http://localhost/financials/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 18:47:14) [POST]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"0", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;35;1mFinancial Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 47ms (DB: 16) | 302 Found [http://localhost/financials/step2]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 18:47:14) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (15.6ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 109ms (View: 47, DB: 16) | 200 OK [http://localhost/questions/payment_mode]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 18:47:19) [POST]
+  Parameters: {"commit"=>"Submit", "action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"1", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (0.0ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 391ms (View: 172, DB: 16) | 200 OK [http://localhost/questions/step3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 18:47:27) [POST]
+  Parameters: {"commit"=>"Submit", "action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"100", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/final
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/questions/step3]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#final (for 127.0.0.1 at 2010-10-20 18:47:27) [GET]
+  Parameters: {"action"=>"final", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mFinancial Create (0.0ms)[0m   [0;1mINSERT INTO `financials` (`cc_debt`, `cc_interest_rate`, `created_at`, `net_income`, `investments`, `retirement_savings`, `updated_at`, `total_expenses`, `mortage_payment`, `user_id`, `car_loan_payment`, `monthly_retirement_contribution`, `student_loan_payment`, `deferred_loan_amount`, `gross_income`, `other_loan_payment`, `liquid_assets`) VALUES(0, 0, '2010-10-21 01:47:27', 2500, 0, 0, '2010-10-21 01:47:27', 2000, 0, NULL, 0, 0, 0, 0, 3000, 0, 20000)[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Create (0.0ms)[0m   [0mINSERT INTO `questions` (`reason_to_buy`, `created_at`, `expert_verdict`, `tos`, `recurring_item_cost`, `pm_investment`, `updated_at`, `expert_details`, `pm_investment_amount`, `pm_financing_amount`, `item_name`, `financial_id`, `user_id`, `item_cost`, `nick_name`, `pm_saving_amount`, `pm_saving`, `age`, `pm_financing`) VALUES(1, '2010-10-21 01:47:27', NULL, 0, 0, 0, '2010-10-21 01:47:27', NULL, 0, 0, 'test', 2, NULL, 100, 'satishf', 100, 1, 35, 0)[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/financials/capture_additional_data/2
+Completed in 156ms (DB: 109) | 302 Found [http://localhost/financials/final]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#capture_additional_data (for 127.0.0.1 at 2010-10-20 18:47:27) [GET]
+  Parameters: {"action"=>"capture_additional_data", "id"=>"2", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 2) [0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering financials/capture_additional_data
+Completed in 78ms (View: 16, DB: 31) | 200 OK [http://localhost/financials/capture_additional_data/2]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:47:38) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 297ms (View: 16, DB: 16) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-10-20 18:47:41) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"satishf", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"user_sessions", "reg"=>"Nick Name"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`username` = 'satishf') LIMIT 1[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 18:47:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT `financials`.* FROM `financials` INNER JOIN `questions` ON `financials`.id = `questions`.financial_id WHERE ((`questions`.user_id = 1)) ORDER BY created_at desc LIMIT 1[0m
+Rendering template within layouts/application
+Rendering financials/new
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Rendered financials/_financial_field (15.6ms)
+Rendered financials/_financial (31.3ms)
+Completed in 125ms (View: 47, DB: 16) | 200 OK [http://localhost/financials/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 18:47:45) [PUT]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"500", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "_method"=>"put", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;35;1mFinancial Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 47ms (DB: 16) | 302 Found [http://localhost/financials/step2]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 18:47:46) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (15.6ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 219ms (View: 172, DB: 16) | 200 OK [http://localhost/questions/payment_mode]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 18:47:51) [POST]
+  Parameters: {"commit"=>"Submit", "action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"100", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Rendered questions/_personal_item_field (0.0ms)
+Rendered questions/_question (0.0ms)
+Completed in 109ms (View: 63, DB: 0) | 200 OK [http://localhost/questions/step3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:58:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (31.3ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (15.6ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 172ms (View: 109, DB: 31) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#destroy (for 127.0.0.1 at 2010-10-20 18:58:22) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"user_sessions"}
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 78ms (DB: 16) | 302 Found [http://localhost/logout]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:58:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (15.6ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 234ms (View: 203, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:58:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (0.0ms)
+Rendered questions/_question (15.6ms)
+Completed in 109ms (View: 31, DB: 31) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 18:58:31) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 94ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-10-20 18:58:37) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"satishf", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"user_sessions", "reg"=>"Nick Name"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`username` = 'satishf') LIMIT 1[0m
+Redirected to http://localhost:3000/questions/new
+Completed in 219ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:58:37) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (15.6ms)
+Rendered questions/_question (15.6ms)
+Completed in 94ms (View: 16, DB: 0) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:58:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;35;1mResponse Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (15.6ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 156ms (View: 78, DB: 47) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#subscribe (for 127.0.0.1 at 2010-10-20 18:58:54) [POST]
+  Parameters: {"commit"=>"Notify Me", "action"=>"subscribe", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "subscriber_email"=>"Enter Your Email address", "controller"=>"questions"}
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/questions/subscribe]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:58:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;36;1mResponse Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (15.6ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 188ms (View: 78, DB: 63) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:59:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (0.0ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 156ms (View: 125, DB: 16) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 18:59:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (31.3ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (15.6ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 203ms (View: 141, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:59:44) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (0.0ms)
+Rendered questions/_question (15.6ms)
+Completed in 125ms (View: 31, DB: 16) | 200 OK [http://localhost/questions/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 18:59:54) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (15.6ms)
+Rendered questions/_question (15.6ms)
+Completed in 141ms (View: 47, DB: 0) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step1 (for 127.0.0.1 at 2010-10-20 19:00:01) [POST]
+  Parameters: {"commit"=>"Next >", "action"=>"step1", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"reason_to_buy"=>"1", "recurring_item_cost"=>"0", "item_name"=>"test", "nick_name"=>"satishf", "item_cost"=>"100", "age"=>"35"}}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 156ms (DB: 0) | 302 Found [http://localhost/questions/step1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 19:00:02) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mFinancial Load (0.0ms)[0m   [0;1mSELECT `financials`.* FROM `financials` INNER JOIN `questions` ON `financials`.id = `questions`.financial_id WHERE ((`questions`.user_id = 1)) ORDER BY created_at desc LIMIT 1[0m
+Rendering template within layouts/application
+Rendering financials/new
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Rendered financials/_financial_field (15.6ms)
+Rendered financials/_financial (31.3ms)
+Completed in 125ms (View: 47, DB: 0) | 200 OK [http://localhost/financials/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 19:00:05) [PUT]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"500", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "_method"=>"put", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/financials/step2]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 19:00:05) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (15.6ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 234ms (View: 203, DB: 0) | 200 OK [http://localhost/questions/payment_mode]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 19:00:11) [POST]
+  Parameters: {"action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"100", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/final
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/questions/step3]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#final (for 127.0.0.1 at 2010-10-20 19:00:11) [GET]
+  Parameters: {"action"=>"final", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mFinancial Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mFinancial Create (0.0ms)[0m   [0;1mINSERT INTO `financials` (`cc_interest_rate`, `cc_debt`, `created_at`, `investments`, `net_income`, `updated_at`, `retirement_savings`, `mortage_payment`, `total_expenses`, `monthly_retirement_contribution`, `car_loan_payment`, `user_id`, `deferred_loan_amount`, `student_loan_payment`, `other_loan_payment`, `gross_income`, `liquid_assets`) VALUES(0, 0, '2010-10-21 02:00:11', 0, 2500, '2010-10-21 02:00:11', 0, 0, 2000, 500, 0, NULL, 0, 0, 0, 3000, 20000)[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Create (0.0ms)[0m   [0mINSERT INTO `questions` (`reason_to_buy`, `created_at`, `tos`, `expert_verdict`, `updated_at`, `pm_investment`, `recurring_item_cost`, `pm_financing_amount`, `pm_investment_amount`, `expert_details`, `item_name`, `user_id`, `financial_id`, `pm_saving_amount`, `nick_name`, `item_cost`, `pm_saving`, `age`, `pm_financing`) VALUES(1, '2010-10-21 02:00:12', 0, NULL, '2010-10-21 02:00:12', 0, 0, 0, 0, NULL, 'test', NULL, 3, 100, 'satishf', 100, 1, 35, 0)[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/financials/capture_additional_data/3
+Completed in 188ms (DB: 125) | 302 Found [http://localhost/financials/final]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#capture_additional_data (for 127.0.0.1 at 2010-10-20 19:00:12) [GET]
+  Parameters: {"action"=>"capture_additional_data", "id"=>"3", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 3) [0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Redirected to http://localhost:3000/questions/get_expert_verdict/3
+Completed in 94ms (DB: 16) | 302 Found [http://localhost/financials/capture_additional_data/3]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#get_expert_verdict (for 127.0.0.1 at 2010-10-20 19:00:12) [GET]
+  Parameters: {"action"=>"get_expert_verdict", "id"=>"3", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 3) [0m
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+  [4;36;1mFinancial Load (0.0ms)[0m   [0;1mSELECT * FROM `financials` WHERE (`financials`.`id` = 3) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mQuestion Update (0.0ms)[0m   [0;1mUPDATE `questions` SET `updated_at` = '2010-10-21 02:00:12', `expert_verdict` = 1 WHERE `id` = 3[0m
+  [4;35;1mSQL (78.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Update (0.0ms)[0m   [0mUPDATE `questions` SET `updated_at` = '2010-10-21 02:00:12', `expert_details` = '<span style=color:green;>Your Total monthly expenses will be $2000 after the purchase which will still be within your Net income. Good.</span><br/><span style=color:green;>Your have no <b>Credit card debt</b> which is good.</span><br/><span style=color:green;>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</span><br/><span style=color:green;>You are making $500 monthly contribution towards retirement which is good.</span><br/><span style=color:green;>Your have no <b>Deferred loans</b> which is good. </span><br/><span style=color:green;>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</span><br/>' WHERE `id` = 3[0m
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/application
+Rendering questions/get_expert_verdict
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 594ms (View: 63, DB: 125) | 200 OK [http://localhost/questions/get_expert_verdict/3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:13) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:13) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:13) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:13) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:14) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_50_4eb305_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 19:00:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 3) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (0.0ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (0.0ms)
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 359ms (View: 313, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 19:00:19) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (15.6ms)
+Rendered questions/_question (15.6ms)
+Completed in 94ms (View: 31, DB: 0) | 200 OK [http://localhost/questions/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step1 (for 127.0.0.1 at 2010-10-20 19:00:27) [POST]
+  Parameters: {"commit"=>"Next >", "action"=>"step1", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"reason_to_buy"=>"1", "recurring_item_cost"=>"0", "item_name"=>"test", "nick_name"=>"satishf", "item_cost"=>"100", "age"=>"35"}}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 31ms (DB: 0) | 302 Found [http://localhost/questions/step1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 19:00:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mFinancial Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Rendering template within layouts/application
+Rendering financials/new
+Rendered financials/_financial_field (15.6ms)
+Rendered financials/_financial (31.3ms)
+Completed in 109ms (View: 31, DB: 16) | 200 OK [http://localhost/financials/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 19:00:28) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 78ms (View: 16, DB: 0) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-10-20 19:00:32) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"satishf", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"user_sessions", "reg"=>"Nick Name"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (15.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`username` = 'satishf') LIMIT 1[0m
+Redirected to http://localhost:3000/financials/new
+Completed in 63ms (DB: 16) | 302 Found [http://localhost/user_sessions]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#new (for 127.0.0.1 at 2010-10-20 19:00:32) [GET]
+  Parameters: {"action"=>"new", "controller"=>"financials"}
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mFinancial Load (0.0ms)[0m   [0mSELECT `financials`.* FROM `financials` INNER JOIN `questions` ON `financials`.id = `questions`.financial_id WHERE ((`questions`.user_id = 1)) ORDER BY created_at desc LIMIT 1[0m
+Rendering template within layouts/application
+Rendering financials/new
+  [4;36;1mFinancial Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+Rendered financials/_financial_field (15.6ms)
+Rendered financials/_financial (31.3ms)
+Completed in 125ms (View: 47, DB: 16) | 200 OK [http://localhost/financials/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#step2 (for 127.0.0.1 at 2010-10-20 19:00:35) [PUT]
+  Parameters: {"commit"=>"Next >", "financial"=>{"cc_interest_rate"=>"0", "cc_debt"=>"0", "investments"=>"0", "net_income"=>"2500", "retirement_savings"=>"0", "mortage_payment"=>"0", "total_expenses"=>"2000", "monthly_retirement_contribution"=>"500", "car_loan_payment"=>"0", "deferred_loan_amount"=>"0", "student_loan_payment"=>"0", "other_loan_payment"=>"0", "gross_income"=>"3000", "liquid_assets"=>"20000"}, "action"=>"step2", "_method"=>"put", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"financials"}
+  [4;35;1mFinancial Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+Redirected to http://localhost:3000/questions/payment_mode
+Completed in 31ms (DB: 16) | 302 Found [http://localhost/financials/step2]
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#payment_mode (for 127.0.0.1 at 2010-10-20 19:00:35) [GET]
+  Parameters: {"action"=>"payment_mode", "controller"=>"questions"}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (140.6ms)
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 281ms (View: 219, DB: 31) | 200 OK [http://localhost/questions/payment_mode]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 19:00:37) [POST]
+  Parameters: {"action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"0", "pm_saving"=>"0", "pm_financing"=>"0"}}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/payment_mode
+Rendered questions/_payment_mode_field (15.6ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Completed in 125ms (View: 78, DB: 0) | 200 OK [http://localhost/questions/step3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#step3 (for 127.0.0.1 at 2010-10-20 19:00:44) [POST]
+  Parameters: {"action"=>"step3", "authenticity_token"=>"bjRxsM0TGLu2bVelV9Kg7uHsHi11Y/wZL+COLK1Jdes=", "controller"=>"questions", "question"=>{"pm_investment"=>"0", "pm_financing_amount"=>"0", "pm_investment_amount"=>"0", "pm_saving_amount"=>"100", "pm_saving"=>"1", "pm_financing"=>"0"}}
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Redirected to http://localhost:3000/financials/final
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/questions/step3]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#final (for 127.0.0.1 at 2010-10-20 19:00:45) [GET]
+  Parameters: {"action"=>"final", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mFinancial Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `financials`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mFinancial Create (0.0ms)[0m   [0;1mINSERT INTO `financials` (`cc_debt`, `cc_interest_rate`, `created_at`, `net_income`, `investments`, `retirement_savings`, `updated_at`, `total_expenses`, `mortage_payment`, `user_id`, `car_loan_payment`, `monthly_retirement_contribution`, `student_loan_payment`, `deferred_loan_amount`, `gross_income`, `other_loan_payment`, `liquid_assets`) VALUES(0, 0, '2010-10-21 02:00:45', 2500, 0, 0, '2010-10-21 02:00:45', 2000, 0, NULL, 0, 500, 0, 0, 3000, 0, 20000)[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Create (0.0ms)[0m   [0mINSERT INTO `questions` (`reason_to_buy`, `created_at`, `tos`, `expert_verdict`, `updated_at`, `pm_investment`, `recurring_item_cost`, `pm_financing_amount`, `pm_investment_amount`, `expert_details`, `item_name`, `user_id`, `financial_id`, `pm_saving_amount`, `nick_name`, `item_cost`, `pm_saving`, `age`, `pm_financing`) VALUES(1, '2010-10-21 02:00:45', 0, NULL, '2010-10-21 02:00:45', 0, 0, 0, 0, NULL, 'test', NULL, 4, 100, 'satishf', 100, 1, 35, 0)[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/financials/capture_additional_data/4
+Completed in 266ms (DB: 109) | 302 Found [http://localhost/financials/final]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FinancialsController#capture_additional_data (for 127.0.0.1 at 2010-10-20 19:00:45) [GET]
+  Parameters: {"action"=>"capture_additional_data", "id"=>"4", "controller"=>"financials"}
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 4) [0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+Redirected to http://localhost:3000/questions/get_expert_verdict/4
+Completed in 78ms (DB: 0) | 302 Found [http://localhost/financials/capture_additional_data/4]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#get_expert_verdict (for 127.0.0.1 at 2010-10-20 19:00:45) [GET]
+  Parameters: {"action"=>"get_expert_verdict", "id"=>"4", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 4) [0m
+  [4;35;1mFinancial Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+  [4;36;1mFinancial Load (0.0ms)[0m   [0;1mSELECT * FROM `financials` WHERE (`financials`.`id` = 4) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mQuestion Update (0.0ms)[0m   [0;1mUPDATE `questions` SET `updated_at` = '2010-10-21 02:00:45', `expert_verdict` = 1 WHERE `id` = 4[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mQuestion Update (0.0ms)[0m   [0mUPDATE `questions` SET `updated_at` = '2010-10-21 02:00:45', `expert_details` = '<span style=color:green;>Your Total monthly expenses will be $2000 after the purchase which will still be within your Net income. Good.</span><br/><span style=color:green;>Your have no <b>Credit card debt</b> which is good.</span><br/><span style=color:green;>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</span><br/><span style=color:green;>You are making $500 monthly contribution towards retirement which is good.</span><br/><span style=color:green;>Your have no <b>Deferred loans</b> which is good. </span><br/><span style=color:green;>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</span><br/>' WHERE `id` = 4[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/application
+Rendering questions/get_expert_verdict
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 234ms (View: 63, DB: 109) | 200 OK [http://localhost/questions/get_expert_verdict/4]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:46) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:46) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:46) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:00:46) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 19:00:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestion Load (0.0ms)[0m   [0;1mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;35;1mQuestion Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;36;1mResponse Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `responses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 4) [0m
+Rendered questions/_snippet (46.9ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 3) [0m
+Rendered questions/_snippet (0.0ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (15.6ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (0.0ms)
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Completed in 141ms (View: 125, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#new (for 127.0.0.1 at 2010-10-20 19:00:56) [GET]
+  Parameters: {"action"=>"new", "controller"=>"questions"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+Rendering template within layouts/application
+Rendering questions/new
+Rendered questions/_personal_item_field (15.6ms)
+Rendered questions/_question (15.6ms)
+Completed in 78ms (View: 16, DB: 16) | 200 OK [http://localhost/questions/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-10-20 19:00:58) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 125ms (View: 31, DB: 16) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2010-10-20 19:01:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestion Load (0.0ms)[0m   [0mSELECT * FROM `questions` ORDER BY created_at DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+Rendered questions/_separator (0.0ms)
+  [4;36;1mQuestion Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `questions`[0m
+Rendered questions/_snippet_body (15.6ms)
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 4) [0m
+Rendered questions/_snippet (62.5ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 3) [0m
+Rendered questions/_snippet (125.0ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 2) [0m
+Rendered questions/_snippet (0.0ms)
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 1) [0m
+Rendered questions/_snippet (0.0ms)
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Completed in 266ms (View: 219, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing QuestionsController#show (for 127.0.0.1 at 2010-10-20 19:01:19) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"questions"}
+  [4;35;1mQuestion Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `questions`[0m
+  [4;36;1mQuestion Load (15.6ms)[0m   [0;1mSELECT * FROM `questions` WHERE (`questions`.`id` = 4) [0m
+  [4;35;1mFinancial Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `financials`[0m
+  [4;36;1mFinancial Load (0.0ms)[0m   [0;1mSELECT * FROM `financials` WHERE (`financials`.`id` = 4) [0m
+  [4;35;1mResponse Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `responses`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering questions/show
+Rendered questions/_snippet_body (0.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `responses` WHERE (`responses`.question_id = 4) [0m
+Completed in 188ms (View: 63, DB: 47) | 200 OK [http://localhost/questions/show/4]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:01:29) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_inset-soft_10_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:01:29) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-hard_30_285c00_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:01:29) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_33_3a8104_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-10-20 19:01:29) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" with {:method=>:get}):
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  C:/Ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  C:/Ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  /script\server:3
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `debug_load'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/lib/ruby-debug.rb:90:in `main'
+  C:/Ruby/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.1.10/bin/rdebug-ide:74
+  C:/Ruby/bin/rdebug-ide:19:in `load'
+  C:/Ruby/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-10-20 19:06:40) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users", "reg"=>"email"}
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user (15.6ms)
+Completed in 203ms (View: 31, DB: 16) | 200 OK [http://localhost/users/new?reg=email]

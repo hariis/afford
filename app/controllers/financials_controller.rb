@@ -73,17 +73,19 @@ class FinancialsController < ApplicationController
         end
     else
       flash[:error] = 'We are sorry but something went wrong. Please try again.'
+      force_logout if current_user
       clear_session_variables
       redirect_to :controller => :questions, :action => :new
     end    
   end
   
   def capture_additional_data
-    #Ask for email to send the expert_opinion and password to save the financial_data
-    @question = Question.find(params[:id])
-    if current_user
-      @question 
-    end
+      #Ask for email to send the expert_opinion and password to save the financial_data
+      @question = Question.find(params[:id])
+      if current_user
+          force_logout
+          redirect_to :controller => :questions, :action => :get_expert_verdict, :id => @question.id and return
+      end
   end
   
   def create_account
