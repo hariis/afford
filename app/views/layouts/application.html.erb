@@ -60,23 +60,18 @@
   <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>
      <div id="login">
         <% if current_user %>
-            <% if current_user.responses.size > 0 && (controller.action_name == 'index' || controller.action_name == 'show') %>
-              <span style="float:left;">
-                  Agreed with Expert: <%= @user_agreed_with_expert %>  |
-                  Agreed with Community: <%= @user_agreed_with_community %>
-              </span>
-              <% margin = 'margin-left:100px' %>
-            <% else %>
-              <% margin = 'margin-left:500px' %>
-            <% end %>
-            <span style= "<%= margin %>">
-                <%= link_to "#{current_user.username}", edit_user_path(:current) %>  |
+           <div style="float:left;">
+                <%= current_user.username %>
+                 agreed with Expert: <%= @user_agreed_with_expert %>  |
+                 agreed with Community: <%= @user_agreed_with_community %>
+           </div>
+            <div style= "text-align:right;">
                 <%= link_to "Logout", logout_path %>
-            </span>
+            </div>
          <% else %> 
-            <span style="margin-left:600px;">
+            <div style="text-align:right;">
                 <%= link_to "Login", login_path %> 
-            </span>
+            </div>
          <% end %> 
    </div>
    <% end %>

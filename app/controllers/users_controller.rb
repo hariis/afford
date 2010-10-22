@@ -18,19 +18,19 @@ class UsersController < ApplicationController
      end     
    end
 
-   def edit  
-      @user = current_user  
-    end  
-      
-   def update  
-      @user = current_user
-      @user.password_confirmation = @user.password
-      if @user.update_attributes(params[:user])  
-        flash[:notice] = "Successfully updated profile."  
-        redirect_to root_url  
-     else  
-       render :action => 'edit'  
-     end  
-   end  
+#   def edit  
+#      @user = current_user
+#    end
+#
+#   def update
+#      @user = current_user
+#      @user.password_confirmation = @user.password
+#      if @user.update_attributes(params[:user])
+#        flash[:notice] = "Successfully updated profile."
+#        redirect_to root_url
+#     else
+#       render :action => 'edit'
+#     end
+#   end
   
 end

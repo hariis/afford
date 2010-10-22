@@ -196,7 +196,8 @@ margin-right:15px;
 background:url("/images/footer.png") repeat-x scroll left bottom #F8FDEF;
 padding:3px 10px;
 font-size:13px;
-font-weight:bold;
+width:691px;
+margin-left:1px;
 }
 
 #user-response ul li {
