@@ -61,18 +61,18 @@ class Question < ActiveRecord::Base
 
   def self.validate_payment_details_input(question, item_cost)
     if question.pm_saving == false && question.pm_investment == false && question.pm_financing == false
-        question.errors.add('Payment Mode', ": Please select atleast one payment mode")
+        question.errors.add("Please select atleast one payment mode")
     else
         if question.pm_saving == true && (question.pm_saving_amount.nil? || question.pm_saving_amount <= 0)
-          question.errors.add(:pm_saving, ": You plan to pay partly from saving. Please enter the saving contribution")
+          question.errors.add("You plan to pay partly from saving. Please enter the saving contribution")
         end
 
         if question.pm_investment == true && (question.pm_investment_amount.nil? || question.pm_investment_amount <= 0)
-          question.errors.add(:pm_investment, ": You plan to pay partly from investment. Please enter the investment contribution")
+          question.errors.add("You plan to pay partly from investment. Please enter the investment contribution")
         end
 
         if question.pm_financing == true && (question.pm_financing_amount.nil? || question.pm_financing_amount <= 0)
-          question.errors.add(:pm_investment, ": You plan to pay partly by financing. Please enter the monthly loan contribution")  
+          question.errors.add("You plan to pay partly by financing. Please enter the monthly loan contribution")  
         end
         #TODO additional validation
         #only savings - item cost should be equal to pm_saving_amount
@@ -80,17 +80,17 @@ class Question < ActiveRecord::Base
         unless question.errors.size > 0
           if question.pm_saving == true && question.pm_investment == false && question.pm_financing == false
             if question.pm_saving_amount != item_cost
-              question.errors.add(:pm_saving_amount, ": The payment from saving does not match the item cost of $#{item_cost}")  
+              question.errors.add("The payment from saving does not match the item cost of $#{item_cost}")  
             end
           end
           if question.pm_investment == true && question.pm_saving == false && question.pm_financing == false
             if question.pm_investment_amount != item_cost              
-              question.errors.add(:pm_investment_amount, ": The payment from investment does not match the item cost of $#{item_cost}")  
+              question.errors.add("The payment from investment does not match the item cost of $#{item_cost}")  
             end
           end
           if question.pm_investment == true && question.pm_saving == true && question.pm_financing == false
             if question.pm_investment_amount + question.pm_saving_amount != item_cost
-              question.errors.add('Saving & Investment Amount', ": The contribution from saving and investment does not match the item cost of $#{item_cost}")  
+              question.errors.add("The contribution from saving and investment does not match the item cost of $#{item_cost}")  
             end
           end
         end

@@ -3,9 +3,9 @@ class UsersController < ApplicationController
 
    before_filter :redirect_to_error, :except => [:new, :create]
   
-  def redirect_to_error
-    render 'questions/404', :status => 404, :layout => false and return
-  end
+   def redirect_to_error
+      render 'questions/404', :status => 404, :layout => false and return
+   end
   
   def new
      store_location

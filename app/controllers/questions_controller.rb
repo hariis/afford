@@ -85,6 +85,7 @@ class QuestionsController < ApplicationController
     begin
         Question.validate_payment_details_input(@question, question_personal_item.item_cost)
         if @question.errors.size > 0
+            @item_cost = question_personal_item.item_cost
             render :action => "payment_mode"
         else
             session[:new_question_payment] = @question
