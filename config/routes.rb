@@ -5,12 +5,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :responses
   map.root :controller => 'questions', :action => 'index'
   
-  
+   map.register 'register', :controller => 'users', :action => 'new'
    map.resources :users, :collection => {:activate => :post, :resendnewactivation => :get, :resendactivation => :post}
   
   
   map.login 'login', :controller => 'user_sessions', :action => 'new'  
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+  
   map.resources :user_sessions
   map.about "about", :controller => 'questions', :action => 'about'
   map.disclaimer "disclaimer", :controller => 'questions', :action => 'tos'

@@ -58,8 +58,8 @@
            <% end %>
         <% else %>
                   <ul>
-                    <li><%= link_to "New? Register", :controller => 'users', :action => 'new' %> |
-                     <%= link_to "Already Registered? Log in", :controller => 'user_sessions', :action => 'new' %>   </li>
+                    <li><%= link_to "New? Register", register_path %> |
+                     <%= link_to "Already Registered? Log in", login_path %>   </li>
                   </ul>
         <% end %>
     </div>
