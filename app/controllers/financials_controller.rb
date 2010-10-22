@@ -68,8 +68,8 @@ class FinancialsController < ApplicationController
     @question.pm_financing_amount = @question_payment.pm_financing_amount
     
     if current_user
-      @question.update_attributes(:user_id => current_user.id)
-      @question.financial.update_attributes(:user_id => current_user.id)
+      @question.user_id = current_user.id
+      @financial.user_id = current_user.id
     end
     
     if @financial.save
