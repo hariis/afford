@@ -3,6 +3,10 @@ class FinancialsController < ApplicationController
   before_filter :clear_stage_errors, :only => [:step2]
   before_filter :ensure_user_and_financial_exists, :only => [:final]
   
+  def method_missing(methodname, *args)
+    render 'questions/404', :status => 404, :layout => false
+  end
+  
   def clear_stage_errors      
       unless session[:new_financial].nil?
         session[:new_financial] = nil

@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
    layout "application"
-    
-   def new
+
+   before_filter :redirect_to_error, :except => [:new, :create]
+  
+  def redirect_to_error
+    render 'questions/404', :status => 404, :layout => false and return
+  end
+  
+  def new
      store_location
      @user = User.new
-   end  
+  end  
 
    def create
      @user = User.new(params[:user])

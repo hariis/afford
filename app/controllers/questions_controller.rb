@@ -4,6 +4,10 @@ class QuestionsController < ApplicationController
   before_filter :clear_stage_error_question_payment, :only => [:step3]
   before_filter :ensure_user_and_financial_exists, :only => [:payment_mode, :step3]
   
+  def method_missing(methodname, *args)
+    render 'questions/404', :status => 404, :layout => false
+  end
+  
   def clear_stage_errors
       unless session[:new_question_item].nil?
         session[:new_question_item] = nil

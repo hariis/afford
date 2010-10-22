@@ -2,6 +2,10 @@ class ResponsesController < ApplicationController
   before_filter :load_question
   before_filter :require_user,  :only => [:new, :create, :statistics]
   
+  def method_missing(methodname, *args)
+    render 'questions/404', :status => 404, :layout => false
+  end
+    
   def load_question
     @question = Question.find(params[:id])
   end

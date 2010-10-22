@@ -11,13 +11,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user  
   before_filter :load_statistics
 
-  def method_missing(methodname, *args)
-    respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found }
-        format.xml  { head :not_found }
-        format.any  { head :not_found }
-    end
-  end
   private  
   
     def load_statistics
