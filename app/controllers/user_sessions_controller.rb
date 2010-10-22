@@ -1,10 +1,10 @@
 class UserSessionsController < ApplicationController
 
-   before_filter :redirect_to_error, :except => [:new, :create, :destroy]
-  
-   def redirect_to_error
-      render 'questions/404', :status => 404, :layout => false and return
-   end
+#   before_filter :redirect_to_error, :except => [:new, :create, :destroy]
+#
+#   def redirect_to_error
+#      render 'questions/404', :status => 404, :layout => false and return
+#   end
      
   def new
     store_location
