@@ -237,11 +237,11 @@ class Question < ActiveRecord::Base
 
   def check_rule6_total_loan_payment
     #Total loan payment + Recurrring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
-    if addon_total_loan_payment < 0.36 * financial.gross_income
-       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</li>"
+    if addon_total_loan_payment <= 0.36 * financial.gross_income
+       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income which is sound.</li>"
     else
-      if addon_total_loan_payment < 0.40 * financial.gross_income
-        loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36
+      if addon_total_loan_payment <= 0.40 * financial.gross_income
+        loan_payment = (addon_total_loan_payment * 100)/financial.gross_income - 36
         @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
                           Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{loan_payment}%</li>"
       else
