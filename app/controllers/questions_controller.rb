@@ -82,7 +82,7 @@ class QuestionsController < ApplicationController
     #TODO: Correct displaying of error messages
     question_personal_item = session[:new_question_item]
     
-    begin
+    #begin
         Question.validate_payment_details_input(@question, question_personal_item.item_cost)
         if @question.errors.size > 0
             @item_cost = question_personal_item.item_cost
@@ -91,10 +91,10 @@ class QuestionsController < ApplicationController
             session[:new_question_payment] = @question
             redirect_to :controller => :financials, :action => :final
         end
-    rescue
-         @question.errors.add('Please try again', ": We are sorry something went wrong.")
-         render :action => "new"
-    end
+#    rescue
+#         @question.errors.add('Please try again', ": We are sorry something went wrong.")
+#         render :action => "new"
+    #end
   end
   
   def get_expert_verdict

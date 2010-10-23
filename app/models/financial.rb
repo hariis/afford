@@ -27,6 +27,8 @@ class Financial < ActiveRecord::Base
       unless self.is_blank_or_not_number(record,attr,value)
        if value.to_i < 1000 || value.to_i > 8000 then
           record.errors.add(attr,": Currently we support between $1,000 and $8,000 only.")
+       elsif value.to_i >= record.gross_income.to_i
+          record.errors.add(attr,": Net income should be less than Gross income.")
        end
      end
   end
@@ -62,7 +64,7 @@ class Financial < ActiveRecord::Base
   end
   validates_each :retirement_savings, :on => :save do |record,attr,value|
         if value.to_i < 0 || value.to_i > 100000 then
-            record.errors.add(attr,"We have data to support between 0 and $100,000 only.")
+            record.errors.add(attr,": We have data to support between 0 and $100,000 only.")
         end
   end  
   

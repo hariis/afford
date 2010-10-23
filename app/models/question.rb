@@ -189,22 +189,24 @@ class Question < ActiveRecord::Base
     else
       @expert_verdict = false
       @expert_details << "<li class='red'>You have $#{financial.cc_debt} <b>Credit card debt</b> @ #{financial.cc_interest_rate}%.<br/>
-                          Expert suggests: Pay off your <b>Credit card debt</b> before buying this item.</li>"
+                          Expert suggests: Pay off your <b>Credit card debt</b> first.</li>"
     end    
   end
   
   def check_rule3_liquid_assets
     #Liquid assets > 6 * Expenses 
-    #liquid assets(Liquid assets - item cost to be paid from savings) > 6 * Expenses (Expenses + Recurring Expenses + Recurrring Loan Payment for item)
+    #liquid assets(Liquid assets - item cost to be paid from savings) > 6 * Expenses (Expenses + Recurring Expenses + Recurring Loan Payment for item)
     net_liquid = addon_liquid_assets < 6 * addon_total_expenses
     if net_liquid
       move_funds = (6 * addon_total_expenses) - addon_liquid_assets
       if (addon_investment >= (8 * addon_total_expenses) - addon_liquid_assets)
-          @expert_details << "<li class='green'>You don't have sufficient <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments </b><br/>"
-          @expert_details << "Since you said that you deserve it or need it, You can liquidate $#{move_funds} from your <b>Investments</b> to <b>Savings</b> and then make the purchase.</li>" if self.reason_to_buy == 1 || self.reason_to_buy == 2
+        if self.reason_to_buy == 1 || self.reason_to_buy == 2
+          @expert_details << "<li class='green'>You don't have 6 times your total monthly expenses in <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
+          @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating $#{move_funds} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
+        end
       else
           @expert_verdict = false
-          @expert_details << "<li class='red'>You don't have sufficient <b>Liquid assets / Savings</b> to cover for your emergency fund. <br/>Recommeded is 6 times your total monthly expenses.</li>"
+          @expert_details << "<li class='red'>You don't have sufficient <b>Liquid assets / Savings</b> to cover for your emergency fund. <br/>Recommended is 6 times your total monthly expenses.</li>"
       end
     else
       @expert_details << "<li class='green'>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</li>"
@@ -230,25 +232,24 @@ class Question < ActiveRecord::Base
       @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
     else
       @expert_verdict = false
-      @expert_details << "<li class='red'>You mentioned you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
+      @expert_details << "<li class='red'>You mentioned that you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
                         Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
     end
   end
 
   def check_rule6_total_loan_payment
-    #Total loan payment + Recurrring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
-    if addon_total_loan_payment < 0.36 * financial.gross_income
+    #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
+    if addon_total_loan_payment <= 0.36 * financial.gross_income
        @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than 36% of your Gross income which is sound.</li>"
-    else
-      if addon_total_loan_payment < 0.40 * financial.gross_income
-        loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36
+    elsif addon_total_loan_payment <= 0.40 * financial.gross_income
+        #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36
+        gap = addon_total_loan_payment - (0.36 * financial.gross_income)
         @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
-                          Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{loan_payment}%</li>"
-      else
+                          Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{gap.to_i}</li>"
+    else
         @expert_verdict = false
-        @expert_details << "<li class='red'>Your <b>Total Loan Payments</b> are too high to support this purchase.</li>"
-      end
-      return false
+        @expert_details << "<li class='red'>Your <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
+        return false
     end
   end
 
