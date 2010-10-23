@@ -67,7 +67,7 @@
 <div id="expert-response" style="display:none;margin-top:30px;">
     <fieldset>
       <legend><b>Expert Verdict</b></legend>
-      <% if @question.expert_details.empty? %>
+      <% if @question.expert_details.blank? %>
           <div id='expert-denied'>Expert does not have sufficient data</div>
       <% else %>
           <% if @question.expert_verdict == true %>

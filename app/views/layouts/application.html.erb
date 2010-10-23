@@ -78,10 +78,12 @@
                  agreed with Community: <%= @user_agreed_with_community %>
            </div>
             <div style= "text-align:right;">
+                <%= link_to "Home", root_path if controller.action_name != 'index' %> 
                 <%= link_to "Logout", logout_path %>
             </div>
          <% else %> 
             <div style="text-align:right;">
+                <%= link_to "Home", root_path if controller.action_name != 'index' %> 
                 <%= link_to "Login", login_path %> 
             </div>
          <% end %> 

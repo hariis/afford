@@ -1,7 +1,7 @@
-<b><%=h question.nick_name %></b> <i>wants to</i> <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_currency  question.item_cost %></b><br/>
+<b><%=h question.nick_name %></b> <i>wants to</i> <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_currency  question.item_cost %></b>
   <% if question.recurring_item_cost > 0 %> 
       and at a recurring cost of <b><%= app_number_to_currency question.recurring_item_cost %></b> per month.<br/>
   <% else %>
-      with no recurring cost<br/>
+      and no recurring cost.<br/>
   <% end %>
     
