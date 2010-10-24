@@ -89,9 +89,10 @@ class QuestionsController < ApplicationController
     #if Question.valid_for_attributes( @question, ['pm_saving','pm_investment','pm_financing','pm_saving_amount','pm_investment_amount','pm_financing_amount'] )
     #TODO: Correct displaying of error messages
     question_personal_item = session[:new_question_item]
+    financial = session[:new_financial]
     
     #begin
-        Question.validate_payment_details_input(@question, question_personal_item.item_cost)
+        Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
         if @question.errors.size > 0
             @item_cost = question_personal_item.item_cost
             render :action => "payment_mode"

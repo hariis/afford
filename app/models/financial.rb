@@ -23,6 +23,7 @@ class Financial < ActiveRecord::Base
        end
      end
   end
+  
   validates_each :net_income, :on => :save do |record,attr,value|      
       unless self.is_blank_or_not_number(record,attr,value)
        if value.to_i < 1000 || value.to_i > 8000 then
@@ -32,6 +33,7 @@ class Financial < ActiveRecord::Base
        end
      end
   end
+  
   validates_each :total_expenses, :on => :save do |record,attr,value|      
       unless self.is_blank_or_not_number(record,attr,value)
        if value.to_i * 12 < 500 || value.to_i * 12 > 100000 then
@@ -42,6 +44,7 @@ class Financial < ActiveRecord::Base
        #end
      end
   end
+  
   validates_each :liquid_assets, :on => :save do |record,attr,value|     
      unless self.is_blank_or_not_number(record,attr,value)
        if value.to_i < 1000 || value.to_i > 1000000 then
@@ -52,6 +55,7 @@ class Financial < ActiveRecord::Base
        #end
      end
   end
+  
   def self.is_blank_or_not_number(record,attr,value)
      if value.blank?
         record.errors.add(attr,"Please enter your #{attr.to_s.humanize}")
@@ -62,6 +66,7 @@ class Financial < ActiveRecord::Base
       end
       return false
   end
+  
   validates_each :retirement_savings, :on => :save do |record,attr,value|
         if value.to_i < 0 || value.to_i > 100000 then
             record.errors.add(attr,": We have data to support between 0 and $100,000 only.")

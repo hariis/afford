@@ -66,7 +66,7 @@ class Question < ActiveRecord::Base
       return true
   end
 
-  def self.validate_payment_details_input(question, item_cost)
+  def self.validate_payment_details_input(question, item_cost, investments)
     if question.pm_saving == false && question.pm_investment == false && question.pm_financing == false
         question.errors.add("Please", " select atleast one payment mode")
     else
@@ -81,6 +81,7 @@ class Question < ActiveRecord::Base
         if question.pm_financing == true && (question.pm_financing_amount.nil? || question.pm_financing_amount <= 0)
           question.errors.add("Please", " enter your monthly Payment")
         end
+        
         #TODO additional validation
         #only savings - item cost should be equal to pm_saving_amount
         #only investment - item cost should be equal to pm_investment_amount
@@ -100,6 +101,13 @@ class Question < ActiveRecord::Base
               question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
             end
           end
+        end
+        unless question.errors.size > 0
+          if question.pm_investment == true
+            unless investments - question.pm_investment_amount >= 0
+              question.errors.add("Your", " investments fund of $#{investments} is not sufficient to support this purchase")
+            end
+          end       
         end
     end    
   end
@@ -134,7 +142,7 @@ class Question < ActiveRecord::Base
     check_rule4_retirement_payment
     check_rule5_deferred_loan
     check_rule6_total_loan_payment
-    check_rule7_investment
+    #check_rule7_investment
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
