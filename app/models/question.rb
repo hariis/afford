@@ -3,11 +3,18 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC'
   
-  REASON_TO_BUY = { "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
+  REASON_TO_BUY = { "Please Select One" => "1", "I Deserve/Earned It" => "2", "I Need It" => "3", "Nice To Have" => "4", "Just Like That" => "5"}
   
-  validates_presence_of :item_name, :reason_to_buy, :nick_name
+  validates_presence_of :item_name, :nick_name
   validates_numericality_of :recurring_item_cost
-      
+
+  validates_each :reason_to_buy, :on => :save do |record,attr,value|
+     if value.to_i == 1 then
+        #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work
+        record.errors.add(attr,": Please select a valid reason")
+     end
+  end
+  
   validates_each :age, :on => :save do |record,attr,value|
       if value.blank?
         record.errors.add(attr,": Please enter your #{attr.to_s.humanize}")
@@ -17,7 +24,7 @@ class Question < ActiveRecord::Base
         case attr
         when :age:
             if value.to_i < 20 || value.to_i > 65 then
-                record.errors.add(attr,": We have data for ages between 20 and 65 only.")
+                record.errors.add(attr,": We have data for ages between 20 and 65 only")
             end
         end
       end
@@ -32,7 +39,7 @@ class Question < ActiveRecord::Base
         case attr
         when :item_cost:
             if value.to_i < 100 || value.to_i > 1000000 then
-                record.errors.add(attr,": We can calculate for cost between 100 and 1 million only.")
+                record.errors.add(attr,": We can calculate for cost between 100 and 1 million only")
             end
         end
       end
@@ -80,7 +87,7 @@ class Question < ActiveRecord::Base
         unless question.errors.size > 0
           if question.pm_saving == true && question.pm_investment == false && question.pm_financing == false
             if question.pm_saving_amount != item_cost
-              question.errors.add("Your", "contribution from Savings does not match the Item cost of $#{item_cost}")
+              question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
             end
           end
           if question.pm_investment == true && question.pm_saving == false && question.pm_financing == false
@@ -200,7 +207,7 @@ class Question < ActiveRecord::Base
     if net_liquid
       move_funds = (6 * addon_total_expenses) - addon_liquid_assets
       if (addon_investment >= (8 * addon_total_expenses) - addon_liquid_assets)
-        if self.reason_to_buy == 1 || self.reason_to_buy == 2
+        if self.reason_to_buy == 2 || self.reason_to_buy == 3
           @expert_details << "<li class='green'>You don't have 6 times your total monthly expenses in <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
           @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating $#{move_funds} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
         end
@@ -228,7 +235,7 @@ class Question < ActiveRecord::Base
     #if Deferred loans > 0, item cost < 1000
     if financial.deferred_loan_amount <= 0     
       @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
-    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 1 || self.reason_to_buy == 2) )
+    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 2 || self.reason_to_buy == 3) )
       @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
     else
       @expert_verdict = false

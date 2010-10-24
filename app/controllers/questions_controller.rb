@@ -45,7 +45,14 @@ class QuestionsController < ApplicationController
   end
   
   def new
-    @question = Question.new
+    if current_user && current_user.questions.size > 0 
+      @question = current_user.questions.find(:first, :order => 'created_at desc')
+      @question.item_name = ""
+      @question.item_cost = ""
+    else
+      @question = Question.new
+    end
+    @reason_to_buy = "1"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,11 +65,12 @@ class QuestionsController < ApplicationController
     if current_user
       @question.nick_name = current_user.username
     end
-    if Question.valid_for_attributes( @question, ['item_name','reason_to_buy','item_cost','recurring_item_cost','age', 'nick_name'] )
+    if Question.valid_for_attributes( @question, ['item_name','reason_to_buy','item_cost','recurring_item_cost', 'age', 'nick_name'] )
       #.. Save user in session and go to step
       session[:new_question_item] = @question
       redirect_to :controller => :financials, :action => :new
     else
+       @reason_to_buy = @question.reason_to_buy
        render :action => "new"
     end
   end
