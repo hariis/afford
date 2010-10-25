@@ -31,13 +31,13 @@
         <div id="payment_mode">
           <span class='line-item'>Item Cost: <%= app_number_to_currency @question.item_cost %></span><br/><br/>
           <% if @question.pm_saving == true %>
-              <span class='line-item'>Savings: <%= app_number_to_currency @question.pm_saving_amount %></span><br/>
+              <span class='line-item'>Paid from Savings: <%= app_number_to_currency @question.pm_saving_amount %></span><br/>
           <% end %>
           <% if @question.pm_investment == true %>
-              <span class='line-item'>Investment: <%= app_number_to_currency @question.pm_investment_amount %></span><br/>
+              <span class='line-item'>Paid from Investment: <%= app_number_to_currency @question.pm_investment_amount %></span><br/>
           <% end %>
           <% if @question.pm_financing == true %>
-              <span class='line-item'>Financing: <%= app_number_to_currency @question.pm_financing_amount %> per month</span><br/>
+              <span class='line-item'>Paid by Financing: <%= app_number_to_currency @question.pm_financing_amount %> per month</span><br/>
           <% end %>
         </div>
 </div>

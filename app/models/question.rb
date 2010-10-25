@@ -142,7 +142,6 @@ class Question < ActiveRecord::Base
     check_rule4_retirement_payment
     check_rule5_deferred_loan
     check_rule6_total_loan_payment
-    #check_rule7_investment
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
@@ -195,11 +194,11 @@ class Question < ActiveRecord::Base
   
   def check_rule2_credit_cart_debt
     #Credit card debt <= 0 || (cc_debt > 0 && interest rate = 0
-    if financial.cc_debt <= 0 || (financial.cc_interest_rate == 0 &&  financial.cc_debt <= 2000)
+    if financial.cc_debt <= 0 || (financial.cc_interest_rate == 0 &&  financial.cc_debt <= 3*financial.net_income)
       if financial.cc_debt <= 0 
         @expert_details << "<li class='green'>Your have no <b>Credit card debt.</b></li>"
       else
-        @expert_details << "<li class='green'>Your have some <b>Credit card debt</b> @ 0% which is acceptable</li>"
+        @expert_details << "<li class='green'>Your have $#{financial.cc_debt} <b>Credit card debt</b> @ 0% which is acceptable</li>"
       end
     else
       @expert_verdict = false
@@ -265,19 +264,6 @@ class Question < ActiveRecord::Base
         @expert_verdict = false
         @expert_details << "<li class='red'>Your <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
         return false
-    end
-  end
-
-  def check_rule7_investment
-    #additional checking when all the above rule are true
-    #paying from the investment
-    if self.pm_investment_amount > 0 #if you are paying from investment
-      if addon_investment > 0
-        @expert_details << "<li class='green'>You have sufficient funds in your Investments to support this purchase.</li>"
-      else
-        @expert_verdict = false
-        @expert_details << "<li class='red'>You don't have sufficient funds in your investments to support this purchase.</li>"
-      end
     end
   end
   #---------------------------------------------------------------------------------------------------------
