@@ -30,7 +30,9 @@ class FinancialsController < ApplicationController
     end
   end  
 
-  def step2  
+  def step2
+    #remove commas from input values
+    params[:financial].each_pair {|key, value| params[:financial][key] = remove_commas(value)}
     @financial = Financial.new
     @financial.attributes = params[:financial]
     if Financial.valid_for_attributes( @financial, ['gross_income',  'net_income',  'total_expenses', 'liquid_assets', 'cc_interest_rate','retirement_savings'] )
