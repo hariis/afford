@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
       
     def store_location
       session[:return_to] = request.env["HTTP_REFERER"] || request.request_uri
+      session[:return_to] = nil if session[:return_to].include?('login')
     end
 
     def redirect_back_or_default(default)
@@ -46,7 +47,8 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        flash[:notice] = "You must be logged in to access this page"
+        #If someone double clicked the logout link, they come here and this flash notice doesn't make sense
+        #flash[:notice] = "You must be logged in to access this page"
         redirect_to root_url
         return false
       end
