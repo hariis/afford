@@ -70,9 +70,9 @@
      <div id="login">
         <% if current_user %>
            <div style="float:left;">
-                <%= current_user.username %>
+                <b><%= current_user.username %>
                  agreed with Expert: <%= @user_agreed_with_expert %>  |
-                 agreed with Community: <%= @user_agreed_with_community %>
+                 agreed with Community: <%= @user_agreed_with_community %></b>
            </div>
             <div style= "text-align:right;">
                 <%= link_to "Home", root_path if controller.action_name != 'index' %>

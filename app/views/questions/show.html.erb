@@ -1,7 +1,8 @@
 <div id="snippets" class='snippet-odd'>
-<%= render :partial => 'snippet_body', :object => @question, :locals => {:question => @question} %>
+    <%= render :partial => 'snippet_body', :object => @question, :locals => {:question => @question} %>
 </div>
 <br/>
+
 <div>
   <div style="float:left;" id="prompt-user-response">
     <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
@@ -25,17 +26,17 @@
    </div>
 </div>
 
-    <%= link_to_function( "View Financial Details",  :id => "p_more_link_down") do |page|
-            page.visual_effect  :toggle_blind, "financial-details"
-            page.show "p_more_link_up"
-            page.hide "p_more_link_down"
-     end  %>
+<%= link_to_function( "View Financial Details",  :id => "p_more_link_down") do |page|
+        page.visual_effect  :toggle_blind, "financial-details"
+        page.show "p_more_link_up"
+        page.hide "p_more_link_down"
+ end  %>
 
-     <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up", :style => 'display:none;') do |page|
-            page.visual_effect  :toggle_blind, "financial-details"
-            page.hide "p_more_link_up"
-            page.show "p_more_link_down"
-     end  %>
+ <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up", :style => 'display:none;') do |page|
+        page.visual_effect  :toggle_blind, "financial-details"
+        page.hide "p_more_link_up"
+        page.show "p_more_link_down"
+ end  %>
 
       <div id="user-response" style="display:none;margin-top:20px;">
 
@@ -86,38 +87,10 @@
     </fieldset>
 </div>
 
-<div id="financial-details" style="display:none;margin-top:20px;">
-<div id="tabs">
-	<ul>
-		<li><a href="#income">Income & Expenses</a></li>
-		<li><a href="#loans">Loans</a></li>
-		<li><a href="#assets">Assets</a></li>
-                <li><a href="#retirement">Retirement</a></li>
-	</ul>
-	<div id="income">
-          <span class='line-item'>Gross Income: <%= app_number_to_currency @financial.gross_income %></span><br />
-          <span class='line-item'>Net Income: <%= app_number_to_currency @financial.net_income %></span><br />
-          <span class='line-item'>Total Monthly Expenses: <%= app_number_to_currency @financial.total_expenses %></span><br />
-	</div>
-	<div id="loans">
-          <span class='line-item'>Mortgage Payment: <%= app_number_to_currency @financial.mortage_payment %></span><br />
-          <span class='line-item'>Car Payment: <%= app_number_to_currency @financial.car_loan_payment %></span><br />
-          <span class='line-item'>Student Loan Payment: <%= app_number_to_currency @financial.student_loan_payment %></span><br />
-          <span class='line-item'>Other Loan Payments: <%= app_number_to_currency @financial.other_loan_payment %></span><br />
-          <span class='line-item'>Deferred Loan Amounts: <%= app_number_to_currency @financial.deferred_loan_amount %></span><br />
-          <span class='line-item'>Credit Card Debt: <%= app_number_to_currency @financial.cc_debt %></span><br />
-          <span class='line-item'>Credit Card Interest Rate: <%= @financial.cc_interest_rate %> %</span><br />
-	</div>
-	<div id="assets">
-          <span class='line-item'>Liquid Assets: <%= app_number_to_currency @financial.liquid_assets %></span><br />
-          <span class='line-item'>Investments:<%= app_number_to_currency @financial.investments %></span><br />
-	</div>
-        <div id="retirement">
-          <span class='line-item'>Retirement Savings: <%= app_number_to_currency @financial.retirement_savings %></span><br />
-          <span class='line-item'>Monthly Retirement Contribution:<%= app_number_to_currency @financial.monthly_retirement_contribution %></span>
-	</div>
+<div id="financial-details" style="margin-top:20px;">
+     <%= render :partial => "financial_details", :object => @financial, :local => {:question => @question} %>
 </div>
-</div>
+
 <br/>
 <hr/>
 <div style="float:right;clear:both;padding-top:5px;">
