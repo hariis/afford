@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
   before_filter :load_statistics
 
   private  
-  
+     def remove_commas(value)
+      value.gsub(/,/,'') unless value.blank?
+    end
     def load_statistics
       if current_user
         @user_agreed_with_community = current_user.agreed_with_community

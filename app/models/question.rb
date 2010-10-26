@@ -39,14 +39,14 @@ class Question < ActiveRecord::Base
         case attr
         when :item_cost:
             if value.to_i < 100 || value.to_i > 1000000 then
-                record.errors.add(attr,": We can calculate for cost between 100 and 1 million only")
+                record.errors.add(attr,": We can calculate for cost between $100 and $1 million only")
             end
         end
       end
   end
   
  def self.is_a_number?(s)
-    s.to_s.sub(/,/,'').match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+    s.to_s.gsub(/,/,'').match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
  end
  
   # Might be a good addition to AR::Base

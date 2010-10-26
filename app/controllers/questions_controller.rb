@@ -61,6 +61,9 @@ class QuestionsController < ApplicationController
   end
   
   def step1
+    #sanitize values
+    params[:question][:item_cost] = remove_commas(params[:question][:item_cost])
+    params[:question][:recurring_item_cost] = remove_commas(params[:question][:recurring_item_cost])
     @question = Question.new(params[:question])
     if current_user
       @question.nick_name = current_user.username
