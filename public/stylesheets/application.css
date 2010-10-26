@@ -281,3 +281,8 @@ text-decoration:none;
   list-style-image: url('/images/unchecked.gif');
   line-height:1.5em;
 }
+
+.float-left {
+    width:180px;    /*Or however much space you need for the form’s labels*/
+    float:left;
+}

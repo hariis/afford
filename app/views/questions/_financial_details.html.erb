@@ -7,37 +7,37 @@
                 <li><a href="#payment_mode">Payment Mode</a></li>
 	</ul>
 	<div id="income">
-          <span class='line-item'>Gross Income: <%= app_number_to_currency @financial.gross_income %></span><br />
-          <span class='line-item'>Net Income: <%= app_number_to_currency @financial.net_income %></span><br />
-          <span class='line-item'>Total Monthly Expenses: <%= app_number_to_currency @financial.total_expenses %></span><br />
+            <div class="line-item"><span class="float-left">Gross Income: </span><%= app_number_to_currency @financial.gross_income %></div>
+            <div class='line-item'><span class="float-left">Net Income: </span><%= app_number_to_currency @financial.net_income %></div>
+            <div class='line-item'><span class="float-left">Total Monthly Expenses: </span><%= app_number_to_currency @financial.total_expenses %></div>
 	</div>
 	<div id="loans">
-          <span class='line-item'>Mortgage Payment: <%= app_number_to_currency @financial.mortage_payment %></span><br />
-          <span class='line-item'>Car Payment: <%= app_number_to_currency @financial.car_loan_payment %></span><br />
-          <span class='line-item'>Student Loan Payment: <%= app_number_to_currency @financial.student_loan_payment %></span><br />
-          <span class='line-item'>Other Loan Payments: <%= app_number_to_currency @financial.other_loan_payment %></span><br />
-          <span class='line-item'>Deferred Loan Amounts: <%= app_number_to_currency @financial.deferred_loan_amount %></span><br />
-          <span class='line-item'>Credit Card Debt: <%= app_number_to_currency @financial.cc_debt %></span><br />
-          <span class='line-item'>Credit Card Interest Rate: <%= @financial.cc_interest_rate %> %</span><br />
+          <div class='line-item'><span class="float-left">Mortgage Payment: </span><%= app_number_to_currency @financial.mortage_payment %></div>
+          <div class='line-item'><span class="float-left">Car Payment: </span><%= app_number_to_currency @financial.car_loan_payment %></div>
+          <div class='line-item'><span class="float-left">Student Loan Payment: </span><%= app_number_to_currency @financial.student_loan_payment %></div>
+          <div class='line-item'><span class="float-left">Other Loan Payments: </span><%= app_number_to_currency @financial.other_loan_payment %></div>
+          <div class='line-item'><span class="float-left">Deferred Loan Amounts: </span><%= app_number_to_currency @financial.deferred_loan_amount %></div>
+          <div class='line-item'><span class="float-left">Credit Card Debt: </span><%= app_number_to_currency @financial.cc_debt %></div>
+          <div class='line-item'><span class="float-left">Credit Card Interest Rate: </span><%= @financial.cc_interest_rate %> %</div>
 	</div>
 	<div id="assets">
-          <span class='line-item'>Liquid Assets: <%= app_number_to_currency @financial.liquid_assets %></span><br />
-          <span class='line-item'>Investments:<%= app_number_to_currency @financial.investments %></span><br />
+          <div class='line-item'><span class="float-left">Liquid Assets: </span><%= app_number_to_currency @financial.liquid_assets %></div>
+          <div class='line-item'><span class="float-left">Investments: </span><%= app_number_to_currency @financial.investments %></div>
 	</div>
         <div id="retirement">
-          <span class='line-item'>Retirement Savings: <%= app_number_to_currency @financial.retirement_savings %></span><br />
-          <span class='line-item'>Monthly Retirement Contribution:<%= app_number_to_currency @financial.monthly_retirement_contribution %></span>
+          <div class='line-item'><span class="float-left">Retirement Savings: </span><%= app_number_to_currency @financial.retirement_savings %></div>
+          <div class='line-item'><span class="float-left">Monthly Retirement Contribution: </span><%= app_number_to_currency @financial.monthly_retirement_contribution %></div>
 	</div>
         <div id="payment_mode">
-          <span class='line-item'>Item Cost: <%= app_number_to_currency @question.item_cost %></span><br/><br/>
+          <div class='line-item'><span class="float-left">Item Cost: </span><%= app_number_to_currency @question.item_cost %></div>
           <% if @question.pm_saving == true %>
-              <span class='line-item'>Paid from Savings: <%= app_number_to_currency @question.pm_saving_amount %></span><br/>
+              <div class='line-item'><span class="float-left">From Savings: </span><%= app_number_to_currency @question.pm_saving_amount %></div>
           <% end %>
           <% if @question.pm_investment == true %>
-              <span class='line-item'>Paid from Investment: <%= app_number_to_currency @question.pm_investment_amount %></span><br/>
+              <div class='line-item'><span class="float-left">From Investments: </span><%= app_number_to_currency @question.pm_investment_amount %></div>
           <% end %>
           <% if @question.pm_financing == true %>
-              <span class='line-item'>Paid by Financing: <%= app_number_to_currency @question.pm_financing_amount %> per month</span><br/>
+              <div class='line-item'><span class="float-left">By Financing: </span><%= app_number_to_currency @question.pm_financing_amount %> per month</div>
           <% end %>
         </div>
 </div>
