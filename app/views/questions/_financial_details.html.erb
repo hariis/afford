@@ -30,13 +30,13 @@
 	</div>
         <div id="payment_mode">
           <div class='line-item'><span class="float-left">Item Cost: </span><%= app_number_to_currency @question.item_cost %></div>
-          <% if @question.pm_saving == true %>
+          <% if @question.pm_saving_amount > 0 %>
               <div class='line-item'><span class="float-left">From Savings: </span><%= app_number_to_currency @question.pm_saving_amount %></div>
           <% end %>
-          <% if @question.pm_investment == true %>
+          <% if @question.pm_investment_amount > 0 %>
               <div class='line-item'><span class="float-left">From Investments: </span><%= app_number_to_currency @question.pm_investment_amount %></div>
           <% end %>
-          <% if @question.pm_financing == true %>
+          <% if @question.pm_financing_amount > 0 %>
               <div class='line-item'><span class="float-left">By Financing: </span><%= app_number_to_currency @question.pm_financing_amount %> per month</div>
           <% end %>
         </div>

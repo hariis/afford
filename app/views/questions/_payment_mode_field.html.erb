@@ -2,14 +2,6 @@
 <fieldset>
    <legend><b>How are you going to pay for the Item?</b><span style="font-size:14px;"> (Exclude monthly recurring costs)</span></legend>
    <span style="color:green;font-weight:bold;"><%= "Item Cost: $" + @item_cost.to_s %></span
-  <p>
-    <%= f.check_box :pm_saving %>
-    <%= f.label :pm_saving, "Savings" %>
-    <%= f.check_box :pm_investment %>
-    <%= f.label :pm_investment, "Investments" %>
-    <%= f.check_box :pm_financing %>
-    <%= f.label :pm_financing, "Financing" %>
-  </p>
 
   <p>
     <%= f.label :pm_saving_amount, "Contribution from Savings" %><br />
