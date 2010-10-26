@@ -159,9 +159,9 @@ class Question < ActiveRecord::Base
   end
   
   def addon_total_loan_payment
-    #All loan payment + Recurrring Loan Payment for item   
+    #All loan payment + Recurrring Loan Payment for item  + Credit card payment for the 0% rate loan
     financial.mortage_payment + financial.car_loan_payment +
-    financial.student_loan_payment + financial.other_loan_payment +
+    financial.student_loan_payment + financial.other_loan_payment + financial.monthly_cc_payments_at_zero + 
     self.pm_financing_amount
   end
   
@@ -183,7 +183,7 @@ class Question < ActiveRecord::Base
       includes = []
       includes << "recurring cost of the item " if self.recurring_item_cost > 0
       includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
-      include_string = includes.size > 0 ? " including" + includes.to_sentence : ""
+      include_string = includes.size > 0 ? " including " + includes.to_sentence : ""
       @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be $#{addon_total_expenses} after the purchase"
       @expert_details << " which will EXCEED your Net income by $#{diff * -1}.</li>"
       #@expert_details << "<span class='red'>Your <b>Net Income</b> is/will be less than Total Expenses "
@@ -194,18 +194,36 @@ class Question < ActiveRecord::Base
   end
   
   def check_rule2_credit_cart_debt
-    #Credit card debt <= 0 || (cc_debt > 0 && interest rate = 0
-    if financial.cc_debt <= 0 || (financial.cc_interest_rate == 0 &&  financial.cc_debt <= 3*financial.net_income)
-      if financial.cc_debt <= 0 
+    #check if cc_debt_gt_zero > 0
+    #add :monthly_cc_payments_at_zero to total loan payments
+    if financial.cc_debt_gt_zero <= 0
+      if financial.cc_debt_at_zero <= 0
         @expert_details << "<li class='green'>Your have no <b>Credit card debt.</b></li>"
       else
-        @expert_details << "<li class='green'>Your have $#{financial.cc_debt} <b>Credit card debt</b> @ 0% which is acceptable</li>"
+        @expert_details << "<li class='green'>Your have $#{financial.cc_debt_at_zero} <b>Credit card debt</b> @ 0 % interest.<br/>"
+        if financial.monthly_cc_payments_at_zero > 0
+          @expert_details << "You are already making monthly payments on this.</li>"
+        else
+          @expert_details << "You are not yet making monthly payments on this. <br/>
+                          Expert suggests: Start paying off your <b>Credit card debt</b> first.<br/>"
+        end
+        #Add a comment as to how long it will take to pay off outright from savings
+        monthly_savings = financial.net_income - addon_total_expenses
+        if monthly_savings > 0
+          months_to_cover = financial.cc_debt_at_zero > monthly_savings ?
+                        (financial.cc_debt_at_zero.to_f / monthly_savings.to_f).to_s + " months" : "less than a month"
+          @expert_details << "Note:At your current monthly savings of $#{monthly_savings}, it will take approximately #{months_to_cover.to_i} to pay off the debt outright.</li>"
+        else
+          @expert_details << "</li>"
+        end
+
       end
     else
       @expert_verdict = false
-      @expert_details << "<li class='red'>You have $#{financial.cc_debt} <b>Credit card debt</b> @ #{financial.cc_interest_rate}%.<br/>
+      @expert_details << "<li class='red'>You have $#{financial.cc_debt_gt_zero} <b>Credit card debt</b> @ more than 0 % interest.<br/>
                           Expert suggests: Pay off your <b>Credit card debt</b> first.</li>"
-    end    
+    end
+    
   end
   
   def check_rule3_liquid_assets

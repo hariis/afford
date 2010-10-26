@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101020074529) do
+ActiveRecord::Schema.define(:version => 20101026025141) do
 
   create_table "facebook_users", :force => true do |t|
     t.integer  "user_id"
@@ -35,14 +35,15 @@ ActiveRecord::Schema.define(:version => 20101020074529) do
     t.integer  "student_loan_payment",            :default => 0
     t.integer  "other_loan_payment",              :default => 0
     t.integer  "deferred_loan_amount",            :default => 0
-    t.integer  "cc_debt",                         :default => 0
-    t.integer  "cc_interest_rate",                :default => 0
     t.integer  "liquid_assets",                   :default => 0
     t.integer  "investments",                     :default => 0
     t.integer  "retirement_savings",              :default => 0
     t.integer  "monthly_retirement_contribution", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cc_debt_at_zero",                 :default => 0
+    t.integer  "cc_debt_gt_zero",                 :default => 0
+    t.integer  "monthly_cc_payments_at_zero",     :default => 0
   end
 
   add_index "financials", ["user_id"], :name => "index_financials_on_user_id"

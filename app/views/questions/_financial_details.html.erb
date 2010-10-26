@@ -17,8 +17,9 @@
           <div class='line-item'><span class="float-left">Student Loan Payment: </span><%= app_number_to_currency @financial.student_loan_payment %></div>
           <div class='line-item'><span class="float-left">Other Loan Payments: </span><%= app_number_to_currency @financial.other_loan_payment %></div>
           <div class='line-item'><span class="float-left">Deferred Loan Amounts: </span><%= app_number_to_currency @financial.deferred_loan_amount %></div>
-          <div class='line-item'><span class="float-left">Credit Card Debt: </span><%= app_number_to_currency @financial.cc_debt %></div>
-          <div class='line-item'><span class="float-left">Credit Card Interest Rate: </span><%= @financial.cc_interest_rate %> %</div>
+          <div class='line-item'><span class="float-left-long">Credit Card Debts @ 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_at_zero %></div>
+          <div class='line-item'><span class="float-left-long">Monthly Payments for 0% rate Debts: </span><%= app_number_to_currency @financial.monthly_cc_payments_at_zero %></div>
+          <div class='line-item'><span class="float-left-long">Credit Card Debts @ more than 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_gt_zero %></div>
 	</div>
 	<div id="assets">
           <div class='line-item'><span class="float-left">Liquid Assets: </span><%= app_number_to_currency @financial.liquid_assets %></div>

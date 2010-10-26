@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
   before_filter :load_statistics
 
   private  
-     def remove_commas(value)
-      value.gsub(/,/,'') unless value.blank?
+    def remove_commas(value)
+      if value.blank?
+        0
+      else
+        value.gsub(/[,$]/,'')
+      end
     end
     def load_statistics
       if current_user

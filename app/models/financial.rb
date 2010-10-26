@@ -5,18 +5,10 @@ class Financial < ActiveRecord::Base
   accepts_nested_attributes_for :questions  
   
   validates_numericality_of :mortage_payment, :car_loan_payment, :student_loan_payment, :other_loan_payment,
-        :deferred_loan_amount, :cc_debt, :cc_interest_rate, :investments,:retirement_savings,
+        :deferred_loan_amount, :cc_debt_at_zero, :monthly_cc_payments_at_zero,:cc_debt_gt_zero, :investments,:retirement_savings,
         :monthly_retirement_contribution, :only_integer => true
 
-  validates_each :cc_interest_rate, :on => :save do |record,attr,value|
-     unless self.is_blank_or_not_number(record,attr,value)       
-       if value.to_i > 100 then
-          record.errors.add(attr,": Interest rate should be between 0 and 100.")
-       end
-     end
-  end
-  
-  validates_each :gross_income, :on => :save do |record,attr,value|
+ validates_each :gross_income, :on => :save do |record,attr,value|
      unless self.is_blank_or_not_number(record,attr,value)       
        if value.to_i < 2500 || value.to_i > 8000 then
           record.errors.add(attr,": Currently we support between $2,500 and $8,000 only.")
@@ -29,7 +21,7 @@ class Financial < ActiveRecord::Base
        if value.to_i < 1000 || value.to_i > 8000 then
           record.errors.add(attr,": Currently we support between $1,000 and $8,000 only.")
        elsif value.to_i >= record.gross_income.to_i
-          record.errors.add(attr,": Net income should be less than Gross income.")
+          record.errors.add(attr,": Net Income should be less than Gross Income.")
        end
      end
   end
@@ -38,6 +30,8 @@ class Financial < ActiveRecord::Base
       unless self.is_blank_or_not_number(record,attr,value)
        if value.to_i * 12 < 500 || value.to_i * 12 > 100000 then
           record.errors.add(attr,": Currently we support between $500/mo and $8,300/mo only.")
+       elsif value.to_i <= (self.get_total_loan_payments(record))
+          record.errors.add(attr,": Total Monthly Expenses should take into account all loan payments and living expenses.")
        end
        #if value.to_i < 500 || value.to_i > 100000 then
        #   record.errors.add(attr,"Currently we support between $500 and $100,000 only.")
@@ -55,7 +49,10 @@ class Financial < ActiveRecord::Base
        #end
      end
   end
-  
+  def self.get_total_loan_payments(record)
+    record.monthly_cc_payments_at_zero.to_i + record.mortage_payment.to_i + record.car_loan_payment.to_i +
+      record.student_loan_payment.to_i + record.other_loan_payment.to_i
+  end
   def self.is_blank_or_not_number(record,attr,value)
      if value.blank?
         record.errors.add(attr,"Please enter your #{attr.to_s.humanize}")

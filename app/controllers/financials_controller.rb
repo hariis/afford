@@ -35,7 +35,7 @@ class FinancialsController < ApplicationController
     params[:financial].each_pair {|key, value| params[:financial][key] = remove_commas(value)}
     @financial = Financial.new
     @financial.attributes = params[:financial]
-    if Financial.valid_for_attributes( @financial, ['gross_income',  'net_income',  'total_expenses', 'liquid_assets', 'cc_interest_rate','retirement_savings'] )
+    if Financial.valid_for_attributes( @financial, ['gross_income',  'net_income',  'total_expenses', 'liquid_assets','retirement_savings'] )
       #.. Save user in session and go to step
       #Financial.validate_data_sanity(@financial)
       if @financial.errors.size > 0
