@@ -139,7 +139,8 @@ class Question < ActiveRecord::Base
     check_rule1_income_expenses
     check_rule2_credit_cart_debt
     check_rule3_liquid_assets
-    check_rule4_retirement_payment
+    #check_rule4_retirement_payment
+    check_rule4_retirement_payment_current
     check_rule5_deferred_loan
     check_rule6_total_loan_payment
     
@@ -227,7 +228,7 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def check_rule4_retirement_payment
+  def check_rule4_retirement_payment_old
     #retirement monthly contribution > = supposed to be (from lookup table)    
     #TODO 
     if (financial.monthly_retirement_contribution >= 0.10*financial.net_income)
@@ -235,6 +236,34 @@ class Question < ActiveRecord::Base
     else
       @expert_details << "<li class='red'>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</li>"
       @expert_verdict = false
+    end
+  end
+
+  def check_rule4_retirement_payment_current
+    #retirement monthly contribution > = supposed to be (from lookup table)    
+    #TODO
+    rcontribution = 0.08*financial.net_income if self.age <= 40
+    rcontribution = 0.10*financial.net_income if self.age > 40
+    
+    if (financial.monthly_retirement_contribution >= rcontribution)
+      @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
+    else
+      @expert_details << "<li class='red'>Based on your age and income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      @expert_verdict = false
+    end
+  end
+  
+  def check_rule4_retirement_payment_future1
+    lookup = Ratio.find(:first, :conditions => ['age = ?', (self.age-self.age%5)])
+    unless lookup.nil?
+      saving_diff = lookup.captial_to_income * financial.gross_income - financial.retirement_savings
+      if saving_diff > 0
+          @expert_verdict = false
+          @expert_details << "<li class='red'>Your $#{financial.retirement_savings} retirement savings is still below by $#{saving_diff}.<br/>
+                              Expert suggests: Increase your <b>retirement contribution<b/> to match the deficit of $#{saving_diff}.</li>"
+      else
+          @expert_details << "<li class='green'>Your $#{financial.retirement_savings} retirement saving is good.</li>"
+      end
     end
   end
   
