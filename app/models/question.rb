@@ -248,7 +248,7 @@ class Question < ActiveRecord::Base
     if (financial.monthly_retirement_contribution >= rcontribution)
       @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age and income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{financial.monthly_retirement_contribution-rcontribution}.</li>"
+      @expert_details << "<li class='red'>Based on your age and income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
       @expert_verdict = false
     end
   end
@@ -265,11 +265,8 @@ class Question < ActiveRecord::Base
           @expert_details << "<li class='green'>Your $#{financial.retirement_savings} retirement saving is good.</li>"
       end
     end
-        
   end
   
-    
-  end
   def check_rule5_deferred_loan
     #if Deferred loans > 0, item cost < 1000
     if financial.deferred_loan_amount <= 0     
