@@ -4,7 +4,8 @@ class Question < ActiveRecord::Base
   has_many :responses, :order => 'created_at DESC'
   
   REASON_TO_BUY = { "Please Select One" => "1", "I Deserve/Earned It" => "2", "I Need It" => "3", "Nice To Have" => "4", "Just Like That" => "5"}
-  
+  #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
+    
   validates_presence_of :item_name, :nick_name
   validates_numericality_of :recurring_item_cost
 
@@ -67,43 +68,32 @@ class Question < ActiveRecord::Base
   end
 
   def self.validate_payment_details_input(question, item_cost, investments)
-    if question.pm_saving == false && question.pm_investment == false && question.pm_financing == false
-        question.errors.add("Please", " select atleast one payment mode")
+    if question.pm_saving_amount <= 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
+        question.errors.add("Please", " enter amount for atleast one payment mode")
     else
-        if question.pm_saving == true && (question.pm_saving_amount.nil? || question.pm_saving_amount <= 0)
-          question.errors.add("Please", " enter your Contribution from Savings")
-        end
-
-        if question.pm_investment == true && (question.pm_investment_amount.nil? || question.pm_investment_amount <= 0)
-          question.errors.add("Please",  " enter your Contribution from Investments")
-        end
-
-        if question.pm_financing == true && (question.pm_financing_amount.nil? || question.pm_financing_amount <= 0)
-          question.errors.add("Please", " enter your monthly Payment")
-        end
-        
         #TODO additional validation
         #only savings - item cost should be equal to pm_saving_amount
         #only investment - item cost should be equal to pm_investment_amount
-        unless question.errors.size > 0
-          if question.pm_saving == true && question.pm_investment == false && question.pm_financing == false
-            if question.pm_saving_amount != item_cost
-              question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
-            end
-          end
-          if question.pm_investment == true && question.pm_saving == false && question.pm_financing == false
-            if question.pm_investment_amount != item_cost              
-              question.errors.add("Your", " contribution from Investments does not match the Item cost of $#{item_cost}")
-            end
-          end
-          if question.pm_investment == true && question.pm_saving == true && question.pm_financing == false
-            if question.pm_investment_amount + question.pm_saving_amount != item_cost
-              question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
-            end
+        if question.pm_saving_amount > 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
+          if question.pm_saving_amount != item_cost
+            question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
           end
         end
+          
+        if question.pm_investment_amount > 0 && question.pm_saving_amount <= 0 && question.pm_financing_amount <= 0
+          if question.pm_investment_amount != item_cost
+            question.errors.add("Your", " contribution from Investments does not match the Item cost of $#{item_cost}")
+          end
+        end
+             
+        if question.pm_saving_amount > 0 && question.pm_investment_amount > 0 && question.pm_financing_amount <= 0
+          if question.pm_saving_amount + question.pm_investment_amount != item_cost
+            question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
+          end
+        end  
+
         unless question.errors.size > 0
-          if question.pm_investment == true
+          if question.pm_investment_amount > 0
             unless investments - question.pm_investment_amount >= 0
               question.errors.add("Your", " investments fund of $#{investments} is not sufficient to support this purchase")
             end
