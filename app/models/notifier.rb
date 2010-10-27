@@ -25,10 +25,10 @@ default_url_options[:host] = "caniafforditnow.com"
     body       :url  => DOMAIN
   end
 
-  def notify_on_new_question(email, qid)
+  def notify_on_new_question(qid)
     setup_email
-    @subject    << ' A new question has been posted'
-    recipients    email
+    @subject    << 'A new question has been posted'
+    recipients    "satish.fnu@gmail.com, hrajagopal@yahoo.com"
 
     body          :question_url  => DOMAIN + "questions/show/#{qid}"
   end

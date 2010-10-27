@@ -53,12 +53,13 @@ class Financial < ActiveRecord::Base
     record.monthly_cc_payments_at_zero.to_i + record.mortage_payment.to_i + record.car_loan_payment.to_i +
       record.student_loan_payment.to_i + record.other_loan_payment.to_i
   end
+  
   def self.is_blank_or_not_number(record,attr,value)
      if value.blank?
-        record.errors.add(attr,"Please enter your #{attr.to_s.humanize}")
+        record.errors.add(attr,": Please enter your #{attr.to_s.humanize}")
         return true
       elsif !Question.is_a_number?(value.to_i)
-        record.errors.add(attr,"Please enter a valid value")
+        record.errors.add(attr,": Please enter a valid value")
         return true
       end
       return false

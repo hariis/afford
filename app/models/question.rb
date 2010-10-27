@@ -3,17 +3,34 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC'
   
-  REASON_TO_BUY = { "Please Select One" => "1", "I Deserve/Earned It" => "2", "I Need It" => "3", "Nice To Have" => "4", "Just Like That" => "5"}
+  after_save :new_question_notification
+  
+  REASON_TO_BUY = { "Please Select One" => "0", "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
-    
+  
   validates_presence_of :item_name, :nick_name
+  #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
   validates_numericality_of :recurring_item_cost
 
+  def new_question_notification
+    Notifier.deliver_notify_on_new_question(self.id)
+  end
+  
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
-     if value.to_i == 1 then
+     if value.to_i == 0 then
         #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work
         record.errors.add(attr,": Please select a valid reason")
      end
+  end
+  
+  validates_each :pm_saving_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
+  end 
+  validates_each :pm_investment_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
+  end
+  validates_each :pm_financing_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
   end
   
   validates_each :age, :on => :save do |record,attr,value|
@@ -49,7 +66,16 @@ class Question < ActiveRecord::Base
  def self.is_a_number?(s)
     s.to_s.gsub(/,/,'').match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
  end
- 
+  
+ def self.is_blank_or_not_number(value)
+     if value.blank?
+        return true
+      elsif !Question.is_a_number?(value.to_i)
+        return true
+      end
+      return false
+  end
+  
   # Might be a good addition to AR::Base
   def self.valid_for_attributes( model, attributes )
       unless model.valid?
@@ -68,38 +94,40 @@ class Question < ActiveRecord::Base
   end
 
   def self.validate_payment_details_input(question, item_cost, investments)
-    if question.pm_saving_amount <= 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
-        question.errors.add("Please", " enter amount for atleast one payment mode")
-    else
-        #TODO additional validation
-        #only savings - item cost should be equal to pm_saving_amount
-        #only investment - item cost should be equal to pm_investment_amount
-        if question.pm_saving_amount > 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
-          if question.pm_saving_amount != item_cost
-            question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
-          end
-        end
-          
-        if question.pm_investment_amount > 0 && question.pm_saving_amount <= 0 && question.pm_financing_amount <= 0
-          if question.pm_investment_amount != item_cost
-            question.errors.add("Your", " contribution from Investments does not match the Item cost of $#{item_cost}")
-          end
-        end
-             
-        if question.pm_saving_amount > 0 && question.pm_investment_amount > 0 && question.pm_financing_amount <= 0
-          if question.pm_saving_amount + question.pm_investment_amount != item_cost
-            question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
-          end
-        end  
-
-        unless question.errors.size > 0
-          if question.pm_investment_amount > 0
-            unless investments - question.pm_investment_amount >= 0
-              question.errors.add("Your", " investments fund of $#{investments} is not sufficient to support this purchase")
+    unless question.errors.size > 0
+      if question.pm_saving_amount <= 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
+          question.errors.add("Please", " enter amount for atleast one payment mode")    
+      else
+          #TODO additional validation
+          #only savings - item cost should be equal to pm_saving_amount
+          #only investment - item cost should be equal to pm_investment_amount
+          if question.pm_saving_amount > 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
+            if question.pm_saving_amount != item_cost
+              question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
             end
-          end       
-        end
-    end    
+          end
+
+          if question.pm_investment_amount > 0 && question.pm_saving_amount <= 0 && question.pm_financing_amount <= 0
+            if question.pm_investment_amount != item_cost
+              question.errors.add("Your", " contribution from Investments does not match the Item cost of $#{item_cost}")
+            end
+          end
+
+          if question.pm_saving_amount > 0 && question.pm_investment_amount > 0 && question.pm_financing_amount <= 0
+            if question.pm_saving_amount + question.pm_investment_amount != item_cost
+              question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
+            end
+          end  
+
+          unless question.errors.size > 0
+            if question.pm_investment_amount > 0
+              unless investments - question.pm_investment_amount >= 0
+                question.errors.add("Your", " investments fund of $#{investments} is not sufficient to support this purchase")
+              end
+            end       
+          end
+      end
+    end
   end
 
   def is_responded_by(user)
@@ -223,7 +251,7 @@ class Question < ActiveRecord::Base
     if net_liquid
       move_funds = (6 * addon_total_expenses) - addon_liquid_assets
       if (addon_investment >= (8 * addon_total_expenses) - addon_liquid_assets)
-        if self.reason_to_buy == 2 || self.reason_to_buy == 3
+        if self.reason_to_buy == 1 || self.reason_to_buy == 2
           @expert_details << "<li class='green'>You don't have 6 times your total monthly expenses in <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
           @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating $#{move_funds} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
         end
@@ -254,9 +282,9 @@ class Question < ActiveRecord::Base
     rcontribution = 0.10*financial.net_income if self.age > 40
     
     if (financial.monthly_retirement_contribution >= rcontribution)
-      @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
+      @expert_details << "<li class='green'>Your $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age and income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
       @expert_verdict = false
     end
   end
@@ -279,7 +307,7 @@ class Question < ActiveRecord::Base
     #if Deferred loans > 0, item cost < 1000
     if financial.deferred_loan_amount <= 0     
       @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
-    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 2 || self.reason_to_buy == 3) )
+    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 1 || self.reason_to_buy == 2) )
       @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
     else
       @expert_verdict = false
