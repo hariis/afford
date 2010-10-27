@@ -9,8 +9,8 @@ class Question < ActiveRecord::Base
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
   
   validates_presence_of :item_name, :nick_name
-  #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
-  validates_numericality_of :recurring_item_cost, :greater_than_or_equal_to => 0, :only_integer => true
+  validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
+  #validates_numericality_of :recurring_item_cost, :greater_than_or_equal_to => 0, :only_integer => true
 
   def new_question_notification
     Notifier.deliver_notify_on_new_question(self.id)
