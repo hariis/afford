@@ -40,3 +40,9 @@ config.action_mailer.smtp_settings = {
   :password => "mount^hood"
 
 }
+
+ExceptionNotification::Notifier.exception_recipients = %w(hrajagopal@yahoo.com satish.fnu@gmail.com)
+ExceptionNotification::Notifier.sender_address =
+    %("Afford Error Notifier" <admin@caniafforditnow.com>)
+
+

@@ -113,7 +113,7 @@ class QuestionsController < ApplicationController
     begin
         @question = Question.find(params[:id])
         unless @question.nil?
-          @question.get_expert_verdict
+          @question.calculate_expert_verdict
           @expert_details = @question.expert_details
           @expert_verdict = @question.expert_verdict
         end

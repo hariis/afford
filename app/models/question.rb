@@ -122,7 +122,7 @@ class Question < ActiveRecord::Base
   
   #Financial Rules
   #---------------------------------------------------------------------------------------------------------
-  def get_expert_verdict
+  def calculate_expert_verdict
     @expert_details = ""
     @expert_verdict = true
     
@@ -175,7 +175,7 @@ class Question < ActiveRecord::Base
       includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
       include_string = includes.size > 0 ? " including " + includes.to_sentence : ""
       @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be $#{addon_total_expenses} after the purchase"
-      @expert_details << " which will EXCEED your Net income by $#{diff * -1}.</li>"
+      @expert_details << " which will exceed your Net income by $#{diff * -1}.</li>"
       #@expert_details << "<span class='red'>Your <b>Net Income</b> is/will be less than Total Expenses "
       #@expert_details << "+ Recurring cost of the item " if self.recurring_item_cost > 0
       #@expert_details << "+ Recurring loan payment for the item " if self.pm_financing_amount > 0
