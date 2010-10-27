@@ -4,12 +4,21 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  include ExceptionNotification::Notifiable
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
   helper_method :current_user  
   before_filter :load_statistics
+
+  unless ActionController::Base.consider_all_requests_local
+    rescue_from Exception,                            :with => :render_error
+    rescue_from ActiveRecord::RecordNotFound,         :with => :render_not_found
+    rescue_from ActionController::RoutingError,       :with => :render_not_found
+    rescue_from ActionController::UnknownController,  :with => :render_not_found
+    rescue_from ActionController::UnknownAction,      :with => :render_not_found
+  end
 
   private  
     def remove_commas(value)
@@ -79,4 +88,16 @@ class ApplicationController < ActionController::Base
       end
       return false
     end
+
+    private
+
+  def render_not_found(exception)
+    log_error(exception)
+    render :template => "/errors/404.html.erb", :status => 404, :layout => 'error'
+  end
+
+  def render_error(exception)
+    log_error(exception)
+    render :template => "/errors/500.html.erb", :status => 500, :layout => 'error'
+  end
 end

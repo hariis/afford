@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Online financial calculator to find out your affordability of a purchase - Go Ahead, Get a Second Opinion</title>
+ <%= stylesheet_link_tag 'application' %> 
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19253006-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+
+<body>
+
+<div id="superwrapper">
+  <div id="wrapper">
+    <div id="layer">
+      <div id="header">
+          <!--[if lt IE 7]>
+          <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
+          It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
+          </div> <![endif]-->
+
+          <div class="logo">
+             <%= link_to image_tag('/images/afford-ds.png'), root_path %>
+          </div>
+      </div>     
+      <div id="tagline">Get a Second Opinion before making your Purchase</div>
+      
+      <div id="main">
+        <%= yield %>
+      </div>
+      
+  </div>
+  </div>
+  </div>
+  <div id="footer">
+         <ul>
+          <li>©2010 CanIAffordItNow.com</li> 
+          <li><%=  link_to "About" , "#{DOMAIN}about" %></li> |
+          <li><%=  link_to "Disclaimer" , "#{DOMAIN}disclaimer" %></li> | 
+          <li><%=  link_to "Privacy" , "#{DOMAIN}privacy" %></li>
+        </ul>
+      </div>
+</body>
+</html>

@@ -5,5 +5,12 @@
         <data xmlns="http://www.netbeans.org/ns/rails-project/1">
             <name>afford</name>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>config</word>
+            <word>javascripts</word>
+            <word>stylesheets</word>
+            <word>threadsafe</word>
+            <word>unsubscribe</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>
