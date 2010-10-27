@@ -327,9 +327,9 @@ class Question < ActiveRecord::Base
     if addon_total_loan_payment <= 0.36 * financial.gross_income
        @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income.</li>"
     elsif addon_total_loan_payment <= 0.40 * financial.gross_income
-        #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36
+        #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36 
         gap = addon_total_loan_payment - (0.36 * financial.gross_income)
-        @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
+        @expert_details << "<li class='green'>Your $#{addon_total_loan_payment}<b> Total Loan Payments</b> are slightly greater than 36% of your Gross income.<br/>
                           Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{gap.to_i}</li>"
     else
         @expert_verdict = false
