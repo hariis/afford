@@ -10,7 +10,6 @@ class Question < ActiveRecord::Base
   
   validates_presence_of :item_name, :nick_name
   #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
-  #validates_numericality_of :recurring_item_cost
   validates_numericality_of :recurring_item_cost, :greater_than_or_equal_to => 0, :only_integer => true
 
   def new_question_notification
