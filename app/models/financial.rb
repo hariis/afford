@@ -4,10 +4,11 @@ class Financial < ActiveRecord::Base
   
   accepts_nested_attributes_for :questions  
   
-  validates_numericality_of :mortage_payment, :car_loan_payment, :student_loan_payment, :other_loan_payment,
-        :deferred_loan_amount, :cc_debt_at_zero, :monthly_cc_payments_at_zero,:cc_debt_gt_zero, :investments,:retirement_savings,
-        :monthly_retirement_contribution, :only_integer => true
+  validates_numericality_of :mortage_payment, :car_loan_payment, :student_loan_payment, :other_loan_payment, :deferred_loan_amount, 
+                            :cc_debt_at_zero, :monthly_cc_payments_at_zero, :cc_debt_gt_zero, :investments, :retirement_savings,
+                            :monthly_retirement_contribution, :greater_than_or_equal_to => 0, :only_integer => true
 
+  
  validates_each :gross_income, :on => :save do |record,attr,value|
      unless self.is_blank_or_not_number(record,attr,value)       
        if value.to_i < 2500 || value.to_i > 8000 then

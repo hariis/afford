@@ -3,19 +3,19 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC'
   
-  after_save :new_question_notification
+  after_create :new_question_notification
   
   REASON_TO_BUY = { "Please Select One" => "0", "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
   
   validates_presence_of :item_name, :nick_name
   #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
-  validates_numericality_of :recurring_item_cost
+  validates_numericality_of :recurring_item_cost, :greater_than_or_equal_to => 0, :only_integer => true
 
   def new_question_notification
     Notifier.deliver_notify_on_new_question(self.id)
   end
-  
+
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
      if value.to_i == 0 then
         #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work
@@ -94,6 +94,9 @@ class Question < ActiveRecord::Base
   end
 
   def self.validate_payment_details_input(question, item_cost, investments)
+    if question.pm_saving_amount < 0 || question.pm_investment_amount < 0 || question.pm_financing_amount < 0
+      question.errors.add("Values", " for payment mode must be greater than or equal to 0")
+    end
     unless question.errors.size > 0
       if question.pm_saving_amount <= 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
           question.errors.add("Please", " enter amount for atleast one payment mode")    
