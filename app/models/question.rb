@@ -7,6 +7,7 @@ class Question < ActiveRecord::Base
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
     
   validates_presence_of :item_name, :nick_name
+  #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
   validates_numericality_of :recurring_item_cost
 
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
@@ -14,6 +15,16 @@ class Question < ActiveRecord::Base
         #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work
         record.errors.add(attr,": Please select a valid reason")
      end
+  end
+  
+  validates_each :pm_saving_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
+  end 
+  validates_each :pm_investment_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
+  end
+  validates_each :pm_financing_amount, :on => :save do |record,attr,value|      
+    Financial.is_blank_or_not_number(record,attr,value)
   end
   
   validates_each :age, :on => :save do |record,attr,value|
@@ -77,15 +88,6 @@ class Question < ActiveRecord::Base
   end
 
   def self.validate_payment_details_input(question, item_cost, investments)
-    if is_blank_or_not_number(question.pm_saving_amount)
-      question.errors.add("Saving amount", ": Please enter a valid number or 0")
-    end
-    if is_blank_or_not_number(question.pm_investment_amount)
-      question.errors.add("Investment amount", ": Please enter a valid number or 0")
-    end
-    if is_blank_or_not_number(question.pm_financing_amount)
-      question.errors.add("Financing amount", ": Please enter a valid number or 0")
-    end
     unless question.errors.size > 0
       if question.pm_saving_amount <= 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
           question.errors.add("Please", " enter amount for atleast one payment mode")    
@@ -276,7 +278,7 @@ class Question < ActiveRecord::Base
     if (financial.monthly_retirement_contribution >= rcontribution)
       @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age and income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
       @expert_verdict = false
     end
   end

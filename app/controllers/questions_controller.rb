@@ -62,6 +62,7 @@ class QuestionsController < ApplicationController
   
   def step1
     #sanitize values
+    params[:question][:item_name] = remove_commas(params[:question][:item_name])
     params[:question][:item_cost] = remove_commas(params[:question][:item_cost])
     params[:question][:recurring_item_cost] = remove_commas(params[:question][:recurring_item_cost])
     @question = Question.new(params[:question])
@@ -88,25 +89,30 @@ class QuestionsController < ApplicationController
     #Validate it
     #If successful, Store it in another session variable
     #else show errors for the last page
+    params[:question][:pm_saving_amount] = remove_commas(params[:question][:pm_saving_amount])
+    params[:question][:pm_investment_amount] = remove_commas(params[:question][:pm_investment_amount])
+    params[:question][:pm_financing_amount] = remove_commas(params[:question][:pm_financing_amount])
     @question = Question.new(params[:question])
-    #if Question.valid_for_attributes( @question, ['pm_saving','pm_investment','pm_financing','pm_saving_amount','pm_investment_amount','pm_financing_amount'] )
-    #TODO: Correct displaying of error messages
     question_personal_item = session[:new_question_item]
-    financial = session[:new_financial]
-    
-    #begin
-        Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
-        if @question.errors.size > 0
-            @item_cost = question_personal_item.item_cost
-            render :action => "payment_mode"
-        else
-            session[:new_question_payment] = @question
-            redirect_to :controller => :financials, :action => :final
-        end
-#    rescue
-#         @question.errors.add('Please try again', ": We are sorry something went wrong.")
-#         render :action => "new"
-    #end
+    if Question.valid_for_attributes( @question, ['pm_saving_amount','pm_investment_amount','pm_financing_amount'] )
+        financial = session[:new_financial]
+        #begin
+            Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
+            if @question.errors.size > 0
+                @item_cost = question_personal_item.item_cost
+                render :action => "payment_mode"
+            else
+                session[:new_question_payment] = @question
+                redirect_to :controller => :financials, :action => :final
+            end
+    #    rescue
+    #         @question.errors.add('Please try again', ": We are sorry something went wrong.")
+    #         render :action => "new"
+        #end
+    else
+        @item_cost = question_personal_item.item_cost
+        render :action => "payment_mode"
+    end
   end
   
   def get_expert_verdict
@@ -129,8 +135,10 @@ class QuestionsController < ApplicationController
   
   def about
   end
+  
   def privacy
   end
+  
   def subscribe
     if current_user && current_user.username == 'hari'
       Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)

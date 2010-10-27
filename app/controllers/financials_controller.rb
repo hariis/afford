@@ -77,6 +77,7 @@ class FinancialsController < ApplicationController
     if @financial.save
         @question.financial_id = @financial.id
         if @question.save
+            #nofity
             #SUPER IMPORTANT:
             #Clean session variables
             clear_session_variables
