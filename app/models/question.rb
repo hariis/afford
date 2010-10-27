@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   
   validates_length_of :item_name, :minimum => 5
   validates_length_of :nick_name, :minimum => 4
-  validates_uniqueness_of :nick_name
+  #validates_uniqueness_of :nick_name
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
   #validates_numericality_of :recurring_item_cost, :greater_than_or_equal_to => 0, :only_integer => true
