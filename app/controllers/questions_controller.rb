@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
     else
       @question = Question.new
     end
-    @reason_to_buy = "1"
+    @reason_to_buy = "0"
 
     respond_to do |format|
       format.html # new.html.erb

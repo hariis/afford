@@ -62,9 +62,9 @@ class FinancialsController < ApplicationController
     @question = session[:new_question_item]
     @question_payment = session[:new_question_payment]
     
-    @question.pm_saving = @question_payment.pm_saving
-    @question.pm_investment = @question_payment.pm_investment
-    @question.pm_financing = @question_payment.pm_financing
+    #@question.pm_saving = @question_payment.pm_saving
+    #@question.pm_investment = @question_payment.pm_investment
+    #@question.pm_financing = @question_payment.pm_financing
     @question.pm_saving_amount = @question_payment.pm_saving_amount
     @question.pm_investment_amount = @question_payment.pm_investment_amount
     @question.pm_financing_amount = @question_payment.pm_financing_amount
