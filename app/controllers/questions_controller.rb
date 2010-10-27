@@ -140,7 +140,7 @@ class QuestionsController < ApplicationController
   end
   
   def subscribe
-    if current_user #&& current_user.username == 'hari'
+    if current_user && current_user.username == 'hari'
       Notifier.deliver_notify_on_new_question(1)
     end
     if validate_simple_email(params[:subscriber_email])
