@@ -3,13 +3,19 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC'
   
+  after_save :new_question_notification
+  
   REASON_TO_BUY = { "Please Select One" => "0", "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
-    
+  
   validates_presence_of :item_name, :nick_name
   #validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount
   validates_numericality_of :recurring_item_cost
 
+  def new_question_notification
+    Notifier.deliver_notify_on_new_question(self.id)
+  end
+  
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
      if value.to_i == 0 then
         #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work
@@ -276,9 +282,9 @@ class Question < ActiveRecord::Base
     rcontribution = 0.10*financial.net_income if self.age > 40
     
     if (financial.monthly_retirement_contribution >= rcontribution)
-      @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
+      @expert_details << "<li class='green'>Your $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
       @expert_verdict = false
     end
   end

@@ -140,9 +140,9 @@ class QuestionsController < ApplicationController
   end
   
   def subscribe
-    if current_user && current_user.username == 'hari'
-      Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
-    end
+    #if current_user && current_user.username == 'hari'
+    #  Notifier.deliver_notify_on_new_question(params[:subscriber_email],1)
+    #end
     if validate_simple_email(params[:subscriber_email])
       #Save this data
       Notification.create(:email => params[:subscriber_email])
