@@ -19,7 +19,7 @@
 </p>
 </fieldset>
 <div style="clear:both;">
-<fieldset style="float:left;">
+<fieldset style="float:left;width:44%;">
   <legend><b>Monthly Loan Payments</b></legend>
 <p>
   <%= f.label :mortage_payment, "Home Mortgage Payment" %><br />
@@ -37,14 +37,17 @@
   <%= f.label :other_loan_payment, "Any Other Loan Payments" %><br />
   <%= f.text_field :other_loan_payment %>
 </p>
+<p>
+  <%= f.label :deferred_loan_amount, "Deferred Loan Amount" %><br />
+  <%= f.text_field :deferred_loan_amount %>
+</p>
 </fieldset>
 
 
-<fieldset  style="float:right;width:45%;">
+<fieldset  style="float:right;width:44%;">
   <legend><b>Credit Card Loans & Payments</b></legend>
-  <span style="font-size:12px;color:#111111;">Note: Exclude recurring living expenses</span>
   <p>
-    <%= f.label :cc_debt_at_zero, "Total Credit Card Debts @ 0 % rate" %><br />
+    <%= f.label :cc_debt_at_zero, "Total Credit Card Debts @ 0%" %><br />
     <%= f.text_field :cc_debt_at_zero %>
   </p>
   
@@ -53,21 +56,14 @@
     <%= f.text_field :monthly_cc_payments_at_zero %>    
   </p>
   <p>
-    <%= f.label :cc_debt_gt_zero, "Total Credit Card Debts @ more than 0 % rate" %><br />
+    <%= f.label :cc_debt_gt_zero, "Total Credit Card Debts @ more than 0%" %><br />
     <%= f.text_field :cc_debt_gt_zero %>
   </p>
 </fieldset>
 </div>
-<div style="clear: both; margin: 0pt auto; width: 50%;">
-<fieldset>
-<p>
-  <%= f.label :deferred_loan_amount, "Deferred Loan Amount" %><br />
-  <%= f.text_field :deferred_loan_amount %>
-</p>
-</fieldset>
-</div>
+
 <div  style="clear:both;">
-<fieldset style="float:left;">
+<fieldset style="float:left;width:44%;">
   <legend><b>Assets</b></legend>
 <p>
   <%= f.label :liquid_assets, "Liquid Assets (CDs, Money Market etc)" %><br />
@@ -80,7 +76,7 @@
 </p>
 </fieldset>
 
-<fieldset style="float:right;width:45%;">
+<fieldset style="float:right;width:44%;">
   <legend><b>Retirement</b></legend>
 <p>
   <%= f.label :retirement_savings, "Retirement Savings ($0 upto $100,000 only)" %><br />
