@@ -47,34 +47,38 @@ class QuestionsController < ApplicationController
   def new
     if current_user && current_user.questions.size > 0 
       @question = current_user.questions.find(:first, :order => 'created_at desc')
-      @question.item_name = ""
+      @question.item_name = "Example: Buy a Car"
       @question.item_cost = ""
     else
       @question = Question.new
+      @question.item_name = "Example: Buy a Car"
     end
     @reason_to_buy = "0"
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.xml  { render :xml => @question }
     end
   end
   
   def step1
-    #sanitize values
-    #params[:question][:item_name] = remove_commas(params[:question][:item_name])
+    #sanitize values    
+    params[:question][:item_name] = empty_if_default(params[:question][:item_name])
     params[:question][:item_cost] = remove_commas(params[:question][:item_cost])
     params[:question][:recurring_item_cost] = remove_commas(params[:question][:recurring_item_cost])
     @question = Question.new(params[:question])
-    if current_user
-      @question.nick_name = current_user.username
-    end
-    if Question.valid_for_attributes( @question, ['item_name','reason_to_buy','item_cost','recurring_item_cost', 'age', 'nick_name'] )
+    
+    @question.nick_name = current_user.username if current_user
+    
+    attributes_to_validate = ['item_name','reason_to_buy','item_cost','recurring_item_cost', 'age']
+    attributes_to_validate << 'nick_name' unless current_user
+    if Question.valid_for_attributes( @question, attributes_to_validate)
       #.. Save user in session and go to step
       session[:new_question_item] = @question
       redirect_to :controller => :financials, :action => :new
     else
        @reason_to_buy = @question.reason_to_buy
+       @question.item_name = "Example: Buy a Car" if @question.item_name.blank?
        render :action => "new"
     end
   end

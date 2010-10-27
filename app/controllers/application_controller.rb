@@ -22,12 +22,13 @@ class ApplicationController < ActionController::Base
 
   private  
     def remove_commas(value)
-      if value.blank?
-        0
-      else
-        value.gsub(/[,$]/,'')
-      end
+      value.blank? ? 0 : value.gsub(/[,$]/,'')
     end
+
+    def empty_if_default(value)
+      value == "Example: Buy a Car" ? "" : value
+    end
+
     def load_statistics
       if current_user
         @user_agreed_with_community = current_user.agreed_with_community

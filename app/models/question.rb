@@ -10,9 +10,10 @@ class Question < ActiveRecord::Base
   
   validates_length_of :item_name, :minimum => 5
   validates_length_of :nick_name, :minimum => 3
-  validates_uniqueness_of :nick_name
   validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain alphabets, numerals, _ and no spaces"
-  
+  validates_uniqueness_of :nick_name
+  validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ gayatri aarti jayaraman), :message => "Please choose a different one"
+
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
  
   def new_question_notification

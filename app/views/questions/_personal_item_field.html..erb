@@ -1,9 +1,11 @@
-<h3>About You and the Item</h3>
+<h3>About You and your Purchase</h3>
 <fieldset>
-  <legend><b>About Your Purchase</b></legend>
+    
   <p>
-    <%= f.label :item_name, "I want to ... (Example: Buy a TV, Visit Europe, Go on a Cruise )" %><br />
-    <%= f.text_field :item_name, :size => 63, :maxlength => 200 %>
+    <b><%= f.label :item_name, "I want to" %></b>
+    <%= f.text_field :item_name, :size => 63, :maxlength => 200,
+                 :onblur => "if (this.value == '') {this.value = 'Example: Buy a Car';this.style.color='#999999';}", :onfocus => "if (this.value == 'Example: Buy a Car') {this.value = '';} this.style.color='#333333';" %>
+    <span style="font-size:12px;padding-left:73px;">Example: Buy a TV, Visit Europe, Go on a Cruise</span>
   </p>
   <p>
     <%= f.label :reason_to_buy, "Why do you want to?" %><br />
@@ -11,7 +13,7 @@
   </p>
 
   <p>
-    <%= f.label :item_cost, "How much is it going to cost? (between 100 and 1 million only)" %><br />
+    <%= f.label :item_cost, "How much is it going to cost? (between $100 and $1 million only)" %><br />
     <%= f.text_field :item_cost %>
   </p>
   <p>
@@ -27,7 +29,7 @@
   </p>
   <% unless current_user %>
   <p>
-    <%= f.label :nick_name, "Nick Name" %><br />
+    <%= f.label :nick_name, "Choose a Nick Name" %><br />
     <%= f.text_field :nick_name, :maxlength => 20 %>
   </p>
 <% end %>

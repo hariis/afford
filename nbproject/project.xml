@@ -8,6 +8,7 @@
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>config</word>
             <word>javascripts</word>
+            <word>params</word>
             <word>stylesheets</word>
             <word>threadsafe</word>
             <word>unsubscribe</word>
