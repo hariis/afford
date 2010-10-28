@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 #       render :action => 'edit'
 #     end
 #   end
-    def destroy
-      if current_user.username == 'hari2' || current_user.username == 'satish'
-        current_user.destroy
-      end
-    end
+#    def destroy
+#      if current_user.username == 'hari2' || current_user.username == 'satish'
+#        current_user.destroy
+#      end
+#    end
 end
