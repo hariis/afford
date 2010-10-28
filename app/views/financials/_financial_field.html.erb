@@ -14,7 +14,7 @@
 </p>
 <p>
   <%= f.label :total_expenses, "Total Monthly Expenses" %><br />
-  <span style="font-size:14px;">(Living Expenses & All loan payments including Credit card debts)</span>
+  <span style="font-size:14px;">(Living Expenses & All Monthly loan payments including Credit card debts)</span>
   <% show_value = (!@financial.total_expenses.nil? && @financial.total_expenses > 0) ? @financial.total_expenses : ""  %>
   <%= f.text_field :total_expenses, :value => "#{show_value}"  %>
 </p>
@@ -47,8 +47,9 @@
 
 <fieldset  style="float:right;width:48%;">
   <legend><b>Credit Card Loans & Payments</b></legend>
+  <span style="font-size:14px;">(Exclude Monthly loan payments)</span>
   <p>
-    <%= f.label :cc_debt_at_zero, "Total Credit Card Debts @ 0% rate" %><br />
+    <%= f.label :cc_debt_at_zero, "Credit Card Debts @ 0% rate" %><br />
     <%= f.text_field :cc_debt_at_zero %>
   </p>
   
@@ -57,7 +58,7 @@
     <%= f.text_field :monthly_cc_payments_at_zero %>    
   </p>
   <p>
-    <%= f.label :cc_debt_gt_zero, "Total Credit Card Debts @ above 0% rates" %><br />
+    <%= f.label :cc_debt_gt_zero, "Credit Card Debts @ above 0% rates" %><br />
     <%= f.text_field :cc_debt_gt_zero %>
   </p>
 </fieldset>

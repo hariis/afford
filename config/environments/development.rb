@@ -19,4 +19,4 @@ config.action_mailer.raise_delivery_errors = false
 config.action_controller.session_store = :active_record_store
 
 config.cache_store = :mem_cache_store
-#config.action_controller.consider_all_requests_local = false
+config.action_controller.consider_all_requests_local = false
