@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   
   validates_length_of :item_name, :minimum => 5
   validates_length_of :nick_name, :minimum => 3
-  validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain alphabets, numerals, _ and no spaces"
+  validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain only alphabets, numerals and underscores"
   validates_uniqueness_of :nick_name
   validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ ), :message => "Please choose a different one"
 
@@ -236,8 +236,8 @@ class Question < ActiveRecord::Base
         monthly_savings = financial.net_income - addon_total_expenses
         if monthly_savings > 0
           months_to_cover = financial.cc_debt_at_zero > monthly_savings ?
-                        (financial.cc_debt_at_zero.to_f / monthly_savings.to_f).to_s + " months" : "less than a month"
-          @expert_details << "Note:At your current monthly savings of $#{monthly_savings}, it will take approximately #{months_to_cover.to_i} to pay off the debt outright.</li>"
+                        "approximately " + (financial.cc_debt_at_zero.to_f / monthly_savings.to_f).to_s + " months" : "less than a month"
+          @expert_details << "Note: At your current monthly savings of $#{monthly_savings}, it will take #{months_to_cover} to pay off the debt outright.</li>"
         else
           @expert_details << "</li>"
         end

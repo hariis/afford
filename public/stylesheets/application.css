@@ -308,7 +308,7 @@ input[type="text"],select {
     font-size: 16px;
     margin-top:3px;
 }
-#new_financial input[type="text"], #new_question input[type="text"]{
+#financial-input input[type="text"], #question-input input[type="text"]{
     width:50%;
     font-weight:bold;
 }
@@ -317,11 +317,14 @@ input#question_item_name {
    width:80% !important;
    color: #999999 ;
 }
-label {
-   color: #555555;
-}
 
 .quote {
     margin-top:5px;
     padding-left: 20px;
+}
+
+#new_user input, #new_user_session input, input#password {
+    font-family: sans-serif;
+    font-size: 16px;
+    margin-top:3px;
 }

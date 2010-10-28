@@ -79,19 +79,19 @@ class FinancialsController < ApplicationController
     
     if @financial.save
         @question.financial_id = @financial.id
-        if @question.save
-            #nofity
+        if @question.save            
             #SUPER IMPORTANT:
             #Clean session variables
             clear_session_variables
-            redirect_to :action => :capture_additional_data, :id => @question.id
+            redirect_to :action => :capture_additional_data, :id => @question.id and return
         end
-    else
-      flash[:error] = 'We are sorry but something went wrong while saving financial data. Please try again.<br/>We are sorry for the incovenience.'
-      #force_logout if current_user
-      clear_session_variables
-      redirect_to :controller => :questions, :action => :new
-    end    
+    end
+    #Need to handle the failure case for @question.save and @financial.save 
+    flash[:error] = 'We are sorry but something went wrong while saving financial data. Please try again.<br/>We are sorry for the incovenience.'
+    #force_logout if current_user
+    clear_session_variables
+    redirect_to :controller => :questions, :action => :new
+        
   end
   
   def capture_additional_data
