@@ -261,6 +261,9 @@ class Question < ActiveRecord::Base
         if self.reason_to_buy == 1 || self.reason_to_buy == 2
           @expert_details << "<li class='green'>You don't have 6 times your total monthly expenses in <b>Liquid assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
           @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating $#{move_funds} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
+        else
+          @expert_verdict = false
+          @expert_details << "<li class='red'>Your $#{addon_liquid_assets} <b>Liquid assets / Savings</b> remaining after this purchase is not sufficient to cover for your emergency fund. <br/>Recommended is 6 times your total monthly expenses.</li>"
         end
       else
           @expert_verdict = false
@@ -291,7 +294,12 @@ class Question < ActiveRecord::Base
     if (financial.monthly_retirement_contribution >= rcontribution)
       @expert_details << "<li class='green'>Your $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      #@expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      if self.age <= 40
+        @expert_details << "<li class='red'>Based on your age, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less than 8% of your net income.</li>"
+      else
+        @expert_details << "<li class='red'>Based on your age, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less than 10% of your net income.</li>"
+      end
       @expert_verdict = false
     end
   end
