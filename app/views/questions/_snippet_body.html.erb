@@ -1,7 +1,7 @@
 <b><%=h question.nick_name %> (<%=  question.age %>)</b> asks
 
 <div class="quote">
-<i>I want to</i> <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_currency  question.item_cost %></b>
+I want to <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_currency  question.item_cost %></b>
   <% if question.recurring_item_cost > 0 %> 
       with a recurring cost of <b><%= app_number_to_currency question.recurring_item_cost %></b> per month.<br/>
   <% else %>
