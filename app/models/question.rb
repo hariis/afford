@@ -291,7 +291,12 @@ class Question < ActiveRecord::Base
     if (financial.monthly_retirement_contribution >= rcontribution)
       @expert_details << "<li class='green'>Your $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is good.</li>"
     else
-      @expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      #@expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
+      if self.age <= 40
+        @expert_details << "<li class='red'>Based on your age, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less than 8% of your net income.</li>"
+      else
+        @expert_details << "<li class='red'>Based on your age, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less than 10% of your net income.</li>"
+      end
       @expert_verdict = false
     end
   end
