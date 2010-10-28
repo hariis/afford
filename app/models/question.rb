@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   validates_length_of :item_name, :minimum => 5
   validates_length_of :nick_name, :minimum => 3
   validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain only alphabets, numerals and underscores"
-  validates_uniqueness_of :nick_name
+  #validates_uniqueness_of :nick_name
   validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ ), :message => "Please choose a different one"
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
@@ -264,7 +264,7 @@ class Question < ActiveRecord::Base
         end
       else
           @expert_verdict = false
-          @expert_details << "<li class='red'>You don't have sufficient <b>Liquid assets / Savings</b> to cover for your emergency fund. <br/>Recommended is 6 times your total monthly expenses.</li>"
+          @expert_details << "<li class='red'>Your $#{addon_liquid_assets} <b>Liquid assets / Savings</b> remaining after this purchase is not sufficient to cover for your emergency fund. <br/>Recommended is 6 times your total monthly expenses.</li>"
       end
     else
       @expert_details << "<li class='green'>You have adequate <b>Liquid assets / Savings</b> for your emergency fund.</li>"
@@ -326,7 +326,7 @@ class Question < ActiveRecord::Base
   def check_rule6_total_loan_payment
     #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
     if addon_total_loan_payment <= 0.36 * financial.gross_income
-       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income.</li>"
+       @expert_details << "<li class='green'>Your $#{addon_total_loan_payment} <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income.</li>"
     elsif addon_total_loan_payment <= 0.40 * financial.gross_income
         #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36 
         gap = addon_total_loan_payment - (0.36 * financial.gross_income)
@@ -334,7 +334,7 @@ class Question < ActiveRecord::Base
                           Expert suggests: You can still buy this item if you can reduce your total monthly loan payments by $#{gap.to_i}</li>"
     else
         @expert_verdict = false
-        @expert_details << "<li class='red'>Your <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
+        @expert_details << "<li class='red'>Your $#{addon_total_loan_payment} <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
         return false
     end
   end

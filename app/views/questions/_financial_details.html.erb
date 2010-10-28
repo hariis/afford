@@ -12,22 +12,22 @@
             <div class='line-item'><span class="float-left">Total Monthly Expenses: </span><%= app_number_to_currency @financial.total_expenses %></div>
 	</div>
 	<div id="loans">
-          <div class='line-item'><span class="float-left">Mortgage Payment: </span><%= app_number_to_currency @financial.mortage_payment %></div>
-          <div class='line-item'><span class="float-left">Car Payment: </span><%= app_number_to_currency @financial.car_loan_payment %></div>
-          <div class='line-item'><span class="float-left">Student Loan Payment: </span><%= app_number_to_currency @financial.student_loan_payment %></div>
-          <div class='line-item'><span class="float-left">Other Loan Payments: </span><%= app_number_to_currency @financial.other_loan_payment %></div>
-          <div class='line-item'><span class="float-left">Deferred Loan Amounts: </span><%= app_number_to_currency @financial.deferred_loan_amount %></div>
-          <div class='line-item'><span class="float-left-long">Credit Card Debts @ 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_at_zero %></div>
-          <div class='line-item'><span class="float-left-long">Monthly Payments for 0% rate Debts: </span><%= app_number_to_currency @financial.monthly_cc_payments_at_zero %></div>
-          <div class='line-item'><span class="float-left-long">Credit Card Debts @ more than 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_gt_zero %></div>
+          <div class='line-item'><span class="float-left-long">Mortgage Payment: </span><%= app_number_to_currency @financial.mortage_payment %></div>
+          <div class='line-item'><span class="float-left-long">Car Payment: </span><%= app_number_to_currency @financial.car_loan_payment %></div>
+          <div class='line-item'><span class="float-left-long">Student Loan Payment: </span><%= app_number_to_currency @financial.student_loan_payment %></div>
+          <div class='line-item'><span class="float-left-long">Other Loan Payments: </span><%= app_number_to_currency @financial.other_loan_payment %></div>
+          <div class='line-item'><span class="float-left-long">Deferred Loan Amounts: </span><%= app_number_to_currency @financial.deferred_loan_amount %></div><br/>
+          <div class='line-item'><span class="float-left-xlong">Credit Card Debts @ 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_at_zero %></div>
+          <div class='line-item'><span class="float-left-xlong">Monthly Payments for 0% rate Debts: </span><%= app_number_to_currency @financial.monthly_cc_payments_at_zero %></div>
+          <div class='line-item'><span class="float-left-xlong">Credit Card Debts @ more than 0 % rate: </span><%= app_number_to_currency @financial.cc_debt_gt_zero %></div>
 	</div>
 	<div id="assets">
           <div class='line-item'><span class="float-left">Liquid Assets: </span><%= app_number_to_currency @financial.liquid_assets %></div>
           <div class='line-item'><span class="float-left">Investments: </span><%= app_number_to_currency @financial.investments %></div>
 	</div>
         <div id="retirement">
-          <div class='line-item'><span class="float-left">Retirement Savings: </span><%= app_number_to_currency @financial.retirement_savings %></div>
-          <div class='line-item'><span class="float-left">Monthly Retirement Contribution: </span><%= app_number_to_currency @financial.monthly_retirement_contribution %></div>
+          <div class='line-item'><span class="float-left-long">Retirement Savings: </span><%= app_number_to_currency @financial.retirement_savings %></div>
+          <div class='line-item'><span class="float-left-long">Monthly Retirement Contribution: </span><%= app_number_to_currency @financial.monthly_retirement_contribution %></div>
 	</div>
         <div id="payment_mode">
           <div class='line-item'><span class="float-left">Item Cost: </span><%= app_number_to_currency @question.item_cost %></div>
