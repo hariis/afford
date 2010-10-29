@@ -1,3 +1,18 @@
+
+  <div id="snippets-header" style="clear:both;">
+      <div style="float:left;">
+      <h1>Recently Asked</h1>
+      </div>
+      <div style="float:right;">
+      <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+      </div>
+  </div>
+    <div id="snippets">
+    <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
+    </div>
+
+<%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+
 <div id="notification-prompt">
     <% form_remote_tag :url => {:action => 'subscribe'},:update => 'notification-status' do %>
         <%= label_tag "Notify Me when a new Question is posted" %>
@@ -7,23 +22,3 @@
     <% end %>
     <div id="notification-status"></div>
 </div>
-
-
-<div style="padding:10px;">
-  <div id="snippets-header" style="height:64px;">
-      <div style="float:left;">
-      <h1>Recently asked Questions</h1>
-      </div>
-      <div style="float:right;">
-      <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
-      </div>
-  </div>
-
-
-    <div id="snippets">
-    <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
-    </div>
-</div>
-
-<%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
-

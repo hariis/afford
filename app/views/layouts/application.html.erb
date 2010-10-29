@@ -47,12 +47,35 @@
           <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
           It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
           </div> <![endif]-->
-
-          <div class="logo">
-             <%= link_to image_tag('/images/afford-ds.png'), root_path %>
+          <div id="top-header">
+              <div id="logo">
+                 <%= link_to image_tag('/images/afford-ch.png'), root_path %>
+              </div>
+               <div id="login">
+                 
+                  <% if current_user %>
+                          <% link_to "Home", root_path if controller.action_name != 'index' %>
+                      <%= link_to "LOGOUT", logout_path %> 
+                   <% else %>          
+                          <% link_to "Home", root_path if controller.action_name != 'index' %>
+                          <%= link_to "LOGIN", login_path %>
+                   <% end %>
+                 
+               </div>
           </div>
+
+
+
+
+
+         <div id="tagline">
+          <ul>
+            <li>Get a Second Opinion from our Expert Calculator and our Community</li>
+            <li>Boost your Financial Savvy by responding to Questions</li>
+          </ul>
+         </div>
       </div>     
-      <div id="tagline">Get a Second Opinion before making your Purchase</div>
+
       
       <div id="main">
           <div id="flash-notice" style="color:#0B84E8;">
@@ -61,30 +84,15 @@
           <div id="flash-error" style="color:#0B84E8;">
              <p><%= flash[:error] %></p>
           </div>
-
-          <% if current_user %>
-              <div style="text-align:left;padding-left:10px;color:green;font-weight:bold;"></div>
-          <% end %>  
-          
-  <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>
-     <div id="login">
+         
+  <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>     
         <% if current_user %>
-           <div style="float:left;">
-                <b><%= current_user.username %>
+              <div id="user-stat">
+                <%= current_user.username %>
                  agreed with Expert: <%= @user_agreed_with_expert %>  |
-                 agreed with Community: <%= @user_agreed_with_community %></b>
-           </div>
-            <div style= "text-align:right;">
-                <%= link_to "Home", root_path if controller.action_name != 'index' %>
-                <%= link_to "Logout", logout_path %>
-            </div>
-         <% else %> 
-            <div style="text-align:right;">
-                <%= link_to "Home", root_path if controller.action_name != 'index' %>
-                <%= link_to "Login", login_path %> 
-            </div>
-         <% end %> 
-   </div>
+                 agreed with Community: <%= @user_agreed_with_community %>
+              </div>
+         <% end %>      
    <% end %>
 
 

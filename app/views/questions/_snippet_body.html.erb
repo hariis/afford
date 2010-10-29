@@ -8,3 +8,15 @@ I want to <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_
       with no recurring costs.<br/>
   <% end %>
 </div>
+<div class="expert-verdict" style="margin-top: 20px;">
+  <% if question.expert_details.blank? %>
+      <div class='expert-denied'>Expert does not have sufficient data</div>
+  <% else %>
+      Expert says:
+      <% if question.expert_verdict? %>
+        <span class='expert-approved'>Approved</span>
+      <% else %>
+        <span class='expert-denied'>Denied</span>
+      <% end %>
+  <% end %>
+</div>

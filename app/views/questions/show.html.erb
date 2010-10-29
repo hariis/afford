@@ -6,7 +6,7 @@
 <div>
   <div style="float:left;" id="prompt-user-response">
     <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
-           <%= button_to_function "What do you think?" do |page|
+           <%= link_to_function "Your Response?" do |page|
             page.show 'user-response'
             page.hide 'expert-response'
             page.hide "financial-details"
@@ -16,7 +16,7 @@
       <% end %>
   </div>
   <div style="float:right;">
-     <%= button_to_function "View Expert's Response" do |page|
+     <%= link_to_function "View Expert's Response" do |page|
         page.hide 'user-response'
         page.show 'expert-response'
         page.hide "financial-details"
@@ -26,13 +26,13 @@
    </div>
 </div>
 
-<%= link_to_function( "View Financial Details",  :id => "p_more_link_down") do |page|
+<%= link_to_function( "View Financial Details",  :id => "p_more_link_down", :style => 'display:none;') do |page|
         page.visual_effect  :toggle_blind, "financial-details"
         page.show "p_more_link_up"
         page.hide "p_more_link_down"
  end  %>
 
- <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up", :style => 'display:none;') do |page|
+ <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up") do |page|
         page.visual_effect  :toggle_blind, "financial-details"
         page.hide "p_more_link_up"
         page.show "p_more_link_down"
@@ -69,12 +69,12 @@
     <fieldset>
       <legend><b>Expert Verdict</b></legend>
       <% if @question.expert_details.blank? %>
-          <div id='expert-denied'>Expert does not have sufficient data</div>
+          <div class='expert-denied'>Expert does not have sufficient data</div>
       <% else %>
           <% if @question.expert_verdict == true %>
-            <div id='expert-approved'>You have been Approved. </div>
+            <div class='expert-approved'>You have been Approved. </div>
           <% else %>
-            <div id='expert-denied'>You have been Denied.</div>
+            <div class='expert-denied'>You have been Denied.</div>
           <% end %>
       <% end %>
     </fieldset>
@@ -87,7 +87,7 @@
     </fieldset>
 </div>
 
-<div id="financial-details" style="display:none;margin-top:20px;">
+<div id="financial-details" style="margin-top:20px;">
      <%= render :partial => "financial_details", :object => @financial, :local => {:question => @question} %>
 </div>
 
@@ -98,7 +98,7 @@
   </div>
 <br/>
 <div id="all-responses">
-  <h2 style="margin-left:8px">Community Responses  (<%= @question.responses.size %>)</h2>
+  <h2 style="margin-left:8px"><a name="responses">Community Responses (<%= @question.responses.size %>)</a></h2>
   <div class="<%= cycle('snippet-odd','snippet-even') %>">
   <%= render :partial => 'responses/response', :collection => @question.responses %>
   </div
