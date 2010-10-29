@@ -46,8 +46,15 @@ class ApplicationController < ActionController::Base
     end  
       
     def store_location
+      old_session_return_to = session[:return_to]
       session[:return_to] = request.env["HTTP_REFERER"] || request.request_uri
-      session[:return_to] = nil if session[:return_to].include?('login')
+      if (session[:return_to].include?('login') || session[:return_to].include?('register'))        
+         if old_session_return_to.include?('login') || old_session_return_to.include?('register') 
+           session[:return_to] = nil
+         else
+           session[:return_to] = old_session_return_to
+         end
+      end
     end
 
     def redirect_back_or_default(default)
