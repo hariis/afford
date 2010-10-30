@@ -1,21 +1,16 @@
 <% form_for(@question,  :url => {:action => :step3}) do |f| %>
   <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
 
-  <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %><br/>
+  <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>
 
-  <div class="warning">
-      Please be assured that this data will remain completely Anonymous.<br/>
-      No Personally Identifying information will be stored as part of this data.
-  </div><br/>
-
-  <p>
-    By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
-    <% if current_user %>
-      <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
-    <% else %>
-      <br/><%= f.submit 'Submit' %>
-    <% end %>
-   </p>
+  <p style="margin-left:10px;width:97.5%;margin-top:20px">
+      By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
+      <% if current_user %>
+        <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
+      <% else %>
+        <br/><%= f.submit 'Submit' %>
+      <% end %>
+  </p>
   
 <% end %>
 

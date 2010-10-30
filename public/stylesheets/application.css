@@ -150,13 +150,10 @@ h1, h3 {
     text-align: left;
 }
 .warning {
-    padding: 5px;
-    background-color:#c40e0e;
-    color: #fff;
+    color: #c40e0e;
     font-weight: bold;
     clear:both;
 }
-
 #tagline {
     margin:20px 0px;
 }
@@ -231,6 +228,7 @@ cursor: pointer;
 #user-stat {
     float:left;
     color:#FF4800;
+    margin-left:10px;
     border-bottom:1px dotted;
 }
 #user-response ul li {
