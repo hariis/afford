@@ -74,6 +74,9 @@ fieldset {
     text-align: left;
     letter-spacing:0.5px;
 }
+legend {
+    color:#038819;
+}
 #header {
     background:url("/images/header.png") repeat-x scroll left bottom #ffffff;
 }
@@ -146,28 +149,29 @@ img {
     text-align:center;
     width:756px;
 }
-h1, h3 {
+h1, h2,h3 {
     text-align: left;
+    color:#038819;
 }
 .warning {
-    color: #c40e0e;
+    color:#B20804;
     font-weight: bold;
     clear:both;
 }
 #tagline {
-    margin:20px 0px;
+    margin:30px 0px;
 }
 #tagline ul {    
-    color:#038819;
+    background-color:#038819;
+    color:#ffffff;
     font-size:23px;
     height:65px;
     overflow:hidden;
-    padding:10px 20px 7px 0px;    
+    padding:10px 20px 7px 10px;
     line-height:1.3em;
     clear:both;
     width:715px;
-    border-bottom:4px solid #038819;
-    background:none;
+    border-bottom:4px solid #06c626;
 }
 #tagline ul li {
     list-style:none;
