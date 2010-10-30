@@ -1,18 +1,19 @@
 <fieldset>
-  <% form_tag :action => :create_account, :id => @question.id do %>
-    <% if false %>
-        <fieldset>
-             <legend><b>Send me this Report</b></legend>
-             <p>
-              If you would like to receive this report by email, please provide your email address: <br/>
-              We will NOT save this
-              <%= text_field_tag :email, params[:email], :size => 50 %>
-             </p>
-        </fieldset><br/>
-    <% end %>
+<legend><b>Register</b></legend>
+      <% form_tag :action => :create_account, :id => @question.id do %>
+        <% if false %>
+            <fieldset>
+                 <legend><b>Send me this Report</b></legend>
+                 <p>
+                  If you would like to receive this report by email, please provide your email address: <br/>
+                  We will NOT save this
+                  <%= text_field_tag :email, params[:email], :size => 50 %>
+                 </p>
+            </fieldset><br/>
+        <% end %>
 
-   <fieldset>
-       <legend><b>Register</b></legend>
+
+       
        <p>
         Nick Name<br/>
         <%= text_field_tag :nick_name, @question.nick_name, :size => 30 %>
@@ -23,10 +24,9 @@
         <%= password_field_tag :password, params[:password], :size => 30 %><br/>
         <span style="color:#c40e0e;">Note: Please remember this password as there is no other way for us to give you access to your data if you lose it.</span>
        </p>
-   </fieldset>
- 
-   <span style="line-height:3;margin-left:18px;"><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %></span>
- 
+
+       <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
+   
    <% end %>
 </fieldset>
 
