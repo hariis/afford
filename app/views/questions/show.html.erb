@@ -49,9 +49,9 @@
                         <%= f.text_area 'reason', :rows => 4, :cols => 80  %>
                       </p>
                       <p>
-                        <%= f.label "Your Response?" %><br />
-                        <%= f.radio_button 'verdict', "1" %>Yes
-                        <%= f.radio_button 'verdict', "0" %>No
+                        <%= f.label "Your Verdict?" %><br />
+                        <%= f.radio_button 'verdict', "1" %>Approved
+                        <%= f.radio_button 'verdict', "0" %>Denied
                       </p>
                   <div style="margin-top: 10px;">
                   <%= f.submit 'Submit' %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
