@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_filter :clear_stage_errors, :only => [:step1]
   before_filter :clear_stage_error_question_payment, :only => [:step3]
   before_filter :ensure_user_and_financial_exists, :only => [:payment_mode, :step3]
+  before_filter :check_admin_user, :only => [:edit, :update, :destroy]
   
 #  def method_missing(methodname, *args)
 #    render 'questions/404', :status => 404, :layout => false
