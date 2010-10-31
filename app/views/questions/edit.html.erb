@@ -1,6 +1,10 @@
 <h1>Editing question</h1>
 
-<%= render :partial => "question", :locals => {:button_label => 'Update'} %>
+<% form_for(@question,  :url => {:action => :update, :id => @question.id }) do |f| %>
+  <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+  <%= render 'personal_item_field', :f => f %>
+
+  <%= f.submit 'Update' %>
+  
+<% end %>

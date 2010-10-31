@@ -47,12 +47,11 @@ class QuestionsController < ApplicationController
   def new
     if current_user && current_user.questions.size > 0 
       @question = current_user.questions.find(:first, :order => 'created_at desc')
-      @question.item_name = "Example: Buy a Car"
       @question.item_cost = ""
     else
       @question = Question.new
-      @question.item_name = "Example: Buy a Car"
     end
+    @question.item_name = "Example: Buy a Car"
     @reason_to_buy = "0"
 
     respond_to do |format|
@@ -61,6 +60,26 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find(params[:id])
+    @reason_to_buy = @question.reason_to_buy
+  end
+ 
+  def update
+    @question = Question.find(params[:id])
+
+    respond_to do |format|
+      if @question.update_attributes(params[:question])
+        flash[:notice] = 'Question was successfully updated.'
+        format.html { redirect_to(root_path) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
@@ -70,8 +89,7 @@ class QuestionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  
+    
   def step1
     #sanitize values    
     params[:question][:item_name] = empty_if_default(params[:question][:item_name])

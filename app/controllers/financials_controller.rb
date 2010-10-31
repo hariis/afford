@@ -86,6 +86,7 @@ class FinancialsController < ApplicationController
             redirect_to :action => :capture_additional_data, :id => @question.id and return
         end
     end
+    @financial.destroy
     #Need to handle the failure case for @question.save and @financial.save 
     flash[:error] = 'We are sorry but something went wrong while saving financial data. Please try again.<br/>We are sorry for the incovenience.'
     #force_logout if current_user
