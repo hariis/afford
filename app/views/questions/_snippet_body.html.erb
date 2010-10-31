@@ -8,6 +8,7 @@ I want to <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_
       with no recurring costs.<br/>
   <% end %>
 </div>
+
 <div class="expert-verdict" style="margin-top: 10px;">
   <% if question.expert_details.blank? %>
       <div class='expert-denied'>Expert does not have sufficient data</div>
@@ -17,6 +18,9 @@ I want to <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_
         <span class='expert-approved'>Approved</span>
       <% else %>
         <span class='expert-denied'>Denied</span>
+      <% end %><br/>
+      <% if question.responses.size > 0 %>
+        Community says: Approved (<%= "#{question.community_response_approved.count}" %>) and Denied (<%= "#{question.community_response_denied.count}" %>)
       <% end %>
   <% end %>
 </div>

@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
   validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ ), :message => "Please choose a different one"
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
- 
+
   def new_question_notification
     Notifier.deliver_notify_on_new_question(self.id)
   end
@@ -153,6 +153,14 @@ class Question < ActiveRecord::Base
       community_verdict = positive_responses.size > (responses.size - positive_responses.size)
       user_verdict == community_verdict
     end
+  end
+  
+  def community_response_approved
+    responses.find(:all, :conditions => ['verdict = ?', true])
+  end
+  
+  def community_response_denied
+    responses.find(:all, :conditions => ['verdict = ?', false])
   end
   
   #Financial Rules
