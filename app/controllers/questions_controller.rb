@@ -60,6 +60,17 @@ class QuestionsController < ApplicationController
       format.xml  { render :xml => @question }
     end
   end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(root_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
   
   def step1
     #sanitize values    

@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
-  belongs_to :financial
+  belongs_to :financial, :dependent => :destroy
   belongs_to :user
-  has_many :responses, :order => 'created_at DESC'
+  has_many :responses, :order => 'created_at DESC', :dependent => :destroy
   
   after_create :new_question_notification
   

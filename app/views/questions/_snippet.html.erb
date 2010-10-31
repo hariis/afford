@@ -2,11 +2,11 @@
   <%= render :partial => 'snippet_body', :locals => {:question => question} %>
 
   <div class="snippet-footer">
-    <%=  link_to "View Financial Details", :controller => :questions, :action => :show, :id => question.id %> |
+    <%= link_to "View Financial Details", :controller => :questions, :action => :show, :id => question.id %> |
     <% responses_text = question.responses.size > 0 ? pluralize(question.responses.size, 'response') + " from the community" : "Be the first to respond" %>
-    <%=  link_to responses_text, :controller => :questions, :action => :show, :id => question.id , :anchor => 'responses' %>
+    <%= link_to responses_text, :controller => :questions, :action => :show, :id => question.id , :anchor => 'responses' %>
+    <% if current_user && current_user.username == 'admin' %>
+      | <%= link_to "Delete this [X]", :controller => :questions, :action => :destroy, :id => question.id, :confirm => 'Are you sure? This will wipe out this question and all of its responses.', :method => :delete %>
+    <% end %>  
   </div
 </div>
-
-
-
