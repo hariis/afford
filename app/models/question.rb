@@ -179,6 +179,7 @@ class Question < ActiveRecord::Base
     check_rule4_retirement_payment_current
     check_rule5_deferred_loan
     check_rule6_total_loan_payment
+    item_cost_at_retirement
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
@@ -204,6 +205,21 @@ class Question < ActiveRecord::Base
   def addon_investment
     #investments - item cost to be paid from investment
     financial.investments - self.pm_investment_amount
+  end
+  
+  def regular_deposit_in_future(contribution, years)
+    r = 0.08/12.0
+    n = years * 12 
+    amount = ((1+r)**n-1)/r
+    total_amount = contribution * amount
+    total_amount.to_i
+  end
+  
+  def compound_interest(item_cost, years)
+    r = 0.08
+    factor = (1+r)**years
+    ci = item_cost*factor
+    return ci.to_i
   end
   
   #---------------------------------------------------------------------------------------------------------
@@ -301,8 +317,10 @@ class Question < ActiveRecord::Base
     #TODO
     rcontribution = 0.08*financial.net_income if self.age <= 40
     rcontribution = 0.10*financial.net_income if self.age > 40
+    rdiff = financial.monthly_retirement_contribution - rcontribution
     
-    if (financial.monthly_retirement_contribution >= rcontribution)
+    #if (financial.monthly_retirement_contribution >= rcontribution)
+    if (rdiff >= 0)
       @expert_details << "<li class='green'>Your $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is good.</li>"
     else
       #@expert_details << "<li class='red'>Based on your age & income, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less by $#{(rcontribution-financial.monthly_retirement_contribution).to_i}</li>"
@@ -312,7 +330,9 @@ class Question < ActiveRecord::Base
         @expert_details << "<li class='red'>Based on your age, $#{financial.monthly_retirement_contribution} monthly <b>retirement contribution</b> is less than 10% of your net income.</li>"
       end
       @expert_verdict = false
-    end
+      cost = regular_deposit_in_future(rdiff.abs, 65-self.age)
+      @expert_details << "<li class='red'>Expert suggests: You are $#{rdiff.abs.to_i} behind your monthly <b>retirement contribution</b>. Being behind by $#{rdiff.abs.to_i} each month you will reduce your retirement nest by $#{cost}.</li>"
+    end   
   end
   
   def check_rule4_retirement_payment_future1
@@ -357,5 +377,13 @@ class Question < ActiveRecord::Base
         return false
     end
   end
-  #---------------------------------------------------------------------------------------------------------
+  
+  def item_cost_at_retirement
+    if self.age < 60 #todo check if this is ok
+       cost = compound_interest(self.item_cost, 65-self.age)
+       @expert_details << "<li class='red'>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65</li>"
+    end
+  end
+  
+  #-------------------------------------------------------------------------------
 end
