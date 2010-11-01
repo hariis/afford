@@ -17,9 +17,12 @@ class Question < ActiveRecord::Base
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
 
   def new_question_notification
-    Notifier.deliver_notify_on_new_question(self.id)
+    notify_users = Notification.find(:all)
+    notify_users.each do |user|
+      Notifier.deliver_notify_on_new_question(self, user.email)
+    end
   end
-
+  
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
      if value.to_i == 0 then
         #record.errors.add("Please", " select a valid reason") #//Not sure why but this does not work

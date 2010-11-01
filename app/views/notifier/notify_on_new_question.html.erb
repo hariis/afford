@@ -1,13 +1,21 @@
 <p>
-Hi there!<br/><br/>
+    Hi there!<br/><br/>
 </p>
+
 <p>
-A new question has been posted on our site. <br/>
+    A new question has been posted with the details below.<br/>
+    <b><%=h @question.nick_name %> (<%=  @question.age %>)</b> asks  
+    I want to <b><%=h @question.item_name %></b> <i>costing</i> <b>$<%= @question.item_cost %></b>
+    <% if @question.recurring_item_cost > 0 %> 
+        with a recurring cost of <b>$<%= @question.recurring_item_cost %></b> per month.<br/>
+    <% else %>
+        with no recurring costs.<br/>
+    <% end %>
 </p>
+
 <p>
-You can see it at <%= @question_url %>
+    You can see it at <%= @question_url %>
 </p>
-<br/><br/>
 <p>
 Happy Affording,<br/>
 -Can I Afford It? Team<br/>
@@ -16,14 +24,11 @@ Happy Affording,<br/>
 <div style="margin-top: 3px;font-size:12px;color:#9e948a;">
  
 If the above link does not work try copying and pasting it into your browser.<br/>
-If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/><br/>
 
-NOTE:<br/>
 <span style="font-size:85%;color:#333333;">
 You are receiving this email because your email address was subscribed to receive notifications. <br/>
 To unsubscribe, <a href="mailto:caniafforditnow@gmail.com"> please mail us </a>with the subject unsubscribe<br/>
 We sincerely apologize for the inconvenience.
 </span>
 </div>
-
-
