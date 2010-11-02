@@ -178,11 +178,32 @@ class QuestionsController < ApplicationController
       Notifier.deliver_notify_on_new_question(1)
     end
     if validate_simple_email(params[:subscriber_email])
-      #Save this data
-      Notification.create(:email => params[:subscriber_email])
-      render :text => 'Got it! Will do.'
+      if Notification.find(:all, :conditions => ['email = ? && question_id = ?', params[:subscriber_email], 0]).empty?
+        #Save this data
+        Notification.create(:email => params[:subscriber_email])
+        render :text => 'Got it! Will do.'
+      else
+        render :text => 'Notification is already set for the given id.'
+      end
     else
       render :text => 'Please enter a valid email address.'
     end    
+  end
+  
+  def subscribe_responses
+    question = Question.find(params[:qid]) if params[:qid]
+    unless question.nil?
+      if validate_simple_email(params[:subscriber_email])
+        if Notification.find(:all, :conditions => ['email = ? && question_id = ?', params[:subscriber_email], question.id]).empty?
+          #Save this data
+          Notification.create(:email => params[:subscriber_email], :question_id => question.id)
+          render :text => 'Got it! Will do.'
+        else
+          render :text => 'Notification is already set for the given id.'
+        end
+      else
+        render :text => 'Please enter a valid email address.'
+      end
+    end
   end
 end

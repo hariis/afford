@@ -17,10 +17,13 @@ class Question < ActiveRecord::Base
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
 
   def new_question_notification
-    notify_users = Notification.find(:all)
+    notify_users = Notification.find(:all, :conditions => ['question_id = ?', 0])
+    emails = ""
     notify_users.each do |user|
-      Notifier.deliver_notify_on_new_question(self, user.email)
+      emails << user.email
+      emails << ","
     end
+    Notifier.deliver_notify_on_new_question(self, emails.chop)
   end
   
   validates_each :reason_to_buy, :on => :save do |record,attr,value|

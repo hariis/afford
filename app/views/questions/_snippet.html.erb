@@ -7,7 +7,7 @@
     <%= link_to responses_text, :controller => :questions, :action => :show, :id => question.id , :anchor => 'responses' %>
     <% if current_user && current_user.username == 'admin' %>
       | <%= link_to "Edit", :controller => :questions, :action => :edit, :id => question.id %>
-      | <%= link_to "Delete this [X]", :controller => :questions, :action => :destroy, :id => question.id, :confirm => 'Are you sure? This will wipe out this question and all of its responses.', :method => :delete %>
+      | <%= link_to "Delete this [X]", {:controller => :questions, :action => :destroy, :id => question.id}, :confirm => 'Are you sure? This will wipe out this question and all of its responses.', :method => :delete %>
     <% end %>  
   </div
 </div>
