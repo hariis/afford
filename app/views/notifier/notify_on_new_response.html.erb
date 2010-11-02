@@ -2,26 +2,40 @@
 Hi there!<br/><br/>
 </p>
 <p>
-A new response has been added to your Question: <em><%=  @title %></em>. <br/>
 
-You can see it at <%= @question_url %>
+There is a new response on the question:  
+ <b><%=h @question.nick_name %> (<%=  @question.age %>)</b> asks  
+    I want to <b><%=h @question.item_name %></b> <i>costing</i> <b>$<%= @question.item_cost %></b>
+    <% if @question.recurring_item_cost > 0 %> 
+        with a recurring cost of <b>$<%= @question.recurring_item_cost %></b> per month.<br/>
+    <% else %>
+        with no recurring costs.<br/>
+    <% end %>
+
+<br/>
+ <%= @response.user.username %> says <br/>
+ Verdict: <%= @response.verdict? ? "<span style='color:green;font-weight:bold;'>Yes</span>" : "<span style='color:red;font-weight:bold;'>No</span>" %><br/>
+ Reason: <%= @response.reason %><br/>
+
+<br/>
+<p>
+    You can see all responses on this question here:<br/>
+    <%= @response_url %>
+
 </p>
-<br/><br/>
 <p>
 Happy Affording,<br/>
 -Can I Afford It? Team<br/>
 </p>
+
 <div style="margin-top: 3px;font-size:12px;color:#9e948a;">
  
 If the above link does not work try copying and pasting it into your browser.<br/>
-If you continue to have problems please feel free to <a href="mailto:caniafforditnow@gmail.com">contact us</a>.<br/>
+If you continue to have problems please feel free to <a href="mailto:mailto:caniafforditnow@gmail.com">contact us</a>.<br/><br/>
 
-NOTE:<br/>
 <span style="font-size:85%;color:#333333;">
 You are receiving this email because your email address was subscribed to receive notifications. <br/>
-To unsubscribe, mail to us<a href="mailto:caniafforditnow@gmail.com">with the subject unsubscribe</a><br/>
+To unsubscribe, <a href="mailto:caniafforditnow@gmail.com"> please mail us </a>with the subject unsubscribe<br/>
 We sincerely apologize for the inconvenience.
 </span>
 </div>
-
-

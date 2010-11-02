@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_filter :clear_stage_errors, :only => [:step1]
   before_filter :clear_stage_error_question_payment, :only => [:step3]
   before_filter :ensure_user_and_financial_exists, :only => [:payment_mode, :step3]
+  before_filter :check_admin_user, :only => [:edit, :update, :destroy]
   
 #  def method_missing(methodname, *args)
 #    render 'questions/404', :status => 404, :layout => false
@@ -47,12 +48,11 @@ class QuestionsController < ApplicationController
   def new
     if current_user && current_user.questions.size > 0 
       @question = current_user.questions.find(:first, :order => 'created_at desc')
-      @question.item_name = "Example: Buy a Car"
       @question.item_cost = ""
     else
       @question = Question.new
-      @question.item_name = "Example: Buy a Car"
     end
+    @question.item_name = "Example: Buy a Car"
     @reason_to_buy = "0"
 
     respond_to do |format|
@@ -60,7 +60,37 @@ class QuestionsController < ApplicationController
       format.xml  { render :xml => @question }
     end
   end
+
+  def edit
+    @question = Question.find(params[:id])
+    @reason_to_buy = @question.reason_to_buy
+  end
+ 
+  def update
+    @question = Question.find(params[:id])
+
+    respond_to do |format|
+      if @question.update_attributes(params[:question])
+        flash[:notice] = 'Question was successfully updated.'
+        format.html { redirect_to(root_path) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
   
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(root_url) }
+      format.xml  { head :ok }
+    end
+  end
+    
   def step1
     #sanitize values    
     params[:question][:item_name] = empty_if_default(params[:question][:item_name])
@@ -151,11 +181,32 @@ class QuestionsController < ApplicationController
       Notifier.deliver_notify_on_new_question(1)
     end
     if validate_simple_email(params[:subscriber_email])
-      #Save this data
-      Notification.create(:email => params[:subscriber_email])
-      render :text => 'Got it! Will do.'
+      if Notification.find(:all, :conditions => ['email = ? && question_id = ?', params[:subscriber_email], 0]).empty?
+        #Save this data
+        Notification.create(:email => params[:subscriber_email])
+        render :text => 'Got it! Will do.'
+      else
+        render :text => 'Notification is already set for the given id.'
+      end
     else
       render :text => 'Please enter a valid email address.'
     end    
+  end
+  
+  def subscribe_responses
+    question = Question.find(params[:qid]) if params[:qid]
+    unless question.nil?
+      if validate_simple_email(params[:subscriber_email])
+        if Notification.find(:all, :conditions => ['email = ? && question_id = ?', params[:subscriber_email], question.id]).empty?
+          #Save this data
+          Notification.create(:email => params[:subscriber_email], :question_id => question.id)
+          render :text => 'Got it! Will do.'
+        else
+          render :text => 'Notification is already set for the given id.'
+        end
+      else
+        render :text => 'Please enter a valid email address.'
+      end
+    end
   end
 end

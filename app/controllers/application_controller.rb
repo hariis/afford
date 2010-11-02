@@ -20,7 +20,16 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownAction,      :with => :render_not_found
   end
 
-  private  
+  private 
+
+    def check_admin_user
+      if current_user && current_user.username == 'admin'
+        return true
+      else
+        render 'questions/404', :status => 404, :layout => false
+      end
+    end
+    
     def remove_commas(value)
       value.blank? ? 0 : value.gsub(/[,$]/,'')
     end
