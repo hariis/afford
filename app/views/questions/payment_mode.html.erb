@@ -3,13 +3,13 @@
 
   <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>
 
-  <p style="margin-left:10px;width:97.5%;margin-top:20px">
+  <p style="margin-left:10px;width:97.5%;margin-top:20px">      
+    <% if current_user %>
       By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
-      <% if current_user %>
-        <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
-      <% else %>
-        <br/><%= f.submit 'Submit' %>
-      <% end %>
+      <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
+    <% else %>
+      <br/><%= f.submit 'Next >' %>
+    <% end %>
   </p>
   
 <% end %>

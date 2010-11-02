@@ -96,6 +96,21 @@ class Question < ActiveRecord::Base
       end
       return true
   end
+  
+  def is_nick_name_unique
+    #first check in User table
+    exists = User.find_by_username(nick_name)
+    if exists
+      self.errors.add('nick_name',' already taken! Please choose a different one.')
+    else
+      exists = Question.find_by_nick_name(nick_name)
+      if exists
+        self.errors.add('nick_name',' already taken! Please choose a different one.')
+      end
+    end
+    status = self.errors.empty? ? true : false;
+    return status
+  end
 
   def self.validate_payment_details_input(question, item_cost, investments)
     if question.pm_saving_amount < 0 || question.pm_investment_amount < 0 || question.pm_financing_amount < 0

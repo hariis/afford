@@ -72,7 +72,7 @@ class QuestionsController < ApplicationController
     
     attributes_to_validate = ['item_name','reason_to_buy','item_cost','recurring_item_cost', 'age']
     attributes_to_validate << 'nick_name' unless current_user
-    if Question.valid_for_attributes( @question, attributes_to_validate)
+    if Question.valid_for_attributes( @question, attributes_to_validate) && (current_user || @question.is_nick_name_unique)
       #.. Save user in session and go to step
       session[:new_question_item] = @question
       redirect_to :controller => :financials, :action => :new
@@ -141,6 +141,9 @@ class QuestionsController < ApplicationController
   end
   
   def privacy
+  end
+
+  def how
   end
   
   def subscribe

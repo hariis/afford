@@ -1,4 +1,13 @@
-
+jQuery.noConflict();
+    var $j = jQuery;
+    $j(function(){  // $(document).ready shorthand
+       $j('#flash-notice').fadeOut(5000);
+       $j('#flash-error').fadeOut(50000);
+        // Tabs
+       $j('#tabs').tabs();
+       $j('input[name=tos_check_box]').attr('checked', false);
+       setFocus();
+    });
 (function() {
   function toggle(reveal, e) {
     var trigger = e.findElement('li'),

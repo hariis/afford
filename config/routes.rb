@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.about "about", :controller => 'questions', :action => 'about'
   map.disclaimer "disclaimer", :controller => 'questions', :action => 'tos'
   map.privacy "privacy", :controller => 'questions', :action => 'privacy'
+  map.how "how", :controller => 'questions', :action => 'how'
 # 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -113,6 +113,7 @@ img {
     margin:0 auto;
     position:relative;
     text-align:center;
+    clear:both;
 }
 
 #footer {
@@ -283,10 +284,11 @@ cursor: pointer;
 #block-text {
     padding: 0px 20px;
     text-align:left;
+    line-height:1.4;
 }
 #block-text p{
     letter-spacing:0.3px;
-    line-height:1.5em;
+    margin-bottom:6px;
 }
 .green {
     color:green;
@@ -344,4 +346,10 @@ input#question_item_name {
     font-size: 16px;
     margin-top:3px;
     padding:3px;
+}
+#learn a {
+    font-size: 18px;
+}
+#learn {
+    float:right;
 }
