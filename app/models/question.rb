@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC', :dependent => :destroy
   
-  after_create :new_question_notification
+  after_create :new_question_notification_to_admin
   
   REASON_TO_BUY = { "Please Select One" => "0", "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
@@ -16,14 +16,8 @@ class Question < ActiveRecord::Base
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
 
-  def new_question_notification
-    notify_users = Notification.find(:all, :conditions => ['question_id = ?', 0])
-    emails = ""
-    notify_users.each do |user|
-      emails << user.email
-      emails << ","
-    end
-    Notifier.deliver_notify_on_new_question(self, emails.chop)
+  def new_question_notification_to_admin
+    Notifier.deliver_notify_on_new_question(self, "satish.fnu@gmail.com, hrajagopal@yahoo.com")
   end
   
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
