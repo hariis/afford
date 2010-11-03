@@ -63,10 +63,7 @@
           </ul>
          </div>
       </div>     
-      <div id="learn">
-        <%= link_to "Learn How Expert Calculates", "#{DOMAIN}how" %>
-      </div>
-      
+    
       <div id="main">
           <div id="flash-notice" style="color:#0B84E8;">
              <p><%= flash[:notice] %></p>
@@ -92,7 +89,8 @@
       </div>
         <div id="footer">
          <ul>
-          <li>©2010 CanIAffordItNow.com</li>
+          <li>©2010 CanIAffordItNow.com</li> |
+          <li><%=  link_to "Learn How Expert Calculates", "#{DOMAIN}how" %></li> |
           <li><%=  link_to "About" , "#{DOMAIN}about" %></li> |
           <li><%=  link_to "Disclaimer" , "#{DOMAIN}disclaimer" %></li> |
           <li><%=  link_to "Privacy" , "#{DOMAIN}privacy" %></li>

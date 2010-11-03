@@ -1,16 +1,20 @@
+<div id="learn">
+  <%= link_to "Learn How Expert Calculates", "#{DOMAIN}how" %>
+</div>
 
-  <div id="snippets-header" style="clear:both;">
-      <div style="float:left;">
-      <h2>Recently Asked</h2>
-      </div>
-      <div style="float:right;">
-      <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
-      </div>
-  </div>
-    <div id="snippets">
-    <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
+<div id="snippets-header" style="clear:both;">
+    <div style="float:left;">
+        <h2>Recently Asked</h2>
     </div>
-<br/>
+    <div style="float:right;">
+        <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+    </div>
+</div>
+
+<div id="snippets">
+  <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
+</div><br/>
+
 <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
 
 <div id="notification-prompt">
