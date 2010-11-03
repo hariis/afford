@@ -195,9 +195,9 @@ class Question < ActiveRecord::Base
     check_rule3_liquid_assets
     #check_rule4_retirement_payment
     check_rule4_retirement_payment_current
-    check_rule5_deferred_loan
-    check_rule6_total_loan_payment
-    item_cost_at_retirement
+    check_rule5_total_loan_payment
+    check_rule6_deferred_loan   
+    check_rule7_item_cost_at_retirement
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
@@ -367,20 +367,7 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def check_rule5_deferred_loan
-    #if Deferred loans > 0, item cost < 1000
-    if financial.deferred_loan_amount <= 0     
-      @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
-    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 1 || self.reason_to_buy == 2) )
-      @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
-    else
-      @expert_verdict = false
-      @expert_details << "<li class='red'>You mentioned that you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
-                        Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
-    end
-  end
-
-  def check_rule6_total_loan_payment
+  def check_rule5_total_loan_payment
     #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
     if addon_total_loan_payment <= 0.36 * financial.gross_income
        @expert_details << "<li class='green'>Your $#{addon_total_loan_payment} <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income.</li>"
@@ -396,10 +383,23 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def item_cost_at_retirement
-    if self.age < 60 #todo check if this is ok
+  def check_rule6_deferred_loan
+    #if Deferred loans > 0, item cost < 1000
+    if financial.deferred_loan_amount <= 0     
+      @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
+    elsif @expert_verdict == true #you are clean. no deniel from the previous rule
+      @expert_details << "<li class='green'>You have some deferred loans but you are doing well with your finances. Make sure to pay off your loan sooner than later.</li>"
+    elsif @expert_verdict == false #you are are mess. few deniels from the previous rule
+      @expert_verdict = false
+      @expert_details << "<li class='red'>You have <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
+                        Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
+    end
+  end
+  
+ def check_rule7_item_cost_at_retirement
+    if self.age < 55 #todo check if this is ok
        cost = compound_interest(self.item_cost, 65-self.age)
-       @expert_details << "<li class='red'>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65</li>"
+       @expert_details << "<li class='green'><hr/>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65. Please be sure that you really want to do this</li>"
     end
   end
   
