@@ -41,7 +41,21 @@ default_url_options[:host] = "caniafforditnow.com"
     bcc           emails
     body          :response_url  => DOMAIN + "questions/show/#{question.id}#responses", :question => question,  :response => response
   end
-  
+
+  def send_rules_feedback(description,email)
+    setup_email
+    @subject    << 'Feedback on Rules Check'
+    recipients    "hrajagopal@yahoo.com,satish.fnu@gmail.com"
+    body        :description => description, :email => email
+  end
+
+  def send_report_feedback(useful,suggestion)
+    setup_email
+    @subject    << 'Feedback on Expert Report'
+    recipients    "hrajagopal@yahoo.com,satish.fnu@gmail.com"
+    body        :useful => useful, :suggestion => suggestion
+  end
+
   protected
     def setup_email(user=nil)      
       @from        = "Can I Afford It <admin@caniafforditnow.com>"

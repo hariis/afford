@@ -4,27 +4,61 @@
 </div>
 
 
-<br/><fieldset>
-  <legend><b>Expert Verdict</b></legend>
-
+<div id="expert-response">
+<h3>Expert Verdict</h3>
+<div style="padding-left:58px;">
   <% if @expert_details.empty? %>
-     <div id='expert-denied'>Expert does not have sufficient data</div>
+     <span id='expert-denied'>Expert does not have sufficient data</span>
   <% else %>
       <% if @expert_verdict == true %>
-        <div id='expert-approved'>You have been Approved </div>
+        <span class='expert-approved'>Approved</span>
       <% else %>
-        <div id='expert-denied'>You have been Denied.</div>
+        <span class='expert-denied'>Denied</span>
       <% end %>
   <% end %>  
-
-</fieldset>
-
-<div id="expert-response">
-<fieldset>
-  <legend><b>Details</b></legend>
+</div>
+  <h3>Details</h3>
   <ul>
     <%= @expert_details %>
   </ul>
-</fieldset>
 </div>
+
+<div id="question">
+  <h2>Next Steps:</h2>
+  <ol>
+    <li>
+  Your question is now available on our web site. You can view the Expert report anytime and also track Community responses by visiting the link:
+  <%= link_to "#{DOMAIN}question/#{@question.id}", :controller => :questions, :action => :show, :id => @question.id  %>
+  </li>
+  <li>
+    You can also view and respond to others' questions by visiting the <%= link_to "main page", '/'  %>
+  </li>
+  <li>
+    If you have any questions or need clarification about the Calculations performed, please visit the link 
+    <%= link_to "Learn How Expert Calculates", '/how'  %> for a detailed explanation.
+  </li>
+  </ol>
+</div>
+<div id="feedback">
+  <h2>Please help us Improve</h2>
+    <% form_remote_tag :url => { :action => "report_feedback" },
+                      :before => "Element.show('spinner');",:complete => "Element.hide('spinner')" do %>
+       <h3>Is this report useful?</h3>
+        <p>
+          <%= radio_button_tag 'useful', "yes" %>Yes
+          <%= radio_button_tag 'useful', "no" %>No
+        </p>
+        <p>
+          <h3>Any Suggestions for Improvement?</h3>
+          <%= text_area_tag :suggestion, "Thank you for your feedback", :cols => "50", :rows => "4",
+                                             :onblur => "if (this.value == '') {this.value = 'Thank you for your feedback';}", :onfocus => "if (this.value == 'Thank you for your feedback') {this.value = '';}" -%>
+        </p>
+
+        <p>
+        <%= submit_tag "Submit" %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
+        </p>
+    <% end %>
+</div>
+<div id="feedback-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
+
 

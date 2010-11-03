@@ -208,6 +208,9 @@ width: 99%;
 #financial-details, #user-response, #expert-response,#all-responses {
     text-align: left;
 }
+#expert-response ul {
+    background:none;
+}
 #logo {
     float:left;
     left:0;
@@ -353,3 +356,33 @@ input#question_item_name {
 #learn {
     float:right;
 }
+
+#feedback {
+    margin-top: 20px;
+    text-align: left;
+    padding: 5px;
+    font-size: 12px;
+    border-top:1px dotted #038819;
+}
+#feedback textarea, #feedback input {
+    font-family: verdana;
+    font-size: 12px;
+}
+#feedback h3, #expert-response h3, #question h2 {
+    color: #037EC4;
+}
+#question {
+    margin-top: 30px;
+    text-align: left;
+    padding:5px;
+    line-height:1.5;
+}
+#question ol li {
+    margin-bottom: 10px;
+}
+#question ol  {
+    width:630px;
+    background-color:#EDF3FE;
+    padding: 5px 0;
+}
+

@@ -38,5 +38,5 @@ class ResponsesController < ApplicationController
         page.replace_html 'user-response-status', @status_string unless @result
       end
     
-  end
+  end  
 end
