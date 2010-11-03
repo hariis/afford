@@ -45,6 +45,10 @@
               </div>
                <div id="login">
                  
+                  <% if current_user && current_user.username == 'admin' %>
+                    <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
+                  <% end %>
+  
                   <% if current_user %>
                           <% link_to "Home", root_path if controller.action_name != 'index' %>
                       <%= link_to "LOGOUT", logout_path %> 

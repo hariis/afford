@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_filter :load_question
+  before_filter :load_question, :except => [:destroy]
   before_filter :require_user,  :only => [:new, :create, :statistics]
   before_filter :check_admin_user, :only => [:destroy]
   

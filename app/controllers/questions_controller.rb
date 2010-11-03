@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_filter :clear_stage_errors, :only => [:step1]
   before_filter :clear_stage_error_question_payment, :only => [:step3]
   before_filter :ensure_user_and_financial_exists, :only => [:payment_mode, :step3]
-  before_filter :check_admin_user, :only => [:edit, :update, :destroy]
+  before_filter :check_admin_user, :only => [:edit, :update, :destroy, :admin]
   
 #  def method_missing(methodname, *args)
 #    render 'questions/404', :status => 404, :layout => false
@@ -26,6 +26,14 @@ class QuestionsController < ApplicationController
   
   def ensure_user_and_financial_exists
     session[:new_question_item] && session[:new_financial]
+  end
+  
+  def admin
+    @users = User.find(:all).size
+    @questions = Question.find(:all).size
+    @responses = Response.find(:all).size
+    @notification_new_question = Notification.find(:all, :conditions => ['question_id = ?', 0]).size
+    @notification_new_responses = Notification.find(:all).size - @notification_new_question
   end
   
   # GET /questions
