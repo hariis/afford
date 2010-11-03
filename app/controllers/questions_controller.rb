@@ -223,6 +223,7 @@ class QuestionsController < ApplicationController
       end
     end
   end
+
   def report_feedback
     sent = false
     unless params[:useful].blank?
@@ -236,4 +237,23 @@ class QuestionsController < ApplicationController
       end
     end
   end
+
+  def new_question_notification
+    question = Question.find(params[:id]) if params[:id]
+    if question.nil?
+        flash[:error] = "Error sending notification. Please try again"
+    else
+        notify_users = Notification.find(:all, :conditions => ['question_id = ?', 0])
+        emails = ""
+        notify_users.each do |user|
+          emails << user.email
+          emails << ","
+        end
+        Notifier.deliver_notify_on_new_question(question, emails.chop)
+        flash[:notice] = "Notification send to all subscribe users"
+    end   
+    redirect_to root_path
+  end
+  
+
 end

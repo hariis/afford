@@ -1,6 +1,14 @@
-body { background-color: #fff; color: #444444; }
+body { 
+  color: #444444; 
+  font-family:'Droid Sans',helvetica,Arial,sans-serif;
+  font-size:   16px;
+  line-height: 1.3em;
+  width:100%;
+  margin: 0 auto;
+  background-color:#89B556;
+}
 
-body, p, ol, ul, td {
+p, ol, ul, td {
   font-family:'Droid Sans',helvetica,Arial,sans-serif;
   font-size:   16px;
   line-height: 1.3em;
@@ -386,3 +394,19 @@ input#question_item_name {
     padding: 5px 0;
 }
 
+#feedback{
+    background-color:#A9ED2E;
+    height:auto;
+    position:fixed;
+    left:0pt;
+    text-align:left;
+    top:340px;
+    width:auto;
+    padding: 5px;
+}
+#feedback a{
+    background-color:#A9ED2E;
+    color:#000000;
+    font-weight:bold;
+    padding:4px;
+}

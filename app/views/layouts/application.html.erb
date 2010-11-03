@@ -7,9 +7,13 @@
   <meta name="description" content="Get a Second Opinion before a purchase from our Expert Calculator and our Community. Also Boost your Financial Savvy by responding to Questions."/>
   <meta content="free personal finance software, online money management, budget planning tips, financial planning affordability calculator" name="keywords"/>
   <title>Free Affordability Calculator, Personal Finance Software - Get a Second Opinion from our Expert and Community before making a purchase</title>
- <%= stylesheet_link_merged :base %>
+  <%= stylesheet_link_merged :base %>
   <%= javascript_include_merged :proto %>
   <%= javascript_include_merged :rest %>
+
+<%= javascript_include_tag('jquery', 'facebox') %>
+<%= stylesheet_link_tag('facebox') %>
+
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -81,8 +85,10 @@
          <% end %>      
    <% end %>
 
+  <span id="feedback"><%= facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
 
         <%= yield %>
+        
       </div>
         <div id="footer">
          <ul>

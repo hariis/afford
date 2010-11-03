@@ -4,5 +4,10 @@ Verdict: <%= response.verdict? ? "<span style='color:green;font-weight:bold;'>Ye
 Reason: <%= response.reason %><br/>
 <div class="snippet-footer" style="text-align:right;">
   responded <%= "#{time_ago_in_words(response.updated_at) + " ago"}" %>
+
+<% if current_user && current_user.username == 'admin' %>
+    <br/><%= link_to "Delete this response[X]", {:controller => :responses, :action => :destroy, :id => response.id}, :confirm => 'Are you sure? This will wipe out this response.', :method => :delete %>
+<% end %>
+
 </div
 </div>

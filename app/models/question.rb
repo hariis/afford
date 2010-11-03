@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, :order => 'created_at DESC', :dependent => :destroy
   
-  after_create :new_question_notification
+  after_create :new_question_notification_to_admin
   
   REASON_TO_BUY = { "Please Select One" => "0", "I Deserve/Earned It" => "1", "I Need It" => "2", "Nice To Have" => "3", "Just Like That" => "4"}
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
@@ -16,14 +16,8 @@ class Question < ActiveRecord::Base
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
 
-  def new_question_notification
-    notify_users = Notification.find(:all, :conditions => ['question_id = ?', 0])
-    emails = ""
-    notify_users.each do |user|
-      emails << user.email
-      emails << ","
-    end
-    Notifier.deliver_notify_on_new_question(self, emails.chop)
+  def new_question_notification_to_admin
+    Notifier.deliver_notify_on_new_question(self, "satish.fnu@gmail.com, hrajagopal@yahoo.com")
   end
   
   validates_each :reason_to_buy, :on => :save do |record,attr,value|
@@ -195,9 +189,9 @@ class Question < ActiveRecord::Base
     check_rule3_liquid_assets
     #check_rule4_retirement_payment
     check_rule4_retirement_payment_current
-    check_rule5_deferred_loan
-    check_rule6_total_loan_payment
-    item_cost_at_retirement
+    check_rule5_total_loan_payment
+    check_rule6_deferred_loan   
+    check_rule7_item_cost_at_retirement
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
@@ -367,20 +361,7 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def check_rule5_deferred_loan
-    #if Deferred loans > 0, item cost < 1000
-    if financial.deferred_loan_amount <= 0     
-      @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
-    elsif (self.item_cost <= 1000 && (self.reason_to_buy == 1 || self.reason_to_buy == 2) )
-      @expert_details << "<li class='green'>Even though you have some deferred loans, since you mentioned that you deserve it or need it, you can go ahead if you are so inclined. Make sure to pay off your loan sooner than later.</li>"
-    else
-      @expert_verdict = false
-      @expert_details << "<li class='red'>You mentioned that you have some <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
-                        Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
-    end
-  end
-
-  def check_rule6_total_loan_payment
+  def check_rule5_total_loan_payment
     #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
     if addon_total_loan_payment <= 0.36 * financial.gross_income
        @expert_details << "<li class='green'>Your $#{addon_total_loan_payment} <b>Total Loan Payments</b> are less than or equal to 36% of your Gross income.</li>"
@@ -396,11 +377,29 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def item_cost_at_retirement
-    if self.age < 60 #todo check if this is ok
-       cost = compound_interest(self.item_cost, 65-self.age)
-       @expert_details << "<li class='red'>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65</li>"
+  def check_rule6_deferred_loan
+    #if Deferred loans > 0, item cost < 1000
+    if financial.deferred_loan_amount <= 0     
+      @expert_details << "<li class='green'>Your have no <b>Deferred loans</b> which is good.</li>"
+    elsif @expert_verdict == true #you are clean. no deniel from the previous rule
+      @expert_details << "<li class='green'>You have some deferred loans but you are doing well with your finances. Make sure to pay off your loan sooner than later.</li>"
+    elsif @expert_verdict == false #you are are mess. few deniels from the previous rule
+      @expert_verdict = false
+      @expert_details << "<li class='red'>You have <b>Deferred loans</b> in the amount of $#{financial.deferred_loan_amount}.<br/>
+                        Expert suggests: Start paying off your Deferred loans first. This will save you money in the long run.</li>"
     end
+  end
+  
+ def check_rule7_item_cost_at_retirement
+    if self.age < 55 #todo check if this is ok
+       cost = compound_interest(self.item_cost, 65-self.age)
+       #x = app_number_to_currency(cost)
+       @expert_details << "<hr/>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65. Please be sure that you really want to do this"
+    end
+  end
+  
+  def  app_number_to_currency(value)
+     number_to_currency(value, :precision => 0)
   end
   
   #-------------------------------------------------------------------------------

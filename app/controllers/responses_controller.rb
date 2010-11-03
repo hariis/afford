@@ -1,6 +1,7 @@
 class ResponsesController < ApplicationController
   before_filter :load_question
   before_filter :require_user,  :only => [:new, :create, :statistics]
+  before_filter :check_admin_user, :only => [:destroy]
   
   def method_missing(methodname, *args)
     render 'questions/404', :status => 404, :layout => false
@@ -37,6 +38,18 @@ class ResponsesController < ApplicationController
         page.replace_html 'user-response-status', "" if @result
         page.replace_html 'user-response-status', @status_string unless @result
       end
-    
-  end  
+
+  end   
+  
+  def destroy
+    @response = Response.find(params[:id])
+    question = @response.question
+    @response.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(:controller => :questions, :action => :show, :id => question.id ) }
+      format.xml  { head :ok }
+    end
+  end
+
 end

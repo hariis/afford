@@ -55,6 +55,14 @@ default_url_options[:host] = "caniafforditnow.com"
     recipients    "hrajagopal@yahoo.com,satish.fnu@gmail.com"
     body        :useful => useful, :suggestion => suggestion
   end
+  
+  def send_experience(experience)
+    setup_email
+    @subject    <<   "Feedback | #{experience.feedback_type}"
+    recipients    "satish.fnu@gmail.com, hrajagopal@yahoo.com"
+    body          :experience => experience
+  end
+  
 
   protected
     def setup_email(user=nil)      
