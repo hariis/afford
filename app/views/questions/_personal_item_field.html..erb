@@ -1,12 +1,12 @@
 <%= image_tag ("/images/base-pb-you.png") unless current_user %>
-<%= image_tag ("/images/loggedin-pb-you.png") if current_user %>
+<%= image_tag ("/images/loggedin-pb-you.png") if current_user %><br/><br/>
 <fieldset>
     <legend><b>About You and your Purchase</b></legend>
-  <p>
+  <p style="margin-top:8px;">
     <b><%= f.label :item_name, "I want to" %></b>
     <%= f.text_field :item_name, :size => 63, :maxlength => 200,
                  :onblur => "if (this.value == '') {this.value = 'Example: Buy a Car';this.style.color='#999999';}", :onfocus => "if (this.value == 'Example: Buy a Car') {this.value = '';} this.style.color='#333333';" %>
-    <span style="font-size:12px;padding-left:73px;">Example: Buy a TV, Visit Europe, Go on a Cruise</span>
+    <span style="font-size:12px;padding-left:73px;">Example: Buy a TV, Visit Europe, Go on a Cruise</span><br/><br/>
   </p>
   <p>
     <%= f.label :reason_to_buy, "Why do you want to?" %><br />

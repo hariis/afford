@@ -399,8 +399,13 @@ class Question < ActiveRecord::Base
  def check_rule7_item_cost_at_retirement
     if self.age < 55 #todo check if this is ok
        cost = compound_interest(self.item_cost, 65-self.age)
-       @expert_details << "<li class='green'><hr/>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65. Please be sure that you really want to do this</li>"
+       #x = app_number_to_currency(cost)
+       @expert_details << "<hr/>Expert suggests: The $#{self.item_cost} item purchased now will be equivalent to $#{cost} at the age of 65. Please be sure that you really want to do this"
     end
+  end
+  
+  def  app_number_to_currency(value)
+     number_to_currency(value, :precision => 0)
   end
   
   #-------------------------------------------------------------------------------
