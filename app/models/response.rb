@@ -2,7 +2,7 @@ class Response < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
   
-  after_create :new_response_notification
+  #after_create :new_response_notification
   
   def new_response_notification    
     notify_users = Notification.find(:all, :conditions => ['question_id = ?', self.question_id])

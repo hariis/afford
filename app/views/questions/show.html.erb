@@ -95,7 +95,7 @@
 <hr/>
 <div id="notification-prompt">
   <% form_remote_tag :url => {:action => 'subscribe_responses', :qid => @question.id}, :update => 'notification-status' do %>
-      <%= label_tag "Notify Me when a new Response is posted " %>
+      <%= label_tag "Notify Me when a new Response is posted" %>
       <%= text_field_tag :subscriber_email, "Enter Your Email address", :size => '28',
                                             :onblur => "if (this.value == '') {this.value = 'Enter Your Email address';}", 
                                             :onfocus => "if (this.value == 'Enter Your Email address') {this.value = '';}" %>

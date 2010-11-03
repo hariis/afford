@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
         return true
       else
         render 'questions/404', :status => 404, :layout => false
+        return
       end
     end
     
