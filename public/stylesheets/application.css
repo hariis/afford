@@ -353,3 +353,19 @@ input#question_item_name {
 #learn {
     float:right;
 }
+#feedback{
+    background-color:#A9ED2E;
+    height:auto;
+    position:fixed;
+    left:0pt;
+    text-align:left;
+    top:340px;
+    width:auto;
+    padding: 5px;
+}
+#feedback a{
+    background-color:#A9ED2E;
+    color:#000000;
+    font-weight:bold;
+    padding:4px;
+}
