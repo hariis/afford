@@ -9,10 +9,10 @@ class Question < ActiveRecord::Base
   #REASON_TO_BUY = { "0" => "Please Select One", "1" => "I Deserve/Earned It", "2" => "I Need It", "3" => "Nice To Have", "4" => "Just Like That" }
   
   validates_length_of :item_name, :minimum => 5
-  validates_length_of :nick_name, :minimum => 3
-  validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain only alphabets, numerals and underscores"
+  #validates_length_of :nick_name, :minimum => 3
+  #validates_format_of :nick_name, :with => /^[A-Za-z\d_]+$/, :message => "can contain only alphabets, numerals and underscores"
   #validates_uniqueness_of :nick_name
-  validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ ), :message => "Please choose a different one"
+  #validates_exclusion_of :nick_name, :in => %w( moderator admin superuser ___ ), :message => "Please choose a different one"
 
   validates_numericality_of :recurring_item_cost, :pm_saving_amount, :pm_investment_amount, :pm_financing_amount, :greater_than_or_equal_to => 0, :only_integer => true 
 
