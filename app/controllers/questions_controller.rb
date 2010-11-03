@@ -209,7 +209,35 @@ class QuestionsController < ApplicationController
       end
     end
   end
-  
+
+  def rules_feedback
+    sent = false
+    unless params[:description].blank? || params[:description] == 'Let us know!'
+      Notifier.deliver_send_rules_feedback(params[:description],params[:email])
+      sent = true
+    end
+    render :update do |page|
+      if sent
+        page.replace_html "feedback", ""
+        page.replace_html "feedback-status", "Thank you for your valuable feedback"
+      end
+    end
+  end
+
+  def report_feedback
+    sent = false
+    unless params[:useful].blank?
+        Notifier.deliver_send_report_feedback(params[:useful], params[:suggestion])
+        sent = true
+    end
+    render :update do |page|
+      if sent
+        page.replace_html "feedback", ""
+        page.replace_html "feedback-status", "Thank you for your valuable feedback"
+      end
+    end
+  end
+
   def new_question_notification
     question = Question.find(params[:id]) if params[:id]
     if question.nil?
@@ -227,4 +255,5 @@ class QuestionsController < ApplicationController
     redirect_to root_path
   end
   
+
 end

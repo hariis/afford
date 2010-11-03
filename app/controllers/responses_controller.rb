@@ -38,8 +38,8 @@ class ResponsesController < ApplicationController
         page.replace_html 'user-response-status', "" if @result
         page.replace_html 'user-response-status', @status_string unless @result
       end
-    
-  end
+
+  end   
   
   def destroy
     @response = Response.find(params[:id])
@@ -51,4 +51,5 @@ class ResponsesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

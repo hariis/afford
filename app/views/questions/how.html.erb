@@ -20,7 +20,7 @@ for the credit card loans at greater than 0% interest rate, we understand that y
 <p>
 <h3>Check for Credit Card loans</h3>
 We separate the Credit Card loans into 2 categories, those that are at 0% interest rate and those that are at greater than 0% interest rate. The former is treated as a "healthy" loan by us as the lender has deemed you credit-worthy enough to give it to you at 0%. Hence the monthly payments on these loans are added to your total monthly loan payments and used to calculate the DTI ratio.
-On the other hand, if you have credit card debt at any rate greater than 0%, it is indicating that you are spending beyond your limits and throw a red flag right away and advise you to pay them off first.
+On the other hand, if you have credit card debt at any rate greater than 0%, it is indicating that you are spending beyond your limits and throw a red flag right away advising you to pay them off first.
 </p>
 <p>
 <h3>Check your Short term Savings for Emergency fund</h3>
@@ -44,3 +44,24 @@ If you have deferred loans, we approve of the purchase only if item costs less t
 </p>
 
 </div>
+
+
+ <div id="feedback">
+    <% form_remote_tag :url => { :action => "rules_feedback" },
+                      :before => "Element.show('spinner');",:complete => "Element.hide('spinner')" do %>
+       <h3>What other Checks would you like to see?</h3>
+        <p>        
+        <%= text_area_tag :description, "Let us know!", :cols => "50", :rows => "4",
+                                                 :onblur => "if (this.value == '') {this.value = 'Let us know!';}", :onfocus => "if (this.value == 'Let us know!') {this.value = '';}" -%>
+        </p>
+        <p>
+          <%= text_field_tag :feedback_email, "Your email (optional) for us to reach you", :size => 51,
+                                                 :onblur => "if (this.value == '') {this.value = 'Your email (optional) for us to reach you';}", :onfocus => "if (this.value == 'Your email (optional) for us to reach you') {this.value = '';}" -%>
+        </p>
+        <p>
+        <%= submit_tag "Submit" %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
+        </p>
+    <% end %>
+</div>
+<div id="feedback-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
+

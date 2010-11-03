@@ -37,7 +37,8 @@ function setFocus(){
     if(element.type == 'text' &&
       !element.readOnly &&
       !element.disabled &&
-       element.id != 'subscriber_email'){
+       element.id != 'subscriber_email' &&
+       element.id != 'feedback_email'){
       element.focus();
 	  flag=true;
      break;
