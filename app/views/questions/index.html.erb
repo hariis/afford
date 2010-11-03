@@ -10,7 +10,7 @@
     <div id="snippets">
     <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
     </div>
-
+<br/>
 <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
 
 <div id="notification-prompt">

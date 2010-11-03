@@ -42,6 +42,13 @@ default_url_options[:host] = "caniafforditnow.com"
     body          :response_url  => DOMAIN + "questions/show/#{question.id}#responses", :question => question,  :response => response
   end
   
+  def send_experience(experience)
+    setup_email
+    @subject    +=   "Feedback | #{experience.feedback_type}"
+    recipients    "satish.fnu@gmail.com, hrajagopal@yahoo.com"
+    body          :experience => experience
+  end
+  
   protected
     def setup_email(user=nil)      
       @from        = "Can I Afford It <admin@caniafforditnow.com>"

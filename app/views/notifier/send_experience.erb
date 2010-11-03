@@ -1,0 +1,19 @@
+Hi Admin!<br/><br/>
+
+<b>Feedback from:</b> 
+<% if @experience.email.empty? %>
+    No email provided:
+<% else %>
+   <%= @experience.email %>
+<% end %>  
+
+<br/>
+<p> 
+<b>Request Type:</b> "<em><%= @experience.feedback_type %></em>"
+</p>
+<br/>
+
+<p>
+  <b>Details:</b><br/>
+  <%= @experience.description %>
+</p>  
