@@ -325,6 +325,18 @@ cursor: pointer;
   list-style-image: url('/images/unchecked.gif');
   line-height:1.5em;
 }
+#expert-response ul li.expert-notes{
+  list-style-image: url('/images/overlays.png');
+  line-height:1.5em;
+  margin-left:25px;
+  color:#037EC4;
+}
+#expert-response ul li.expert-tips{
+  list-style-image: url('/images/lightbulb.png');
+  line-height:1.5em;
+  margin-left:25px;
+  color:#037EC4;
+}
 .float-left {
     width:180px;   
     float:left;
@@ -369,6 +381,7 @@ input#question_item_name {
 }
 #learn {
     float:left;
+    margin-top:-40px;
 }
 #experience {
     font-size: 12px;
