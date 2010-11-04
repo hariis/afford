@@ -145,7 +145,6 @@ img {
     width:946px;
 }
 #wrapper {
-    -moz-box-shadow:3px 3px 4px #c1cbaf;
     background:none repeat scroll 0 0 #ffffff;
     border-bottom:1px solid #c1cbaf;
     border-right:1px solid #c1cbaf;
@@ -171,10 +170,11 @@ h1, h2,h3 {
     clear:both;
 }
 #tagline {
-    margin:60px 0px;
+    margin-top:60px;
+    margin-bottom:20px;   
 }
 #tagline ul {    
-    background-color:none;
+    background-color:#fff;
     font-size:23px;
     height:65px;
     overflow:hidden;
