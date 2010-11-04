@@ -51,19 +51,19 @@
     <% form_remote_tag :url => { :action => "report_feedback" },
                       :before => "Element.show('spinner');",:complete => "Element.hide('spinner')" do %>
        <h3>Is this report useful?</h3>
-        <p>
+        
           <%= radio_button_tag 'useful', "yes" %>Yes
           <%= radio_button_tag 'useful', "no" %>No
-        </p>
+        
         <p>
           <h3>Any Suggestions for Improvement?</h3>
           <%= text_area_tag :suggestion, "Thank you for your feedback", :cols => "50", :rows => "4",
                                              :onblur => "if (this.value == '') {this.value = 'Thank you for your feedback';}", :onfocus => "if (this.value == 'Thank you for your feedback') {this.value = '';}" -%>
         </p>
 
-        <p>
-        <%= submit_tag "Submit" %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
-        </p>
+       
+        <br/><%= submit_tag "Submit" %><%= image_tag 'loading.gif', :id=>"spinner", :style=>"display:none;" %>
+       
     <% end %>
 </div>
 <div id="feedback-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>

@@ -304,7 +304,7 @@ cursor: pointer;
     font-family:georgia;
 }
 #block-text p{    
-    margin-bottom:6px;
+    margin-bottom:20px;
     background:none no-repeat scroll 0 0 transparent;
     line-height:24px;
     font-family:Georgia,serif;

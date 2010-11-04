@@ -24,13 +24,13 @@
 <fieldset>
 <div id="experience">   
     <% form_remote_tag :url => { :controller => 'experiences', :action => "store_experience" } do %>
-       <h3>What do you think of CanIAffordItNow? Your feedback is greatly appreciated.</h3>
+       <h3>What do you think of Can I Afford It Now? <br/>Your feedback is greatly appreciated.</h3>
        
         To help us prioritize, please choose a type: <br/>
         <%= select_tag :feedback_type, options_for_select(Experience::COMMENT_TYPES.sort { |v1,v2| v1[1].to_i <=> v2[1].to_i}.collect{|k| [ k[0],k[1] ]}, 0 ) %>
         <br/><br/>
         <p>
-            <%= text_area_tag :description, "Let us know what you think!", :cols => "50", :rows => "4",
+            <%= text_area_tag :description, "Let us know what you think!", :cols => "44", :rows => "4",
                                                  :onblur => "if (this.value == '') {this.value = 'Let us know what you think!';}", :onfocus => "if (this.value == 'Let us know what you think!') {this.value = '';}" -%>                  
         </p><br/>
         <p>

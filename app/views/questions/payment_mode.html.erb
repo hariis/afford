@@ -8,7 +8,7 @@
       By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
       <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
     <% else %>
-      <br/><%= f.submit 'Next >' %>
+      <%= f.submit 'Next >' %>
     <% end %>
   </p>
 <% end %>

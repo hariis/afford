@@ -15,6 +15,7 @@ You can learn more about this on <%= link_to 'Wikipedia' , "http://en.wikipedia.
 For this, we ask all your loan payments including your credit card payments even if it is at 0% interest rate.
 For the credit card loans at 0%, we expect that there is a fixed monthly payment that you are making whereas
 for the credit card loans at greater than 0% interest rate, we understand that you can have varying payments every month and also for other reasons (see next rule) treat it differently and not ask for the monthly payment on those.
+While calculating Affordability, we also take into account the cost of the purchase and your mode of payment.
 </p>
 
 <p>
@@ -54,7 +55,7 @@ This is last check that gets performed. If you have deferred loans, we approve y
                                                  :onblur => "if (this.value == '') {this.value = 'Let us know!';}", :onfocus => "if (this.value == 'Let us know!') {this.value = '';}" -%>
         </p>
         <p>
-          <%= text_field_tag :feedback_email, "Your email (optional) for us to reach you", :size => 51,
+          <%= text_field_tag :feedback_email, "Your email (optional) for us to reach you", :size => 52,
                                                  :onblur => "if (this.value == '') {this.value = 'Your email (optional) for us to reach you';}", :onfocus => "if (this.value == 'Your email (optional) for us to reach you') {this.value = '';}" -%>
         </p>
         <p>
