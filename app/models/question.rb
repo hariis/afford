@@ -198,7 +198,7 @@ class Question < ActiveRecord::Base
   end
   
   def addon_total_expenses
-    #Expenses + Recurring Expenses + Recurrring Loan Payment for item    
+    #Expenses + Recurring Expenses + Recurring Loan Payment for item    
     financial.total_expenses + self.recurring_item_cost + self.pm_financing_amount
   end
   
@@ -208,7 +208,7 @@ class Question < ActiveRecord::Base
   end
   
   def addon_total_loan_payment
-    #All loan payment + Recurrring Loan Payment for item  + Credit card payment for the 0% rate loan
+    #All loan payment + Recurring Loan Payment for item  + Credit card payment for the 0% rate loan
     financial.mortage_payment + financial.car_loan_payment +
     financial.student_loan_payment + financial.other_loan_payment + financial.monthly_cc_payments_at_zero + 
     self.pm_financing_amount
