@@ -20,7 +20,9 @@
 
 </script>
 
-<div style="padding:10px;font-size:14px;">   
+<div style="font-size:14px;border:0px solid #038819;">   
+<fieldset>
+
     <% form_remote_tag :url => { :controller => 'experiences', :action => "store_experience" } do %>
        <h3>What do you think of CanIAffordItNow? Your feedback is greatly appreciated.</h3>
        
@@ -39,6 +41,6 @@
     <% end %>
     
     <div id="feedback-status" style="margin-left:10px;margin-top:10px;font-weight:bold;color:red;"></div>
+
+</fieldset>
 </div>
-
-
