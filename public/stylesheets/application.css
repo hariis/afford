@@ -118,7 +118,7 @@ img {
     border:0;
 }
 #logo img {
-    margin-left:-8px;
+    margin-left:-10px;
 }
 #main{
     margin:0 auto;
@@ -175,7 +175,6 @@ h1, h2,h3 {
 }
 #tagline ul {    
     background-color:none;
-    color:#038819;
     font-size:23px;
     height:65px;
     overflow:hidden;
