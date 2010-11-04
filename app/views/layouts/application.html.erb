@@ -41,7 +41,7 @@
           </div> <![endif]-->
           <div id="top-header">
               <div id="logo">
-                 <%= link_to image_tag('/images/afford-ch.png'), root_path %>
+                 <%= link_to image_tag('/images/newlogo-pic.png'), root_path %>
               </div>
                <div id="login">
                  
@@ -62,11 +62,12 @@
             <li>Boost your Financial Savvy by responding to Questions</li>
           </ul>
          </div>
-      </div>     
-      <div id="learn">
-        <%= link_to "Learn How Expert Calculates", "#{DOMAIN}how" %>
       </div>
-      
+      <% if controller.action_name == 'index' || controller.action_name == 'show' %>
+      <div id="learn">
+        <%= link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %>
+      </div>
+      <% end %>
       <div id="main">
           <div id="flash-notice" style="color:#0B84E8;">
              <p><%= flash[:notice] %></p>

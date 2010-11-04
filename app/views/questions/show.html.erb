@@ -1,4 +1,4 @@
-<div id="snippets" class='snippet-odd'>
+<div id="snippets" class='snippet-odd snippet'>
     <%= render :partial => 'snippet_body', :object => @question, :locals => {:question => @question} %>
 </div>
 <br/>
@@ -7,38 +7,58 @@
   <div style="float:left;" id="prompt-user-response">
     <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
            <%= link_to_function "Your Response?" do |page|
-            page.show 'user-response'
-            page.hide 'expert-response'
-            page.hide "financial-details"
-            page.hide "p_more_link_up"
-            page.show "p_more_link_down"
+             page.delay(0.1) do
+                page.visual_effect :fade,  'expert-response'
+                page.visual_effect :fade, 'financial-details'
+             end
+              page.hide "p_more_link_up"
+              page.show "p_more_link_down"
+              page.delay(1) do
+                 page.visual_effect :appear, 'user-response'
+             end
            end %>
       <% end %>
   </div>
   <div style="float:right;">
      <%= link_to_function "View Expert's Response" do |page|
-        page.hide 'user-response'
-        page.show 'expert-response'
-        page.hide "financial-details"
+       page.delay(0.1) do
+        page.visual_effect :fade,  'user-response'
+        page.visual_effect :fade,  'user-response-status'
+       end
+       page.delay(0.5) do
+        page.visual_effect :fade,  "financial-details"
         page.hide "p_more_link_up"
         page.show "p_more_link_down"
+       end
+        page.delay(1) do
+          page.visual_effect :appear, 'expert-response'
+        end
        end %>
    </div>
 </div>
 
 <%= link_to_function( "View Financial Details",  :id => "p_more_link_down", :style => 'display:none;') do |page|
-        page.visual_effect  :toggle_blind, "financial-details"
         page.show "p_more_link_up"
         page.hide "p_more_link_down"
+        page.delay(0.5) do
+          page.visual_effect :fade, 'expert-response'
+          page.visual_effect :fade, 'user-response'
+          page.visual_effect :fade, 'user-response-status'
+        end
+        page.delay(1) do
+          page.visual_effect  :appear, "financial-details"
+        end
  end  %>
 
  <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up") do |page|
-        page.visual_effect  :toggle_blind, "financial-details"
+        page.delay(1) do
+          page.visual_effect  :appear, "financial-details"
+        end
         page.hide "p_more_link_up"
         page.show "p_more_link_down"
  end  %>
 
-      <div id="user-response" style="display:none;margin-top:20px;">
+      <div id="user-response" style="display:none;margin-top:20px;height:200px;">
 
         <% if current_user %>          
             <%  form_remote_for @response, :url => { :controller => 'responses', :action => "create", :id => "#{@question.id}" },
@@ -58,27 +78,57 @@
                   </div>
            <% end %>
         <% else %>
-                  <ul>
-                    <li><%= link_to "New? Register", register_path %> |
-                     <%= link_to "Already Registered? Log in", login_path %>   </li>
-                  </ul>
+              <div id="inplace-login">
+                    <% @user_session = UserSession.new %>
+                    <% session[:return_to] = "#{DOMAIN}questions/show/#{@question.id}" %>
+                    <% form_for(@user_session) do |f| %>
+                      <%= error_messages_for :user_session, :header_message => '', :message => '' %><br/>
+                      <b>Login</b>
+                      <p>
+                        <%= f.label :username, "Nick Name" %><br/>
+                        <%= f.text_field :username, :size => '27' %>
+                      </p>
+                      <p>
+                        <%= f.label :password, 'Password:' %><br/>
+                        <%= f.password_field :password, :size => '27' %>
+                      </p>
+                      <p>
+                        <%= f.submit 'Login', :class => 'submit' %>
+                      </p>
+
+                    <% end %>
+              </div>
+                      <div id="divider">
+                        or
+                      </div>
+
+              <div id="inplace-register">
+                    <% @user = User.new %>
+                    <% session[:return_to] = "#{DOMAIN}questions/show/#{@question.id}" %>
+                    <% form_for(@user) do |f| %>
+                          <%= error_messages_for :user, :header_message => '', :message => '' %><br/>
+                          <b>Register</b>
+
+                            <p>
+                              <%= f.label :username, "Nick Name" %><br/>
+                              <%= f.text_field :username, :size => '27' %>
+                            </p>
+
+                            <p>
+                              <%= f.label :password, 'Password:' %><br/>
+                              <%= f.password_field :password, :size => '27' %>
+                            </p>
+                            <p>
+                              <%= f.submit 'Submit', :class => 'submit' %>
+                            </p>
+
+
+                      <% end %>
+              </div>
         <% end %>
     </div>
 <div id="user-response-status" style="color:red;"></div>
 <div id="expert-response" style="display:none;margin-top:30px;">
-    <fieldset>
-      <legend><b>Expert Verdict</b></legend>
-      <% if @question.expert_details.blank? %>
-          <div class='expert-denied'>Expert does not have sufficient data</div>
-      <% else %>
-          <% if @question.expert_verdict == true %>
-            <div class='expert-approved'>You have been Approved. </div>
-          <% else %>
-            <div class='expert-denied'>You have been Denied.</div>
-          <% end %>
-      <% end %>
-    </fieldset>
-
     <fieldset>
       <legend><b>Details</b></legend>
       <ul>
@@ -92,24 +142,24 @@
 </div>
 
 <br/>
-<hr/>
-<div id="notification-prompt">
-  <% form_remote_tag :url => {:action => 'subscribe_responses', :qid => @question.id}, :update => 'notification-status' do %>
-      <%= label_tag "Notify Me when a new Response is posted" %>
-      <%= text_field_tag :subscriber_email, "Enter Your Email address", :size => '28',
-                                            :onblur => "if (this.value == '') {this.value = 'Enter Your Email address';}", 
-                                            :onfocus => "if (this.value == 'Enter Your Email address') {this.value = '';}" %>
-      <%= submit_tag "Notify Me" %>
-  <% end %>
-  <div id="notification-status"></div>
-</div>
 
 <div style="float:right;clear:both;padding-top:5px;">
   <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
   </div>
-<br/>
+
 <div id="all-responses">
   <h2 style="margin-left:8px"><a name="responses">Community Responses (<%= @question.responses.size %>)</a></h2>
+  <div id="notification-prompt">
+  <% form_remote_tag :url => {:action => 'subscribe_responses', :qid => @question.id}, :update => 'notification-status' do %>
+      <%= label_tag "Notify Me when a new Response is posted" %>
+      <%= text_field_tag :subscriber_email, "Enter Your Email address", :size => '28',
+                                            :onblur => "if (this.value == '') {this.value = 'Enter Your Email address';}",
+                                            :onfocus => "if (this.value == 'Enter Your Email address') {this.value = '';}" %>
+      <%= submit_tag "Notify Me" %>
+  <% end %>
+  <div id="notification-status"></div>
+  </div>
+
   <div class="<%= cycle('snippet-odd','snippet-even') %>">
   <%= render :partial => 'responses/response', :collection => @question.responses %>
   </div

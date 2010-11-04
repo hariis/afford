@@ -86,7 +86,7 @@ legend {
     color:#038819;
 }
 #header {
-    background:url("/images/header.png") repeat-x scroll left bottom #ffffff;
+    
 }
 #top-header {
     clear:both;
@@ -116,6 +116,9 @@ text-align:left;
 
 img {
     border:0;
+}
+#logo img {
+    margin-left:-8px;
 }
 #main{
     margin:0 auto;
@@ -168,23 +171,28 @@ h1, h2,h3 {
     clear:both;
 }
 #tagline {
-    margin:30px 0px;
+    margin:60px 0px;
 }
 #tagline ul {    
-    background-color:#038819;
-    color:#ffffff;
+    background-color:none;
+    color:#038819;
     font-size:23px;
     height:65px;
     overflow:hidden;
-    padding:10px 20px 7px 10px;
+    
     line-height:1.3em;
     clear:both;
     width:715px;
-    border-bottom:4px solid #06c626;
 }
 #tagline ul li {
     list-style:none;
     text-align:left;
+    list-style-image: url('/images/tick.png')
+}
+.snippet {
+    border-color:#DDDDDD #CCCCCC #BBBBBB #DDDDDD;
+    border-style:solid;
+    border-width:1px 2px 2px 1px;
 }
 #snippets {
     clear:both;
@@ -268,14 +276,13 @@ cursor: pointer;
 }
 #notification-prompt{
     clear:both;
-    margin-top: 10px;
+    margin-top: 20px;
     padding:15px 3px;
     color: #fff;
     text-align: left;
     -moz-background-clip:border;
     -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:#F8FDEF url(/images/fieldset.gif) repeat-x scroll left bottom;
+    -moz-background-origin:padding;    
 }
 
 #footer ul li {
@@ -362,21 +369,31 @@ input#question_item_name {
     font-size: 18px;
 }
 #learn {
-    float:right;
+    float:left;
 }
 
-#feedback {
+#rules-feedback {
     margin-top: 20px;
     text-align: left;
     padding: 5px;
     font-size: 12px;
     border-top:1px dotted #038819;
 }
-#feedback textarea, #feedback input {
+.feedback-dialog {
+    background-color:#fff;
+    height:auto;
+    position:fixed;
+    right:0pt;
+    text-align:left;
+    top:140px;
+    width:auto;
+    padding: 5px;
+}
+#rules-feedback textarea, #rules-feedback input {
     font-family: verdana;
     font-size: 12px;
 }
-#feedback h3, #expert-response h3, #question h2 {
+#rules-feedback h3, #expert-response h3, #question h2 {
     color: #037EC4;
 }
 #question {
@@ -409,4 +426,23 @@ input#question_item_name {
     color:#000000;
     font-weight:bold;
     padding:4px;
+}
+
+#inplace-login {
+    width: 45%;
+    float:left;
+}
+#inplace-register {
+    width: 45%;
+    float:right;
+}
+#divider {
+        color:#FF4800;
+        float:left;
+        font-family:georgia;
+        font-size:38px;
+        font-style:italic;
+        margin-top:70px;
+        padding-left:20px;
+        width:5%;
 }
