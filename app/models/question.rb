@@ -337,6 +337,7 @@ class Question < ActiveRecord::Base
       @expert_verdict = false
       cost = regular_deposit_in_future(rdiff.abs, 65-self.age)
       @expert_details << "<li class='expert-notes'>Expert Notes: You are #{rdiff.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>. Note that this will lower your retirement nest egg by #{cost.to_currency} at age 65.</li>"
+
     end   
   end
   

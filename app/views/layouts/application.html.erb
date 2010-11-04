@@ -70,8 +70,12 @@
       </div>
       <% if controller.action_name == 'index' || controller.action_name == 'show' %>
       <div id="learn">
-        <%= link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %>
+        <br/><br/><%= link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %><br/><br/>
       </div>
+          <div style="float:right;">
+        <%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+        </div>
+
       <% end %>
   
 
