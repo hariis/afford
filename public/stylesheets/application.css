@@ -300,11 +300,15 @@ cursor: pointer;
 #block-text {
     padding: 0px 20px;
     text-align:left;
-    line-height:1.4;
+    line-height:24px;
+    font-family:georgia;
 }
-#block-text p{
-    letter-spacing:0.3px;
+#block-text p{    
     margin-bottom:6px;
+    background:none no-repeat scroll 0 0 transparent;
+    line-height:24px;
+    font-family:Georgia,serif;
+    color:#656465;
 }
 .green {
     color:green;

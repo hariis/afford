@@ -45,13 +45,13 @@
           page.visual_effect :fade, 'user-response'
           page.visual_effect :fade, 'user-response-status'
         end
-        page.delay(1) do
+        page.delay(0.5) do
           page.visual_effect  :appear, "financial-details"
         end
  end  %>
 
  <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up") do |page|
-        page.delay(1) do
+        page.delay(0.5) do
           page.visual_effect  :fade, "financial-details"
         end
         page.hide "p_more_link_up"
