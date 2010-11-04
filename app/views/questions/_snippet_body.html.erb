@@ -15,9 +15,9 @@ I want to <b><%=h question.item_name %></b> <i>costing</i> <b><%= app_number_to_
   <% else %>
       Expert says:
       <% if question.expert_verdict? %>
-        <span class='expert-approved'>Approved</span>
+        <span class='expert-approved'><%= image_tag ('/images/thumb_up.png') %> Approved</span>
       <% else %>
-        <span class='expert-denied'>Denied</span>
+        <span class='expert-denied'><%= image_tag ('/images/thumb_down.png') %>Denied</span>
       <% end %><br/>
       <% if question.responses.size > 0 %>
         Community says: Approved (<%= "#{question.community_response_approved.count}" %>) and Denied (<%= "#{question.community_response_denied.count}" %>)

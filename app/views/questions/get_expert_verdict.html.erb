@@ -11,9 +11,9 @@
      <span id='expert-denied'>Expert does not have sufficient data</span>
   <% else %>
       <% if @expert_verdict == true %>
-        <span class='expert-approved'>Approved</span>
+        <span class='expert-approved'><%= image_tag ('/images/thumb_up.png') %>Approved</span>
       <% else %>
-        <span class='expert-denied'>Denied</span>
+        <span class='expert-denied'><%= image_tag ('/images/thumb_down.png') %>Denied</span>
       <% end %>
   <% end %>  
 </div>
