@@ -45,6 +45,10 @@
               </div>
                <div id="login">
                  
+                  <% if current_user && current_user.username == 'admin' %>
+                    <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
+                  <% end %>
+  
                   <% if current_user %>
                           <% link_to "Home", root_path if controller.action_name != 'index' %>
                       <%= link_to "LOGOUT", logout_path %> 
@@ -62,12 +66,16 @@
             <li>Boost your Financial Savvy by responding to Questions</li>
           </ul>
          </div>
+
       </div>
       <% if controller.action_name == 'index' || controller.action_name == 'show' %>
       <div id="learn">
         <%= link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %>
       </div>
       <% end %>
+
+      </div>     
+
       <div id="main">
           <div id="flash-notice" style="color:#0B84E8;">
              <p><%= flash[:notice] %></p>
@@ -93,7 +101,8 @@
       </div>
         <div id="footer">
          <ul>
-          <li>©2010 CanIAffordItNow.com</li>
+          <li>©2010 CanIAffordItNow.com</li> |
+          <li><%=  link_to "Learn How Expert Calculates", "#{DOMAIN}how" %></li> |
           <li><%=  link_to "About" , "#{DOMAIN}about" %></li> |
           <li><%=  link_to "Disclaimer" , "#{DOMAIN}disclaimer" %></li> |
           <li><%=  link_to "Privacy" , "#{DOMAIN}privacy" %></li>
