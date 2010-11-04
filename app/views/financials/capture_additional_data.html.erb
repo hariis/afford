@@ -1,6 +1,6 @@
 <%= image_tag ("/images/base-pb-submit.png") %><br/><br/>
 <fieldset>
-<legend><b>Register (optional)</b></legend>
+<legend><b>Register</b></legend>
       <% form_for @user, :url => {:action => :create_account, :id => @question.id} do |f| %>
           <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
           <% if false %>
@@ -18,7 +18,7 @@
           <%= f.text_field :username, :size => 30 %>
          </p>
          <p><br/>
-          Please provide a Password to retrieve this financial data for your future questions<br/>
+          Password to retrieve this financial data for your future questions<br/>
           <%= f.password_field :password, :size => 30 %><br/>
           <span style="color:#c40e0e;">Note: Please remember this password as there is no way for us to give you access to your data if you lose it.
           In that event, You will have to re-enter your financial details.</span>

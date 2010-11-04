@@ -11,9 +11,9 @@ class ExperiencesController < ApplicationController
  def store_experience
      render :update do |page| 
        if params[:feedback_type].to_i == 0
-          page.replace_html "feedback-status", "Please select a feedback type"
+          page.replace_html "experiences-status", "Please select a feedback type"
        elsif params[:description] == "Let us know what you think!"
-          page.replace_html "feedback-status", "Please add some details and share again"       
+          page.replace_html "experiences-status", "Please add some details and share again"       
        else
           experience = Experience.new
           experience.feedback_type = Experience::COMMENT_TYPES.index(params[:feedback_type].to_i) if params[:feedback_type]

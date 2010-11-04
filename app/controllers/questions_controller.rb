@@ -39,7 +39,11 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.xml
   def index
-    @questions = Question.find(:all, :order => 'created_at DESC')
+    if current_user && current_user.username == 'admin'
+      @questions = Question.find(:all, :order => 'created_at DESC')
+    else
+      @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC')
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -383,8 +383,10 @@ input#question_item_name {
     float:left;
     margin-top:-40px;
 }
-
-#rules-feedback {
+#experience {
+    font-size: 12px;
+ }
+ #rules-feedback {
     margin-top: 20px;
     text-align: left;
     padding: 5px;
@@ -401,11 +403,11 @@ input#question_item_name {
     width:auto;
     padding: 5px;
 }
-#rules-feedback textarea, #rules-feedback input {
+#rules-feedback textarea, #experience textarea, #experience input, #experience select, #rules-feedback input {
     font-family: verdana;
     font-size: 12px;
 }
-#rules-feedback h3, #expert-response h3, #question h2 {
+#rules-feedback h3,  #experience h3, #expert-response h3, #question h2 {
     color: #037EC4;
 }
 #question {
