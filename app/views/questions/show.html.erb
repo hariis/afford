@@ -52,7 +52,7 @@
 
  <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up") do |page|
         page.delay(1) do
-          page.visual_effect  :appear, "financial-details"
+          page.visual_effect  :fade, "financial-details"
         end
         page.hide "p_more_link_up"
         page.show "p_more_link_down"

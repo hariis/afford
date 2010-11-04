@@ -333,8 +333,7 @@ cursor: pointer;
 #expert-response ul li.expert-tips{
   list-style-image: url('/images/lightbulb.png');
   line-height:1.5em;
-  margin-left:25px;
-  color:#037EC4;
+  background-color:#FFE6EA;
 }
 .float-left {
     width:180px;   

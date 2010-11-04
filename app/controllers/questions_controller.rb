@@ -244,7 +244,7 @@ class QuestionsController < ApplicationController
     end
     render :update do |page|
       if sent
-        page.hide "report-feedback"
+        page.hide "rules-feedback"
         page.replace_html "feedback-status", "Thank you for your valuable feedback"
       end
     end
