@@ -1,6 +1,6 @@
 body { 
   color: #444444; 
-  font-family:'Droid Sans',helvetica,Arial,sans-serif;
+  font-family:Georgia,serif;
   font-size:   16px;
   line-height: 1.3em;
   width:100%;
@@ -9,7 +9,7 @@ body {
 }
 
 p, ol, ul, td {
-  font-family:'Droid Sans',helvetica,Arial,sans-serif;
+  font-family:Georgia,serif;
   font-size:   16px;
   line-height: 1.3em;
   width:100%;
@@ -301,7 +301,7 @@ cursor: pointer;
     padding: 0px 20px;
     text-align:left;
     line-height:24px;
-    font-family:georgia;
+    font-family:Georgia,serif;
 }
 #block-text p{    
     margin-bottom:20px;
@@ -352,7 +352,7 @@ cursor: pointer;
     float:left;
 }
 input[type="text"],select {
-    font-family: sans-serif;
+    font-family:Georgia,serif;
     font-size: 16px;
     margin-top:3px;
     padding:3px;
@@ -373,7 +373,7 @@ input#question_item_name {
 }
 
 #new_user input, #new_user_session input, input#password {
-    font-family: sans-serif;
+    font-family:Georgia,serif;
     font-size: 16px;
     margin-top:3px;
     padding:3px;
@@ -455,7 +455,7 @@ input#question_item_name {
 #divider {
         color:#FF4800;
         float:left;
-        font-family:georgia;
+        font-family:Georgia,serif;
         font-size:38px;
         font-style:italic;
         margin-top:70px;
