@@ -10,5 +10,5 @@
       | <%= link_to "Delete this [X]", {:controller => :questions, :action => :destroy, :id => question.id}, :confirm => 'Are you sure? This will wipe out this question and all of its responses.', :method => :delete %>
       <br/><%= link_to "Send Notification", {:controller => :questions, :action => :new_question_notification, :id => question.id}, :confirm => 'Are you sure? You want to send email notification to all subscribe users.' %>
     <% end %>  
-  </div
+  </div>
 </div>

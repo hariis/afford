@@ -1,6 +1,6 @@
 body { 
   color: #444444; 
-  font-family:Georgia,serif;
+  font-family:'Droid Sans',helvetica,Arial,sans-serif;
   font-size:   16px;
   line-height: 1.3em;
   width:100%;
@@ -9,7 +9,7 @@ body {
 }
 
 p, ol, ul, td {
-  font-family:Georgia,serif;
+  font-family:'Droid Sans',helvetica,Arial,sans-serif;
   font-size:   16px;
   line-height: 1.3em;
   width:100%;
@@ -352,7 +352,7 @@ cursor: pointer;
     float:left;
 }
 input[type="text"],select {
-    font-family:Georgia,serif;
+    font-family: sans-serif;
     font-size: 16px;
     margin-top:3px;
     padding:3px;
@@ -373,7 +373,7 @@ input#question_item_name {
 }
 
 #new_user input, #new_user_session input, input#password {
-    font-family:Georgia,serif;
+    font-family: sans-serif;
     font-size: 16px;
     margin-top:3px;
     padding:3px;
