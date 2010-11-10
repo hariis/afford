@@ -338,6 +338,7 @@ cursor: pointer;
   list-style-image: url('/images/lightbulb.png');
   line-height:1.5em;
   background-color:#FFE6EA;
+  margin-top:20px;
 }
 .float-left {
     width:180px;   

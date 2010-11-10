@@ -297,14 +297,14 @@ class Question < ActiveRecord::Base
           @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating #{move_funds.to_currency} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
         else
           @expert_verdict = false
-          @expert_details << "<li class='red'>Your #{addon_liquid_assets.to_currency} <b>Liquid Assets / Savings</b> remaining after this purchase is not sufficient to cover for your emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
+          @expert_details << "<li class='red'>Your <b>Liquid Assets / Savings</b> of #{addon_liquid_assets.to_currency} remaining after this purchase is not sufficient to cover your Emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
         end
       else
           @expert_verdict = false
-          @expert_details << "<li class='red'>Your #{addon_liquid_assets.to_currency} <b>Liquid Assets / Savings</b> remaining after this purchase is not sufficient to cover for your emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
+          @expert_details << "<li class='red'>Your <b>Liquid Assets / Savings</b> of #{addon_liquid_assets.to_currency} remaining after this purchase is not sufficient to cover your Emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
       end
     else
-      @expert_details << "<li class='green'>You have adequate <b>Liquid Assets / Savings</b> for your emergency fund.</li>"
+      @expert_details << "<li class='green'>You have adequate <b>Liquid Assets / Savings</b> for your Emergency fund.</li>"
     end
   end
   
