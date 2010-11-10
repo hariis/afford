@@ -4,14 +4,14 @@
   <legend><b>Monthly Income & Expenses</b></legend>
 
 <p>
-  <%= f.label :gross_income, "Gross Monthly Income (between $2,500 and $8,000 only)" %><br />
+  <%= f.label :gross_income, "Gross Monthly Income" %><br />
   <% show_value = (!@financial.gross_income.nil? && @financial.gross_income > 0) ? @financial.gross_income : ""  %>
-  <%= f.text_field :gross_income, :value => "#{show_value}" %>
+  <%= f.text_field :gross_income, :value => "#{show_value}" %>(Minimum: $2,500 Maximum: $8,000 )
 </p>
 <p>
-  <%= f.label :net_income, "Net/Take Home Monthly Income  (between $1,000 and $8,000 only)" %><br />
+  <%= f.label :net_income, "Net/Take Home Monthly Income" %><br />
   <% show_value = (!@financial.net_income.nil? && @financial.net_income > 0) ? @financial.net_income : ""  %>
-  <%= f.text_field :net_income, :value => "#{show_value}" %>
+  <%= f.text_field :net_income, :value => "#{show_value}" %>(Minimum: $1,000 Maximum: $8,000 )
 </p>
 <p>
   <%= f.label :total_expenses, "Total Monthly Expenses" %><br />

@@ -129,6 +129,7 @@ class QuestionsController < ApplicationController
     #Ask payment details
     @question = Question.new
     @item_cost = session[:new_question_item].item_cost if session[:new_question_item]
+    @recurring_item_cost = session[:new_question_item].recurring_item_cost if session[:new_question_item]
   end
   
   def step3

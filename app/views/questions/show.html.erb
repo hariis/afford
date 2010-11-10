@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    var mycallback = function() {
+      $('user_session_username').focus();
+    };
+</script>
 <div id="snippets" class='snippet-odd snippet'>
     <%= render :partial => 'snippet_body', :object => @question, :locals => {:question => @question} %>
 </div>
@@ -14,7 +19,7 @@
               page.hide "p_more_link_up"
               page.show "p_more_link_down"
               page.delay(1) do
-                 page.visual_effect :appear, 'user-response'
+                 page.visual_effect :appear, 'user-response', :afterFinish => "function(){$('user_session_username').focus()}"
              end
            end %>
       <% end %>

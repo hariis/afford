@@ -6,26 +6,27 @@
     <b><%= f.label :item_name, "I want to" %></b>
     <%= f.text_field :item_name, :size => 63, :maxlength => 200,
                  :onblur => "if (this.value == '') {this.value = 'Example: Buy a Car';this.style.color='#999999';}", :onfocus => "if (this.value == 'Example: Buy a Car') {this.value = '';} this.style.color='#333333';" %>
-    <span style="font-size:12px;padding-left:73px;">Example: Buy a TV, Visit Europe, Go on a Cruise</span><br/><br/>
+    <span style="font-size:12px;padding-left:73px;color:#0000ff;">Example: Buy a TV, Visit Europe, Go on a Cruise</span><br/><br/>
   </p>
   <p>
-    <%= f.label :reason_to_buy, "Why do you want to?" %><br />
+    <%= f.label :reason_to_buy, "Why do you want it?" %><br />
     <%= f.select( :reason_to_buy, (Question::REASON_TO_BUY.sort{|v1,v2| v1[1] <=> v2[1]}.collect{|k| [k[0],k[1] ]}),{:selected => @reason_to_buy.to_s}) %>    
   </p>
 
   <p>
-    <%= f.label :item_cost, "How much is it going to cost? (between $100 and $1 million only)" %><br />
-    <%= f.text_field :item_cost %>
+    <%= f.label :item_cost, "What is the Total Cost of your Purchase?" %><br />    
+    <%= f.text_field :item_cost %><span style="font-size:12px;color:#0000ff;">(Minimum: $100 Maximum: $1,000,000)</span>
   </p>
   <p>
-    <%= f.label :recurring_item_cost, "Monthly Recurring costs (Example: insurance, vet visits for pets, any maintenance )" %><br />
+    <%= f.label :recurring_item_cost, "Any Additional Monthly Costs for your purchase" %><br />
+    <span style="font-size:12px;color:#0000ff;">(Example: Insurance for a car, Vet visits for a Pet, Maintenance cost, Subscription cost)</span><br />
     <%= f.text_field :recurring_item_cost %>
   </p>
 </fieldset>
 <fieldset>
   <legend><b>About You</b></legend>
   <p>
-    <%= f.label :age, "Your Age (between 20 and 65 only)" %><br />
-    <%= f.text_field :age %>
+    <%= f.label :age, "Your Age" %><br />    
+    <%= f.text_field :age %><span style="font-size:12px;color:#0000ff;">(Minimum: 20 Maximum: 65)</span>
   </p>
 </fieldset>

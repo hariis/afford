@@ -7,6 +7,7 @@ jQuery.noConflict();
        $j('#tabs').tabs();
        $j('input[name=tos_check_box]').attr('checked', false);
        setFocus();
+       resetPaymentModeFields();
     });
 (function() {
   function toggle(reveal, e) {
