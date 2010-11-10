@@ -9,6 +9,7 @@
 <div style="width: 720px;  margin: 20px auto;background:url('/images/fieldset.gif?1287455943') repeat-x scroll left bottom #F8FDEF;">
 <div class="row"  style="color:green;font-weight:bold;font-size: 20px;">
 <span class="label">Cost to be covered: </span><span class="formw"> $<%= @item_cost.to_s %></span>
+<span id='item-cost' style="display:none;"><%= @item_cost %></span>
 </div>
     <div class="row">
     <span class="label"><%= f.label "Contribution from Savings:" %></span
@@ -51,6 +52,7 @@
     investments = $('question_pm_investment_amount').value;
     financing = $('question_pm_financing_amount').value;
     total = 0;
+    itemCost = parseInt($('item-cost').innerHTML);
     if (!isNaN(parseInt(savings)))
       total =  parseInt(savings);
 
@@ -76,9 +78,9 @@
       }
     else { $('financing').style.display = 'none'; }
 
-    if (total == 1000)  {  $('good').style.display = 'inline'; $('notyet').style.display = 'none';$('show-status').style.backgroundColor = '#99e83f'; }
+    if (total == itemCost)  {  $('good').style.display = 'inline'; $('notyet').style.display = 'none';$('show-status').style.backgroundColor = '#99e83f'; }
 
-    if (financing_amount <= 0 && total != 1000)
+    if (financing_amount <= 0 && total != itemCost)
       {
         $('good').style.display = 'none';
         $('notyet').style.display = 'inline';
