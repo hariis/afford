@@ -1,32 +1,32 @@
 <%= image_tag ("/images/base-pb-submit.png") %><br/><br/>
 <fieldset>
-<legend><b>Register</b></legend>
-      <% form_for @user, :url => {:action => :create_account, :id => @question.id} do |f| %>
-          <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
-          <% if false %>
-              <fieldset>
-                   <legend><b>Send me this Report</b></legend>
-                   <p>
-                    If you would like to receive this report by email, please provide your email address: <br/>
-                    We will NOT save this
-                    <%= text_field_tag :email, params[:email], :size => 50 %>
-                   </p>
-              </fieldset><br/>
-          <% end %>       
-         <p>
-          UserName<br/>
-          <%= f.text_field :username, :size => 30 %>
-         </p>
-         <p><br/>
-          Password to retrieve this financial data for your future questions<br/>
-          <%= f.password_field :password, :size => 30 %><br/>
-          <span style="color:#c40e0e;">Note: Please remember this password as there is no way for us to give you access to your data if you lose it.
-          In that event, You will have to re-enter your financial details.</span>
-         </p><br/>
+<legend><b>Register (optional)</b></legend>
+      <% form_tag :action => :create_account, :id => @question.id do %>
+        <% if false %>
+            <fieldset>
+                 <legend><b>Send me this Report</b></legend>
+                 <p>
+                  If you would like to receive this report by email, please provide your email address: <br/>
+                  We will NOT save this
+                  <%= text_field_tag :email, params[:email], :size => 50 %>
+                 </p>
+            </fieldset><br/>
+        <% end %>       
+       <p>
+        Nick Name<br/>
+        <%= text_field_tag :nick_name, @question.nick_name, :size => 30, :readonly => 'true'  %>
+       </p>
+       <p><br/>
+        If you would like us to retrieve this financial data for your future questions,<br/>
+        please provide a Password:<br/>
+        <%= password_field_tag :password, params[:password], :size => 30 %><br/>
+        <span style="color:#c40e0e;">Note: Please remember this password as there is no way for us to give you access to your data if you lose it. <br/>
+        In that event, You will have to re-enter your financial details.</span>
+       </p>        
 
-         By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :controller => :questions, :action => 'tos' %> of this Service.
-         <%= f.submit "Submit Data and Get Expert Verdict", :name => nil %>
-
-    <% end %>
+       <br/>By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
+       <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil %>
+       
+   <% end %>
 </fieldset>
        

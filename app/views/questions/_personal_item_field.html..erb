@@ -29,4 +29,10 @@
     <%= f.label :age, "Your Age" %><br />    
     <%= f.text_field :age %><span style="font-size:12px;color:#0000ff;">(Minimum: 20 Maximum: 65)</span>
   </p>
+ <% unless current_user %>
+   <p>
+    <%= f.label :nick_name, "Choose a Nick Name" %><br />
+    <%= f.text_field :nick_name, :maxlength => 20 %>
+   </p>
+ <% end %>
 </fieldset>
