@@ -3,18 +3,13 @@
 
 <div style="padding: 0 10px;">
 <span style="font-weight:bold;float:left;font-size: 20px;"><b>How are you going to pay for your Purchase?</b>
-<span style="font-size:14px;color:red;"> (Exclude Additional Monthly Cost)</span></span><br/>
+<span style="font-size:14px;color:red;"> (Exclude Additional Monthly Cost of $<%= @recurring_item_cost.to_s %>)</span></span><br/>
 </div>
 
 <div style="width: 720px;  margin: 20px auto;background:url('/images/fieldset.gif?1287455943') repeat-x scroll left bottom #F8FDEF;">
 <div class="row"  style="color:green;font-weight:bold;font-size: 20px;">
 <span class="label">Cost to be covered: </span><span class="formw"> $<%= @item_cost.to_s %></span>
 </div>
-
-<span style="color:red;font-weight:bold;float:right;"><%= "Additional Monthly Cost: $"  + @recurring_item_cost.to_s%> </span><br/>
-
-
-
     <div class="row">
     <span class="label"><%= f.label "Contribution from Savings:" %></span
     <span class="formw"><%= f.text_field :pm_saving_amount, :value => "", :size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
@@ -38,11 +33,11 @@
 
     <div class="row" style="font-weight:bold;font-size: 20px;clear:both;text-align:left;">
           <span class="label">
-            Covered:
+            Covered so far:
            </span
-          <span id="show-status" class="formw">
+          <span id="show-status" class="formw" style="background-color:#FBD9E5;">
           $<%= label_tag 'covered', "0" , :id => 'covered' %>
-          <span id ="financing" style="display:none;"><%= "with financing " %></span>
+          <span id ="financing" style="display:none;"><%= "and through financing " %></span>
           <span id ="good" style="display:none;"><%= image_tag("/images/tick.png")  %></span>
           <span id ="notyet"><%= image_tag("/images/unchecked.gif")  %></span>
           </span>
@@ -76,18 +71,18 @@
       {
         $('financing').style.display = 'inline';
         $('good').style.display = 'inline';
-        $('show-status').style.backgroundColor = '#00ff00';
+        $('show-status').style.backgroundColor = '#99e83f';
         $('notyet').style.display = 'none';
       }
     else { $('financing').style.display = 'none'; }
 
-    if (total == 1000)  {  $('good').style.display = 'inline'; $('notyet').style.display = 'none';$('show-status').style.backgroundColor = '#00ff00'; }
+    if (total == 1000)  {  $('good').style.display = 'inline'; $('notyet').style.display = 'none';$('show-status').style.backgroundColor = '#99e83f'; }
 
     if (financing_amount <= 0 && total != 1000)
       {
         $('good').style.display = 'none';
         $('notyet').style.display = 'inline';
-        $('show-status').style.backgroundColor = '#ffffff';        
+        $('show-status').style.backgroundColor = '#FBD9E5';
         return false;
       }
       return true;
@@ -100,7 +95,7 @@ function finalCheck() {
     }
   else
     {
-      alert('If you choose to pay Out of pocket, your Savings and/or Investment contributions should add up.')
+      alert('If you choose to pay Out of pocket, your Savings and/or Investment contributions should add up to the Total Cost of your Purchase.')
       return false;
     }
 }

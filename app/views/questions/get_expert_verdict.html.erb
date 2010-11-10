@@ -21,8 +21,8 @@
   <ul>
     <%= @expert_details %>
   </ul>
-  <h3>Helpful Links</h3>
-  <ul>
+  <h3><%= link_to_function "Helpful Links >>" , visual_effect(:toggle_blind, "links", :duration => 0.5) %></h3>
+  <ul id="links" style="display:none;">
     <li><%= link_to "Aim to build a retirement nest egg that is 25 times the annual investment income you need" , "http://money.cnn.com/popups/2006/moneymag/25_rules/10.html"%> </li>
     <li><%= link_to "The Balanced Money Formula","http://www.getrichslowly.org/blog/2008/10/27/the-balanced-money-formula/" %> proposed by Elizabeth Warren and Amelia Tyagi in their excellent book, All Your Worth: The Ultimate Lifetime Money Plan states that:<br/>
     The Balanced Money Formula is based on your net income (your income after  taxes). Warren and Tyagi say that, ideally, no more than 50% of your paycheck should be spent on Needs (and keeping them below 35% is best). Of the remaining amount, at least 20% should be devoted to Saving, while up to 30% can be spent on Wants.</li>
@@ -31,8 +31,8 @@
 </div>
 
 <div id="question">
-  <h3>Next Steps</h3>
-  <ol>
+  <h3><%= link_to_function "Next Steps >>" , visual_effect(:toggle_blind, "next", :duration => 0.5) %></h3>
+  <ol id="next" style="display:none;">
     <li>
   Your question is now available on our web site. You can view the Expert report anytime and also track Community responses by visiting the link:
   <%= link_to "#{DOMAIN}question/#{@question.id}", :controller => :questions, :action => :show, :id => @question.id  %>
