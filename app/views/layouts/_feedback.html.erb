@@ -1,0 +1,26 @@
+<div id="feedback" style="display: none;">
+
+    <fieldset>
+    <div id="experience">   
+        <% form_remote_tag :url => { :controller => controller.controller_name, :action => "feedback" } do %>
+           <h3>What do you think of Can I Afford It Now? <br/>Your feedback is greatly appreciated.</h3>
+
+            To help us prioritize, please choose a type: <br/>
+            <%= select_tag :feedback_type, options_for_select(Experience::COMMENT_TYPES.sort { |v1,v2| v1[1].to_i <=> v2[1].to_i}.collect{|k| [ k[0],k[1] ]}, 0 ) %>
+            <br/><br/>
+            <p>
+                <%= text_area_tag :description, "Let us know what you think!", :cols => "44", :rows => "4",
+                                                     :onblur => "if (this.value == '') {this.value = 'Let us know what you think!';}", :onfocus => "if (this.value == 'Let us know what you think!') {this.value = '';}" -%>                  
+            </p><br/>
+            <p>
+                <%= text_field_tag :email, "Your email (optional) for us to reach you", :size => 45,
+                                                     :onblur => "if (this.value == '') {this.value = 'Your email (optional) for us to reach you';}", :onfocus => "if (this.value == 'Your email (optional) for us to reach you') {this.value = '';}" -%>
+            </p>
+
+            <%= submit_tag "Submit" , :onclick => visual_effect(:toggle_blind, "feedback", :duration => 0.5) %> or  <%= link_to_function "Cancel",   visual_effect(:toggle_blind, "feedback", :duration => 0.5) %>
+        <% end %>
+
+        <div id="feedback" style="margin-left:10px;margin-top:10px;font-weight:bold;color:red;"></div>
+    </div>
+    </fieldset> 
+</div>

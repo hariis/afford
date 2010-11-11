@@ -386,8 +386,11 @@ class Question < ActiveRecord::Base
   
  def check_rule7_item_cost_at_retirement
     if self.age < 55 #todo check if this is ok
-       final_cost = compound_interest(self.item_cost, 65-self.age)
-       @expert_details << "<li class='expert-tips'>Expert Tips: #{(self.item_cost.to_currency)} invested now at 8% yearly returns would be worth #{final_cost.to_currency} at the age of 65."
+      if self.pm_saving_amount > 0 || self.pm_investment_amount > 0
+         cash_down = self.pm_saving_amount + self.pm_investment_amount
+         final_cost = compound_interest(cash_down, 65-self.age)
+         @expert_details << "<li class='expert-tips'>Expert Tips: #{(cash_down.to_currency)} invested now at 8% yearly returns would be worth #{final_cost.to_currency} at the age of 65."
+      end
     end
   end
 
