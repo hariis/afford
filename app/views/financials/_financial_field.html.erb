@@ -6,16 +6,19 @@
 <p>
   <%= f.label :gross_income, "Gross Monthly Income" %><br />
   <% show_value = (!@financial.gross_income.nil? && @financial.gross_income > 0) ? @financial.gross_income : ""  %>
-  <%= f.text_field :gross_income, :value => "#{show_value}" %>(Minimum: $2,500 Maximum: $8,000 )
+  <%= f.text_field :gross_income, :value => "#{show_value}" %>
+  <span style="font-size:12px;color:#0000ff;">Minimum: $2,500   Maximum: $8,000</span>
 </p>
 <p>
   <%= f.label :net_income, "Net/Take Home Monthly Income" %><br />
   <% show_value = (!@financial.net_income.nil? && @financial.net_income > 0) ? @financial.net_income : ""  %>
-  <%= f.text_field :net_income, :value => "#{show_value}" %>(Minimum: $1,000 Maximum: $8,000 )
+  <%= f.text_field :net_income, :value => "#{show_value}" %>
+  <span style="font-size:12px;color:#0000ff;">Minimum: $1,000   Maximum: $8,000</span>
 </p>
 <p>
   <%= f.label :total_expenses, "Total Monthly Expenses" %><br />
-  <span style="font-size:14px;">(Living Expenses & All Monthly loan payments including Credit card debts)</span>
+  <span style="font-size:12px;color:#0000ff;">
+  (Living Expenses & All Monthly loan payments including Credit card debts)</span>
   <% show_value = (!@financial.total_expenses.nil? && @financial.total_expenses > 0) ? @financial.total_expenses : ""  %>
   <%= f.text_field :total_expenses, :value => "#{show_value}"  %>
 </p>
@@ -48,7 +51,7 @@
 
 <fieldset  style="float:right;width:46%;">
   <legend><b>Credit Card Loans & Payments</b></legend>
-  <span style="font-size:14px;">(Exclude Monthly Loan Payments already entered)</span>
+  <span style="font-size:12px;;color:#0000ff;">(Exclude Monthly Loan Payments already entered)</span>
   <p>
     <%= f.label :cc_debt_at_zero, "Credit Card Debts @ 0% rate" %><br />
     <%= f.text_field :cc_debt_at_zero %>
@@ -69,7 +72,7 @@
     <fieldset style="float:left;width:44.5%;">
       <legend><b>Assets</b></legend>
     <p>
-      <%= f.label :liquid_assets, "Liquid Assets (CDs, Money Market etc)" %><br />
+      <%= f.label :liquid_assets, "Liquid Assets" %><span style="font-size:12px;;color:#0000ff;">  (CDs, Money Market etc)</span><br />
        <% show_value = (!@financial.liquid_assets.nil? && @financial.liquid_assets > 0) ? @financial.liquid_assets : ""  %>
       <%= f.text_field :liquid_assets,  :value => "#{show_value}" %>
     </p>
@@ -82,7 +85,7 @@
 <fieldset style="float:right;width:44.5%;">
     <legend><b>Retirement</b></legend>
     <p>
-      <%= f.label :retirement_savings, "Retirement Savings ($0 upto $100,000)" %><br />
+      <%= f.label :retirement_savings, "Retirement Savings" %><span style="font-size:12px;;color:#0000ff;">  ($0 upto $100,000)</span><br />
       <%= f.text_field :retirement_savings %>
     </p>
     <p>
