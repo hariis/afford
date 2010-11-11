@@ -3732,18 +3732,16 @@ Form.Observer = Class.create(Abstract.TimedObserver, {
 
 /*--------------------------------------------------------------------------*/
 
-Abstract.EventObserver = function() {}
-Abstract.EventObserver.prototype = {
-  initialize: function() {
-    this.element  = $(arguments[0]);
-    this.callback = arguments[1];
-    this.trigger  = arguments[2];
+Abstract.EventObserver = Class.create({
+  initialize: function(element, callback) {
+    this.element  = $(element);
+    this.callback = callback;
 
     this.lastValue = this.getValue();
     if (this.element.tagName.toLowerCase() == 'form')
       this.registerFormCallbacks();
     else
-      this.registerCallback(this.element, this.trigger);
+      this.registerCallback(this.element);
   },
 
   onElementEvent: function() {
@@ -3760,26 +3758,26 @@ Abstract.EventObserver.prototype = {
       this.registerCallback(elements[i]);
   },
 
- registerCallback: function(element, trigger) {
-    if (trigger == '') {
-      if (element.type) {
-        switch (element.type.toLowerCase()) {
-          case 'checkbox':
-          case 'radio':
-            Event.observe(element, 'click', this.onElementEvent.bind(this));
-            break;
-          default:
-            Event.observe(element, 'change', this.onElementEvent.bind(this));
-            break;
-        }
+  registerCallback: function(element,trigger) {
+      if (trigger == '') {
+            if (element.type) {
+              switch (element.type.toLowerCase()) {
+                case 'checkbox':
+                case 'radio':
+                  Event.observe(element, 'click', this.onElementEvent.bind(this));
+                  break;
+                default:
+                  Event.observe(element, 'change', this.onElementEvent.bind(this));
+                  break;
+              }
+            }
       }
-    }
-    else {
-      Event.observe(element, trigger, this.onElementEvent.bind(this));
-    }
-  }
+      else {
+          Event.observe(element, trigger, this.onElementEvent.bind(this));
+      }
 
-}
+  }
+});
 
 
 Form.Element.EventObserver = Class.create(Abstract.EventObserver, {

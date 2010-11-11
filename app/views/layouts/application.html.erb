@@ -97,7 +97,7 @@
          <% end %>      
    <% end %>
 
-  <span id="feedback"><%= facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
+  <span id="feedback" style="display:none;"><% facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
 
         <%= yield %>
         

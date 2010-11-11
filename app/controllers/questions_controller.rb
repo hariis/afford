@@ -268,5 +268,21 @@ class QuestionsController < ApplicationController
     redirect_to root_path
   end
   
+ def notify_on_product_updates
+    if validate_simple_email(params[:subscriber_email])
+      if Notification.find(:all, :conditions => ['email = ? and question_id = ?', params[:subscriber_email], -1]).empty?
+        #Save this data
+        Notification.create(:email => params[:subscriber_email], :question_id => -1)
+        @message= 'Got it! Will do.'
+      else
+        @message=  'You are already subscribed to receive these updates. Thanks and Stay tuned.'
+      end
+    else
+      @message=  'Please enter a valid email address.'
+    end
 
+   render :update do |page|
+        page.replace_html "notification-status", @message
+    end
+  end
 end

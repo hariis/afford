@@ -17,10 +17,25 @@
       <% end %>
   <% end %>  
 </div>
-  <h3>Details</h3>
+  <h3>Report</h3>
   <ul>
     <%= @expert_details %>
   </ul>
+
+  <div id="notification-prompt" style="font-family: Georgia;background-color:#F1FAFE;color:#037EC4;">
+    
+    We are constantly working to provide you with an even better view of your financial state. <br/> We will also be
+    adding exciting new tools to help you increase your affordability.
+    <br/><br/>
+    If you would like us to keep you informed of such updates, please enter your Email address here:
+    <% form_remote_tag :url => {:action => 'notify_on_product_updates'} do %>
+        <%= text_field_tag 'subscriber_email', "Your Email address", :size => '28',
+                                               :onblur => "if (this.value == '') {this.value = 'Your Email address';}", :onfocus => "if (this.value == 'Your Email address') {this.value = '';}" %>
+        <%= submit_tag "Sure, Keep me Informed" %>
+    <% end %>
+    <div id="notification-status"></div>
+</div>
+
   <h3><%= link_to_function "Helpful Links >>" , visual_effect(:toggle_blind, "links", :duration => 0.5) %></h3>
   <ul id="links" style="display:none;">
     <li><%= link_to "Aim to build a retirement nest egg that is 25 times the annual investment income you need" , "http://money.cnn.com/popups/2006/moneymag/25_rules/10.html"%> </li>

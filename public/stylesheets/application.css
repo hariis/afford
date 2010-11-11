@@ -6,6 +6,7 @@ body {
   width:100%;
   margin: 0 auto;
   background-color:#89B556;
+  /* background:url("/images/background.jpg") repeat-y scroll 50% 0 #89B556; */
 }
 
 p, ol, ul, td {
@@ -276,7 +277,6 @@ cursor: pointer;
     clear:both;
     margin-top: 20px;
     padding:15px 3px;
-    color: #fff;
     text-align: left;
     -moz-background-clip:border;
     -moz-background-inline-policy:continuous;
