@@ -21,6 +21,17 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownAction,      :with => :render_not_found
   end
 
+  def feedback
+      store_location
+      experience = Experience.new
+      experience.feedback_type = Experience::COMMENT_TYPES.index(params[:feedback_type].to_i) if params[:feedback_type]
+      experience.description = params[:description]
+      experience.email = params[:email] if params[:email]
+      Notifier.deliver_send_experience(experience)
+      #render :nothing => true
+      redirect_back_or_default(root_path)
+  end
+   
   private 
 
     def check_admin_user
