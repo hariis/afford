@@ -6,7 +6,7 @@ body {
   width:100%;
   margin: 0 auto;
   background-color:#89B556;
-  /* background:url("/images/background.jpg") repeat-y scroll 50% 0 #89B556; */
+  background:url("/images/background.jpg") repeat-y scroll 50% 0 #89B556;
 }
 
 p, ol, ul, td {
@@ -153,13 +153,13 @@ img {
     position:relative;
     margin:0;   
     text-align:center;
-    width:776px;
+    width:976px;
 }
 #layer {
     margin:0 auto;
     position:relative;
     text-align:center;
-    width:756px;
+    width:956px;
 }
 h1, h2,h3 {
     text-align: left;
@@ -318,7 +318,7 @@ cursor: pointer;
 }
 
 #expert-response ul{
-  width:630px;
+  width:830px;
 }
 #expert-response ul li.green{
   list-style-image: url('/images/checked.gif');
