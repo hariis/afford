@@ -452,7 +452,8 @@ input#question_item_name {
     text-align:left;
     top:340px;
     width:auto;
-    padding: 5px;
+    padding:2px;
+    z-index:2000;
 }
 #inplace-login {
     width: 45%;

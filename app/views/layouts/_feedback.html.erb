@@ -1,4 +1,4 @@
-<div id="feedback" style="display: none;">
+<div id="feedback" style="display:none;">
 
     <fieldset>
     <div id="experience">   
@@ -17,7 +17,7 @@
                                                      :onblur => "if (this.value == '') {this.value = 'Your email (optional) for us to reach you';}", :onfocus => "if (this.value == 'Your email (optional) for us to reach you') {this.value = '';}" -%>
             </p>
 
-            <%= submit_tag "Submit" , :onclick => visual_effect(:toggle_blind, "feedback", :duration => 0.5) %> or  <%= link_to_function "Cancel",   visual_effect(:toggle_blind, "feedback", :duration => 0.5) %>
+            <br/><%= submit_tag "Submit" , :onclick => visual_effect(:toggle_blind, "feedback", :duration => 0.5) %> or  <%= link_to_function "Cancel",   visual_effect(:toggle_blind, "feedback", :duration => 0.5) %>
         <% end %>
 
         <div id="feedback" style="margin-left:10px;margin-top:10px;font-weight:bold;color:red;"></div>
