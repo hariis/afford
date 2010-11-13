@@ -241,7 +241,10 @@ class Question < ActiveRecord::Base
   end
   
   def expert_recommend1_income_expenses
-    @expert_details << "<li class='expert-recommend'>Please start a savings plan</b>.</li>"
+    @expert_details << "<li class='expert-notes'>Expert Notes: Please start a savings plan and learn how to save and make more money.
+                     Some helpful link to save and make more money.<br/>
+                     http://www.getrichslowly.org/blog/2008/04/08/66-ways-to-save-money/<br/>
+                     http://www.getrichslowly.org/blog/2010/11/10/make-more-money-how-to-supercharge-your-income/</li>"
   end
   
   def expert_recommend2_credit_cart_debt
@@ -273,14 +276,12 @@ class Question < ActiveRecord::Base
     end
   end
   
-  def expert_recommend5_total_loan_payment
-    #@expert_details << "<li class='expert-notes'>Expert Recommend: You have #{addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> which are greater than 36% of your Gross Income.<br/>
-    @expert_details << "<li class='expert-notes'>Expert Notes: Please follow the link to learn how to reduce the loan payment</li>"
+  def expert_recommend5_total_loan_payment    
+    #@expert_details << "<li class='expert-notes'>Expert Notes: Please follow the link to learn how to reduce the loan payment</li>"
   end
   
   def expert_recommend6_deferred_loan
-    #@expert_details << "<li class='expert-notes'>Expert Recommend: You have <b>Deferred loans</b> in the amount of #{financial.deferred_loan_amount.to_currency}.<br/>
-    @expert_details << "<li class='expert-notes'>Please follow the link to learn about deferred loan</li>"   
+    #@expert_details << "<li class='expert-notes'>Please follow the link to learn about deferred loan</li>"   
   end
   
   #---------------------------------------------------------------------------------------------------------
@@ -448,7 +449,7 @@ class Question < ActiveRecord::Base
   end
 
   def check_rule8_total_duration
-    if @expert_verdict == false && (addon_total_loan_payment <= 0.40 * financial.gross_income)
+    if @expert_verdict == false && get_monthly_saving > 0 && (addon_total_loan_payment <= 0.40 * financial.gross_income)
       rcontribution = 0.08*financial.net_income if self.age <= 40
       rcontribution = 0.10*financial.net_income if self.age > 40
       rdiff = financial.monthly_retirement_contribution - rcontribution
