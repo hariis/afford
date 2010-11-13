@@ -7,13 +7,13 @@
   <%= f.label :gross_income, "Gross Monthly Income" %><br />
   <% show_value = (!@financial.gross_income.nil? && @financial.gross_income > 0) ? @financial.gross_income : ""  %>
   <%= f.text_field :gross_income, :value => "#{show_value}" %>
-  <span style="font-size:12px;color:#0000ff;">Minimum: $2,500   Maximum: $8,000</span>
+  <span style="font-size:12px;color:#0000ff;">Minimum: $2,500 </span>
 </p>
 <p>
   <%= f.label :net_income, "Net/Take Home Monthly Income" %><br />
   <% show_value = (!@financial.net_income.nil? && @financial.net_income > 0) ? @financial.net_income : ""  %>
   <%= f.text_field :net_income, :value => "#{show_value}" %>
-  <span style="font-size:12px;color:#0000ff;">Minimum: $1,000   Maximum: $8,000</span>
+  <span style="font-size:12px;color:#0000ff;">Minimum: $1,000 </span>
 </p>
 <p>
   <%= f.label :total_expenses, "Total Monthly Expenses" %><br />
@@ -85,7 +85,7 @@
 <fieldset style="float:right;width:44.5%;">
     <legend><b>Retirement</b></legend>
     <p>
-      <%= f.label :retirement_savings, "Retirement Savings" %><span style="font-size:12px;;color:#0000ff;">  ($0 upto $100,000)</span><br />
+      <%= f.label :retirement_savings, "Retirement Savings" %><span style="font-size:12px;;color:#0000ff;"></span><br />
       <%= f.text_field :retirement_savings %>
     </p>
     <p>
