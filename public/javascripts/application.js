@@ -5,7 +5,6 @@ jQuery.noConflict();
        $j('#flash-error').fadeOut(50000);
         // Tabs
        $j('#tabs').tabs();
-       $j('#testimonials').cycle();
        $j('input[name=tos_check_box]').attr('checked', false);
        setFocus();       
     });
@@ -22,6 +21,10 @@ function setFocus(){
  var flag=false;
  for(z=0;z<document.forms.length;z++){
   var form = document.forms[z];
+  if (form.id == 'main_feedback_form')
+  {
+    continue;
+  }
   var elements = form.elements;
   for (var i=0;i<elements.length;i++){
     var element = elements[i];

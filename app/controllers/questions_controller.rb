@@ -77,7 +77,12 @@ class QuestionsController < ApplicationController
     else
       @question = Question.new
     end
-    @question.item_name = "Example: Buy a Car"
+    unless params[:want_to_buy].blank?
+      @question.item_name = params[:want_to_buy]
+    else
+      @question.item_name = "Example: Buy a Car"
+    end
+    
     @reason_to_buy = "0"
 
     respond_to do |format|

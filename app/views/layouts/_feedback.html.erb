@@ -2,7 +2,7 @@
 
     <fieldset>
     <div id="experience">   
-        <% form_remote_tag :url => { :controller => controller.controller_name, :action => "feedback" } do %>
+        <% form_remote_tag :url => { :controller => controller.controller_name, :action => "feedback"} , :html => {:id => "main_feedback_form" }  do %>
            <h3>What do you think of Can I Afford It Now? <br/>Your feedback is greatly appreciated.</h3>
 
             To help us prioritize, please choose a type: <br/>
