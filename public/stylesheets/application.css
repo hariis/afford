@@ -133,6 +133,7 @@ img {
     position:relative;
     text-align:center;
     width:710px;
+    clear:both;
 }
 #footer ul {
     background:none;

@@ -5,9 +5,9 @@ jQuery.noConflict();
        $j('#flash-error').fadeOut(50000);
         // Tabs
        $j('#tabs').tabs();
+       $j('#testimonials').cycle();
        $j('input[name=tos_check_box]').attr('checked', false);
-       setFocus();
-       resetPaymentModeFields();
+       setFocus();       
     });
 (function() {
   function toggle(reveal, e) {
@@ -17,16 +17,6 @@ jQuery.noConflict();
     tooltip[reveal ? 'show' : 'hide']();
   }
 
-  document.observe('dom:loaded', function() {
-    var isIE6 = Prototype.Browser.IE &&
-      undefined === document.body.style.maxHeight;
-    if (!isIE6) return;
-    var files = $('band-actions'), tooltips = files && files.select('.tooltip');
-    if (!files || 0 == tooltips.length) return;
-    tooltips.invoke('hide');
-    files.observe('mouseover', toggle.curry(true)).
-      observe('mouseout', toggle.curry(false));
-  });
 })();
 function setFocus(){
  var flag=false;

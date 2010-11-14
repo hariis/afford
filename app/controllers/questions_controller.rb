@@ -40,6 +40,19 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
     if current_user && current_user.username == 'admin'
+      @questions = Question.find(:all, :order => 'created_at DESC', :limit => 5)
+    else
+      @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC', :limit => 5)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @questions }
+    end
+  end
+
+  def recent_posts
+    if current_user && current_user.username == 'admin'
       @questions = Question.find(:all, :order => 'created_at DESC')
     else
       @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC')

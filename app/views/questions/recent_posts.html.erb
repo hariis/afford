@@ -1,0 +1,24 @@
+<div id="snippets-header" style="clear:both;">
+    <div style="float:left;">
+        <h2>Recently Asked</h2>
+    </div>
+    <div style="float:right;">
+        <% link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+    </div>
+</div>
+
+<div id="snippets">
+  <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
+</div><br/>
+
+<%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
+
+<div id="notification-prompt">
+    <% form_remote_tag :url => {:action => 'subscribe'},:update => 'notification-status' do %>
+        <%= label_tag "Notify Me when a new Question is posted" %>
+        <%= text_field_tag 'subscriber_email', "Enter Your Email address", :size => '28',
+                                               :onblur => "if (this.value == '') {this.value = 'Enter Your Email address';}", :onfocus => "if (this.value == 'Enter Your Email address') {this.value = '';}" %>
+        <%= submit_tag "Notify Me" %>
+    <% end %>
+    <div id="notification-status"></div>
+</div>

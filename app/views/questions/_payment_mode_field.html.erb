@@ -49,6 +49,9 @@
 
 
 <script type="text/javascript">
+   $j(function(){  // $(document).ready shorthand
+      resetPaymentModeFields();
+    });
   function calculateCovered(){
     savings = $('question_pm_saving_amount').value;
     investments = $('question_pm_investment_amount').value;

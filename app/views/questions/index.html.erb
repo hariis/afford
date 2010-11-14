@@ -1,18 +1,157 @@
-<div id="snippets-header" style="clear:both;">
-    <div style="float:left;">
-        <h2>Recently Asked</h2>
-    </div>
-    <div style="float:right;">
-        <% link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
-    </div>
+<%= javascript_include_tag 'jquery.cycle.lite.1.0.min' %>
+<script type="text/javascript">
+   $j(function(){  // $(document).ready shorthand
+      $j('#testimonials').cycle({
+          delay:  1000,
+          speed:  10000
+      });
+</script>
+<h2>Get a Free Health Check Anonymously and Instantly</h2>
+<div id="container">
+<div class="how-to">  
+  
+    <div class="sub-title">How to get Started?</div>
+      <ul>
+        <li>Tell us about your purchase.</li>
+        <li>Tell us about your finances.</li>
+        <li>We check how they are doing against some well-established money management guidelines and give you a clear picture of where you stand and if you
+      can afford your purchase or not.</li>
+        <li>Based on our report, you can get an idea of how to secure yourself financially first.</li>
+      </ul>
+    
 </div>
+
+<div class="right-container">
+  <div class="starter-form">
+        <div class="sub-title">Ask Your Question </div>
+        <% form_tag('/questions/new') do %>
+          <%= label_tag 'I want to' %><br/>
+          <%= text_field_tag 'want_to_buy', '' , :size => 20, :maxlength => 200 %><br/>
+
+          <%= submit_tag 'Can I Afford it Now?', :class => 'ask-button' %>
+
+        <% end %>
+  </div>
+  <div class="testimonials-title">Verdict from our users</div>
+  <div id="testimonials">
+
+    <div id="testimonial_1">
+      I thought I was doing pretty good until the Expert pointed out to me that my Savings were not enough for an Emergency Fund.
+      Had never thought of that. Thanks!
+      <div class="author">Mike L.</div>
+    </div>
+    <div id="testimonial_2">
+      It never occurred to me that a couple of hundred dollars less into my 401(k) per month would result in my nest egg going lower
+      by $300K when I retire. I am going to think twice about my purchase now.
+       <div class="author">Lisa B.</div>
+    </div>
+  </div>
+</div>  
+</div>
+
+<style type="text/css">
+  .author {
+    font-style:normal;
+    text-align:right;
+    margin-top:5px;
+  }
+  .testimonials-title {
+    color:#ff4800;
+    font-weight: bold;
+    text-align:center;
+    margin: 25px 0px;
+    font-size:20px;
+}
+.how-to {
+border-right:3px dotted #AAAAAA;
+height:370px;
+padding:10px 20px 0 0;
+width:540px;
+float:left;
+margin:0;
+color:#444444;
+display:block;
+}
+.sub-title {
+  border-bottom:1px solid;
+  color:#ff4800;
+  font-weight: bold;
+  text-align:center;
+  font-size:26px;
+  margin-bottom: 25px;
+}
+ .how-to ul {
+  list-style-type:disc;
+  margin-top:10px;
+  text-align:left;
+  width:90%;
+  font-size:24px;
+}
+ .how-to ul li {
+  background:none repeat scroll 0 0 transparent;
+  border:0 none;
+  font-size:100%;
+  margin:0;
+  outline:0 none;
+  padding:0;
+  vertical-align:baseline;
+}
+.starter-form {  
+  background-color: #ffddd0;
+  -moz-border-radius:5px;
+  font-size:24px;
+  text-align:left;
+  padding:10px;
+}
+.right-container{
+  width:33%;
+  margin-left:600px;
+  max-width:36em;
+}
+.ask-button {
+-moz-border-radius:8px 8px 8px 8px;
+background-color:#ff4800;
+/* background-image:url("/images/v2/button_overlay.png"); */
+background-repeat:repeat-x;
+border:2px solid #CCCCCC;
+color:white;
+cursor:pointer;
+display:block;
+font-size:0.8em;
+font-weight:bold;
+margin:0 10px 0 0;
+text-decoration:none;
+padding: 5px;
+margin-top: 10px;
+}
+.ask-button:hover {
+  background-color:#ff692e;
+}
+#goal {
+  clear:both;
+}
+#container {
+  line-height:130%;
+  margin:10px auto;
+  width:90%;
+}
+#testimonials{
+  height:150px;
+  background-color:#F1FAFE;
+  font-size:large;
+  font-style:italic;
+  font-family:Georgia,serif;
+}
+  </style>
+
+<div style="float:left;">
+    <h2>Recently Asked</h2>
+</div> 
 
 <div id="snippets">
   <%= render :partial => 'snippet' ,:collection => @questions, :as => :question, :spacer_template => 'separator' %>
 </div><br/>
-
-<%= link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
-
+<%= link_to "More...", '/recent_posts' %>
 <div id="notification-prompt">
     <% form_remote_tag :url => {:action => 'subscribe'},:update => 'notification-status' do %>
         <%= label_tag "Notify Me when a new Question is posted" %>

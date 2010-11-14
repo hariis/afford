@@ -7,7 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users, :collection => {:activate => :post, :resendnewactivation => :get, :resendactivation => :post}
   map.resources :experiences, :collection => { :capture_experience => :get }
-  
+
+  map.recent_posts 'recent_posts', :controller => 'questions', :action => 'recent_posts'
   map.login 'login', :controller => 'user_sessions', :action => 'new'  
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.register 'register', :controller => 'users', :action => 'new'
