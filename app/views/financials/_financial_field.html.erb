@@ -18,7 +18,7 @@
 <p>
   <%= f.label :total_expenses, "Total Monthly Expenses" %><br />
   <span style="font-size:12px;color:#0000ff;">
-  (Living Expenses & All Monthly loan payments including Credit card debts)</span>
+  (Living Expenses & All Monthly loan payments including Credit card debts)</span><br />
   <% show_value = (!@financial.total_expenses.nil? && @financial.total_expenses > 0) ? @financial.total_expenses : ""  %>
   <%= f.text_field :total_expenses, :value => "#{show_value}"  %>
 </p>

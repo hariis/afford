@@ -103,7 +103,7 @@ padding:0 10px;
 }
 
 form fieldset p, form fieldset fieldset {
-background:url("/images/divider.gif") repeat-x scroll left bottom transparent;
+/* background:url("/images/divider.gif") repeat-x scroll left bottom transparent; */
 padding:5px 10px 7px;
 }
 
