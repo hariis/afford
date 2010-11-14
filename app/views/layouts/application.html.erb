@@ -94,8 +94,10 @@
    <% end %>
 
 
-  <span id="feedback" style="display:none;"><% facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
-
+  <span id="feedback1" style="display:none;"><% facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
+  <span id="feedback-invoke"><%= link_to_function "Feedback",  visual_effect(:toggle_blind, "feedback", :duration => 0.5) %></span>
+  <%= render :partial => "layouts/feedback" %>
+ 
     <%= yield %>
         
       </div>
