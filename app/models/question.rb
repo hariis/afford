@@ -372,7 +372,12 @@ class Question < ActiveRecord::Base
             @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>.
                           You can still buy this item if you start contributing #{@retirement_deficit.abs.to_i.to_currency} from your current monthly saving towards your <b>Retirement</b>.</li>"
       else
-          @expert_verdict = false if self.age > 30
+          if self.age > 30
+            @expert_verdict = false 
+          else
+            @expert_details << "<li class='expert-notes'>Expert Notes: Since your age is less than 30, your contribution towards retirement is ignored.</li>"
+          end
+          
           retirement_nest_deficit = regular_deposit_in_future(@retirement_deficit.abs, 65-self.age)
           @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>. Note that this will lower your retirement nest egg by #{retirement_nest_deficit.to_currency} at age 65.</li>"
       end          
