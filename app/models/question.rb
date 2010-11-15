@@ -246,8 +246,9 @@ class Question < ActiveRecord::Base
       @total_duration += duration
       #@expert_details << "<li class='expert-notes'>Expert Recommend: You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate. Start contributing your current monthly savings of #{saving.to_currency} towards your Credit card debt. 
       if duration < 12.0
+          months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
           @expert_details << "<li class='expert-notes'>Expert Notes: Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt. <br/>
-                                It will take #{duration} months to pay off your credit card debt</li>"
+                                It will take #{months_to_cover} to pay off your credit card debt</li>"
       end
     else
         @expert_details << "<li class='expert-notes'>Expert Notes: Pay off your <b>Credit card debt</b> first.</li>"
@@ -259,12 +260,13 @@ class Question < ActiveRecord::Base
         duration = @move_funds.to_f / @monthly_savings.to_f
        
         if (@total_duration + duration) < 12.0
+            months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
             if @total_duration == 0
                 @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
-                          It will take #{duration} months to have the recommended 6 month emergency fund</li>"              
+                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"              
             else
                   @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Once the credit card payment is done start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
-                          It will take #{duration} months to have the recommended 6 month emergency fund</li>"                     
+                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"                     
             end
         end
         @total_duration += duration
@@ -314,7 +316,7 @@ class Question < ActiveRecord::Base
         #Add a comment as to how long it will take to pay off outright from savings
         if @monthly_savings > 0
           months_to_cover = financial.cc_debt_at_zero > @monthly_savings ?
-                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_s + " months" : "less than a month"
+                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i + " months" : "less than a month"
           @expert_details << "At your current monthly savings of #{@monthly_savings.to_currency}, it will take #{months_to_cover} to pay off the debt outright.</li>"
         else
           @expert_details << "</li>"
