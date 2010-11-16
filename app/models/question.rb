@@ -185,6 +185,25 @@ class Question < ActiveRecord::Base
     @expert_verdict = true
     @total_duration = 0
     
+    @addon_total_expenses = financial.total_expenses + self.recurring_item_cost + self.pm_financing_amount
+    
+    #Liquid assets - item cost to be paid from savings
+    @addon_liquid_assets = financial.liquid_assets - self.pm_saving_amount
+      
+    #All loan payment + Recurring Loan Payment for item  + Credit card payment for the 0% rate loan
+    @addon_total_loan_payment = financial.mortage_payment + financial.car_loan_payment +
+                                financial.student_loan_payment + financial.other_loan_payment + 
+                                financial.monthly_cc_payments_at_zero + self.pm_financing_amount  
+  
+    #investments - item cost to be paid from investment
+    @addon_investment = financial.investments - self.pm_investment_amount
+    @monthly_savings = financial.net_income - @addon_total_expenses
+     
+    @retirement_contribution = 0.08*financial.net_income if self.age <= 40
+    @retirement_contribution = 0.10*financial.net_income if self.age > 40
+    @retirement_deficit = financial.monthly_retirement_contribution - @retirement_contribution
+    @move_funds = (6 * @addon_total_expenses) - @addon_liquid_assets
+ 
     check_rule1_income_expenses
     check_rule2_credit_cart_debt
     check_rule3_liquid_assets
@@ -197,28 +216,6 @@ class Question < ActiveRecord::Base
     
     self.update_attributes(:expert_verdict => @expert_verdict)        
     self.update_attributes(:expert_details => @expert_details)
-  end
-  
-  def addon_total_expenses
-    #Expenses + Recurring Expenses + Recurring Loan Payment for item    
-    financial.total_expenses + self.recurring_item_cost + self.pm_financing_amount
-  end
-  
-  def addon_liquid_assets
-    #Liquid assets - item cost to be paid from savings
-    financial.liquid_assets - self.pm_saving_amount     
-  end
-  
-  def addon_total_loan_payment
-    #All loan payment + Recurring Loan Payment for item  + Credit card payment for the 0% rate loan
-    financial.mortage_payment + financial.car_loan_payment +
-    financial.student_loan_payment + financial.other_loan_payment + financial.monthly_cc_payments_at_zero + 
-    self.pm_financing_amount
-  end
-  
-  def addon_investment
-    #investments - item cost to be paid from investment
-    financial.investments - self.pm_investment_amount
   end
   
   def regular_deposit_in_future(contribution, years)
@@ -236,10 +233,6 @@ class Question < ActiveRecord::Base
     return ci.to_i
   end
   
-  def get_monthly_saving
-    financial.net_income - addon_total_expenses
-  end
-  
   def expert_recommend1_income_expenses
     @expert_details << "<li class='expert-notes'>Expert Notes: Please start a savings plan and/or generate more Income.
                      Some helpful link to save and make more money.<br/>
@@ -248,29 +241,33 @@ class Question < ActiveRecord::Base
   end
   
   def expert_recommend2_credit_cart_debt
-      saving = get_monthly_saving
-      if saving > 0.0
-        duration = financial.cc_debt_gt_zero.to_f / saving.to_f
-        @total_duration += duration
-        #@expert_details << "<li class='expert-notes'>Expert Recommend: You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate. Start contributing your current monthly savings of #{saving.to_currency} towards your Credit card debt. 
-        @expert_details << "<li class='expert-notes'>Expert Notes: Consider paying off your Credit card debt with your current monthly savings of #{saving.to_currency}. <br/>
-                              If you use your entire monthly Savings, then it will take #{duration} months to pay off your credit card debt</li>"
-      else
-          @expert_details << "<li class='expert-notes'>Expert Notes: Pay off your <b>Credit card debt</b> first.</li>"
+    if @monthly_savings > 0.0
+      duration = financial.cc_debt_gt_zero.to_f / @monthly_savings.to_f
+      @total_duration += duration     
+      if duration < 12.0
+          months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
+          @expert_details << "<li class='expert-notes'>Expert Notes: Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt. <br/>
+                                It will take #{months_to_cover} to pay off your credit card debt</li>"
       end
+    else
+        @expert_details << "<li class='expert-notes'>Expert Notes: Pay off your <b>Credit card debt</b> first.</li>"
+    end
   end
   
   def expert_recommend3_liquid_assests
-    saving = get_monthly_saving
-    if saving > 0.0
-        move_funds = (6 * addon_total_expenses) - addon_liquid_assets        
-        duration = move_funds.to_f / saving.to_f
-        if @total_duration == 0
-             @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund </b> by #{move_funds.to_currency}. Consider funding it from your current monthly savings of #{saving.to_currency}.
-                      If you use your entire monthly Savings, then it will take #{duration} months to have the recommended 6 month emergency fund.</li>"
-        else
-              @expert_details << "<li class='expert-notes'>Expert Notes:  You are short of your Emergency Fund </b> by #{move_funds.to_currency}. Once your hight interest Credit card debt is paid off, start contributing your current monthly Savings of #{saving.to_currency} towards your Emergency fund.
-                      If you use your entire monthly Savings, then it will take #{duration} months to have the recommended 6 month emergency fund.</li>"
+
+    if @monthly_savings > 0.0       
+        duration = @move_funds.to_f / @monthly_savings.to_f
+       
+        if (@total_duration + duration) < 12.0
+            months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
+            if @total_duration == 0
+                @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
+                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"              
+            else
+                  @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Once the credit card payment is done start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
+                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"                     
+            end
         end
         @total_duration += duration
     end
@@ -287,9 +284,8 @@ class Question < ActiveRecord::Base
   #---------------------------------------------------------------------------------------------------------
   def check_rule1_income_expenses
     #Is Net Income > Expenses + Recurring Expenses + Recurring Loan Payment for item
-    saving = get_monthly_saving
-    if saving >= 0      
-      @expert_details << "<li class='green income'>Your Total monthly expenses will be #{addon_total_expenses.to_currency} after the purchase."
+    if @monthly_savings >= 0      
+      @expert_details << "<li class='green'>Your Total monthly expenses will be #{@addon_total_expenses.to_currency} after the purchase."
       @expert_details << " It will still be within your Net Income.</li>"
     else
       @expert_verdict = false
@@ -297,10 +293,11 @@ class Question < ActiveRecord::Base
       includes << "recurring cost of the item " if self.recurring_item_cost > 0
       includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
       include_string = includes.size > 0 ? " including " + includes.to_sentence : ""
-      @expert_details << "<li class='red income'>Your Total monthly expenses #{include_string}  will be #{addon_total_expenses.to_currency} after the purchase."
-      @expert_details << " It will exceed your Net Income by #{(saving * -1).to_currency}.</li>"
+      @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be #{@addon_total_expenses.to_currency} after the purchase."
+      @expert_details << " It will exceed your Net Income by #{(@monthly_savings * -1).to_currency}.</li>"
       expert_recommend1_income_expenses
     end
+     @expert_details << "<br/>"
   end
   
   def check_rule2_credit_cart_debt
@@ -318,62 +315,55 @@ class Question < ActiveRecord::Base
                           Start paying off your <b>Credit card debt</b> first.<br/>"
         end
         #Add a comment as to how long it will take to pay off outright from savings
-        monthly_savings = financial.net_income - addon_total_expenses
-        if monthly_savings > 0
-          months_to_cover = financial.cc_debt_at_zero > monthly_savings ?
-                        "approximately " + (financial.cc_debt_at_zero.to_f / monthly_savings.to_f).to_s + " months" : "less than a month"
-          @expert_details << "At your current monthly savings of #{monthly_savings.to_currency}, it will take #{months_to_cover} to pay off the debt outright.</li>"
+        if @monthly_savings > 0
+          months_to_cover = financial.cc_debt_at_zero > @monthly_savings ?
+                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i + " months" : "less than a month"
+          @expert_details << "At your current monthly savings of #{@monthly_savings.to_currency}, it will take #{months_to_cover} to pay off the debt outright.</li>"
         else
           @expert_details << "</li>"
         end
 
       end
     else
-      @expert_verdict = false
       @expert_details << "<li class='red'>You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate.</li>"
-      expert_recommend2_credit_cart_debt
+      if @monthly_savings >= financial.cc_debt_gt_zero
+         @expert_details << "<li class='expert-notes'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is greater than your credit card payment</b>.
+                  You can still buy this item if you pay off the credit card payment of #{financial.cc_debt_gt_zero} from your current monthly saving.</li>"
+      else
+        @expert_verdict = false
+        expert_recommend2_credit_cart_debt
+      end
     end
-    
+    @expert_details << "<br/>"
   end
   
   def check_rule3_liquid_assets
     #Liquid assets > 6 * Expenses 
     #liquid assets(Liquid assets - item cost to be paid from savings) > 6 * Expenses (Expenses + Recurring Expenses + Recurring Loan Payment for item)
-    net_liquid = addon_liquid_assets < 6 * addon_total_expenses
+    net_liquid = @addon_liquid_assets < 6 * @addon_total_expenses
     if net_liquid
-      move_funds = (6 * addon_total_expenses) - addon_liquid_assets
-      if (addon_investment >= (8 * addon_total_expenses) - addon_liquid_assets) && (self.reason_to_buy == 1 || self.reason_to_buy == 2)
+      if (@addon_investment >= (8 * @addon_total_expenses) - @addon_liquid_assets) && (self.reason_to_buy == 1 || self.reason_to_buy == 2)
           @expert_details << "<li class='green'>You don't have 6 times your Total Monthly expenses in <b>Liquid Assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
-          @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating #{move_funds.to_currency} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
+          @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating #{@move_funds.to_currency} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
       else
-          @expert_verdict = false
-          @expert_details << "<li class='red'>Your <b>Liquid Assets / Savings</b> of #{addon_liquid_assets.to_currency} remaining after this purchase is not sufficient to cover your Emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
-          expert_recommend3_liquid_assests
+          @expert_details << "<li class='red'>Your <b>Liquid Assets / Savings</b> of #{@addon_liquid_assets.to_currency} remaining after this purchase is not sufficient to cover your Emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
+          if @monthly_savings >= @move_funds + financial.cc_debt_gt_zero
+            @expert_details << "<li class='expert-notes'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is greater than your emergency fund deficit.</b>
+                  You can still buy this item if you transfer #{@move_funds.to_currency} to your emergency fund from your current monthly saving to cover the deficit.</li>"
+          else
+              @expert_verdict = false
+              expert_recommend3_liquid_assests
+          end
       end
     else
       @expert_details << "<li class='green'>You have adequate <b>Liquid Assets / Savings</b> for your Emergency fund.</li>"
     end
+    @expert_details << "<br/>"
   end
   
-  def check_rule4_retirement_payment_old
-    #retirement monthly contribution > = supposed to be (from lookup table)    
-    #TODO 
-    if (financial.monthly_retirement_contribution >= 0.10*financial.net_income)
-      @expert_details << "<li class='green'>You are making $#{financial.monthly_retirement_contribution} monthly contribution towards retirement which is good.</li>"
-    else
-      @expert_details << "<li class='red'>Based on your income, your $#{financial.monthly_retirement_contribution} monthly contribution towards retirement is very less.</li>"
-      @expert_verdict = false
-    end
-  end
-
   def check_rule4_retirement_payment_current
-    #retirement monthly contribution > = supposed to be (from lookup table)    
-    #TODO
-    rcontribution = 0.08*financial.net_income if self.age <= 40
-    rcontribution = 0.10*financial.net_income if self.age > 40
-    rdiff = financial.monthly_retirement_contribution - rcontribution
-      
-    if (rdiff >= 0)
+    #TODO retirement monthly contribution > = supposed to be (from lookup table)    
+    if (@retirement_deficit >= 0)
       @expert_details << "<li class='green'>Your #{financial.monthly_retirement_contribution.to_currency} monthly <b>retirement contribution</b> is good.</li>"
     else
       if self.age <= 40
@@ -382,46 +372,39 @@ class Question < ActiveRecord::Base
         @expert_details << "<li class='red'>Based on your age, your monthly <b>retirement contribution</b> of #{financial.monthly_retirement_contribution.to_currency} is less than 10% of your net income.</li>"
       end
   
-      if @expert_verdict == true && (get_monthly_saving > rdiff.abs)
-            @expert_details << "<li class='expert-notes'>Expert Notes: You are #{rdiff.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>.
-                          You can still buy this item if you start contributing #{rdiff.abs.to_i.to_currency} from your current monthly saving towards your <b>Retirement</b>.</li>"
-      else      
-          @expert_verdict = false
-          cost = regular_deposit_in_future(rdiff.abs, 65-self.age)
-          @expert_details << "<li class='expert-notes'>Expert Notes: You are #{rdiff.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>. Note that this will lower your retirement nest egg by #{cost.to_currency} at age 65.</li>"
-      end          
-    end   
-  end
-  
-  def check_rule4_retirement_payment_future1
-    lookup = Ratio.find(:first, :conditions => ['age = ?', (self.age-self.age%5)])
-    unless lookup.nil?
-      saving_diff = lookup.captial_to_income * financial.gross_income - financial.retirement_savings
-      if saving_diff > 0
-          @expert_verdict = false
-          @expert_details << "<li class='red'>Your $#{financial.retirement_savings} retirement savings is still below by $#{saving_diff}.<br/>
-                              Expert suggests: Increase your <b>retirement contribution<b/> to match the deficit of $#{saving_diff}.</li>"
+      if @expert_verdict == true && (@monthly_savings > @retirement_deficit.abs)
+            @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>.
+                          You can still buy this item if you start contributing #{@retirement_deficit.abs.to_i.to_currency} from your current monthly saving towards your <b>Retirement</b>.</li>"
       else
-          @expert_details << "<li class='green'>Your $#{financial.retirement_savings} retirement saving is good.</li>"
-      end
+          if self.age > 30
+            @expert_verdict = false 
+          else
+            @expert_details << "<li class='expert-notes'>Expert Notes: Since your age is less than 30, your contribution towards retirement is ignored.</li>"
+          end
+          
+          retirement_nest_deficit = regular_deposit_in_future(@retirement_deficit.abs, 65-self.age)
+          @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>. Note that this will lower your retirement nest egg by #{retirement_nest_deficit.to_currency} at age 65.</li>"
+      end          
     end
+    @expert_details << "<br/>"
   end
   
   def check_rule5_total_loan_payment
     #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
-    if addon_total_loan_payment <= 0.36 * financial.gross_income
-       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> of #{addon_total_loan_payment.to_currency} are less than or equal to 36% of your Gross income.</li>"
-    elsif addon_total_loan_payment <= 0.40 * financial.gross_income
+    if @addon_total_loan_payment <= 0.36 * financial.gross_income
+       @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> of #{@addon_total_loan_payment.to_currency} are less than or equal to 36% of your Gross income.</li>"
+    elsif @addon_total_loan_payment <= 0.40 * financial.gross_income
         #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36 
-        gap = addon_total_loan_payment - (0.36 * financial.gross_income)
-        @expert_details << "<li class='green'>Your #{addon_total_loan_payment.to_currency}<b> Total Loan Payments</b> are slightly greater than 36% of your Gross income.</li>
-                          <li class='expert-notes'>Expert Notes: You can still buy this item if you can reduce your Total Monthly loan payments by #{gap.to_i.to_currency}</li>"
+        gap_to_catchup = @addon_total_loan_payment - (0.36 * financial.gross_income)
+        @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency}<b> Total Loan Payments</b> are slightly greater than 36% of your Gross income.</li>
+                          <li class='expert-notes'>Expert Notes: You can still buy this item if you can reduce your Total Monthly loan payments by #{gap_to_catchup.to_i.to_currency}</li>"
     else
         @expert_verdict = false
-        @expert_details << "<li class='red'>Your #{addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
+        @expert_details << "<li class='red'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
         expert_recommend5_total_loan_payment
         return false
     end
+    @expert_details << "<br/>"
   end
   
   def check_rule6_deferred_loan
@@ -436,6 +419,7 @@ class Question < ActiveRecord::Base
                         <li class='expert-notes'>Expert Notes: Start paying off your loans. This will save you money in the long run.</li>"
     end
     expert_recommend6_deferred_loan if financial.deferred_loan_amount > 0 
+    #@expert_details << "<br/>"
   end
   
  def check_rule7_item_cost_at_retirement
@@ -449,11 +433,8 @@ class Question < ActiveRecord::Base
   end
 
   def check_rule8_total_duration
-    if @expert_verdict == false && get_monthly_saving > 0 && (addon_total_loan_payment <= 0.40 * financial.gross_income)
-      rcontribution = 0.08*financial.net_income if self.age <= 40
-      rcontribution = 0.10*financial.net_income if self.age > 40
-      rdiff = financial.monthly_retirement_contribution - rcontribution
-      if (rdiff >= 0)
+    if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && @total_duration < 12.0
+      if (@retirement_deficit >= 0)
           @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{@total_duration} months before you could afford this item</li>"
       end
     end

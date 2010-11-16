@@ -39,6 +39,7 @@
               <div id="logo">
                  <%= link_to image_tag('/images/newlogo-pic-w.png'), root_path %>
               </div>
+              
                <div id="login">
                  
                   <% if current_user && current_user.username == 'admin' %>
@@ -46,15 +47,26 @@
                   <% end %>
   
                   <% if current_user %>
+                      <% link_to "Home", root_path if controller.action_name != 'index' %>
+                      <b><%= current_user.username.capitalize %></b> | <%= link_to "LOGOUT", logout_path %> 
+                   <% else %>                                    
                           <% link_to "Home", root_path if controller.action_name != 'index' %>
-                      <%= link_to "LOGOUT", logout_path %> 
-                   <% else %>          
-                          <% link_to "Home", root_path if controller.action_name != 'index' %>
-                          <%= link_to "LOGIN", login_path unless controller_name == 'user_sessions' %>
+                          <%= link_to "LOGIN", login_path unless controller_name == 'user_sessions' %><br/>
                    <% end %>
-                 
+                   <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>     
+                      <% if current_user %><br/>
+                            <div id="user-stat">
+                              <% current_user.username %> <%= pluralize current_user.responses.count, 'response' %> |
+                               agreed with Expert: <%= @user_agreed_with_expert %>  |
+                               agreed with Community: <%= @user_agreed_with_community %>
+                            </div><br/>
+                       <% end %>      
+                   <% end %>
+                   <b><%= link_to "Learn How Expert Calculates", "#{DOMAIN}how" %></b>
+
                </div>
           </div>
+          <h2 style="margin-top:50px;">Free Health Check Anonymously and Instantly</h2>
 
          <div id="tagline">
           <ul>
@@ -66,7 +78,7 @@
       </div>
       <% if controller.action_name == 'index' || controller.action_name == 'show' %>
       <div id="learn">
-        <br/><br/><%= link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %><br/><br/>
+        <br/><br/><% link_to image_tag('/images/learnhow2.png'), "#{DOMAIN}how" %><br/><br/>
       </div>
           <div style="float:right;">
         <% link_to image_tag('/images/ask.png'), {:controller => :questions , :action => :new} %>
@@ -82,18 +94,7 @@
           <div id="flash-error" style="color:#0B84E8;">
              <p><%= flash[:error] %></p>
           </div>
-         
-  <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>     
-        <% if current_user %>
-              <div id="user-stat">
-                <%= current_user.username %> | <%= pluralize current_user.responses.count, 'response' %> |
-                 agreed with Expert: <%= @user_agreed_with_expert %>  |
-                 agreed with Community: <%= @user_agreed_with_community %>
-              </div><br/>
-         <% end %>      
-   <% end %>
-
-
+  
   <span id="feedback1" style="display:none;"><% facebox_link_to "Feedback",  {:url => DOMAIN + "experiences/capture_experience"} %></span>
   <span id="feedback-invoke"><%= link_to_function "Feedback",  visual_effect(:toggle_blind, "feedback", :duration => 0.5) %></span>
   <%= render :partial => "layouts/feedback" %>

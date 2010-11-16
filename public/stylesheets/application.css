@@ -15,7 +15,7 @@ p, ol, ul, td {
   line-height: 1.3em;
   width:100%;
   margin: 0 auto;
-  background-color:#eefad6;
+  background-color1:#eefad6;
 }
 
 pre {
@@ -171,8 +171,8 @@ h1, h2,h3 {
     clear:both;
 }
 #tagline {
-    margin-top:60px;
-    margin-bottom:20px;   
+    margin-top:32px;
+    margin-bottom1:20px;   
 }
 #tagline ul {    
     background-color:#fff;
@@ -232,11 +232,12 @@ width: 99%;
     position:absolute;
 }
 #login {
-    padding:3px 10px;
+    padding:3px 5px;
     font-size:13px;
     position:absolute;
     right:0;
-    top:20px;
+    top:15px;
+    text-align:right;
 }
 
 #login a {
@@ -252,7 +253,7 @@ cursor: pointer;
     float:left;
     color:#FF4800;
     margin-left:10px;
-    border-bottom:1px dotted;
+    border-bottom1:1px dotted;
 }
 #user-response ul li {
     list-style:none;
