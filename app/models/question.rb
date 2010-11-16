@@ -297,6 +297,7 @@ class Question < ActiveRecord::Base
       @expert_details << " It will exceed your Net Income by #{(@monthly_savings * -1).to_currency}.</li>"
       expert_recommend1_income_expenses
     end
+     @expert_details << "<br/>"
   end
   
   def check_rule2_credit_cart_debt
@@ -333,7 +334,7 @@ class Question < ActiveRecord::Base
         expert_recommend2_credit_cart_debt
       end
     end
-    
+    @expert_details << "<br/>"
   end
   
   def check_rule3_liquid_assets
@@ -357,6 +358,7 @@ class Question < ActiveRecord::Base
     else
       @expert_details << "<li class='green'>You have adequate <b>Liquid Assets / Savings</b> for your Emergency fund.</li>"
     end
+    @expert_details << "<br/>"
   end
   
   def check_rule4_retirement_payment_current
@@ -383,7 +385,8 @@ class Question < ActiveRecord::Base
           retirement_nest_deficit = regular_deposit_in_future(@retirement_deficit.abs, 65-self.age)
           @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>. Note that this will lower your retirement nest egg by #{retirement_nest_deficit.to_currency} at age 65.</li>"
       end          
-    end   
+    end
+    @expert_details << "<br/>"
   end
   
   def check_rule5_total_loan_payment
@@ -401,6 +404,7 @@ class Question < ActiveRecord::Base
         expert_recommend5_total_loan_payment
         return false
     end
+    @expert_details << "<br/>"
   end
   
   def check_rule6_deferred_loan
@@ -415,6 +419,7 @@ class Question < ActiveRecord::Base
                         <li class='expert-notes'>Expert Notes: Start paying off your loans. This will save you money in the long run.</li>"
     end
     expert_recommend6_deferred_loan if financial.deferred_loan_amount > 0 
+    #@expert_details << "<br/>"
   end
   
  def check_rule7_item_cost_at_retirement
