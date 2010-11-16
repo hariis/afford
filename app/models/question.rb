@@ -241,7 +241,7 @@ class Question < ActiveRecord::Base
   end
   
   def expert_recommend1_income_expenses
-    @expert_details << "<li class='expert-notes'>Expert Notes: Please start a savings plan and learn how to save and make more money.
+    @expert_details << "<li class='expert-notes'>Expert Notes: Please start a savings plan and/or generate more Income.
                      Some helpful link to save and make more money.<br/>
                      http://www.getrichslowly.org/blog/2008/04/08/66-ways-to-save-money/<br/>
                      http://www.getrichslowly.org/blog/2010/11/10/make-more-money-how-to-supercharge-your-income/</li>"
@@ -253,8 +253,8 @@ class Question < ActiveRecord::Base
         duration = financial.cc_debt_gt_zero.to_f / saving.to_f
         @total_duration += duration
         #@expert_details << "<li class='expert-notes'>Expert Recommend: You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate. Start contributing your current monthly savings of #{saving.to_currency} towards your Credit card debt. 
-        @expert_details << "<li class='expert-notes'>Expert Notes: Start contributing your current monthly savings of #{saving.to_currency} towards your Credit card debt. <br/>
-                              It will take #{duration} months to pay off your credit card debt</li>"
+        @expert_details << "<li class='expert-notes'>Expert Notes: Consider paying off your Credit card debt with your current monthly savings of #{saving.to_currency}. <br/>
+                              If you use your entire monthly Savings, then it will take #{duration} months to pay off your credit card debt</li>"
       else
           @expert_details << "<li class='expert-notes'>Expert Notes: Pay off your <b>Credit card debt</b> first.</li>"
       end
@@ -266,11 +266,11 @@ class Question < ActiveRecord::Base
         move_funds = (6 * addon_total_expenses) - addon_liquid_assets        
         duration = move_funds.to_f / saving.to_f
         if @total_duration == 0
-            @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{move_funds.to_currency}. Start contributing your current monthly savings of #{saving.to_currency} towards your emergency fund.
-                      It will take #{duration} months to have the recommended 6 month emergency fund</li>"              
+             @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund </b> by #{move_funds.to_currency}. Consider funding it from your current monthly savings of #{saving.to_currency}.
+                      If you use your entire monthly Savings, then it will take #{duration} months to have the recommended 6 month emergency fund.</li>"
         else
-              @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{move_funds.to_currency}. Once the credit card payment is done start contributing your current monthly savings of #{saving.to_currency} towards your emergency fund.
-                      It will take #{duration} months to have the recommended 6 month emergency fund</li>"                     
+              @expert_details << "<li class='expert-notes'>Expert Notes:  You are short of your Emergency Fund </b> by #{move_funds.to_currency}. Once your hight interest Credit card debt is paid off, start contributing your current monthly Savings of #{saving.to_currency} towards your Emergency fund.
+                      If you use your entire monthly Savings, then it will take #{duration} months to have the recommended 6 month emergency fund.</li>"
         end
         @total_duration += duration
     end
@@ -289,7 +289,7 @@ class Question < ActiveRecord::Base
     #Is Net Income > Expenses + Recurring Expenses + Recurring Loan Payment for item
     saving = get_monthly_saving
     if saving >= 0      
-      @expert_details << "<li class='green'>Your Total monthly expenses will be #{addon_total_expenses.to_currency} after the purchase."
+      @expert_details << "<li class='green income'>Your Total monthly expenses will be #{addon_total_expenses.to_currency} after the purchase."
       @expert_details << " It will still be within your Net Income.</li>"
     else
       @expert_verdict = false
@@ -297,7 +297,7 @@ class Question < ActiveRecord::Base
       includes << "recurring cost of the item " if self.recurring_item_cost > 0
       includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
       include_string = includes.size > 0 ? " including " + includes.to_sentence : ""
-      @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be #{addon_total_expenses.to_currency} after the purchase."
+      @expert_details << "<li class='red income'>Your Total monthly expenses #{include_string}  will be #{addon_total_expenses.to_currency} after the purchase."
       @expert_details << " It will exceed your Net Income by #{(saving * -1).to_currency}.</li>"
       expert_recommend1_income_expenses
     end

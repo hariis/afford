@@ -13,7 +13,7 @@
 </div>
     <div class="row">
     <span class="label"><%= f.label "Contribution from Savings:" %></span
-    <span class="formw"><%= f.text_field :pm_saving_amount, :value => "", :size => 5, :onblur => "if (this.value == '') {this.value = '0';}",
+    <span class="formw"><%= f.text_field :pm_saving_amount, :value => "", :size => 5, :onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
    
@@ -21,14 +21,14 @@
     <div class="row">
     <span class="label">
     <%= f.label "Contribution from Investments:" %></span
-     <span class="formw"><%= f.text_field :pm_investment_amount,:size => 5,:onblur => "if (this.value == '') {this.value = '0';}",
+     <span class="formw"><%= f.text_field :pm_investment_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
 
     <div class="row">
     <span class="label">
     <%= f.label "If Financing, Loan Payment per month:" %></span
-     <span class="formw"><%= f.text_field :pm_financing_amount,:size => 5,:onblur => "if (this.value == '') {this.value = '0';}",
+     <span class="formw"><%= f.text_field :pm_financing_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
 
@@ -36,8 +36,8 @@
           <span class="label">
             Covered so far:
            </span
-          <div id="show-status" style="background-color:#FBD9E5;">
-          <span class="formw">
+          <div id="status">
+          <span id ="show-status" class="formw total"  style="background-color:#FBD9E5;">
           $ <span id ="covered">0</span>
           <span id ="financing" style="display:none;"><%= "and through financing " %></span>
           <span id ="good" style="display:none;"><%= image_tag("/images/tick.png")  %></span>
@@ -79,7 +79,7 @@
         $('financing').style.display = 'inline';
         $('good').style.display = 'inline';
         $('notyet').style.display = 'none';
-        $('show-status').style.backgroundColor = '#99e83f';        
+        $('show-status').style.backgroundColor = '#99e83f';
       }
     else { $('financing').style.display = 'none'; }
 
