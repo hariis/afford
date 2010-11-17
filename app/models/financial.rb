@@ -11,20 +11,20 @@ class Financial < ActiveRecord::Base
   
  validates_each :gross_income, :on => :save do |record,attr,value|
      unless self.is_blank_or_not_number(record,attr,value)       
-       #if value.to_i < 2500 || value.to_i > 8000 then
-          #record.errors.add(attr,": Currently we support between $2,500 and $8,000 only.")
-       if value.to_i < 2500 then
-          record.errors.add(attr,": Currently we support amount over $2,500 only.")
+       if value.to_i < 2500 || value.to_i > 8000 then
+          record.errors.add(attr,": Currently we support between $2,500 and $8,000 only.")
+       #if value.to_i < 2500 then
+          #record.errors.add(attr,": Currently we support amount over $2,500 only.")
        end
      end
   end
   
   validates_each :net_income, :on => :save do |record,attr,value|      
       unless self.is_blank_or_not_number(record,attr,value)
-       #if value.to_i < 1000 || value.to_i > 8000 then
-          #record.errors.add(attr,": Currently we support between $1,000 and $8,000 only.")
-       if value.to_i < 1000 then
-          record.errors.add(attr,": Currently we support amount over $1,000 only.")
+       if value.to_i < 1000 || value.to_i > 8000 then
+          record.errors.add(attr,": Currently we support between $1,000 and $8,000 only.")
+       #if value.to_i < 1000 then
+          #record.errors.add(attr,": Currently we support amount over $1,000 only.")
        elsif value.to_i >= record.gross_income.to_i
           record.errors.add(attr,": Net Income should be less than Gross Income.")
        end
@@ -33,10 +33,10 @@ class Financial < ActiveRecord::Base
   
   validates_each :total_expenses, :on => :save do |record,attr,value|      
       unless self.is_blank_or_not_number(record,attr,value)
-       #if value.to_i * 12 < 500 || value.to_i * 12 > 100000 then
-       #   record.errors.add(attr,": Currently we support between $500/mo and $8,300/mo only.")
-       if value.to_i < 500 then
-          record.errors.add(attr,": Currently we support amount over $500/mo. only")
+       if value.to_i < 500 || value.to_i * 12 > 100000 then
+          record.errors.add(attr,": Currently we support between $500/mo and $8,300/mo only.")
+       #if value.to_i < 500 then
+          #record.errors.add(attr,": Currently we support amount over $500/mo. only")
        elsif value.to_i <= (self.get_total_loan_payments(record))
           record.errors.add(attr,": Total Monthly Expenses should take into account all loan payments and living expenses.")
        end
