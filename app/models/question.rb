@@ -199,10 +199,12 @@ class Question < ActiveRecord::Base
     @addon_investment = financial.investments - self.pm_investment_amount
     @monthly_savings = financial.net_income - @addon_total_expenses
      
-    @retirement_contribution = 0.08*financial.net_income if self.age <= 40
-    @retirement_contribution = 0.10*financial.net_income if self.age > 40
+    @retirement_contribution = 0.08 * financial.net_income if self.age <= 40
+    @retirement_contribution = 0.10 * financial.net_income if self.age > 40
     @retirement_deficit = financial.monthly_retirement_contribution - @retirement_contribution
-    @move_funds = (6 * @addon_total_expenses) - @addon_liquid_assets
+    @emergency_funds = 6 * @addon_total_expenses
+    @emergency_funds_deficit =  @emergency_funds - @addon_liquid_assets
+    @emergency_funds_deficit_tolerance = 0.05 * @emergency_funds
  
     check_rule1_income_expenses
     check_rule2_credit_cart_debt
@@ -245,28 +247,28 @@ class Question < ActiveRecord::Base
       duration = financial.cc_debt_gt_zero.to_f / @monthly_savings.to_f
       @total_duration += duration     
       if duration < 12.0
-          months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
-          @expert_details << "<li class='expert-notes'>Expert Notes: Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt. <br/>
-                                It will take #{months_to_cover} to pay off your credit card debt</li>"
+          months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} month(s)"
+          @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt, <br/>
+                                it will take #{months_to_cover} to pay off your credit card debt.</li>"
       end
     else
-        @expert_details << "<li class='expert-notes'>Expert Notes: Pay off your <b>Credit card debt</b> first.</li>"
+        @expert_details << "<li class='expert-notes'>Expert Notes: Consider paying off your <b>Credit card debt</b> first.</li>"
     end
   end
   
   def expert_recommend3_liquid_assests
 
     if @monthly_savings > 0.0       
-        duration = @move_funds.to_f / @monthly_savings.to_f
+        duration = @emergency_funds_deficit.to_f / @monthly_savings.to_f
        
         if (@total_duration + duration) < 12.0
             months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
             if @total_duration == 0
-                @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
-                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"              
+                @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund by #{@emergency_funds_deficit.to_currency}. If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
+                          it will take #{months_to_cover} to have the recommended 6 month Emergency fund.</li>"
             else
-                  @expert_details << "<li class='expert-notes'>Expert Notes: Your are behind your <b>Liquid Assets / Savings</b> by #{@move_funds.to_currency}. Once the credit card payment is done start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your emergency fund.
-                          It will take #{months_to_cover} to have the recommended 6 month emergency fund</li>"                     
+                  @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund by #{@emergency_funds_deficit.to_currency}. Once your Credit card loan is paid off, if you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
+                          it will take #{months_to_cover} to have the recommended 6 month Emergency fund.</li>"
             end
         end
         @total_duration += duration
@@ -312,12 +314,12 @@ class Question < ActiveRecord::Base
           @expert_details << "<li class='expert-notes'>Expert Notes: You are already making monthly payments on this.<br/>"
         else
           @expert_details << "<li class='expert-notes'>Expert Notes: You are not yet making monthly payments on this.
-                          Start paying off your <b>Credit card debt</b> first.<br/>"
+                          Consider paying off your <b>Credit card debt</b> first.<br/>"
         end
         #Add a comment as to how long it will take to pay off outright from savings
         if @monthly_savings > 0
           months_to_cover = financial.cc_debt_at_zero > @monthly_savings ?
-                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i + " months" : "less than a month"
+                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i + " month(s)" : "less than a month"
           @expert_details << "At your current monthly savings of #{@monthly_savings.to_currency}, it will take #{months_to_cover} to pay off the debt outright.</li>"
         else
           @expert_details << "</li>"
@@ -328,7 +330,7 @@ class Question < ActiveRecord::Base
       @expert_details << "<li class='red'>You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate.</li>"
       if @monthly_savings >= financial.cc_debt_gt_zero
          @expert_details << "<li class='expert-notes'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is greater than your credit card payment</b>.
-                  You can still buy this item if you pay off the credit card payment of #{financial.cc_debt_gt_zero} from your current monthly saving.</li>"
+                  You can still buy this item if you pay off your Credit card debt of #{financial.cc_debt_gt_zero} from your current monthly savings.</li>"
       else
         @expert_verdict = false
         expert_recommend2_credit_cart_debt
@@ -343,13 +345,14 @@ class Question < ActiveRecord::Base
     net_liquid = @addon_liquid_assets < 6 * @addon_total_expenses
     if net_liquid
       if (@addon_investment >= (8 * @addon_total_expenses) - @addon_liquid_assets) && (self.reason_to_buy == 1 || self.reason_to_buy == 2)
-          @expert_details << "<li class='green'>You don't have 6 times your Total Monthly expenses in <b>Liquid Assets / Savings</b> for your emergency fund but you do have some <b>Investments. </b><br/>"
-          @expert_details << "Since you said that you deserve it or need it, you can first secure your emergency fund by liquidating #{@move_funds.to_currency} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>"
+          @expert_details << "<li class='green'>You are short of your Emergency fund by #{@emergency_funds_deficit.to_currency}, however you do have some <b>Investments. </b><br/>"
+          #Recommend this only if the deficit is significant like 5%
+          @expert_details << "Since you said that you deserve it or need it, you can first secure your Emergency fund by liquidating #{@emergency_funds_deficit.to_currency} from your <b>Investments</b> and moving it to <b>Savings</b> and then make the purchase.</li>" if @emergency_funds_deficit > @emergency_funds_deficit_tolerance
       else
           @expert_details << "<li class='red'>Your <b>Liquid Assets / Savings</b> of #{@addon_liquid_assets.to_currency} remaining after this purchase is not sufficient to cover your Emergency fund. <br/>Recommended is 6 times your Total Monthly expenses.</li>"
-          if @monthly_savings >= @move_funds + financial.cc_debt_gt_zero
+          if @monthly_savings >= @emergency_funds_deficit + financial.cc_debt_gt_zero
             @expert_details << "<li class='expert-notes'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is greater than your emergency fund deficit.</b>
-                  You can still buy this item if you transfer #{@move_funds.to_currency} to your emergency fund from your current monthly saving to cover the deficit.</li>"
+                  You can still buy this item if you transfer #{@emergency_funds_deficit.to_currency} to your emergency fund from your current monthly saving to cover the deficit.</li>"
           else
               @expert_verdict = false
               expert_recommend3_liquid_assests
@@ -374,7 +377,7 @@ class Question < ActiveRecord::Base
   
       if @expert_verdict == true && (@monthly_savings > @retirement_deficit.abs)
             @expert_details << "<li class='expert-notes'>Expert Notes: You are #{@retirement_deficit.abs.to_i.to_currency} behind in your monthly <b>retirement contributions</b>.
-                          You can still buy this item if you start contributing #{@retirement_deficit.abs.to_i.to_currency} from your current monthly saving towards your <b>Retirement</b>.</li>"
+                          You can still buy this item if you start contributing #{@retirement_deficit.abs.to_i.to_currency} from your current monthly savings toward your <b>Retirement</b>.</li>"
       else
           if self.age > 30
             @expert_verdict = false 
@@ -435,7 +438,7 @@ class Question < ActiveRecord::Base
   def check_rule8_total_duration
     if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && @total_duration < 12.0
       if (@retirement_deficit >= 0)
-          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{@total_duration} months before you could afford this item</li>"
+          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{@total_duration} month(s) before you can afford this item</li>"
       end
     end
   end

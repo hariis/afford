@@ -1,24 +1,35 @@
 <%= javascript_include_tag 'jquery.cycle.lite.1.0.min' %>
+<%= javascript_include_tag 'jquery.lightbox-0.5.min' %>
+<%= stylesheet_link_tag 'jquery.lightbox-0.5' %>
 <script type="text/javascript">
    $j(function(){  // $(document).ready shorthand
       $j('#testimonials').cycle({
           delay:  1000,
           speed:  10000
       });
+      $j('#gallery a').lightBox();
    });
 </script>
 
 <div id="container">
 <div class="how-to">  
   
-    <div class="sub-title">How to get Started?</div>
-      <ul style="font-style:italic;">
-        <li>Tell us about your purchase and finances.</li><br/>
-        <li>We check how they are doing </li>
-        <span style="font-size:70%;">against some well-established money management guidelines and give you a clear picture of where you stand and if you
-        can afford your purchase or not.</span>
-        <br/><br/><li>Based on our report,</li> 
-        <span style="font-size:70%;">you can get an idea of how to secure yourself financially first.</span>
+    <div class="sub-title">How does it work?</div>
+      <ul style="">
+        <li>Tell us about your purchase</li>
+        <li>Provide us with your financial numbers<br/>
+        <span style="font-size:14px;font-style:italic;">No Account numbers of anything required.</span></li>
+        <li>We evaluate your financial health <br/>
+        <span style="font-size:14px;font-style:italic;">
+          against <%= link_to "some well-established money management guidelines", "#{DOMAIN}how",:class => 'how-to-link' %> <br/> and provide you with a report.
+          </span>
+          <span id="gallery" style="font-size:14px;font-style:italic;">
+            <a href="images/report-1.png" title="">Sample Report #1</a>  | 
+            <a href="images/report-2.png" title="">Sample Report #2</a>
+          </span>
+        </li>
+         <li>Get a Clear Picture of your finances</li>
+          <li>Make an informed decision</li>
       </ul>
 </div>
 
@@ -29,7 +40,7 @@
           <%= label_tag 'I want to' %><br/>
           <%= text_field_tag 'want_to_buy', '' , :size => 20, :maxlength => 200 %><br/>
 
-          <%= submit_tag 'Can I Afford it Now?', :class => 'ask-button' %>
+          <%= submit_tag 'Can I Afford it Now?', :class => 'ask-button button' %>
 
         <% end %>
   </div>
@@ -101,6 +112,7 @@ padding:10px;
   outline:0 none;
   padding:0;
   vertical-align:baseline;
+  margin-bottom: 15px;
 }
 .starter-form {  
   background-color: #ffddd0;
@@ -114,19 +126,22 @@ padding:10px;
   margin-left:600px;
   max-width:36em;
 }
-.ask-button {
--moz-border-radius:8px 8px 8px 8px;
-background-color:#ff4800;
-/* background-image:url("/images/v2/button_overlay.png"); */
-background-repeat:repeat-x;
-border:2px solid #CCCCCC;
-color:white;
-cursor:pointer;
+
+.button {
+  -moz-border-radius:8px 8px 8px 8px;
+  cursor:pointer;
 display:block;
 font-size:0.8em;
 font-weight:bold;
 margin:0 10px 0 0;
 text-decoration:none;
+}
+.ask-button {
+background-color:#ff4800;
+/* background-image:url("/images/v2/button_overlay.png"); */
+background-repeat:repeat-x;
+border:2px solid #CCCCCC;
+color:white;
 padding: 5px;
 margin-top: 10px;
 }
@@ -148,6 +163,7 @@ margin-top: 10px;
   font-style:italic;
   font-family:Georgia,serif;
 }
+
   </style>
 
 <div style="float:left;">

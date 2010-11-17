@@ -171,22 +171,23 @@ h1, h2,h3 {
     clear:both;
 }
 #tagline {
-    margin-top:32px;
-    margin-bottom1:20px;   
+    margin-top:60px;
+    margin-bottom:20px;   
 }
 #tagline ul {    
     background-color:#fff;
     font-size:23px;
-    height:65px;
+    height:90px;
     overflow:hidden;   
     line-height:1.3em;
     clear:both;
-    width:715px;
+    width:810px;
 }
 #tagline ul li {
     list-style:none;
     text-align:left;
-    list-style-image: url('/images/tick.png')
+    list-style-image: url('/images/tick.png');
+    color:#038819;
 }
 .snippet {
     border-color:#DDDDDD #CCCCCC #BBBBBB #DDDDDD;
@@ -301,7 +302,7 @@ cursor: pointer;
 #block-text {
     padding: 0px 20px;
     text-align:left;
-    line-height:24px;
+    line-height:1.8em;
     font-family:Georgia,serif;
 }
 #block-text p{    
@@ -475,3 +476,4 @@ input#question_item_name {
         padding-left:20px;
         width:5%;
 }
+a.
