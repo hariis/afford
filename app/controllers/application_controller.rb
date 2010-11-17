@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownAction,      :with => :render_not_found
   end
 
-  def feedback
+  def feedback1
       experience = Experience.new
       experience.feedback_type = Experience::COMMENT_TYPES.index(params[:feedback_type].to_i) if params[:feedback_type]
       experience.description = params[:description]
@@ -29,7 +29,25 @@ class ApplicationController < ActionController::Base
       Notifier.deliver_send_experience(experience)
       render :nothing => true
   end
-   
+
+  def feedback
+     render :update do |page| 
+       if params[:feedback_type].to_i == 0
+          page.replace_html "feedback-error-status", "Please select a feedback type"
+       elsif params[:description] == "Let us know what you think!"
+          page.replace_html "feedback-error-status", "Please add some details and share again"       
+       else
+          experience = Experience.new
+          experience.feedback_type = Experience::COMMENT_TYPES.index(params[:feedback_type].to_i) if params[:feedback_type]
+          experience.description = params[:description]
+          experience.email = params[:email] if params[:email]
+          Notifier.deliver_send_experience(experience)
+          page.visual_effect :toggle_blind, "feedback", :duration => 0.5
+          #render :nothing => true
+       end
+     end
+ end
+ 
   private 
 
     def check_admin_user
