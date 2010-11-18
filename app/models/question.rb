@@ -322,7 +322,7 @@ class Question < ActiveRecord::Base
         #Add a comment as to how long it will take to pay off outright from savings
         if @monthly_savings > 0
           months_to_cover = financial.cc_debt_at_zero > @monthly_savings ?
-                        "approximately " + (financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i + " month(s)" : "less than a month"
+                        "approximately #{(financial.cc_debt_at_zero.to_f / @monthly_savings.to_f).to_i} month(s)" : "less than a month"
           @expert_details << "At your current monthly savings of #{@monthly_savings.to_currency}, it will take #{months_to_cover} to pay off the debt outright.</li>"
         else
           @expert_details << "</li>"
@@ -332,7 +332,7 @@ class Question < ActiveRecord::Base
     else      
       if @monthly_savings >= financial.cc_debt_gt_zero
          @expert_details << "<li class='green'>You have #{financial.cc_debt_gt_zero.to_currency} in <b>Credit card debt</b> @ more than 0 % interest rate.</li>"
-         @expert_details << "<li class='expert-alert'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is adequate to clear your Credit card debt..
+         @expert_details << "<li class='expert-alert'>Expert Notes: Your monthly savings of #{@monthly_savings.to_currency} is adequate to clear your Credit card debt.
                   Consider paying it off first.</li>"
       else
         @expert_verdict = false
