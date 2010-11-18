@@ -4,28 +4,36 @@
 </div>
 
 
-<div id="expert-response">
-<h3>Expert Verdict</h3>
-<div style="padding-left:58px;">
-  <% if @expert_details.empty? %>
-     <span id='expert-denied'>Expert does not have sufficient data</span>
-  <% else %>
-      <% if @expert_verdict == true %>
-        <span class='expert-approved'><%= image_tag ('/images/thumb_up.png') %> Approved</span>
-      <% else %>
-        <span class='expert-denied'><%= image_tag ('/images/thumb_down.png') %> Denied</span>
-      <% end %>
-  <% end %>  
-</div>
+<div id="expert-response" style="font-family:monospace;width:860px;margin:0 auto;">
+
+  <h3>Expert Verdict</h3>
+  <div style="padding-left:58px;">
+    <% if @expert_details.empty? %>
+       <span id='expert-denied'>Expert does not have sufficient data</span>
+    <% else %>
+        <% if @expert_verdict == true %>
+          <span class='expert-approved'><%= image_tag ('/images/thumb_up.png') %> Approved</span>
+        <% else %>
+          <span class='expert-denied'><%= image_tag ('/images/thumb_down.png') %> Denied</span>
+        <% end %>
+    <% end %>
+  </div>
   <h3>Report</h3>
   <ul>
     <%= @expert_details %>
   </ul>
+  <br/>
 
-  <div id="notification-prompt" style="font-family: Georgia;background-color:#F1FAFE;color:#037EC4;width:830px;margin:0 auto;">
+
+  <div style="color:#037EC4;width:780px;margin:0 auto;font-size:12px;">
+  If you have any questions or need clarification about the Calculations performed, please visit the page <br/>
+    <%= link_to "Learn How Expert Calculates", '/how'  %> for a detailed explanation.
+  </div>
+<br/>
+  <div id="notification-prompt" style="background-color:#F1FAFE;color:#037EC4;width:780px;margin:0 auto;">
     
-    We are constantly working to provide you with an even better view of your financial state. <br/> We will also be
-    adding exciting new tools to help you increase your affordability.
+    We are constantly working to provide you with an even better view of your financial status and will also be
+    adding exciting new tools to help you increase your Affordability.
     <br/><br/>
     If you would like us to keep you informed of such updates, please enter your Email address here:
     <% form_remote_tag :url => {:action => 'notify_on_product_updates'} do %>
@@ -38,32 +46,35 @@
 
   <h3><%= link_to_function "Helpful Links >>" , visual_effect(:toggle_blind, "links", :duration => 0.5) %></h3>
   <ul id="links" style="display:none;">
-    <li><%= link_to "66 Ways to Save Money", "http://www.getrichslowly.org/blog/2008/04/08/66-ways-to-save-money/" %>
-    <li><%= link_to "Make More Money: How to Supercharge Your Income", "http://www.getrichslowly.org/blog/2010/11/10/make-more-money-how-to-supercharge-your-income/" %>
+    <li><%= link_to "66 Ways to Save Money", "http://www.getrichslowly.org/blog/2008/04/08/66-ways-to-save-money/" %> </li>
+    <li><%= link_to "Make More Money: How to Supercharge Your Income", "http://www.getrichslowly.org/blog/2010/11/10/make-more-money-how-to-supercharge-your-income/" %> </li>
     <li><%= link_to "Aim to build a retirement nest egg that is 25 times the annual investment income you need" , "http://money.cnn.com/popups/2006/moneymag/25_rules/10.html"%> </li>
     <li><%= link_to "The Balanced Money Formula","http://www.getrichslowly.org/blog/2008/10/27/the-balanced-money-formula/" %> proposed by Elizabeth Warren and Amelia Tyagi in their excellent book, All Your Worth: The Ultimate Lifetime Money Plan states that:<br/>
     The Balanced Money Formula is based on your net income (your income after  taxes). Warren and Tyagi say that, ideally, no more than 50% of your paycheck should be spent on Needs (and keeping them below 35% is best). Of the remaining amount, at least 20% should be devoted to Saving, while up to 30% can be spent on Wants.</li>
   </ul>
 
+
+  <div id="question">
+    <h3><%= link_to_function "Next Steps >>" , visual_effect(:toggle_blind, "next", :duration => 0.5) %></h3>
+    <ol id="next" style="display:none;">
+      <li>
+    Your question is now available on our web site. You can view the Expert report anytime and also track Community responses by visiting the link:
+    <%= link_to "#{DOMAIN}question/#{@question.id}", :controller => :questions, :action => :show, :id => @question.id  %>
+    </li>
+    <li>
+      You can also view and respond to others' questions by visiting the <%= link_to "main page", '/'  %>
+    </li>
+    <li>
+      If you have any questions or need clarification about the Calculations performed, please visit the page
+      <%= link_to "Learn How Expert Calculates", '/how'  %> for a detailed explanation.
+    </li>
+    </ol>
+  </div>
+
 </div>
 
-<div id="question">
-  <h3><%= link_to_function "Next Steps >>" , visual_effect(:toggle_blind, "next", :duration => 0.5) %></h3>
-  <ol id="next" style="display:none;">
-    <li>
-  Your question is now available on our web site. You can view the Expert report anytime and also track Community responses by visiting the link:
-  <%= link_to "#{DOMAIN}question/#{@question.id}", :controller => :questions, :action => :show, :id => @question.id  %>
-  </li>
-  <li>
-    You can also view and respond to others' questions by visiting the <%= link_to "main page", '/'  %>
-  </li>
-  <li>
-    If you have any questions or need clarification about the Calculations performed, please visit the link 
-    <%= link_to "Learn How Expert Calculates", '/how'  %> for a detailed explanation.
-  </li>
-  </ol>
-</div>
-<div id="rules-feedback">
+
+<div id="rules-feedback" style="width:860px;margin:0 auto;">
   <h2>Please help us Improve</h2>
     <% form_remote_tag :url => { :action => "report_feedback" },
                       :before => "Element.show('spinner');",:complete => "Element.hide('spinner')" do %>
@@ -83,6 +94,6 @@
        
     <% end %>
 </div>
-<div id="feedback-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
+<div id="feedback-status" style="width:860px;margin:0 auto;background-color:#378314;font-weight:bold;color:#fff;"></div>
 
 
