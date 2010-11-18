@@ -11,7 +11,7 @@
 <div>
   <div style="float:left;" id="prompt-user-response">
     <% if !current_user || (current_user && !@question.is_responded_by(current_user)) %>
-           <%= link_to_function "Your Response?" do |page|
+           <%= link_to image_tag('/images/comment.png') %> <%= link_to_function "Your Response?" do |page|
              page.delay(0.1) do
                 page.visual_effect :fade,  'expert-response'
                 page.visual_effect :fade, 'financial-details'
@@ -25,7 +25,7 @@
       <% end %>
   </div>
   <div style="float:right;">
-     <%= link_to_function "View Expert's Response" do |page|
+     <%= link_to image_tag('/images/report.png') %> <%= link_to_function "View Expert's Response" do |page|
        page.delay(0.1) do
         page.visual_effect :fade,  'user-response'
         page.visual_effect :fade,  'user-response-status'
@@ -153,7 +153,7 @@
   </div>
 
 <div id="all-responses">
-  <h2 style="margin-left:8px"><a name="responses">Community Responses (<%= @question.responses.size %>)</a></h2>
+  <h2 style="margin-left:8px"><a name="responses"><%= image_tag('/images/group.png') %> Community Responses (<%= @question.responses.size %>)</a></h2>
   <div id="notification-prompt">
   <% form_remote_tag :url => {:action => 'subscribe_responses', :qid => @question.id}, :update => 'notification-status' do %>
       <%= label_tag "Notify Me when a new Response is posted" %>

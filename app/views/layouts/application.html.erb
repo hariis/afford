@@ -48,10 +48,10 @@
   
                   <% if current_user %>
                       <% link_to "Home", root_path if controller.action_name != 'index' %>
-                      <b><%= current_user.username.capitalize %></b> | <%= link_to "LOGOUT", logout_path %> 
+                      <b><%= current_user.username.capitalize %></b> | <%= link_to "#{image_tag('/images/lock_open.png')} LOGOUT", logout_path %> 
                    <% else %>                                    
                           <% link_to "Home", root_path if controller.action_name != 'index' %>
-                          <%= link_to "LOGIN", login_path unless controller_name == 'user_sessions' %><br/>
+                          <%= link_to "#{image_tag('/images/lock.png')} LOGIN", login_path unless controller_name == 'user_sessions' %><br/>
                    <% end %>
                    <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>     
                       <% if current_user %><br/>
