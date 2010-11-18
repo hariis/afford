@@ -337,6 +337,13 @@ cursor: pointer;
   color:#037EC4;
   font-size:80%;
 }
+#expert-response ul li.expert-alert{
+  list-style-image: url('/images/note_error.png');
+  line-height:1.5em;
+  margin-left:25px;
+  color:#037EC4;
+  font-size:80%;
+}
 #expert-response ul li.expert-tips{
   list-style-image: url('/images/lightbulb.png');
   line-height:1.5em;
