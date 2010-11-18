@@ -267,10 +267,10 @@ class Question < ActiveRecord::Base
         if (@total_duration + duration) < 12.0
             months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} months" 
             if @total_duration == 0
-                @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund by #{@emergency_funds_deficit.to_currency}. If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
+                @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
                           it will take #{months_to_cover} to have the recommended amount.</li>"
             else
-                  @expert_details << "<li class='expert-notes'>Expert Notes: You are short of your Emergency Fund by #{@emergency_funds_deficit.to_currency}. Once your Credit card loan is paid off, if you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
+                  @expert_details << "<li class='expert-notes'>Expert Notes: Once your Credit card loan is paid off, if you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards it,
                           it will take #{months_to_cover} to have the recommended amount.</li>"
             end
         end
@@ -445,7 +445,8 @@ class Question < ActiveRecord::Base
   def check_rule8_total_duration
     if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && @total_duration < 12.0
       if (@retirement_deficit >= 0)
-          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{@total_duration} month(s) before you can afford this item</li>"
+          how_long_before_you_can_afford_it = @total_duration < 1.0 ? "less than a month" : "approximately #{@total_duration.to_i} months" 
+          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{how_long_before_you_can_afford_it} month(s) before you can afford this item</li>"
       end
     end
   end
