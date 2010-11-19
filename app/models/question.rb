@@ -251,7 +251,7 @@ class Question < ActiveRecord::Base
       @total_duration += duration     
       if duration < 12.0
           months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} month(s)"
-          @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt, <br/>
+          @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt,
                                 it will take #{months_to_cover} to pay off your credit card debt.</li>"
       end
     else
