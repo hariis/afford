@@ -125,26 +125,26 @@ class Question < ActiveRecord::Base
           #only investment - item cost should be equal to pm_investment_amount
           if question.pm_saving_amount > 0 && question.pm_investment_amount <= 0 && question.pm_financing_amount <= 0
             if question.pm_saving_amount != item_cost
-              question.errors.add("Your", " contribution from Savings does not match the Item cost of $#{item_cost}")
+              question.errors.add("Your", " Contribution from Savings does not match the Purchase cost of $#{item_cost}")
             end
           end
 
           if question.pm_investment_amount > 0 && question.pm_saving_amount <= 0 && question.pm_financing_amount <= 0
             if question.pm_investment_amount != item_cost
-              question.errors.add("Your", " contribution from Investments does not match the Item cost of $#{item_cost}")
+              question.errors.add("Your", " Contribution from Investments does not match the Purchase cost of $#{item_cost}")
             end
           end
 
           if question.pm_saving_amount > 0 && question.pm_investment_amount > 0 && question.pm_financing_amount <= 0
             if question.pm_saving_amount + question.pm_investment_amount != item_cost
-              question.errors.add("Your", " contribution from Savings and Investments does not match the Item cost of $#{item_cost}")
+              question.errors.add("Your", " Contribution from Savings and Investments does not match the Purchase cost of $#{item_cost}")
             end
           end  
 
           unless question.errors.size > 0
             if question.pm_investment_amount > 0
               unless investments - question.pm_investment_amount >= 0
-                question.errors.add("Your", " investments fund of $#{investments} is not sufficient to support this purchase")
+                question.errors.add("Your", " Total Investments of $#{investments} is not sufficient to support this purchase")
               end
             end       
           end
@@ -240,7 +240,7 @@ class Question < ActiveRecord::Base
   
   def expert_recommend1_income_expenses
     @expert_details << "<li class='expert-notes'>Expert Notes: Please start a savings plan and/or generate more Income.
-                     Some helpful link to save and make more money.<br/>
+                     <br/>Some Helpful links:<br/>
                      http://www.getrichslowly.org/blog/2008/04/08/66-ways-to-save-money/<br/>
                      http://www.getrichslowly.org/blog/2010/11/10/make-more-money-how-to-supercharge-your-income/</li>"
   end
@@ -251,7 +251,7 @@ class Question < ActiveRecord::Base
       @total_duration += duration     
       if duration < 12.0
           months_to_cover = duration < 1.0 ? "less than a month" : "approximately #{duration.to_i} month(s)"
-          @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt, <br/>
+          @expert_details << "<li class='expert-notes'>Expert Notes: If you start contributing your current monthly savings of #{@monthly_savings.to_currency} towards your Credit card debt,
                                 it will take #{months_to_cover} to pay off your credit card debt.</li>"
       end
     else
@@ -295,8 +295,8 @@ class Question < ActiveRecord::Base
     else
       @expert_verdict = false
       includes = []
-      includes << "recurring cost of the item " if self.recurring_item_cost > 0
-      includes << "recurring loan payment for the item " if self.pm_financing_amount > 0
+      includes << "recurring cost of your Purchase " if self.recurring_item_cost > 0
+      includes << "recurring loan payment for your Purchase " if self.pm_financing_amount > 0
       include_string = includes.size > 0 ? " including " + includes.to_sentence : ""
       @expert_details << "<li class='red'>Your Total monthly expenses #{include_string}  will be #{@addon_total_expenses.to_currency} after the purchase."
       @expert_details << " It will exceed your Net Income by #{(@monthly_savings * -1).to_currency}.</li>"
@@ -375,7 +375,7 @@ class Question < ActiveRecord::Base
   def check_rule4_retirement_payment_current
     #TODO retirement monthly contribution > = supposed to be (from lookup table)    
     if @retirement_deficit == 0
-      @expert_details << "<li class='green'>Your #{financial.monthly_retirement_contribution.to_currency} monthly <b>retirement contribution</b> is good.</li>"
+      @expert_details << "<li class='green'>Your #{financial.monthly_retirement_contribution.to_currency} monthly <b>retirement contribution</b> is in line with the expected amount.</li>"
     else
       if @expert_verdict && (@monthly_savings >= @emergency_funds_deficit + financial.cc_debt_gt_zero + @retirement_deficit.abs)
         @expert_details << "<li class='green'>Based on your age, your monthly <b>retirement contribution</b> of #{financial.monthly_retirement_contribution.to_currency} is less than 8% of your net income.</li>" if age <= 40
@@ -437,16 +437,16 @@ class Question < ActiveRecord::Base
       if self.pm_saving_amount > 0 || self.pm_investment_amount > 0
          cash_down = self.pm_saving_amount + self.pm_investment_amount
          final_cost = compound_interest(cash_down, 65-self.age)
-         @expert_details << "<li class='expert-tips'>Expert Tips: #{(cash_down.to_currency)} invested now at 8% yearly returns would be worth #{final_cost.to_currency} at the age of 65."
+         @expert_details << "<li class='expert-tips'>Expert Tips: #{(cash_down.to_currency)} invested now at 8% yearly returns would be worth #{final_cost.to_currency} at the age of 65." if cash_down >= 1000
       end
     end
   end
 
   def check_rule8_total_duration
     if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && @total_duration < 12.0
-      if (@retirement_deficit >= 0)
+      if (@retirement_deficit == 0)
           how_long_before_you_can_afford_it = @total_duration < 1.0 ? "less than a month" : "approximately #{@total_duration.to_i} months" 
-          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{how_long_before_you_can_afford_it} month(s) before you can afford this item</li>"
+          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{how_long_before_you_can_afford_it} month(s) before you can afford this item.</li>"
       end
     end
   end

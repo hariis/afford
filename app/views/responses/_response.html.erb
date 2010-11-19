@@ -1,3 +1,4 @@
+<div class="<%= cycle('snippet-even','snippet-odd') %>">
 <div style="border-bottom: 1px dotted #689d02;">
 <%= response_counter + 1 %>. <%= response.user.username %> says <br/>
 Verdict: <%= response.verdict? ? "<span style='color:green;font-weight:bold;'>Yes</span>" : "<span style='color:red;font-weight:bold;'>No</span>" %><br/>
@@ -9,5 +10,7 @@ Reason: <%= response.reason %><br/>
     <br/><%= link_to "Delete this response[X]", {:controller => :responses, :action => :destroy, :id => response.id}, :confirm => 'Are you sure? This will wipe out this response.', :method => :delete %>
 <% end %>
 
-</div
+</div>
+</div>
+
 </div>

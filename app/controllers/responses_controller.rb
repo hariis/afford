@@ -37,6 +37,7 @@ class ResponsesController < ApplicationController
         page.hide "user-response" if @result
         page.replace_html 'user-response-status', "" if @result
         page.replace_html 'user-response-status', @status_string unless @result
+        page.insert_html :bottom, 'all-responses', :partial => 'response', :object => @response, :locals => {:response_counter => @question.responses.size - 1}
       end
 
   end   
