@@ -42,7 +42,7 @@
    </div>
 </div>
 
-<%= link_to_function( "View Financial Details",  :id => "p_more_link_down", :style => 'display:none;') do |page|
+<%= link_to image_tag('/images/money.png') %> <%= link_to_function( "View Financial Details",  :id => "p_more_link_down", :style => 'display:none;') do |page|
         page.show "p_more_link_up"
         page.hide "p_more_link_down"
         page.delay(0.5) do
