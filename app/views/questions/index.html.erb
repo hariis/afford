@@ -4,8 +4,9 @@
 <script type="text/javascript">
    $j(function(){  // $(document).ready shorthand
       $j('#testimonials').cycle({
-          delay:  1000,
-          speed:  10000
+          delay:  5000,
+          speed:  1000,
+          timeout: 10000
       });
       $j('#gallery a').lightBox();
    });
@@ -48,14 +49,26 @@
   <div id="testimonials">
 
     <div id="testimonial_1">
-      I thought I was doing pretty good until the Expert pointed out to me that my Savings were not enough for an Emergency Fund.
+      I thought I was doing pretty good until the Expert pointed out that my Savings were not enough to cover the Emergency Fund.
       Had never thought of that. Thanks!
       <div class="author">Mike L.</div>
     </div>
     <div id="testimonial_2">
       It never occurred to me that a couple of hundred dollars less into my 401(k) per month would result in my nest egg going lower
-      by $300K when I retire. I am going to think twice about my purchase now.
+      by $300K when I retire. Made me think twice.
        <div class="author">Lisa B.</div>
+    </div>
+    <div id="testimonial_3">
+      I like it when [report] tells me the future value of the money that I am going to spend now.
+       <div class="author">Paul A.</div>
+    </div>
+    <div id="testimonial_4">
+      It is useful when the report tells me when I can afford the item approximately when I am denied.
+       <div class="author">Ariel S.</div>
+    </div>
+    <div id="testimonial_5">
+       It's good to confirm that all my bases are covered before making my purchase. The report does a fine job of giving me a quick summary.
+       <div class="author">Kathy D.</div>
     </div>
   </div>
 </div>  
@@ -158,10 +171,10 @@ margin-top: 10px;
 }
 #testimonials{
   height:150px;
-  background-color:#F1FAFE;
   font-size:large;
   font-style:italic;
   font-family:Georgia,serif;
+  line-height: 1.5;
 }
 
   </style>
