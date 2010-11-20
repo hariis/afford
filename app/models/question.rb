@@ -401,13 +401,15 @@ class Question < ActiveRecord::Base
   
   def check_rule5_total_loan_payment
     #Total loan payment + Recurring Loan Payment for item < 36% of Gross monthly income. (+- 4%)
+    gap_to_catchup = @addon_total_loan_payment - (0.36 * financial.gross_income)
     if @addon_total_loan_payment <= 0.36 * financial.gross_income
        @expert_details << "<li class='green'>Your <b>Total Loan Payments</b> of #{@addon_total_loan_payment.to_currency} are less than or equal to 36% of your Gross income.</li>"
     elsif @addon_total_loan_payment <= 0.40 * financial.gross_income
-        #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36 
-        gap_to_catchup = @addon_total_loan_payment - (0.36 * financial.gross_income)
+        #loan_payment = (addon_total_loan_payment/financial.gross_income)*100 - 36         
         @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency}<b> Total Loan Payments</b> are slightly greater than 36% of your Gross income.</li>
                           <li class='expert-alert'>Expert Notes: You can still buy this item if you can reduce your Total Monthly loan payments by #{gap_to_catchup.to_i.to_currency}</li>"
+    elsif @expert_verdict == true && financial.deferred_loan_amount <= 0  #you are clean. no denial from the previous rules and deffered loan
+        @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income but you are doing well otherwise with your finances. Consider reducing your monthly loan payment by #{gap_to_catchup.to_i.to_currency}.</li>"
     else
         @expert_verdict = false
         @expert_details << "<li class='red'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
@@ -416,6 +418,8 @@ class Question < ActiveRecord::Base
     end
     @expert_details << "<br/>"
   end
+  
+  @expert_verdict_on_total_loan_payment
   
   def check_rule6_deferred_loan
     #if Deferred loans > 0, item cost < 1000
@@ -443,14 +447,14 @@ class Question < ActiveRecord::Base
   end
 
   def check_rule8_total_duration
-    if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && @total_duration < 12.0
-      if (@retirement_deficit == 0)
-          how_long_before_you_can_afford_it = @total_duration < 1.0 ? "less than a month" : "approximately #{@total_duration.to_i} months" 
-          @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{how_long_before_you_can_afford_it} month(s) before you can afford this item.</li>"
-      end
+    if (self.reason_to_buy != 1 && self.reason_to_buy != 2)
+        if @expert_verdict == false && @monthly_savings > 0 && (@addon_total_loan_payment <= 0.40 * financial.gross_income) && 
+           @total_duration < 12.0 && (@retirement_deficit == 0 || age <= 30)
+              how_long_before_you_can_afford_it = @total_duration < 1.0 ? "less than a month" : "approximately #{@total_duration.to_i} months" 
+              @expert_details << "<li class='expert-tips'>If you follow the suggested guidelines, it will take #{how_long_before_you_can_afford_it} month(s) before you can afford this item.</li>"
+        end
     end
   end
-  
   #-------------------------------------------------------------------------------
 end
 
