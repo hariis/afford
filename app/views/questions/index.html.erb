@@ -17,8 +17,8 @@
   
     <div class="sub-title">How does it work?</div>
       <ul style="">
-        <li>Tell us about your purchase</li>
-        <li>Provide us with your financial numbers<br/>
+        <li>Tell us about your planned <i>Purchase</i></li>
+        <li>Provide us with your <i>financial numbers</i><br/>
         <span style="font-size:14px;font-style:italic;">No Account numbers of anything required.</span></li>
         <li>We evaluate your financial health <br/>
         <span style="font-size:14px;font-style:italic;">
@@ -30,7 +30,7 @@
           </span>
         </li>
          <li>Get a Clear Picture of your finances</li>
-          <li>Make an informed decision</li>
+          <li>Make an <i>Informed</i> decision</li>
       </ul>
 </div>
 
@@ -38,7 +38,7 @@
   <div class="starter-form">
         <div class="sub-title">Ask Your Question </div>
         <% form_tag('/questions/new') do %>
-          <%= label_tag 'I want to' %><br/>
+          <i><%= label_tag 'I want to' %></i><br/>
           <%= text_field_tag 'want_to_buy', '' , :size => 20, :maxlength => 200 %><br/>
 
           <%= submit_tag 'Can I Afford it Now?', :class => 'ask-button button' %>
