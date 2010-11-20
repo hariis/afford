@@ -39,9 +39,7 @@
               <div id="logo">
                  <%= link_to image_tag('/images/newlogo-pic-w.png'), root_path %>
               </div>
-              
                <div id="login">
-                 
                   <% if current_user && current_user.username == 'admin' %>
                     <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
                   <% end %>
@@ -60,10 +58,10 @@
                                agreed with Expert: <%= @user_agreed_with_expert %>  |
                                agreed with Community: <%= @user_agreed_with_community %>
                             </div><br/>
-                       <% end %>      
+                       <% end %>                       
                    <% end %>
-                   <b><% link_to "Learn How Expert Calculates", "#{DOMAIN}how", :class => 'learn-button button' %></b>
-
+                   <b><% link_to "Learn How Expert Calculates", "#{DOMAIN}how", :class => 'learn-button button' %></b>                   
+                  <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.caniafforditnow.com%2F&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:40px; padding-top:2px;" allowTransparency="true"></iframe>
                </div>
           </div>
           
