@@ -409,7 +409,8 @@ class Question < ActiveRecord::Base
         @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency}<b> Total Loan Payments</b> are slightly greater than 36% of your Gross income.</li>
                           <li class='expert-alert'>Expert Notes: You can still buy this item if you can reduce your Total Monthly loan payments by #{gap_to_catchup.to_i.to_currency}</li>"
     elsif @expert_verdict == true && financial.deferred_loan_amount <= 0  #you are clean. no denial from the previous rules and deffered loan
-        @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income but you are doing well otherwise with your finances. Consider reducing your monthly loan payment by #{gap_to_catchup.to_i.to_currency}.</li>"
+        @expert_details << "<li class='green'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income but you are doing well otherwise with your finances. </li>
+                           <li class='expert-alert'>Expert Notes: Consider reducing your monthly loan payments by #{gap_to_catchup.to_i.to_currency}.</li>"
     else
         @expert_verdict = false
         @expert_details << "<li class='red'>Your #{@addon_total_loan_payment.to_currency} <b>Total Loan Payments</b> are greater than 36% of your Gross Income.</li>"
