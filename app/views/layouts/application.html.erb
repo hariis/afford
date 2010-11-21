@@ -43,7 +43,7 @@
                   <% if current_user && current_user.username == 'admin' %>
                     <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
                   <% end %>
-                  <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.caniafforditnow.com%2F&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
+                  <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
                   <% if current_user %>
                       <% link_to "Home", root_path if controller.action_name != 'index' %>
                       <b><%= current_user.username.capitalize %></b> | <%= link_to "#{image_tag('/images/lock_open.png')} LOGOUT", logout_path %> 
