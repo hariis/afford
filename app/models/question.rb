@@ -66,7 +66,22 @@ class Question < ActiveRecord::Base
         end
       end
   end
-  
+
+  validates_each :recurring_item_cost, :on => :save do |record,attr,value|
+      if value.blank?
+        #record.errors.add(attr,": Please enter the item cost")
+      elsif !Question.is_a_number?(value.to_i)
+        record.errors.add(attr,": Please enter a valid value")
+      else
+        case attr
+        when :recurring_item_cost
+            if value.to_i < 0 || value.to_i > 10000 then
+                record.errors.add(attr,": We can calculate upto $10,000 only")
+            end
+        end
+      end
+  end
+
  def self.is_a_number?(s)
     s.to_s.gsub(/,/,'').match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
  end

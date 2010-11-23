@@ -192,6 +192,7 @@ class QuestionsController < ApplicationController
             Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
             if @question.errors.size > 0
                 @item_cost = question_personal_item.item_cost
+                @recurring_item_cost = question_personal_item.recurring_item_cost
                 render :action => "payment_mode"
             else
                 session[:new_question_payment] = @question
@@ -204,6 +205,7 @@ class QuestionsController < ApplicationController
     else
         @reason_to_buy = @question.reason_to_buy
         @item_cost = question_personal_item.item_cost
+        @recurring_item_cost = question_personal_item.recurring_item_cost
         render :action => "payment_mode"
     end
   end
