@@ -5,8 +5,8 @@ body {
   line-height: 1.3em;
   width:100%;
   margin: 0 auto;
-  background-color:#89B556;
-  background:url("/images/background.jpg") repeat-y scroll 50% 0 #89B556;
+  /* background-color:#89B556;*/
+  /*background:url("/images/background.jpg") repeat-y scroll 50% 0 #89B556;*/
 }
 
 p, ol, ul, td {
@@ -14,8 +14,7 @@ p, ol, ul, td {
   font-size:   16px;
   line-height: 1.3em;
   width:100%;
-  margin: 0 auto;
-  background-color1:#eefad6;
+  margin: 0 auto;  
 }
 
 pre {
@@ -24,7 +23,7 @@ pre {
   font-size: 12px;
 }
 select {
-    background-color:#eefad6;
+    
 }
 a {
 color:#037ec4;
@@ -166,7 +165,7 @@ h1, h2,h3 {
     color:#038819;
 }
 .warning {
-    color:#B20804;
+    
     font-weight: bold;
     clear:both;
 }
@@ -188,6 +187,7 @@ h1, h2,h3 {
     text-align:left;
     list-style-image: url('/images/tick.png');
     color:#038819;
+    font-family:Georgia,sans-serif;
 }
 .snippet {
     border-color:#DDDDDD #CCCCCC #BBBBBB #DDDDDD;
@@ -254,8 +254,7 @@ cursor: pointer;
 #user-stat {
     float:left;
     color:#FF4800;
-    margin-left:10px;
-    border-bottom1:1px dotted;
+    margin-left:10px;    
 }
 #user-response ul li {
     list-style:none;
@@ -372,8 +371,12 @@ input[type="text"],select {
     margin-top:3px;
     padding:3px;
 }
-#financial-input input[type="text"], #question-input input[type="text"]{
+
+#financial-input input[type="text"] {
     width:25%;
+    font-weight:bold;
+}
+#question-input input[type="text"]{
     font-weight:bold;
 }
 #financial-input label, #question-input1 label {
@@ -505,4 +508,4 @@ input#question_item_name {
         padding-left:20px;
         width:5%;
 }
-a.
+
