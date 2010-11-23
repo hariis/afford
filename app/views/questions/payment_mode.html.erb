@@ -1,16 +1,19 @@
 <% form_for(@question,  :url => {:action => :step3}) do |f| %>
   <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
 
+  <%= @question.age %>
   <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>
-
-  <p style="margin-left:10px;width:97.5%;margin-top:50px">
-    <% if current_user %>
-      By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
-      <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil, :onclick => 'return finalCheck()'  %>
-    <% else %>
-      <%= f.submit 'Next >', :onclick => 'return finalCheck()' %>
-    <% end %>
-  </p>
+  
+  <fieldset style="margin-top:30px;">
+    <p>
+      <% if current_user %>
+        By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
+        <br/><span style="margin-left:35%;"><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil, :onclick => 'return finalCheck()'  %></span>
+      <% else %>
+        <span style="margin-left:46%;"><%= f.submit 'Next >', :onclick => 'return finalCheck()' %></span>
+      <% end %>
+    </p>
+  </fieldset>
 <% end %>
 
 

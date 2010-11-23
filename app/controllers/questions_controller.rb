@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
       @question.item_name = "Example: Buy a Car"
     end
     
-    @reason_to_buy = "0"
+    #@reason_to_buy = "0"
 
     respond_to do |format|
       format.html 
@@ -138,16 +138,19 @@ class QuestionsController < ApplicationController
     params[:question][:recurring_item_cost] = remove_commas(params[:question][:recurring_item_cost])
     @question = Question.new(params[:question])
     
-    @question.nick_name = current_user.username if current_user
+    #@question.nick_name = current_user.username if current_user
     
-    attributes_to_validate = ['item_name','reason_to_buy','item_cost','recurring_item_cost', 'age']
-    attributes_to_validate << 'nick_name' unless current_user
-    if Question.valid_for_attributes( @question, attributes_to_validate) && (current_user || @question.is_nick_name_unique)
+    #'reason_to_buy''age'
+    #attributes_to_validate << 'nick_name' unless current_user
+    #&& (current_user || @question.is_nick_name_unique)         
+    attributes_to_validate = ['item_name','item_cost','recurring_item_cost']
+    #attributes_to_validate << 'nick_name' unless current_user
+    if Question.valid_for_attributes( @question, attributes_to_validate) #&& (current_user || @question.is_nick_name_unique)
       #.. Save user in session and go to step
       session[:new_question_item] = @question
       redirect_to :controller => :financials, :action => :new
     else
-       @reason_to_buy = @question.reason_to_buy
+       #@reason_to_buy = @question.reason_to_buy
        @question.item_name = "Example: Buy a Car" if @question.item_name.blank?
        render :action => "index"
     end
@@ -155,7 +158,11 @@ class QuestionsController < ApplicationController
   
   def payment_mode
     #Ask payment details
-    @question = Question.new
+    if current_user && current_user.questions.size > 0 
+      @question = current_user.questions.find(:first, :order => 'created_at desc')
+    else
+      @question = Question.new
+    end
     @item_cost = session[:new_question_item].item_cost if session[:new_question_item]
     @recurring_item_cost = session[:new_question_item].recurring_item_cost if session[:new_question_item]
   end
@@ -164,12 +171,17 @@ class QuestionsController < ApplicationController
     #Validate it
     #If successful, Store it in another session variable
     #else show errors for the last page
+    
     params[:question][:pm_saving_amount] = remove_commas(params[:question][:pm_saving_amount])
     params[:question][:pm_investment_amount] = remove_commas(params[:question][:pm_investment_amount])
     params[:question][:pm_financing_amount] = remove_commas(params[:question][:pm_financing_amount])
     @question = Question.new(params[:question])
+    @question.nick_name = current_user.username if current_user
+        
     question_personal_item = session[:new_question_item]
-    if Question.valid_for_attributes( @question, ['pm_saving_amount','pm_investment_amount','pm_financing_amount'] )
+    attributes_to_validate = ['pm_saving_amount','pm_investment_amount','pm_financing_amount', 'reason_to_buy', 'age']
+    attributes_to_validate << 'nick_name' unless current_user
+    if Question.valid_for_attributes( @question, attributes_to_validate ) && (current_user || @question.is_nick_name_unique)
         financial = session[:new_financial]
         #begin
             Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
@@ -185,6 +197,7 @@ class QuestionsController < ApplicationController
     #         render :action => "new"
         #end
     else
+        @reason_to_buy = @question.reason_to_buy
         @item_cost = question_personal_item.item_cost
         render :action => "payment_mode"
     end

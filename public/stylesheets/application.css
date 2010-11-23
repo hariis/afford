@@ -368,12 +368,31 @@ input[type="text"],select {
     margin-top:3px;
     padding:3px;
 }
+
 #financial-input input[type="text"] {
-    width:50%;
+    width:25%;
     font-weight:bold;
 }
 #question-input input[type="text"]{
     font-weight:bold;
+}
+#financial-input label, #question-input1 label {
+    float:left;
+    width:230px;
+    text-align:right;
+    margin:8px 10px 0 0;
+}
+#financial-input-long label{
+    float:left;
+    width:290px;
+    text-align:right;
+    margin:8px 10px 0 0;
+}
+#question-input-short label{
+    float:left;
+    width:170px;
+    text-align:right;
+    margin:8px 10px 0 0;
 }
 input#question_item_name {
    font-weight:normal !important;
