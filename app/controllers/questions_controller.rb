@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
       @question.item_name = "Example: Buy a Car"
     end
     
-    #@reason_to_buy = "0"
+    @reason_to_buy = "0"
 
     respond_to do |format|
       format.html 

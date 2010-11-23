@@ -2,6 +2,7 @@
   <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
 
   <%= @question.age %>
+  
   <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>
   
   <fieldset style="margin-top:30px;">
