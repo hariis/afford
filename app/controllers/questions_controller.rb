@@ -152,6 +152,11 @@ class QuestionsController < ApplicationController
     else
        #@reason_to_buy = @question.reason_to_buy
        @question.item_name = "Example: Buy a Car" if @question.item_name.blank?
+       if current_user && current_user.username == 'admin'
+          @questions = Question.find(:all, :order => 'created_at DESC', :limit => 5)
+       else
+          @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC', :limit => 5)
+       end
        render :action => "index"
     end
   end
@@ -187,6 +192,7 @@ class QuestionsController < ApplicationController
             Question.validate_payment_details_input(@question, question_personal_item.item_cost, financial.investments)
             if @question.errors.size > 0
                 @item_cost = question_personal_item.item_cost
+                @recurring_item_cost = question_personal_item.recurring_item_cost
                 render :action => "payment_mode"
             else
                 session[:new_question_payment] = @question
@@ -199,6 +205,7 @@ class QuestionsController < ApplicationController
     else
         @reason_to_buy = @question.reason_to_buy
         @item_cost = question_personal_item.item_cost
+        @recurring_item_cost = question_personal_item.recurring_item_cost
         render :action => "payment_mode"
     end
   end

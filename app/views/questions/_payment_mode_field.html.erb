@@ -2,17 +2,19 @@
   <fieldset>
     <legend><b>About You</b></legend>
     <p>
-      <%= f.label :reason_to_buy, "Why do you want it?" %>
+      <%= f.label :reason_to_buy, "Please tell us Why do you want it?" %>
       <%= f.select( :reason_to_buy, (Question::REASON_TO_BUY.sort{|v1,v2| v1[1] <=> v2[1]}.collect{|k| [k[0],k[1] ]}),{:selected => @reason_to_buy.to_s}) %>    
     </p>
     <p>
       <%= f.label :age, "Your Age" %>
-      <%= f.text_field :age, :size => 17 %><span style="font-size:12px;color:#0000ff;">(Minimum: 20 Maximum: 65)</span>
+      <%= f.text_field :age, :size => 17 , :onblur => "if (this.value == '') {this.value = '0';}",
+                                            :onfocus => "if (this.value == '0') {this.value = '';}" %><span style="font-size:12px;color:#0000ff;">(Minimum: 20 Maximum: 65)</span>
     </p>
    <% unless current_user %>
      <p>
       <%= f.label :nick_name, "Choose a Nick Name" %>
-      <%= f.text_field :nick_name, :size => 17, :maxlength => 20 %>
+      <%= f.text_field :nick_name, :size => 17, :maxlength => 20, :onblur => "if (this.value == '') {this.value = '0';}",
+                                            :onfocus => "if (this.value == '0') {this.value = '';}" %>
      </p>
    <% end %>
   </fieldset>

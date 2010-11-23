@@ -25,28 +25,37 @@
       <% end %>
   </div>
   <div style="float:right;">
-     <%= link_to image_tag('/images/report.png') %> <%= link_to_function "View Expert's Response" do |page|
+     <%= link_to image_tag('/images/report.png') %> <%= link_to_function "View Expert's Response",  :id => "p_show_expert" do |page|
+       page.hide "p_show_expert"
+       page.show "p_hide_expert"
        page.delay(0.1) do
         page.visual_effect :fade,  'user-response'
         page.visual_effect :fade,  'user-response-status'
        end
        page.delay(0.5) do
-        page.visual_effect :fade,  "financial-details"
-        page.hide "p_more_link_up"
-        page.show "p_more_link_down"
+        #page.visual_effect :fade,  "financial-details"
+        #page.hide "p_more_link_up"
+        #page.show "p_more_link_down"
        end
         page.delay(1) do
           page.visual_effect :appear, 'expert-response'
         end
        end %>
+    <%= link_to_function "Hide Expert's Response",  :id => "p_hide_expert", :style => 'display:none;' do |page|
+      page.show "p_show_expert"
+       page.hide "p_hide_expert"
+        page.delay(1) do
+          page.visual_effect :fade, 'expert-response'
+        end
+       end %>
    </div>
 </div>
 
-<%= link_to image_tag('/images/money.png') %> <%= link_to_function( "View Financial Details",  :id => "p_more_link_down", :style => 'display:none;') do |page|
+<%= link_to image_tag('/images/money.png') %> <%= link_to_function( "View Financial Details",  :id => "p_more_link_down") do |page|
         page.show "p_more_link_up"
         page.hide "p_more_link_down"
         page.delay(0.5) do
-          page.visual_effect :fade, 'expert-response'
+          #page.visual_effect :fade, 'expert-response'
           page.visual_effect :fade, 'user-response'
           page.visual_effect :fade, 'user-response-status'
         end
@@ -55,7 +64,7 @@
         end
  end  %>
 
- <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up") do |page|
+ <%= link_to_function( "Hide Financial Details",  :id => "p_more_link_up", :style => 'display:none;') do |page|
         page.delay(0.5) do
           page.visual_effect  :fade, "financial-details"
         end
@@ -133,7 +142,7 @@
         <% end %>
     </div>
 <div id="user-response-status" style="color:red;"></div>
-<div id="expert-response" style="display:none;margin-top:30px;">
+<div id="expert-response" style="margin-top:30px;">
     <fieldset>
       <legend><b>Details</b></legend>
       <ul>
@@ -142,7 +151,7 @@
     </fieldset>
 </div>
 
-<div id="financial-details" style="margin-top:20px;">
+<div id="financial-details" style="display:none;margin-top:20px;">
      <%= render :partial => "financial_details", :object => @financial, :local => {:question => @question} %>
 </div>
 

@@ -110,7 +110,7 @@ class FinancialsController < ApplicationController
   
   def create_account
     @question = Question.find(params[:id])
-    @error_msg = ""
+    @message = ""
     if params[:password].empty?
         @message = "Please enter a password"
     elsif params[:password].size < 4
@@ -128,6 +128,11 @@ class FinancialsController < ApplicationController
     end
     render :update do |page|
         page.replace_html "notification-status-password", @message
+        if @message == 'Account creation successful'
+          page.delay(5) do
+              page.visual_effect :fade, 'notification-password-prompt'
+          end
+        end
         #TODO update the login status
     end
   end
