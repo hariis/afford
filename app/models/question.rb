@@ -159,7 +159,7 @@ class Question < ActiveRecord::Base
           unless question.errors.size > 0
             if question.pm_investment_amount > 0
               unless investments - question.pm_investment_amount >= 0
-                question.errors.add("Your", " Total Investments of $#{investments} is not sufficient to support this purchase")
+                question.errors.add("You", " do not have sufficient funds in your Investments ( $#{investments} ) to support this purchase")
               end
             end       
           end

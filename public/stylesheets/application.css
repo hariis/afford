@@ -275,13 +275,24 @@ cursor: pointer;
     text-align: left;
 }
 #notification-prompt{
-    clear:both;
-    margin-top: 20px;
+    clear:both;    
     padding:8px 3px;
     text-align: left;
     background-color:#F1FAFE;
     color:#037EC4;
-    margin:0 auto;
+    margin: 20px auto;
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+}
+
+#notification-password-prompt{
+    clear:both;
+    padding:8px 3px;
+    text-align: left;
+    background-color:#eeffd9;
+    color:#037EC4;
+    margin: 20px auto;
     -moz-background-clip:border;
     -moz-background-inline-policy:continuous;
     -moz-background-origin:padding;
