@@ -130,13 +130,18 @@ function resetPaymentModeFields()
     var ins = document.getElementsByTagName('input');
     for (var i=0; i<ins.length; i++)
     {
+      //skip if it is personal data fields
+      if (ins[i].id == 'question_age')
+      {
+        continue;
+      }
       if (ins[i].getAttribute('type') == 'text' && ins[i].id != 'question_pm_saving_amount')
       {
         ins[i].value = '0';
       }
-      if (ins[i].id == 'question_pm_saving_amount')
+      if ( ins[i].id == 'question_pm_saving_amount' || ins[i].id == 'question_nick_name')
       {
-        ins[i].value = '';
+       // ins[i].value = '';
       }
     }
     document.getElementById('covered').innerHTML = "0"
