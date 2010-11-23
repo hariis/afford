@@ -1,97 +1,101 @@
-<%= image_tag ("/images/base-pb-fin.png") unless current_user %>
-<%= image_tag ("/images/loggedin-pb-fin.png") if current_user %><br/><br/>
+<% image_tag ("/images/base-pb-fin.png") unless current_user %>
+<% image_tag ("/images/loggedin-pb-fin.png") if current_user %><br/><br/>
 <fieldset>
   <legend><b>Monthly Income & Expenses</b></legend>
 
 <p>
-  <%= f.label :gross_income, "Gross Monthly Income" %><br />
+  <%= f.label :gross_income, "Gross Monthly Income" %>
   <% show_value = (!@financial.gross_income.nil? && @financial.gross_income > 0) ? @financial.gross_income : ""  %>
   <%= f.text_field :gross_income, :value => "#{show_value}" %>
   <span style="font-size:12px;color:#0000ff;">Minimum: $2,500  Maximum: $8,000</span>
 </p>
 <p>
-  <%= f.label :net_income, "Net/Take Home Monthly Income" %><br />
+  <%= f.label :net_income, "Net/Take Home Monthly Income" %>
   <% show_value = (!@financial.net_income.nil? && @financial.net_income > 0) ? @financial.net_income : ""  %>
   <%= f.text_field :net_income, :value => "#{show_value}" %>
   <span style="font-size:12px;color:#0000ff;">Minimum: $1,000  Maximum: $8,000</span>
 </p>
 <p>
-  <%= f.label :total_expenses, "Total Monthly Expenses" %><br />
-  <span style="font-size:12px;color:#0000ff;">
-  (Living Expenses & All Monthly loan payments including Credit card debts)</span><br />
-  <% show_value = (!@financial.total_expenses.nil? && @financial.total_expenses > 0) ? @financial.total_expenses : ""  %>
-  <%= f.text_field :total_expenses, :value => "#{show_value}"  %>
-</p>
-</fieldset>
-<div style="clear:both;">
-<fieldset style="float:left;width:43%;">
-  <legend><b>Monthly Loan Payments</b></legend>
-<p>
-  <%= f.label :mortage_payment, "Home Mortgage Payment" %><br />
-  <%= f.text_field :mortage_payment %>
-</p>
-<p>
-  <%= f.label :car_loan_payment, "Car Loan Payment" %><br />
-  <%= f.text_field :car_loan_payment %>
-</p>
-<p>
-  <%= f.label :student_loan_payment, "Student Loan Payment" %><br />
-  <%= f.text_field :student_loan_payment %>
-</p>
-<p>
-  <%= f.label :other_loan_payment, "Any Other Loan Payments" %><br />
-  <%= f.text_field :other_loan_payment %>
-</p>
-<p>
-  <%= f.label :deferred_loan_amount, "Total Deferred Loan Amount" %><br />
-  <%= f.text_field :deferred_loan_amount %>
+  <%= f.label :total_expenses, "Total Monthly Expenses" %>  
+  <% show_value = (!@financial.total_expenses.nil? && @financial.total_expenses > 0) ? @financial.total_expenses : "" %>
+  <%= f.text_field :total_expenses, :value => "#{show_value}" %>
+  <span style="font-size:12px;color:#0000ff;">Living Expenses & All Monthly loan payments including Credit card debts</span>
 </p>
 </fieldset>
 
-
-<fieldset  style="float:right;width:46%;">
-  <legend><b>Credit Card Loans & Payments</b></legend>
-  <span style="font-size:12px;;color:#0000ff;">(Exclude Monthly Loan Payments already entered)</span>
-  <p>
-    <%= f.label :cc_debt_at_zero, "Credit Card Debts @ 0% rate" %><br />
-    <%= f.text_field :cc_debt_at_zero %>
-  </p>
-  
-  <p>    
-    <%= f.label :monthly_cc_payments_at_zero, "Monthly Payments towards 0% rate Debts" %><br />
-    <%= f.text_field :monthly_cc_payments_at_zero %>    
-  </p>
-  <p>
-    <%= f.label :cc_debt_gt_zero, "Credit Card Debts @ above 0% rates" %><br />
-    <%= f.text_field :cc_debt_gt_zero %>
-  </p>
-</fieldset>
-</div>
-
-<div  style="clear:both;">
+<div id="financial-input-long">
+    <div style="clear:both;">
     <fieldset style="float:left;width:44.5%;">
-      <legend><b>Assets</b></legend>
+      <legend><b>Monthly Loan Payments</b></legend>
     <p>
-      <%= f.label :liquid_assets, "Liquid Assets" %><span style="font-size:12px;;color:#0000ff;">  (CDs, Money Market etc)</span><br />
-       <% show_value = (!@financial.liquid_assets.nil? && @financial.liquid_assets > 0) ? @financial.liquid_assets : ""  %>
-      <%= f.text_field :liquid_assets,  :value => "#{show_value}" %>
+      <%= f.label :mortage_payment, "Home Mortgage Payment" %>
+      <%= f.text_field :mortage_payment %>
     </p>
     <p>
-      <%= f.label :investments, "Investments" %><br />
-      <%= f.text_field :investments %>
+      <%= f.label :car_loan_payment, "Car Loan Payment" %>
+      <%= f.text_field :car_loan_payment %>
     </p>
-</fieldset>
+    <p>
+      <%= f.label :student_loan_payment, "Student Loan Payment" %>
+      <%= f.text_field :student_loan_payment %>
+    </p>
+    <p>
+      <%= f.label :other_loan_payment, "Any Other Loan Payments" %>
+      <%= f.text_field :other_loan_payment %>
+    </p>
+    <p>
+      <%= f.label :deferred_loan_amount, "Total Deferred Loan Amount" %>
+      <%= f.text_field :deferred_loan_amount %>
+    </p>
+    </fieldset>
 
-<fieldset style="float:right;width:44.5%;">
-    <legend><b>Retirement</b></legend>
-    <p>
-      <%= f.label :retirement_savings, "Retirement Savings" %><span style="font-size:12px;;color:#0000ff;"></span><br />
-      <%= f.text_field :retirement_savings %>
-    </p>
-    <p>
-      <%= f.label :monthly_retirement_contribution, "Monthly Retirement Contribution" %><br />
-      <%= f.text_field :monthly_retirement_contribution %>
-    </p>
-</fieldset>
+    <fieldset  style="float:right;width:44.5%;">
+      <legend><b>Credit Card Loans & Payments</b></legend>
+      <span style="font-size:12px;;color:#0000ff;">(Exclude Monthly Loan Payments already entered)</span>
+      <p>
+        <%= f.label :cc_debt_at_zero, "Credit Card Debts @ 0% rate" %>
+        <%= f.text_field :cc_debt_at_zero %>
+      </p>
+
+      <p>    
+        <%= f.label :monthly_cc_payments_at_zero, "Monthly Payments towards 0% rate Debts" %>
+        <%= f.text_field :monthly_cc_payments_at_zero %>    
+      </p>
+      <p>
+        <%= f.label :cc_debt_gt_zero, "Credit Card Debts @ above 0% rates" %>
+        <%= f.text_field :cc_debt_gt_zero %>
+      </p>
+    </fieldset>
+
+    </div>
+
+    <div  style="clear:both;">
+        <fieldset style="float:left;width:44.5%;">
+          <legend><b>Assets</b></legend>
+        <p>
+          <%= f.label :liquid_assets, "Liquid Assets <span style=font-size:12px;color:#0000ff;>(CDs, Money Market etc)</span>" %>
+          
+          <% show_value = (!@financial.liquid_assets.nil? && @financial.liquid_assets > 0) ? @financial.liquid_assets : ""  %>
+          <%= f.text_field :liquid_assets,  :value => "#{show_value}" %>
+
+        </p>
+        <p>
+          <%= f.label :investments, "Investments" %>
+          <%= f.text_field :investments %>
+        </p>
+    </fieldset>
+
+        <fieldset style="float:right;width:44.5%;">
+            <legend><b>Retirement</b></legend>
+            <p>
+              <%= f.label :retirement_savings, "Retirement Savings" %><span style="font-size:12px;;color:#0000ff;"></span>
+              <%= f.text_field :retirement_savings %>
+            </p>
+            <p>
+              <%= f.label :monthly_retirement_contribution, "Monthly Retirement Contribution" %>
+              <%= f.text_field :monthly_retirement_contribution %>
+            </p>
+        </fieldset>
+    </div>   
+    <span style="float:left;clear:both;"></span>
 </div>
-<span style="float:left;clear:both;"></span>
