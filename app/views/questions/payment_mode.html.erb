@@ -1,4 +1,4 @@
-<% form_for(@question,  :url => {:action => :step3}) do |f| %>
+<% form_for(@question,  :url => {:action => :step3}) do |f| %>  
   <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
 
   <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>

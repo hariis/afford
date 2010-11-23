@@ -1,6 +1,7 @@
 <div id="question-input-short">
   <fieldset>
     <legend><b>About You</b></legend>
+  
     <p>
       <%= f.label :reason_to_buy, "Please tell us Why do you want it?" %>
       <%= f.select( :reason_to_buy, (Question::REASON_TO_BUY.sort{|v1,v2| v1[1] <=> v2[1]}.collect{|k| [k[0],k[1] ]}),{:selected => @reason_to_buy.to_s}) %>    
