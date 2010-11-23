@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
       @question.item_name = "Example: Buy a Car"
     end
     
-    #@reason_to_buy = "0"
+    @reason_to_buy = "0"
 
     respond_to do |format|
       format.html 
@@ -170,6 +170,11 @@ class QuestionsController < ApplicationController
     end
     @item_cost = session[:new_question_item].item_cost if session[:new_question_item]
     @recurring_item_cost = session[:new_question_item].recurring_item_cost if session[:new_question_item]
+    
+    respond_to do |format|
+      format.html 
+      format.xml  { render :xml => @question }
+    end
   end
   
   def step3
