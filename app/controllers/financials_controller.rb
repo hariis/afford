@@ -109,40 +109,27 @@ class FinancialsController < ApplicationController
   end
   
   def create_account
-    #TODO Send report and create user account
-    #email = params[:email]        
     @question = Question.find(params[:id])
     @error_msg = ""
-    
-    nick_name = params[:nick_name]
-    #@question.errors.add('Register: ', "Username is too short (minimum is 3 characters)<br/>") if nick_name.size < 3
-    @error_msg << "Username is too short (minimum is 3 characters)<br/>" if nick_name.size < 3
-
-    if @error_msg.empty? && !params[:password].empty?
-        #@question.errors.add('Register: ', "Password is too short (minimum is 4 characters)<br/>") if params[:password].size < 4
-        if params[:password].size < 4
-            @error_msg << "Password is too short (minimum is 4 characters)<br/>"
-        else
-            @user = User.new
-            @user.username = nick_name  
-            @user.password = params[:password]
-            @user.password_confirmation = params[:password]
-            if @user.save
-              @question.update_attributes(:nick_name => nick_name)          
-              @question.update_attributes(:user_id => @user.id)
-              @question.financial.update_attributes(:user_id => @user.id)
-            else
-              #@question.errors.add('Register: ', "Username has already been taken")
-              @error_msg << "Username has already been taken"
-            end
+    if params[:password].empty?
+        @message = "Please enter a password"
+    elsif params[:password].size < 4
+        @message = "Password is too short (minimum is 4 characters)"
+    else
+        @message = "Account creation successful"
+        @user = User.new
+        @user.username = @question.nick_name  
+        @user.password = params[:password]
+        @user.password_confirmation = params[:password]
+        if @user.save
+          @question.update_attributes(:user_id => @user.id)
+          @question.financial.update_attributes(:user_id => @user.id)
         end
     end
-    unless @error_msg.empty?
-      flash[:error] = @error_msg      
-      redirect_to :action => :capture_additional_data, :id => @question.id and return
-    end   
-    
-    redirect_to :controller => :questions, :action => :get_expert_verdict, :id => @question.id
+    render :update do |page|
+        page.replace_html "notification-status-password", @message
+        #TODO update the login status
+    end
   end
   
   def create_account_old
