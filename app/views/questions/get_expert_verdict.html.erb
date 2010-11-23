@@ -24,26 +24,31 @@
   </ul>
   <br/>
 
-
   <div style="color:#037EC4;width:780px;margin:0 auto;font-size:12px;">
   If you have any questions or need clarification about the Calculations performed, please visit the page <br/>
   <b><%= link_to "Learn How Expert Calculates", '/how'  %></b> for a detailed explanation.
   </div>
-   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
-<br/>
-  <div id="notification-prompt" style="background-color:#F1FAFE;color:#037EC4;width:780px;margin:0 auto;">
-    
-    We are constantly working to provide you with an even better view of your financial status and 
-    adding exciting new tools to help increase your Affordability.
-    <br/><br/>
-    If you would like us to keep you informed of such updates, please enter your Email address here:
-    <% form_remote_tag :url => {:action => 'notify_on_product_updates'} do %>
-        <%= text_field_tag 'subscriber_email', "Your Email address", :size => '28',
-                                               :onblur => "if (this.value == '') {this.value = 'Your Email address';}", :onfocus => "if (this.value == 'Your Email address') {this.value = '';}" %>
-        <%= submit_tag "Sure, Keep me Informed" %>
-    <% end %>
-    <div id="notification-status"></div>
-</div>
+  <br/><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
+  <br/>
+ 
+  <% if !current_user %>
+      <div id="notification-prompt">
+            <%= render :partial => "financials/capture_additional_data" %>
+      </div><br/>
+  <% end %>
+  
+  <div id="notification-prompt">
+      We are constantly working to provide you with an even better view of your financial status and 
+      adding exciting new tools to help increase your Affordability.
+      <br/><br/>
+      If you would like us to keep you informed of such updates, please enter your Email address here:
+      <% form_remote_tag :url => {:action => 'notify_on_product_updates'} do %>
+          <%= text_field_tag 'subscriber_email', "Your Email address", :size => '28',
+                                                 :onblur => "if (this.value == '') {this.value = 'Your Email address';}", :onfocus => "if (this.value == 'Your Email address') {this.value = '';}" %>
+          <%= submit_tag "Sure, Keep me Informed" %>
+      <% end %>
+      <div id="notification-status"></div>
+  </div>
 
   <h3><%= link_to_function "Helpful Links >>" , visual_effect(:toggle_blind, "links", :duration => 0.5) %></h3>
   <ul id="links" style="display:none;">
@@ -73,7 +78,6 @@
   </div>
 
 </div>
-
 
 <div id="rules-feedback" style="width:860px;margin:0 auto;">
   <h2>Please help us Improve</h2>

@@ -279,11 +279,14 @@ cursor: pointer;
 #notification-prompt{
     clear:both;
     margin-top: 20px;
-    padding:15px 3px;
+    padding:8px 3px;
     text-align: left;
+    background-color:#F1FAFE;
+    color:#037EC4;
+    margin:0 auto;
     -moz-background-clip:border;
     -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;    
+    -moz-background-origin:padding;
 }
 
 #footer ul li {
@@ -293,7 +296,7 @@ cursor: pointer;
 #footer a {
      text-decoration:none;
 }
-#notification-status{
+#notification-status, #notification-status-password{
     color: red;
     margin-bottom: 0;
     padding-left: 11px;
@@ -423,6 +426,7 @@ input#question_item_name {
     text-align: left;
     padding: 5px;
     font-size: 12px;
+    background-color:#F1FAFE; 
     border-top:1px dotted #038819;
 }
 .feedback-dialog {
@@ -453,7 +457,7 @@ input#question_item_name {
 }
 #question ol  {
     width:830px;
-    background-color:#EDF3FE;    
+    background-color:#F1FAFE;    
 }
 
 #feedback-invoke {

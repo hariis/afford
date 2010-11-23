@@ -1,0 +1,7 @@
+Please provide a Password if you would like us to retrieve this financial data for your future questions <br/>
+<% form_remote_tag :url => {:controller => 'financials', :action => 'create_account', :id => @question.id }do %>    
+    <%= password_field_tag :password, params[:password], :size => 30 %>
+    <%= submit_tag "Submit", :name => nil %>
+<% end %>
+
+<div id="notification-status-password"></div>
