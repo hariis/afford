@@ -13,38 +13,26 @@
 </script>
 
 <div id="container">
+  <div style="height:290px;">
 <div class="how-to">  
   
     <div class="sub-title">How does it work?</div>
       <ul style="">
         <li>Tell us about your planned <i>Purchase</i></li>
-        <li>Provide us with your <i>financial numbers</i><br/>
-        <span style="font-size:14px;font-style:italic;">No Account numbers of anything required.</span></li>
-        <li>We evaluate your financial health <br/>
-        <span style="font-size:14px;font-style:italic;">
-          against <%= link_to "some well-established money management guidelines", "#{DOMAIN}how",:class => 'how-to-link' %> <br/> and provide you with a report.
-          </span>
+        <li>Fill in our free, anonymous financial health checklist and we'll calculate an instant answer</li>
+        <li>View
           <span id="gallery" style="font-size:14px;font-style:italic;">
             <a href="images/report-1.png" title="">Sample Report #1</a>  | 
             <a href="images/report-2.png" title="">Sample Report #2</a>
           </span>
         </li>
-         <li>Get a Clear Picture of your finances</li>
+   
           <li>Make an <i>Informed</i> decision</li>
       </ul>
 </div>
 
 <div class="right-container">
-  <div class="starter-form">
-        <div class="sub-title">Ask Your Question </div>
-        <% form_tag('/questions/new') do %>
-          <i><%= label_tag 'I want to' %></i><br/>
-          <%= text_field_tag 'want_to_buy', '' , :size => 20, :maxlength => 200 %><br/>
 
-          <%= submit_tag 'Can I Afford it Now?', :class => 'ask-button button' %>
-
-        <% end %>
-  </div>
   <div class="testimonials-title">Verdict from our users</div>
   <div id="testimonials">
 
@@ -71,7 +59,9 @@
        <div class="author">Kathy D.</div>
     </div>
   </div>
-</div>  
+</div>
+  </div>
+
 </div>
 
 <style type="text/css">
@@ -85,11 +75,11 @@
     font-weight: bold;
     text-align:center;
     margin: 25px 0px;
-    font-size:20px;
+    font-size:26px;
 }
 .how-to {
 /* border-right1:3px dotted #AAAAAA; */
-height:370px;
+height:265px;
 /* padding1:10px 20px 0 0; */
 width:540px;
 float:left;
@@ -97,11 +87,14 @@ margin:0;
 color:#444444;
 display:block;
 /* background-color: #ffddd0; */
-background-color:#C3D9FF;
+background-color:#e8eefa;
 -moz-border-radius:5px;
 font-size:24px;
 text-align:left;
 padding:10px;
+}
+#ask-question {
+ background-color:#e8eefa;
 }
 .sub-title {
   border-bottom:1px solid;
@@ -122,7 +115,7 @@ padding:10px;
  .how-to ul li {
   background:none repeat scroll 0 0 transparent;
   border:0 none;
-  font-size:100%;
+  font-size:22px;
   margin:0;
   outline:0 none;
   padding:0;
@@ -136,6 +129,8 @@ padding:10px;
   font-size:24px;
   text-align:left;
   padding:10px;
+  clear:both;
+  margin-top: 20px;
 }
 .right-container{
   width:33%;
@@ -147,7 +142,7 @@ padding:10px;
   -moz-border-radius:8px 8px 8px 8px;
   cursor:pointer;
 display:block;
-font-size:0.8em;
+font-size:18px;
 font-weight:bold;
 margin:0 10px 0 0;
 text-decoration:none;
@@ -159,7 +154,7 @@ background-repeat:repeat-x;
 border:2px solid #CCCCCC;
 color:white;
 padding: 5px;
-margin-top: 10px;
+margin-left:330px;
 }
 .ask-button:hover {
   background-color:#ff692e;
@@ -170,7 +165,6 @@ margin-top: 10px;
 #container {
   line-height:130%;
   margin:10px auto;
-  width:95%;
 }
 #testimonials{
   height:150px;
@@ -181,6 +175,8 @@ margin-top: 10px;
 }
 
   </style>
+
+<%= render :partial => 'new' %>
 
 <div style="float:left;">
     <h2>Recently Asked</h2>

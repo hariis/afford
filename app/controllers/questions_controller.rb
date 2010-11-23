@@ -45,6 +45,16 @@ class QuestionsController < ApplicationController
       @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC', :limit => 5)
     end
 
+    #for the question
+    if current_user && current_user.questions.size > 0
+      @question = current_user.questions.find(:first, :order => 'created_at desc')
+      @question.item_cost = ""
+    else
+      @question = Question.new
+    end
+    @question.item_name = "Example: Buy a Car"
+    @reason_to_buy = "0"   
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @questions }
@@ -139,7 +149,7 @@ class QuestionsController < ApplicationController
     else
        @reason_to_buy = @question.reason_to_buy
        @question.item_name = "Example: Buy a Car" if @question.item_name.blank?
-       render :action => "new"
+       render :action => "index"
     end
   end
   
