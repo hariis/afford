@@ -152,6 +152,11 @@ class QuestionsController < ApplicationController
     else
        #@reason_to_buy = @question.reason_to_buy
        @question.item_name = "Example: Buy a Car" if @question.item_name.blank?
+       if current_user && current_user.username == 'admin'
+          @questions = Question.find(:all, :order => 'created_at DESC', :limit => 5)
+       else
+          @questions = Question.find(:all, :conditions => ['nick_name != ? && expert_details is not NULL', "nickname"], :order => 'created_at DESC', :limit => 5)
+       end
        render :action => "index"
     end
   end

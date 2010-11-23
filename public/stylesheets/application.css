@@ -35,7 +35,6 @@ a:visited { color: #045f93; }
 a:hover { color: #045f93; text-decoration:underline; }
 
 .fieldWithErrors {
-  padding: 2px;
   color: red;
 }
 
@@ -390,7 +389,7 @@ input[type="text"],select {
 }
 #question-input-short label{
     float:left;
-    width:170px;
+    width:258px;
     text-align:right;
     margin:8px 10px 0 0;
 }
@@ -505,3 +504,24 @@ input#question_item_name {
         width:5%;
 }
 
+.button {
+  -moz-border-radius:8px 8px 8px 8px;
+  cursor:pointer;
+display:block;
+font-size:18px;
+font-weight:bold;
+margin:0 10px 0 0;
+text-decoration:none;
+}
+.ask-button {
+background-color:#ff4800;
+/* background-image:url("/images/v2/button_overlay.png"); */
+background-repeat:repeat-x;
+border:2px solid #CCCCCC;
+color:white;
+padding: 5px;
+margin-left:330px;
+}
+.ask-button:hover {
+  background-color:#ff692e;
+}
