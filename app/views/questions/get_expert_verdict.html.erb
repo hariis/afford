@@ -31,7 +31,7 @@
   <br/><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
   <br/>
  
-  <% if !current_user %>
+  <% if !current_user && User.find_by_username(@question.nick_name).nil? %>
       <div id="notification-password-prompt">
             <%= render :partial => "financials/capture_additional_data" %>
       </div>
