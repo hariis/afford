@@ -3,7 +3,7 @@
 
   <%= render 'payment_mode_field', :f => f, :locals => {:question => @question} %>
       By clicking the Submit button, you are agreeing to the <%= link_to "Terms and Conditions", :action => 'tos' %> of this Service.
-      <br/><span style="margin-left:35%;"><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil, :onclick => 'return finalCheck()' , :class => 'ask-button button' %></span>
+      <br/><%= submit_tag "Submit Data and Get Expert Verdict", :name => nil, :onclick => 'return finalCheck()' , :class => 'submit-button button' %>
 <% end %>
 
 

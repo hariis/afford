@@ -1,5 +1,5 @@
 <% form_for(@question,  :url => {:action => :step1}) do |f| %>
-  <%= f.error_messages :header_message => "Invalid Data!", :message => "", :header_tag => :h3 %>
+  <%= f.error_messages :header_message => "", :message => "", :header_tag => :h3 %>
 
   <%= render 'personal_item_field', :f => f %>
 

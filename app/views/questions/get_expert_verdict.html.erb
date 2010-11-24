@@ -24,12 +24,14 @@
   </ul>
   <br/>
 
-  <div style="color:#037EC4;width:780px;margin:0 auto;font-size:12px;">
+  <div style="color:#037EC4;width:780px;margin:0 auto;font-size:14px;">
   If you have any questions or need clarification about the Calculations performed, please visit the page <br/>
   <b><%= link_to "Learn How Expert Calculates", '/how'  %></b> for a detailed explanation.
   </div>
-  <br/><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
-  <br/>
+  <div class="widget">
+  <%= image_tag '/images/facebook_64.png' %>
+   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
+ </div>
  
   <% if !current_user && User.find_by_username(@question.nick_name).nil? %>
       <div id="notification-password-prompt">

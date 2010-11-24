@@ -2,7 +2,7 @@
       <b><%= f.label :item_name, "I want to" %></b><br/>
       <%= f.text_field :item_name, :size => 63, :maxlength => 200,
                    :onblur => "if (this.value == '') {this.value = 'Example: Buy a Car';this.style.color='#999999';}", :onfocus => "if (this.value == 'Example: Buy a Car') {this.value = '';} this.style.color='#333333';" %>
-      <span style="font-size:12px;padding-left:73px;color:#0000ff;">Example: Buy a TV, Visit Europe, Go on a Cruise</span>
+      <br/><span class="tooltip">Example: Buy a TV, Visit Europe, Go on a Cruise</span>
    </p>
 
      <div class="row" style="display:none;">
@@ -11,13 +11,15 @@
      </div>
 <br/>
     <p>
-      <%= f.label :item_cost, "Total Cost of your Purchase" %><span style="font-size:12px;color:#0000ff;"> <br/>(Minimum: $100 Maximum: $1,000,000)</span><br/>
-      <%= f.text_field :item_cost , :size => 20, :maxlength => 9 %>
+      <%= f.label :item_cost, "Total Cost of your Purchase" %><span class="tooltip"> <br/>Minimum: $100 Maximum: $1,000,000</span><br/>
+      <%= f.text_field :item_cost , :size => 20, :maxlength => 9, :onblur => "if (this.value == '') {this.value = '0';}",
+                                            :onfocus => "if (this.value == '0') {this.value = '';}" %>
     </p>
 <br/>
     <p>
-      <%= f.label :recurring_item_cost, "Recurring Monthly Costs for your purchase" %><span style="font-size:12px;color:#0000ff;"><br/> (Ex: Insurance for a car, Vet visits for a Pet, Maintenance cost, Subscription cost)</span><br/>
-      <%= f.text_field :recurring_item_cost , :size => 20, :maxlength => 9 %>
+      <%= f.label :recurring_item_cost, "Recurring Monthly Costs for your purchase" %><span class="tooltip"><br/> Ex: Insurance for a car, Vet visits for a Pet, Maintenance cost, Subscription cost</span><br/>
+      <%= f.text_field :recurring_item_cost , :size => 20, :maxlength => 9, :onblur => "if (this.value == '') {this.value = '0';}",
+                                            :onfocus => "if (this.value == '0') {this.value = '';}" %>
    </p>
 
 
@@ -25,7 +27,7 @@
   <legend><b>About You</b></legend>
   <p>
     <%= f.label :age, "Your Age" %><br/>
-    <%= f.text_field :age %><span style="font-size:12px;color:#0000ff;">(Minimum: 20 Maximum: 65)</span>
+    <%= f.text_field :age %><span class="tooltip">(Minimum: 20 Maximum: 65)</span>
   </p>
  <% unless current_user %>
    <p>
@@ -56,6 +58,10 @@ div.row span.formw {
 div.row input {
     float:left;
     margin: 0;
+}
+.tooltip {
+  font-size:12px;
+  color:#0B84E8;
 }
   </style>
 

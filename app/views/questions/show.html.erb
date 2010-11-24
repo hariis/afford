@@ -142,6 +142,9 @@
         <% end %>
     </div>
 <div id="user-response-status" style="color:red;"></div>
+<div id="financial-details" style="display:none;margin-top:20px;">
+     <%= render :partial => "financial_details", :object => @financial, :local => {:question => @question} %>
+</div>
 <div id="expert-response" style="margin-top:30px;">
     <fieldset>
       <legend><b>Details</b></legend>
@@ -151,9 +154,7 @@
     </fieldset>
 </div>
 
-<div id="financial-details" style="display:none;margin-top:20px;">
-     <%= render :partial => "financial_details", :object => @financial, :local => {:question => @question} %>
-</div>
+
 
 <br/>
 

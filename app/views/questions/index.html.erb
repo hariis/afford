@@ -14,12 +14,13 @@
 
 <div id="container">
   <div style="height:290px;">
-<div class="how-to">  
+<div class="how-to box">
   
     <div class="sub-title">How does it work?</div>
       <ul style="">
         <li>Tell us about your planned <i>Purchase</i></li>
         <li>Fill in our free, anonymous financial health checklist and we'll calculate an instant answer</li>
+        <li><%= link_to 'Learn How we Calculate' , '/how' %></li>
         <li>View
           <span id="gallery" style="font-size:14px;font-style:italic;">
             <a href="images/report-1.png" title="">Sample Approved Report</a>  | 
@@ -30,26 +31,30 @@
           <li>Make an <i>Informed</i> decision</li>
       </ul>
 </div>
-
+    
 <div class="right-container">
 
-<div class="widget">
-   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
- </div>
+
 
 <div class="widget">
  <div class="testimonials-title">Our Goal</div>
   <div id="testimonial-goal">
       <span style="font-family:georgia;font-size:30px;">O</span>ur goal is to help people clearly see their financial picture, remind them to secure themselves first by
-      addressing the priorities like Emergency funds and Retirement which are often overlooked, and hopefully make them stop and think twice before making a purchase.<br/><br/>
-
-      <span style="font-family:georgia;font-size:30px;">P</span>lease be assured that the data collected here will remain completely Anonymous. 
-      No Personally Identifying information will be stored as part of this data.
+      addressing priorities like Emergency funds and Retirement which are often overlooked, and hopefully make them stop and think twice before making a purchase.<br/><br/>
+      <%= image_tag '/images/section-divider.gif' %> <br/>     
   </div> 
  </div> 
 
-
-<div class="widget">
+  <div class="widget"  style="font-family:Georgia;">
+    <div class="testimonials-title"><%= image_tag '/images/shield.png' %>Privacy</div>
+ <span style="font-size:30px;">P</span>lease be assured that the data collected here will remain completely Anonymous.
+      No Personally Identifying information will be stored as part of this data.
+    </div>
+<div class="widget" style="background:none;">
+  <%= image_tag '/images/facebook_64.png' %>
+   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
+ </div>
+<div class="widget" style="height:230px;">
   <div class="testimonials-title">Verdict from our users</div>
   <div id="testimonials">
 
@@ -78,9 +83,7 @@
   </div>
 </div> 
 </div> 
-</div>
-  </div>
-
+</div>  
 </div>
 
 <style type="text/css">
@@ -97,48 +100,33 @@
     font-size:26px;
 }
 .how-to {
-/* border-right1:3px dotted #AAAAAA; */
-height:265px;
-/* padding1:10px 20px 0 0; */
-width:540px;
-float:left;
-margin:0;
-color:#444444;
-display:block;
-/* background-color: #ffddd0; */
-background-color1:#e8eefa;
-background-color:#F4F4F4;
--moz-border-radius:5px;
+height:290px;
 font-size:24px;
-text-align:left;
-padding:10px;
-border:1px solid #DFDFDF;
-margin-bottom:40px;
 }
 
 #ask-question {
-/* border-right1:3px dotted #AAAAAA; */
-height:370px;
-/* padding1:10px 20px 0 0; */
-width:540px;
-float:left;
-margin:0;
-color:#444444;
-display:block;
-/* background-color: #ffddd0; */
-background-color1:#e8eefa;
-background-color:#F4F4F4;
--moz-border-radius:5px;
-text-align:left;
-padding:10px;
-border:1px solid #DFDFDF;
-margin-bottom:40px;
+  height:564px;
 }
 
+.box {
+  width:540px;
+  float:left;
+  margin:0;
+  color:#444444;
+  display:block;
+  /* background-color: #ffddd0; */
+  background-color:#F1FAFE;
+  -moz-border-radius:5px;
+  text-align:left;
+  padding:10px;
+  border:1px solid;
+  border-color:#DAE3EA #DDDDDD;
+  margin-bottom:40px;
+}
 .sub-title {
   border-bottom:1px solid;
   /* color1:#ff4800;*/
-  color:#045F93;
+  color:#0B84E8;
   font-weight: bold;
   text-align:center;
   font-size:26px;
@@ -177,15 +165,7 @@ margin-bottom:40px;
   max-width:36em;
   background-color1:#F4F4F4;
 }
-.widget{
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
- background:white none repeat scroll 0 0;
- border:1px solid #DFDFDF;
- padding: 10px;
- margin-bottom:20px;
-}
+
 #goal {
   clear:both;
 }
