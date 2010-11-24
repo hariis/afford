@@ -23,17 +23,17 @@
 
 <fieldset style="margin-top:30px;">
 <legend><b>How are you going to pay for your Purchase?</b></legend>
-<span style="font-size:14px;color:red;"> (Exclude Additional Monthly Cost of $<%= @recurring_item_cost.to_s %>)</span><br/>
+<span style="font-size:14px;color:orange;"> (Exclude Additional Monthly Cost of $<%= @recurring_item_cost.to_s %>)</span><br/>
 <div style="padding: 0 10px;"></div>
 
-<div style="width: 720px;  margin: 20px auto;background:url('/images/fieldset.gif?1287455943') repeat-x scroll left bottom #F8FDEF;">
+<div style="  margin: 20px auto;background:url('/images/fieldset.gif?1287455943') repeat-x scroll left bottom #F8FDEF;">
 <div class="row"  style="color:green;font-weight:bold;font-size: 20px;">
 <span class="label">Cost to be covered: </span><span class="formw"> $<%= @item_cost.to_s %></span>
 <span id='item-cost' style="display:none;"><%= @item_cost %></span>
 </div>
     <div class="row">
       <span class="label"><%= f.label "Contribution from Savings:" %></span>
-    <span class1="formw"><%= f.text_field :pm_saving_amount, :value => "", :size => 5, :onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
+    <span class="formw"><%= f.text_field :pm_saving_amount, :size => 5, :onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
    
@@ -41,14 +41,14 @@
     <div class="row">
     <span class="label">
     <%= f.label "Contribution from Investments:" %></span
-     <span class1="formw"><%= f.text_field :pm_investment_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
+     <span class="formw"><%= f.text_field :pm_investment_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
 
     <div class="row">
     <span class="label">
     <%= f.label "If Financing, Loan Payment per month:" %></span
-     <span class1="formw"><%= f.text_field :pm_financing_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
+     <span class="formw"><%= f.text_field :pm_financing_amount,:size => 5,:onblur => "calculateCovered();if (this.value == '') {this.value = '0';}",
                                             :onfocus => "if (this.value == '0') {this.value = '';}",
                                             :onkeyup => "calculateCovered();" %></span></div>
 
@@ -57,7 +57,7 @@
             Covered so far:
            </span
           <div id="status">
-          <span id ="show-status" class="formw total"  style="background-color:#FBD9E5;">
+          <span id ="show-status" class="formw total"  style="background-color:#FBD9E5;padding:3px;float:left;width:275px;">
           $ <span id ="covered">0</span>
           <span id ="financing" style="display:none;"><%= "and through financing " %></span>
           <span id ="good" style="display:none;"><%= image_tag("/images/tick.png")  %></span>
@@ -132,7 +132,7 @@ function resetPaymentModeFields()
     for (var i=0; i<ins.length; i++)
     {
       //skip if it is personal data fields
-      if (ins[i].id == 'question_age')
+      if (ins[i].id == 'question_age'|| ins[i].id == 'question_nick_name')
       {
         continue;
       }
@@ -140,9 +140,9 @@ function resetPaymentModeFields()
       {
         ins[i].value = '0';
       }
-      if ( ins[i].id == 'question_pm_saving_amount' || ins[i].id == 'question_nick_name')
+      if ( ins[i].id == 'question_pm_saving_amount' )
       {
-       // ins[i].value = '';
+        ins[i].value = '';
       }
     }
     document.getElementById('covered').innerHTML = "0"
@@ -157,13 +157,13 @@ function resetPaymentModeFields()
 
 div.row span.label {
   float: left;
-  width: 370px;
+  width: 270px;
   text-align: right;
   }
 
 div.row span.formw {
   float: right;
-  width: 340px;
+  width: 620px;
   text-align: left;
   }
 div.row input {
