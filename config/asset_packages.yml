@@ -7,10 +7,10 @@ javascripts:
   - controls
 - rest: 
   - jquery-1.4.2.min
-  - jquery-ui-1.8.5.custom.min
+  - jquery-ui-1.8.6.custom.min
   - application
 
 stylesheets: 
 - base:
   - application
-  - jquery-ui-1.8.5.custom
+  - jquery-ui-1.8.6.custom
