@@ -25,7 +25,7 @@
       <% end %>
   </div>
   <div style="float:right;">
-     <%= link_to image_tag('/images/report.png') %> <%= link_to_function "View Expert's Response",  :id => "p_show_expert" do |page|
+     <%= link_to image_tag('/images/report.png') %> <%= link_to_function "View Expert's Response",  :id => "p_show_expert", :style => 'display:none;' do |page|
        page.hide "p_show_expert"
        page.show "p_hide_expert"
        page.delay(0.1) do
@@ -41,7 +41,7 @@
           page.visual_effect :appear, 'expert-response'
         end
        end %>
-    <%= link_to_function "Hide Expert's Response",  :id => "p_hide_expert", :style => 'display:none;' do |page|
+    <%= link_to_function "Hide Expert's Response",  :id => "p_hide_expert" do |page|
       page.show "p_show_expert"
        page.hide "p_hide_expert"
         page.delay(1) do
