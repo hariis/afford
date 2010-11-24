@@ -1,16 +1,7 @@
 <div id="ask-question">
-
-    <div style="float:left;padding-left:20px;">
-        <div class="testimonials-title">Get Started</div>
+    <div class="sub-title">Get Started</div>
+        <div id="question-input">
+            <%= render :partial => "question", :locals => { :button_label => 'Can I Afford it?' } %>
+        </div>
     </div>
-
-    <div class="warning">
-        Please be assured that the data collected here will remain completely Anonymous.<br/>
-        No Personally Identifying information will be stored as part of this data.
-    </div>
-
-
-<div id="question-input">
-    <%= render :partial => "question", :locals => { :button_label => 'Can I Afford it?' } %>
-</div>
 </div>

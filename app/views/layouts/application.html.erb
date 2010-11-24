@@ -40,17 +40,6 @@
                  <%= link_to image_tag('/images/newlogo-pic-b.png'), root_path %>
               </div>
                <div id="login">
-                  <% if current_user && current_user.username == 'admin' %>
-                    <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
-                  <% end %>
-                  <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
-                  <% if current_user %>
-                      <% link_to "Home", root_path if controller.action_name != 'index' %>
-                      <b><%= current_user.username.capitalize %></b> | <%= link_to "#{image_tag('/images/lock_open.png')} LOGOUT", logout_path %> 
-                   <% else %>                                    
-                          <% link_to "Home", root_path if controller.action_name != 'index' %>
-                          <%= link_to "#{image_tag('/images/lock.png')} LOGIN", login_path unless controller_name == 'user_sessions' %><br/>
-                   <% end %>
                    <% if controller.action_name != 'about' && controller.action_name != 'tos' && controller.action_name != 'privacy' %>     
                       <% if current_user %><br/>
                             <div id="user-stat">
@@ -60,16 +49,25 @@
                             </div><br/>
                        <% end %>                       
                    <% end %>
-                   <b><% link_to "Learn How Expert Calculates", "#{DOMAIN}how", :class => 'learn-button button' %></b>                                                         
+
+                  <% if current_user && current_user.username == 'admin' %>
+                    <%= link_to "ADMIN |", admin_path unless action_name == 'admin' %>
+                  <% end %>
+                  <% if current_user %>
+                      <% link_to "Home", root_path if controller.action_name != 'index' %>
+                      <b><%= current_user.username.capitalize %></b> | <%= link_to "#{image_tag('/images/lock_open.png')} LOGOUT", logout_path %> 
+                   <% else %>                                    
+                          <% link_to "Home", root_path if controller.action_name != 'index' %>
+                          <%= link_to "#{image_tag('/images/lock.png')} LOGIN", login_path unless controller_name == 'user_sessions' %><br/>
+                   <% end %>
                </div>
           </div>
           
 
          <div id="tagline">
-          <ul>
-             <li>Get a <i>Free</i> Financial Health Check <b><i>Anonymously</i></b> & <b><i>Instantly</i></b></li>
-             <li>Get a Second Opinion before your Purchase</li>
-          </ul>
+            <ul>
+              <li>Second Opinion on your Purchase and <i>Free</i> Financial Health Check <b><i>Anonymously</i></b> & <b><i>Instantly</i></b></li>
+            </ul>
          </div>
 
       </div>  
