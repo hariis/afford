@@ -28,7 +28,7 @@
   If you have any questions or need clarification about the Calculations performed, please visit the page 
   <b><%= link_to "Learn How Expert Calculates", '/how'  %></b> for a detailed explanation.
   </div>
-  <div class="widget">
+  <div style="padding:10px;">
   <%= image_tag '/images/facebook_64.png' %>
    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
  </div>
@@ -38,7 +38,17 @@
             <%= render :partial => "financials/capture_additional_data" %>
       </div>
   <% end %>
-  
+   
+  <% if Notification.find_by_question_id(@question.id * -1).nil? %>
+      <div id="sweepstakes-prompt" style="display:none;">
+            <% form_remote_tag :url => {:action => 'enter_sweepstakes'} do %>
+                <%= text_field_tag 'subscriber_email', "Your Email address", :size => '28',
+                                                       :onblur => "if (this.value == '') {this.value = 'Your Email address';}", :onfocus => "if (this.value == 'Your Email address') {this.value = '';}" %>
+                <%= submit_tag "I agree to the rules. Enter Sweepstakes." %>
+            <% end %>
+            <div id="sweepstakes-status"></div>
+      </div>
+  <% end %>
   <div id="notification-prompt">
       We are constantly working to provide you with an even better view of your financial status and 
       adding exciting new tools to help increase your Affordability.

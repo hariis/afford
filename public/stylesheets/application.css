@@ -72,7 +72,8 @@ a:hover { color: #045f93; text-decoration:underline; }
 /* App specifif*/
 
 fieldset {
-    background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
+    /* background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF; */
+    background:#F1FAFE;
     background-color1:#F4F4F4;
     border-color:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;

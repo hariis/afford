@@ -338,4 +338,21 @@ class QuestionsController < ApplicationController
         page.replace_html "notification-status", @message
     end
   end
+
+ def enter_sweepstakes
+    question = Question.find(params[:qid]) if params[:qid]
+    unless question.nil?
+      if validate_simple_email(params[:subscriber_email])
+        if Notification.find_by_question_id(@question.id * -1).nil?
+          #Save this data
+          Notification.create(:email => params[:subscriber_email], :question_id => question.id * -1)
+          render :text => 'You have successfully entered.'
+        else
+          render :text => 'You have already entered.'
+        end
+      else
+        render :text => 'Please enter a valid email address.'
+      end
+    end
+ end
 end

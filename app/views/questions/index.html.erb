@@ -46,15 +46,12 @@
  </div> 
 
   <div class="widget"  style="font-family:Georgia;">
-    <div class="testimonials-title"><%= image_tag '/images/shield.png' %>Privacy</div>
+    <div class="testimonials-title">Privacy</div>
  <span style="font-size:30px;">P</span>lease be assured that the data collected here will remain completely Anonymous.
       No Personally Identifying information will be stored as part of this data.
     </div>
-<div class="widget" style="background:none;">
-  <%= image_tag '/images/facebook_64.png' %>
-   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
- </div>
-<div class="widget" style="height:230px;">
+
+<div class="widget" style="height:230px;margin-top:51px;">
   <div class="testimonials-title">Verdict from our users</div>
   <div id="testimonials">
 
@@ -83,7 +80,8 @@
   </div>
 </div> 
 </div> 
-</div>  
+</div>
+  <%= render :partial => 'new' %>
 </div>
 
 <style type="text/css">
@@ -105,7 +103,7 @@ font-size:24px;
 }
 
 #ask-question {
-  height:564px;
+  height:460px;
 }
 
 .box {
@@ -160,10 +158,8 @@ font-size:24px;
   margin-top: 20px;
 }
 .right-container{
-  width:33%;
   margin-left:600px;
   max-width:36em;
-  background-color1:#F4F4F4;
 }
 
 #goal {
@@ -188,7 +184,12 @@ font-size:24px;
 }
   </style>
 
-<%= render :partial => 'new' %>
+<div style="float:left;clear:both;">
+<div class="widget" style="background:none;">
+  <%= image_tag '/images/facebook_64.png' %>
+   <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCan-I-Afford-it-Now%2F162255743812274&amp;layout=button_count&amp;show_faces=false&amp;width=250&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px; padding-bottom:10px;" allowTransparency="true"></iframe><br/>
+ </div>
+</div> 
 
 <div style="float:left;clear:both;">
     <h2>Recently Asked</h2>
